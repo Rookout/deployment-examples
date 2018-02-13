@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rookout-agent-service
+  labels:
+    product: rookout
+    app: agent
+spec:
+  selector:
+    app: agent
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 7486

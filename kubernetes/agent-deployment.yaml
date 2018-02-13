@@ -1,0 +1,28 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rookout-agent-deployment
+  labels:
+    product: rookout
+    app: agent
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        product: rookout
+        app: agent
+    spec:
+      containers:
+      - name: agent
+        image: us.gcr.io/rookout/agent:latest
+        env:
+          - name: ROOKOUT_TOKEN
+            value: 'YOUR_TOKEN_HERE'
+        ports:
+          - containerPort: 7486
+        livenessProbe:
+          tcpSocket:
+            port: 7486
+          initialDelaySeconds: 15
+          periodSeconds: 20

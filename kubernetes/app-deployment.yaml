@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-world
+  labels:
+    name: hello-world
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: rookout/hello-world-kubernetes:latest
+        ports:
+        - containerPort: 8888
+        env:
+          - name: ROOKOUT_AGENT_HOST
+            value: 'rookout-agent-service.default.svc.cluster.local'
