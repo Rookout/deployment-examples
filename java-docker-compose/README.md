@@ -30,6 +30,8 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
     ```    
 4. Make sure everything worked: [http://localhost:7000/hello](http://localhost:7000/hello)
 
+5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+
 
 ## Using docker compose
 
@@ -53,6 +55,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
     ```
 5. Make sure everything worked: [http://localhost:7000/hello](http://localhost:7000/hello)
 
+6. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 ## Rookout Integration explained
 
 This example is based of the Java javalin "Hello-World" example available [here].
