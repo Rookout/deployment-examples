@@ -1,0 +1,16 @@
+version: '3'
+services:
+  agent:
+    environment:
+      ROOKOUT_TOKEN: 38d4174d57208462db0998a91f9ff42d5605ee2bc9c50f49c276fb9049362435
+    image: "rookout/agent"
+
+  app:
+    build: .
+    environment:
+      ROOKOUT_AGENT_HOST: agent
+    ports:
+      - 7000:7000
+    command:  java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar
+
+
