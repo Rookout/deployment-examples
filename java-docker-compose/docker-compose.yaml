@@ -1,12 +1,14 @@
 version: '3'
 services:
   agent:
+    container_name: rookout-agent
     environment:
-      ROOKOUT_TOKEN: 38d4174d57208462db0998a91f9ff42d5605ee2bc9c50f49c276fb9049362435
+      ROOKOUT_TOKEN: YOUR_TOKEN_HERE
     image: "rookout/agent"
 
   app:
     build: .
+    container_name: rookout-demo-app
     environment:
       ROOKOUT_AGENT_HOST: agent
     ports:
