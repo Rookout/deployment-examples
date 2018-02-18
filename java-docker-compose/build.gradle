@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.rookout'
+version = '1.0.0'
+
+description = """rookoutHellopApp"""
+
+
+repositories {
+        
+     maven { url "http://repo1.maven.org/maven2" }
+}
+dependencies {
+    compile group: 'io.javalin', name: 'javalin', version:'1.3.0'
+}
+
+jar {
+    from sourceSets.main.allSource
+}
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'com.rookout.HelloWorld'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
