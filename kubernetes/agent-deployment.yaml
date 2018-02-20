@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: agent
-        image: us.gcr.io/rookout/agent:latest
+        image: rookout/agent
         env:
           - name: ROOKOUT_TOKEN
-            value: 'YOUR_TOKEN_HERE'
+            value: YOUR_TOKEN
         ports:
           - containerPort: 7486
         livenessProbe:
