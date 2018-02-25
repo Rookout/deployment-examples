@@ -24,27 +24,22 @@ For more information about Docker go [here](https://www.docker.com/).
 ## Running locally
 
 
-1. Installing typescript dependencies (if you want to build yourself):
+1. Installing dependencies:
     ```bash
-    $ npm install typescript -g && npm install @types/node
+    $ npm install
     ```
 
-2. Installing dependencies:
+2. Build:
     ```bash
-    $ npm install rookout --save
+    $ npm run build
     ```
 
-3. Build:
+3. Run:
     ```bash
-    $ tsc app.ts --sourceMap --outDir ./output
+    $ npm start
     ```
 
-4. Run:
-    ```bash
-    $ node ./output/app.js
-    ```
-
-5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+4. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
 
 ## Rookout Integration explained
