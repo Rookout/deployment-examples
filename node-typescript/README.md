@@ -58,7 +58,7 @@ We have added Rookout to the original project by:
 
 2. Build & Serve locally:
     ```bash
-    $ npm run build && npm start
+    $ cd TypeScript-Node-Example && npm run build && npm start
     ```
 
 3. Make sure everything worked: [http://localhost:3000](http://localhost:3000)
