@@ -21,14 +21,6 @@ Before following this guide we recommend reading the basic [TypeScript Node + Ro
 
 For more information about Docker go [here](https://www.docker.com/).
 
-### Using Bash
-
-1. Download and install the agent as a systemd or init.d service on a __linux__ machine:
-    ```bash
-    $ curl -fs https://get.rookout.com | sudo -H bash -s agent
-    ```
-
-
 ## Rookout Integration explained
 
 
@@ -49,14 +41,24 @@ We have added Rookout to the original project by:
 
 ## Running locally
 
-1. Installing typescript dependencies:
+1. Installing typescript dependencies (if you want to build yourself):
     ```bash
     $ npm install typescript -g && npm install @types/node
     ```
 
-2. Build & Run locally:
+2. Installing dependencies:
     ```bash
-    $ tsc app.ts --sourceMap --outDir ./dist && node ./dist/app.js
+    $ npm install rookout --save
     ```
 
-3. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+3. Build:
+    ```bash
+    $ tsc app.ts --sourceMap --outDir ./dist
+    ```
+
+4. Run:
+    ```bash
+    $ node ./dist/app.js
+    ```
+
+5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
