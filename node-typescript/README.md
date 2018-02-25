@@ -31,7 +31,6 @@ For more information about Docker go [here](https://www.docker.com/).
 
 ## Rookout Integration explained
 
-This example is based of the Microsoft TypeScript-Node-Starter example available [here].
 
 We have added Rookout to the original project by:
 1. Adding rookout to `package.json` available on [npm]:
