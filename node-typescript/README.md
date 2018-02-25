@@ -51,11 +51,16 @@ We have added Rookout to the original project by:
 
 ## Running locally
 
-1. Build & Serve locally:
+1. Make sure you have a MongoDB server running (used by the example project, not rookout)
+    ```bash
+    $ mongod
+    ```
+
+2. Build & Serve locally:
     ```bash
     $ npm run build && npm start
     ```
 
-2. Make sure everything worked: [http://localhost:3000](http://localhost:3000)
+3. Make sure everything worked: [http://localhost:3000](http://localhost:3000)
 
-3. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+4. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
