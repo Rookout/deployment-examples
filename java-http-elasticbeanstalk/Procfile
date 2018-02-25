@@ -1,0 +1,1 @@
+web: java -javaagent:rook.jar -jar target/server.jar
