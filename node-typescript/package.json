@@ -2,11 +2,11 @@
   "name": "rookout-node-typescript-example",
   "version": "1.0.0",
   "description": "Example project integrating Rookout",
-  "main": "./dist/app.js",
+  "main": "./output/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc app.ts --sourceMap --outDir ./dist",
-    "run": "node ./dist/app.js"
+    "build": "tsc app.ts --sourceMap --outDir ./output",
+    "start": "node ./output/app.js"
   },
   "dependencies": {
     "rookout": "^0.1.10"

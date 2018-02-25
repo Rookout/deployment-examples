@@ -53,12 +53,12 @@ We have added Rookout to the original project by:
 
 3. Build:
     ```bash
-    $ tsc app.ts --sourceMap --outDir ./dist
+    $ tsc app.ts --sourceMap --outDir ./output
     ```
 
 4. Run:
     ```bash
-    $ node ./dist/app.js
+    $ node ./output/app.js
     ```
 
 5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
