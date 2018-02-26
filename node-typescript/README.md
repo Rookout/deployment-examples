@@ -5,8 +5,9 @@ A sample application for using Rookout + Node(TypeScript) .
 Before following this guide we recommend reading the basic [TypeScript Node + Rookout] guide
 
 * [Agent Setup](#agent-setup)
-* [Rookout Integration explained](#rookout-integration-explained)
 * [Running locally](#running-locally)
+* [Rookout Integration explained](#rookout-integration-explained)
+
 
 ## Agent Setup
 
@@ -55,6 +56,16 @@ We have added Rookout to the original project by:
     ```ts
     const rook = require("rookout/auto_start");
     ```
+
+__IMPORTANT FOR TYPESCRIPT:__
+
+
+* In order to use require() you need to install the node types package to compile:
+    ```bash
+    $ npm install --save-dev @types/node
+    ```
+
+* Rookout need corresponding sourcemaps to work properly.
 
 [TypeScript Node + Rookout]: https://rookout.github.io/tutorials/typescript
 [npm]: https://www.npmjs.com/package/rookout
