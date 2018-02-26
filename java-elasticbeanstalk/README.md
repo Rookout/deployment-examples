@@ -4,8 +4,19 @@ A sample application for using Rookout + Java + AWS Elastic Beanstalk .
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
-* [Running locally](#running-locally)
-* [Rookout Integration explained](#rookout-integration-explained)
+## Elastic Beanstalk Rookout Integration Explained
+
+There are 2 simple steps to integrate Rookout into your existing java beanstalk application:
+
+1. Add the source files to your built .jar
+
+2. Add our 2 .ebextensions standalone config scripts
+    * First one download and install the agent that is responsible for communication
+    * Second one download and tells the JVM to use Rookout's java agent
+
+__The process is described here : [Rookout Integration Process](#rookout-integration-process)__
+
+
 ## Running locally
 1. Run the Rookout agent:
     ``` bash
@@ -26,36 +37,30 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 
 ## Running on AWS Elastic Beanstalk
-1. Zip the project (the files, not the parent directory)
+1. Zip the project (the files, not the parent directory), use this command in the project directory to include all hidden files
+    ```bash
+    $ zip -r <DEST_FILE.zip> * .*
+    ```
 
-2. Upload the source bundle when creating a new Beanstalk app
+2. Upload the source bundle when creating a [new Beanstalk app](https://console.aws.amazon.com/elasticbeanstalk/home#/gettingStarted)
 
 3. Choose 'Java' Platform
 
-4. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed
+4. Upload the zip you previously archived in the base configuration part
 
-5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+5. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed
+
+6. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
 
-## Rookout Integration explained
-
+## Rookout Integration Process
 We have added Rookout to the original project by:
 1. Adding sources to the project jar when building:
     ```bash
     jar cvfm target/server.jar Manifest.txt -C output/ . src/*
     ```
-    
-2. Downloading rook javaagent available on [maven central]:
-    ```bash
-    wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
-    ```
 
-3. Specifying the javaagent when running:
-    ```bash
-    java  -javaagent:rook.jar -jar target/server.jar 
-    ```
-
-4. Elastic Beanstalk .ebextensions to install agent on machine and add the javaagent to communicate with the app:
+2. Adding Rookout's Elastic Beanstalk .ebextensions to install agent on machine and add the javaagent to communicate with the app:
     ```
     commands: 
         "01": 
