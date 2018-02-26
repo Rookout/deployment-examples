@@ -5,6 +5,5 @@ build:
 	wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
 
 run:
-	export PORT=7000
-	java -javaagent:rook.jar -jar target/server.jar
+	export PORT=7000 && java -javaagent:rook.jar -jar target/server.jar
 

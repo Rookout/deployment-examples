@@ -55,7 +55,7 @@ We have added Rookout to the original project by:
     java  -javaagent:rook.jar -jar target/server.jar 
     ```
 
-4. Elastic Beanstalk .ebextensions to install agent on machine:
+4. Elastic Beanstalk .ebextensions to install agent on machine and add the javaagent to communicate with the app:
     ```
     commands: 
         "01": 
@@ -64,6 +64,17 @@ We have added Rookout to the original project by:
             command: sudo /bin/bash setup.sh agent --token=<YOUR_TOKEN>
         "03": 
             command: /etc/init.d/rookout-agent start
+    ```
+    ```
+    files:
+        "/opt/elasticbeanstalk/lib/rook.jar" :
+            mode: "000444"
+            owner: root
+            group: root
+            source: "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"
+    option_settings:
+        aws:elasticbeanstalk:application:environment:
+            JAVA_TOOL_OPTIONS: '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
     ```
 
 [Java + Rookout]: https://rookout.github.io/tutorials/java
