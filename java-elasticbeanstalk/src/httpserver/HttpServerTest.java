@@ -3,7 +3,7 @@ package com.rookout.httpserver;
 public class HttpServerTest {
 
     private static final String CONTEXT = "/";
-    private static final int PORT = 7000;
+    private static final int PORT = Integer.parseInt(System.getenv().get("PORT"));
 
     public static void main(String[] args) throws Exception {
 

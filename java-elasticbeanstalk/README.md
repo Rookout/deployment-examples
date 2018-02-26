@@ -32,7 +32,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 3. Choose 'Java' Platform
 
-4. Make sure everything worked by accessing the url at port 7000 provided by Elastic Beanstalk after build completed
+4. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed
 
 5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
@@ -61,7 +61,7 @@ We have added Rookout to the original project by:
         "01": 
             command: wget "https://get.rookout.com" -O setup.sh
         "02": 
-            command: sudo setup.sh agent --token <YOUR_TOKEN_HERE>
+            command: sudo /bin/bash setup.sh agent --token=<YOUR_TOKEN>
         "03": 
             command: /etc/init.d/rookout-agent start
     ```
