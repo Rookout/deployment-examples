@@ -5,7 +5,7 @@ A sample application for using Rookout + Java Tomcat + AWS Elastic Beanstalk .
 Before following this guide we recommend reading the basic [Java + Rookout] guide .
 
 This sample application is the Tomcat sample app provided by AWS.
-For more information about the project structure and how to use it refer to [this documentation](https://github.com/Rookout/deployment-examples/tree/master/java-tomcat-elasticbeanstalk/eb-tomcat-snakes/README.md)
+For more information about the project structure and how to use it refer to [this documentation](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-tomcat-elasticbeanstalk/eb-tomcat-snakes/README.md)
 
 ## Elastic Beanstalk Rookout Integration Explained
 
@@ -13,7 +13,7 @@ There are 2 simple steps to integrate Rookout into your existing java beanstalk 
 
 1. Add the source files to your built .jar
 
-2. Add our 2 .ebextensions standalone config scripts [available here](https://github.com/Rookout/deployment-examples/tree/master/java-tomcat-elasticbeanstalk/.ebextensions)
+2. Add our 2 .ebextensions standalone config scripts [available here](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-tomcat-elasticbeanstalk/.ebextensions)
     * First one download and install the agent that is responsible for communication
     * Second one download and tells the JVM to use Rookout's java agent
 
