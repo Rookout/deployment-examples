@@ -26,6 +26,8 @@ __REQUIREMENTS: This sample project requires Tomcat8 and a PostgreSQL 9.4 runnin
 Run the Rookout agent:
     ~$ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
 
+Run ``make local-unix`` or ``make local-win`` depending on your OS to add the rook java agent to Tomcat locally
+
 Run ``build.sh`` to compile the web app and create a WAR file (OS X or Linux):
 
 	~$ cd eb-tomcat-snakes
@@ -38,7 +40,7 @@ Or in Windows with Git Bash:
 **IMPORTANT**
 Always run build.sh from the root of the project directory.
 
-The script compiles the project's classes, packs the necessary files into a web archive, and then attempts to copy the WAR file to ``/Library/Tomcat`` for local testing. If you installed Tomcat to another location, change the path in ``build.sh``:
+The script compiles the project's classes, packs the necessary files into a web archive, and then attempts to copy the WAR file to ``/Library/Tomcat`` for local testing. If you installed Tomcat to another location, change the path in ``build.sh`` and in the Makefile:
 
 	if [ -d "/path/to/Tomcat/webapps" ]; then
 	  cp ROOT.war /path/to/Tomcat/webapps
