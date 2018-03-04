@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1">
+
+  <display-name>Rookout Tomcat Example</display-name>
+  <description>
+		This is a simple web application with a source code organization
+		based on the recommendations of the Application Developer's Guide.
+  </description>
+  
+  <servlet>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <jsp-file>/helloworld.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>
