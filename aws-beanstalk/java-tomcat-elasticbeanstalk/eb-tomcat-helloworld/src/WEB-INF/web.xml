@@ -9,14 +9,17 @@
 		This is a simple web application with a source code organization
 		based on the recommendations of the Application Developer's Guide.
   </description>
-  
+
+  <welcome-file-list>
+    <welcome-file>helloworld.jsp</welcome-file>
+  </welcome-file-list>
   <servlet>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <jsp-file>/helloworld.jsp</jsp-file>
+    <servlet-name>HelloWorld</servlet-name>
+    <servlet-class>com.rookout.web.HelloWorld</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <url-pattern>/</url-pattern>
+    <servlet-name>HelloWorld</servlet-name>
+    <url-pattern>/*</url-pattern>
   </servlet-mapping>
 
 </web-app>
