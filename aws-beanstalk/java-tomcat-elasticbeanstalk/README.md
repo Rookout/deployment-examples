@@ -7,7 +7,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 This sample application is the Tomcat sample app provided by AWS.
 For more information about the project structure and how to use it refer to [this documentation](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-tomcat-elasticbeanstalk/eb-tomcat-helloworld/README.md)
 
-## Elastic Beanstalk Rookout Integration Explained
+## Adding Rookout to an existing EBS Project
 
 There are 2 simple steps to integrate Rookout into your existing java beanstalk application:
 
@@ -30,7 +30,6 @@ Run ``make local`` to add the rook java agent to Tomcat environment locally
 
 Run ``build.sh`` to compile the web app and create a WAR file (OS X or Linux):
 
-	~$ cd eb-tomcat-helloworld
 	~/eb-tomcat-helloworld$ ./build.sh
 
 **IMPORTANT**
