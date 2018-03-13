@@ -12,7 +12,7 @@
 *.tar.gz
 *.classpath
 *.project
-
+*.history
 .vscode/
 .setting/
 .venv/
