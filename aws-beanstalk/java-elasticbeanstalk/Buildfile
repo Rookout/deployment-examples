@@ -1,0 +1,3 @@
+initdirs: mkdir output && mkdir target
+compile: javac src/httpserver/* -d output
+build: jar cvfm target/server.jar Manifest.txt -C output/ . src/*

@@ -1,0 +1,17 @@
+{
+  "name": "rookout-node-typescript-example",
+  "version": "1.0.0",
+  "description": "Example project integrating Rookout",
+  "main": "./dist/app.js",
+  "scripts": {
+    "build": "./node_modules/typescript/bin/tsc",
+    "start": "node ./dist/app.js"
+  },
+  "dependencies": {
+    "rookout": "^0.1.10"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.6",
+    "typescript": "^2.7.2"
+  }
+}

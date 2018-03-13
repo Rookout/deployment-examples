@@ -13,6 +13,7 @@
 *.classpath
 *.project
 *.history
+.DS_Store
 .vscode/
 .setting/
 .venv/
@@ -31,6 +32,7 @@ target/
 .kube/
 build/
 dist/
+output/
 node_modules/
 
 identity.json
