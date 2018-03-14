@@ -5,6 +5,6 @@ build:
 	#We need to build the tartget/rookoutDemo-1.0.0.jar - which already include the project sources in the jar
 	mvn package
 
-nrun:
+run:
 	#We need to add the javaagent to the run
 	java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar

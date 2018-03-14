@@ -12,7 +12,7 @@
 *.tar.gz
 *.classpath
 *.project
-
+*.history
 .DS_Store
 .vscode/
 .setting/
