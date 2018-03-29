@@ -5,6 +5,8 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 * [Running locally](#running-locally)
 * [Using docker compose](#using-docker-compose)
 * [Rookout Integration explained](#rookout-integration-explained)
+* [Known Issues](#known-issues)
+
 ## Running locally
 1. Run the Rookout agent:
     ``` bash
@@ -44,7 +46,9 @@ We have added Rookout to the original project by:
         JAVA_OPTIONS="${SAVE_JAVA_OPTIONS} -javaagent=ROOK_LOCATION/rook.jar"
    ```
 
+## Known Issues
+
+- Rules will be showing a warning (orange) : Source file not found. This is caused by the way WebLogic runs web applications, the rook is still working properly but will not be able to know if the file used is matching the live one.
 
 [Java + Rookout]: https://rookout.github.io/tutorials/java
-[here]: https://github.com/tipsy/javalin/
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
