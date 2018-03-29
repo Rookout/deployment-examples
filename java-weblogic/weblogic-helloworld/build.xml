@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="weblogic-helloworld" default="war" basedir=".">
+
+    <property name="project-name" value="${ant.project.name}" />
+    <property name="builder" value="Rookout" />
+
+    <property name="war-file-name" value="${project-name}.war" />
+    <property name="source-directory" value="src" />
+    <property name="classes-directory" value="build/classes" />
+    <property name="lib-directory" value="lib" />
+    <property name="web-directory" value="web" />
+    <property name="web-xml-file" value="web/WEB-INF/web.xml" />
+    <tstamp prefix="build-info">
+        <format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
+        <format property="current-time" pattern="hh:mm:ss a z" locale="en" />
+    </tstamp>
+    <property name="build-directory" value="build" />
+
+    <target name="war" depends="">
+        <mkdir dir="${build-directory}" />
+        <mkdir dir="${classes-directory}" />
+        <delete file="${build-directory}/${war-file-name}" />
+        <javac srcdir="${source-directory}"
+               destdir="${classes-directory}"
+               classpath="${lib-directory}"
+        />
+        <war warfile="${build-directory}/${war-file-name}" webxml="${web-xml-file}">
+            <classes dir="${classes-directory}" />
+            <fileset dir="." includes="${source-directory}/**" />
+            <fileset dir="${web-directory}">
+                <!-- Need to exclude it since webxml is an attribute of the war tag above -->
+                <exclude name="WEB-INF/web.xml" />
+            </fileset>
+            <manifest>
+                <attribute name="Built-By" value="${builder}" />
+                <attribute name="Built-On" value="${build-info.current-date}" />
+                <attribute name="Built-At" value="${build-info.current-time}" />
+            </manifest>
+        </war>
+    </target>
+
+</project>
