@@ -21,7 +21,10 @@ There are 2 simple steps to integrate Rookout into your existing node beanstalk 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
 
-## Agent Setup
+
+## Running locally
+
+#### Agent Setup
 
 
 1. Download and run the Rookout agent in a container:  
@@ -33,8 +36,7 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 For more information about Docker go [here](https://www.docker.com/).
 
-
-## Running locally
+#### App Setup
 
 **Clone or download the `node-example` folder and run these commands inside it:**
 
