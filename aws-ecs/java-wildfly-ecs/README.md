@@ -40,7 +40,9 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 1. Upload your docker image to a registry
 
-1. Create an ECS service from the docker-compose file using ecs-cli : `ecs-cli compose service create`
+1. Change the `docker-compose.yml` to use your image as a build
+
+1. Create an ECS service from the docker-compose file using ecs-cli : `ecs-cli compose service --project-name wildfly-rookout create`
 
 1. Run the task from the AWS console
 
