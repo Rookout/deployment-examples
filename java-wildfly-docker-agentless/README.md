@@ -1,55 +1,32 @@
-# Quickstart for Java + Wildfly + Rookout and AWS Elastic Container Service
+# Quickstart for Java + Wildfly + Agentless Rookout with Docker
 
-A sample application for using Rookout + Java + Wildfly + AWS Elastic Container Service .
+A sample application for using Agentless Rookout + Java + Wildfly with Docker .
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
 ## Rookout Integration Explained
 
-There are 2 simple steps to integrate Rookout into your existing java beanstalk application:
+There are 3 simple steps to integrate Rookout into your existing Java Wildfly web application:
 
 1. Add the source files to your built .jar
 
-2. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/aws-ecs/java-wildfly-ecs/rookout-conf)
+1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/aws-ecs/java-wildfly-ecs/rookout-conf)
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
+1. Set the Rook's agent configuration as environment variables in the Docker container
+
 
 ## Running locally
-**The docker-compose file takes care of running a Rookout Agent container**
+**Requirements:** `maven`, `docker`
 
-1. Set your agent token in the `docker-compose.yml` file
+1. Build the web application: in the `helloworld` directory run `mvn package`
 
-1. Build the web application: in the `helloworld` directory run `svn package`
+1. Run `docker build --tag wildfly-helloworld . && docker run -it -p 8080:8080 wildfly-helloworld`
 
-1. Run `docker-compose up`
-
-1. Go to [http://localhost/wildfly-helloworld](http://localhost/wildfly-helloworld) to make sure everything works
+1. Open [http://localhost:8080/wildfly-helloworld](http://localhost:8080/wildfly-helloworld) to make sure everything works
 
 1. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
-
-
-## Running on AWS Elastic Container Service
-**The docker-compose file takes care of running a Rookout Agent container**
-
-1. Set your agent token in the `docker-compose.yml` file
-
-1. Build the web application: in the `helloworld` directory run `svn package`
-
-1. Build custom wildfly image by running `docker build --tag=wildfly-helloworld .`
-
-1. Upload your docker image to a registry
-
-1. Change the `docker-compose.yml` to use your image as a build
-
-1. Create an ECS service from the docker-compose file using ecs-cli : `ecs-cli compose service --project-name wildfly-rookout create`
-
-1. Run the task from the AWS console
-
-1. Make sure everything worked by accessing the url of your cluster after build completed with at route `http://$URL/wildfly-helloworld`
-
-1. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
-
 
 ## Rookout Integration Process
 We have added Rookout to the original project by:
@@ -82,6 +59,8 @@ We have added Rookout to the original project by:
     # Set the rook as java agent
     JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jboss/wildfly/lib/rook.jar"
     ```
+    
+1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST) and `ROOKOUT_AGENT_PORT` (default 7486) in order to connect to a remote hosted agent
     
 
 [Java + Rookout]: https://rookout.github.io/tutorials/java
