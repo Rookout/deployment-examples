@@ -112,6 +112,12 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.war.plugin}</version>
                 <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>${build.sourceDirectory}</directory>
+                            <targetPath>src</targetPath>
+                        </resource>
+                    </webResources>
                     <!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>

@@ -10,77 +10,61 @@ There are 2 simple steps to integrate Rookout into your existing java beanstalk 
 
 1. Add the source files to your built .jar
 
-2. Add our 2 .ebextensions standalone config scripts [available here](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-wildfly-elasticbeanstalk/.ebextensions)
-    * First one download and install the agent that is responsible for communication
-    * Second one download and tells the JVM to use Rookout's java agent
+2. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/aws-ecs/java-wildfly-ecs/rookout-conf)
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
 
 ## Running locally
-1. Run the Rookout agent:
-    ``` bash
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
-    ```
-2. Compile the project jar and download the Java agent:
-     ```bash
-    $ make build
-    ```
-3. Run:
-    ```bash
-    $ make run
-    ```
+1. Run `docker-compose up`
 
-4. Make sure everything worked: [http://localhost:7000/?fname=rook&lname=out](http://localhost:7000/?fname=rook&lname=out)
+1. Go to [http://localhost/wildfly-helloworld](http://localhost/wildfly-helloworld) to make sure everything works
 
-5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+1. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
 
-## Running on AWS Elastic Beanstalk
-1. Zip the project (the files, not the parent directory), use this command in the project directory to include all hidden files
-    ```bash
-    $ zip -r <DEST_FILE.zip> * .*
-    ```
+## Running on AWS Elastic Container Service
+1. Assemble the web application: in the `helloworld` directory run `svn package`
 
-2. Upload the source bundle when creating a [new Beanstalk app](https://console.aws.amazon.com/elasticbeanstalk/home#/gettingStarted)
+1. Build the docker compose image
 
-3. Choose 'Java' Platform
+1. Make sure everything worked by accessing the url provided of your cluster after build completed with context `/wildfly-helloworld`
 
-4. Upload the zip you previously archived in the base configuration part
-
-5. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed
-
-6. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+1. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
 
 ## Rookout Integration Process
 We have added Rookout to the original project by:
 1. Adding sources to the project jar when building:
-    ```bash
-    jar cvfm target/server.jar Manifest.txt -C output/ . src/*
+    ```xml
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+              <webResources>
+                <resource>
+                  <directory>${build.sourceDirectory}</directory>
+                  <targetPath>src</targetPath>
+                </resource>
+              </webResources>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     ```
 
-2. Adding Rookout's Elastic Beanstalk .ebextensions to install agent on machine and add the javaagent to communicate with the app:
+1. Adding Rookout's Wildfly standalone config to add the javaagent to communicate with the app:
+    ```bash
+    # Fix wildfly logger issue because the rook java agent uses java.util.logging
+    JBOSS_MODULES_SYSTEM_PKGS="org.jboss.logmanager"
+    JBOSS_LOGMANAGER_VERSION="1.5.2.Final"
+    JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:$JBOSS_HOME/modules/system/layers/base/org/jboss/logmanager/main/jboss-logmanager-$JBOSS_LOGMANAGER_VERSION.jar"
+    # Set the rook as java agent
+    JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jboss/wildfly/lib/rook.jar"
     ```
-    commands: 
-        "01": 
-            command: wget "https://get.rookout.com" -O setup.sh
-        "02": 
-            command: sudo /bin/bash setup.sh agent --token=<YOUR_TOKEN>
-        "03": 
-            command: /etc/init.d/rookout-agent start
-    ```
-    ```
-    files:
-        "/opt/elasticbeanstalk/lib/rook.jar" :
-            mode: "000444"
-            owner: root
-            group: root
-            source: "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"
-    option_settings:
-        aws:elasticbeanstalk:application:environment:
-            JAVA_TOOL_OPTIONS: '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
-    ```
+    
 
 [Java + Rookout]: https://rookout.github.io/tutorials/java
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
