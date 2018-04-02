@@ -1,10 +1,10 @@
-# Quickstart for Java + Wildfly + Rookout and AWS Elastic Beanstalk
+# Quickstart for Java + Wildfly + Rookout and AWS Elastic Container Service
 
-A sample application for using Rookout + Java + Wildfly + AWS Elastic Beanstalk .
+A sample application for using Rookout + Java + Wildfly + AWS Elastic Container Service .
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
-## Elastic Beanstalk Rookout Integration Explained
+## Rookout Integration Explained
 
 There are 2 simple steps to integrate Rookout into your existing java beanstalk application:
 
