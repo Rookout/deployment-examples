@@ -16,6 +16,12 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 
 ## Running locally
+**The docker-compose file takes care of running a Rookout Agent container**
+
+1. Set your agent token in the `docker-compose.yml` file
+
+1. Build the web application: in the `helloworld` directory run `svn package`
+
 1. Run `docker-compose up`
 
 1. Go to [http://localhost/wildfly-helloworld](http://localhost/wildfly-helloworld) to make sure everything works
@@ -24,11 +30,21 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 
 ## Running on AWS Elastic Container Service
-1. Assemble the web application: in the `helloworld` directory run `svn package`
+**The docker-compose file takes care of running a Rookout Agent container**
 
-1. Build the docker compose image
+1. Set your agent token in the `docker-compose.yml` file
 
-1. Make sure everything worked by accessing the url provided of your cluster after build completed with context `/wildfly-helloworld`
+1. Build the web application: in the `helloworld` directory run `svn package`
+
+1. Build custom wildfly image by running `docker build --tag=wildfly-helloworld .`
+
+1. Upload your docker image to a registry
+
+1. Create an ECS service from the docker-compose file using ecs-cli : `ecs-cli compose service create`
+
+1. Run the task from the AWS console
+
+1. Make sure everything worked by accessing the url of your cluster after build completed with at route `http://$URL/wildfly-helloworld`
 
 1. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
