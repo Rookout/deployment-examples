@@ -22,7 +22,7 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 1. Build the web application: in the `helloworld` directory run `mvn package`
 
-1. Run `docker build --tag wildfly-helloworld . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=<HOSTNAME>" -e "ROOKOUT_AGENT_PORT=<PORT>" wildfly-helloworld`
+1. Run `docker build --tag wildfly-helloworld . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=<HOSTNAME>" -e "ROOKOUT_AGENT_PORT=<PORT>" -e "ROOKOUT_TOKEN=<TOKEN>" wildfly-helloworld`
 
 1. Open [http://localhost:8080/wildfly-helloworld](http://localhost:8080/wildfly-helloworld) to make sure everything works
 
@@ -60,7 +60,7 @@ We have added Rookout to the original project by:
     JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jboss/wildfly/lib/rook.jar"
     ```
     
-1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST) and `ROOKOUT_AGENT_PORT` (default 7486) in order to connect to a remote hosted agent
+1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
     
 
 [Java + Rookout]: https://rookout.github.io/tutorials/java
