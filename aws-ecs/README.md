@@ -16,7 +16,7 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 ## Running locally
 **Requirements:** `node`, `docker`
 
-1. Run `docker build --tag node-ecs-example . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=<HOSTNAME>" -e "ROOKOUT_AGENT_PORT=<PORT>" node-ecs-example`
+1. Run `docker build --tag node-ecs-example . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=<HOSTNAME>" -e "ROOKOUT_AGENT_PORT=<PORT>" -e "ROOKOUT_TOKEN=<TOKEN>" node-ecs-example`
 
 1. Open [http://localhost:8080/](http://localhost:8080/) to make sure everything works
 
@@ -47,7 +47,7 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 We have added Rookout to the original project by:
 1. Installing rookout dependency : `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/auto_start');`
     
-1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST) and `ROOKOUT_AGENT_PORT` (default 7486) in order to connect to a remote hosted agent
+1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
     
 
 [Node + Rookout]: https://rookout.github.io/tutorials/node
