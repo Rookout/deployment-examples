@@ -1,0 +1,21 @@
+{
+  "family": "rookout-ecs-node-example",
+  "containerDefinitions": [
+    {
+      "name": "web",
+      "image": "node:carbon",
+      "cpu": 128,
+      "memoryReservation": 128,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "command": [
+        "ruby", "hi.rb"
+      ],
+      "essential": true
+    }
+  ]
+}

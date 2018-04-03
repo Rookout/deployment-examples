@@ -24,7 +24,24 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 
 ## Running on ECS
 
-1. 
+1. Build the docker image `docker build --tag node-ecs-example .`
+
+1. Upload docker image to [Amazon ECR](https://console.aws.amazon.com/ecs/home?#/repositories/create/new)
+    - Follow instructions in the link in order to create and upload to the repository
+    
+1. Create a task definition in [Amazon ECS](https://console.aws.amazon.com/ecs/home?#/taskDefinitions/create)
+    - Enter a name for your task definition - e.g. `rookout-test-ecs`
+    - Leave the rest as default and click on `Add container` under the **Container Definitions** title and configure as follows:
+    - Container name - e.g. `agentless-node-app`
+    - Image - [registry-url]/[namespace]/[image]:[tag]
+        - Example: 123412345738.dkr.ecr.eu-central-1.amazonaws.com/rookout/ecs-test:1.0
+    - Memory Limits: Hard limit: 128
+    - Port mappings: Host 80 / Container 8080
+    - **Environment**
+        - Env Variables: `ROOKOUT_AGENT_HOST` and `ROOKOUT_AGENT_PORT`
+        
+1. Click create on the bottom right, and finish up the task wizard.
+    
 
 ## Rookout Integration Process
 We have added Rookout to the original project by:
