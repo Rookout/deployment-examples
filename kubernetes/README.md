@@ -1,4 +1,4 @@
-# Tornado WebSocket example
+# Kubernetes Rookout Deployment Example
 
 This is a full example for deploying Rookout using Kubernetes
 
