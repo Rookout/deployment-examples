@@ -16,7 +16,7 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 ## Running locally
 **Requirements:** `node`, `docker`
 
-1. Run `docker build --tag node-ecs-example . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=<HOSTNAME>" -e "ROOKOUT_AGENT_PORT=<PORT>" -e "ROOKOUT_TOKEN=<TOKEN>" node-ecs-example`
+1. Run `docker build --tag node-ecs-example . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=cloud.agent.rookout.com" -e "ROOKOUT_AGENT_PORT=443" -e "ROOKOUT_TOKEN=<TOKEN>" node-ecs-example`
 
 1. Open [http://localhost:8080/](http://localhost:8080/) to make sure everything works
 
