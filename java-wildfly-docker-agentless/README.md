@@ -52,8 +52,8 @@ We have added Rookout to the original project by:
 
 1. Adding Rookout's Wildfly standalone config to add the javaagent to communicate with the app:
     ```bash
-    # Fix wildfly logger issue because the rook java agent uses java.util.logging
-    JBOSS_MODULES_SYSTEM_PKGS="org.jboss.logmanager"
+    # Fix logger issue and class loading
+    JBOSS_MODULES_SYSTEM_PKGS="org.jboss.logmanager,com.rookout"
     JBOSS_LOGMANAGER_VERSION="1.5.2.Final"
     JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:$JBOSS_HOME/modules/system/layers/base/org/jboss/logmanager/main/jboss-logmanager-$JBOSS_LOGMANAGER_VERSION.jar"
     # Set the rook as java agent
