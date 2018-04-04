@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metro  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://java.sun.com/xml/ns/metro/config'
+        version="1.0">
+    <tubelines default="#default-metro-tubeline">
+        <tubeline name="default-metro-tubeline">
+            <client-side>
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.TerminalTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.HandlerTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.ValidationTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.MustUnderstandTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.MonitoringTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.AddressingTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.rx.rm.runtime.RmTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.dump.MessageDumpingTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.TransportTubeFactory" />
+            </client-side>
+            <endpoint-side>
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.TransportTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.dump.MessageDumpingTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.AddressingTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.rx.rm.runtime.RmTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.MonitoringTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.MustUnderstandTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.HandlerTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.ValidationTubeFactory" />
+                <tube-factory className="com.sun.xml.ws.assembler.jaxws.TerminalTubeFactory" />
+            </endpoint-side>
+        </tubeline>
+    </tubelines>
+</metro>
