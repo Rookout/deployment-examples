@@ -24,9 +24,7 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 
 ## Running on ECS
 
-1. Build the docker image `docker build --tag node-ecs-example .`
-
-1. Upload docker image to [Amazon ECR](https://console.aws.amazon.com/ecs/home?#/repositories/create/new)
+1. Build & Upload docker image using this guide to [Amazon ECR](https://console.aws.amazon.com/ecs/home?#/repositories/create/new)
     - Follow instructions in the link in order to create and upload to the repository
     
 1. Create a task definition in [Amazon ECS](https://console.aws.amazon.com/ecs/home?#/taskDefinitions/create)
@@ -38,9 +36,46 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
     - Memory Limits: Hard limit: 128
     - Port mappings: Host 80 / Container 8080
     - **Environment**
-        - Env Variables: `ROOKOUT_AGENT_HOST` and `ROOKOUT_AGENT_PORT`
+        - Env Variables: `ROOKOUT_AGENT_HOST`, `ROOKOUT_AGENT_PORT`, `ROOKOUT_TOKEN`
+    
+    Or using JSON Configuration :
+    ```json
+    {
+      "containerDefinitions": [
+        {
+          "memory": 128,
+          "volumesFrom": [],
+          "image": "[registry-url]/[namespace]/[image]:[tag]",
+          "name": "rook-test-task",
+          "portMappings": [
+            {
+              "hostPort": 80,
+              "protocol": "tcp",
+              "containerPort": 8080
+            }
+          ],
+          "environment": [
+            {
+              "name": "ROOKOUT_AGENT_HOST",
+              "value": "cloud.agent.rookout.com"
+            },
+            {
+              "name": "ROOKOUT_AGENT_PORT",
+              "value": "443"
+            },
+            {
+              "name": "ROOKOUT_TOKEN",
+              "value": "TOKEN"
+            }
+          ]
+        }
+      ]
+    }
+    ```
         
 1. Click create on the bottom right, and finish up the task wizard.
+
+1. Last step is to create or use an existing cluster, run this task and start debugging at [https://app.rookout.com](https://app.rookout.com)
     
 
 ## Rookout Integration Process
