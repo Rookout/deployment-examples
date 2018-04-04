@@ -22,7 +22,7 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 1. Build the web application: in the `helloworld` directory run `mvn package`
 
-1. Run `docker build --tag wildfly-helloworld . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=<HOSTNAME>" -e "ROOKOUT_AGENT_PORT=<PORT>" -e "ROOKOUT_TOKEN=<TOKEN>" wildfly-helloworld`
+1. Run `docker build --tag wildfly-helloworld . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=cloud.agent.rookout.com" -e "ROOKOUT_AGENT_PORT=443" -e "ROOKOUT_TOKEN=<TOKEN>" wildfly-helloworld`
 
 1. Open [http://localhost:8080/wildfly-helloworld](http://localhost:8080/wildfly-helloworld) to make sure everything works
 
