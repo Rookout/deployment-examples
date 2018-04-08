@@ -1,0 +1,12 @@
+{
+  "name": "rookout-aws-lambda-example",
+  "version": "1.0.0",
+  "description": "Rookout deployment example for AWS Lambda",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "repository": "https://github.com/Rookout/deployment-examples",
+  "dependencies": {
+    "rookout": "^0.1.13"
+  }
+}
