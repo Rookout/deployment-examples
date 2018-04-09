@@ -21,14 +21,19 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 1. Uploading your function : 
     - Zip Upload: In order to run your rookout wrapped function on Lambda, make sure the dependencies are downloaded and zip
     the folder (including node_modules).  
-    zip -r rookout_test.zip .
+    zip -r rookout_lambda-test.zip .
+    
+        **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. The solution is doing `npm install` or `npm rebuild` on a Linux machine such as an EC2 instance and re-archive the zip for uploading to Lambda._
 
-    - aws-cli : Create a function using the hello world template named rookout-lambda-test and update it like so :
-    ```bash
-    $ aws lambda update-function-code --function-name rookout-lambda-test --zip-file fileb://rookout_test.zip --region {REGION}
-    ```
+    - aws-cli : Create a new Lambda function and update it like so :
+        ```bash
+        $ aws lambda create-function --function-name rookout-lambda-test --runtime nodejs8.10 --handler index.handler --role <IAM-ARN>
+        $ aws lambda update-function-code --function-name rookout-lambda-test --zip-file fileb://rookout_lambda_test.zip --region {REGION}
+        ```  
+        **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions)**
 
     - **OR** Using Cloud9 IDE integrated tools
+
     
 
 1. Create a lambda function on AWS, you can follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)
