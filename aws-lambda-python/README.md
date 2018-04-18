@@ -45,7 +45,7 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 ## Rookout Integration Process
 
 We have added Rookout to the original project by:
-1. Installing rookout dependency : `pip install rook -t .` and adding it in the entry file `from rook import auto_start`
+1. Installing rookout dependency : `pip install rook -t .` (installs module in root folder) and adding it in the entry file `from rook import auto_start`
     
 1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
     
