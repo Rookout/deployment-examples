@@ -10,7 +10,7 @@ There are 3 simple steps to integrate Rookout into your existing Java Wildfly we
 
 1. Add the source files to your built .jar
 
-1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker-agentless/rookout-conf)
+1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker-agentless/helloworld/rookout-conf)
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
@@ -64,10 +64,10 @@ We have added Rookout to the original project by:
     <details>
       <summary>Not using docker</summary>
       <p>
-      You can set these variables in the `standalone.conf` at the top of the file like so:<br/>
-      ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"<br/>
-      ROOKOUT_AGENT_PORT="443"<br/>
-      ROOKOUT_TOKEN="MY_TOKEN"
+      You can set these variables in the `standalone.conf` at the top of the file like so:<br/><br/>
+      export ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"<br/>
+      export ROOKOUT_AGENT_PORT="443"<br/>
+      export ROOKOUT_TOKEN="MY_TOKEN"
       </p>
     </details>
     
