@@ -64,9 +64,9 @@ We have added Rookout to the original project by:
     <details>
       <summary>Not using docker</summary>
       <p>
-      You can set these variables in the `standalone.conf` at the top of the file like so:\n
-      ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"\n
-      ROOKOUT_AGENT_PORT="443"\n
+      You can set these variables in the `standalone.conf` at the top of the file like so:<br/>
+      ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"<br/>
+      ROOKOUT_AGENT_PORT="443"<br/>
       ROOKOUT_AGENT_TOKEN="<My-Token>"
       </p>
     </details>
