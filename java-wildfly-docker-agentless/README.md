@@ -10,7 +10,7 @@ There are 3 simple steps to integrate Rookout into your existing Java Wildfly we
 
 1. Add the source files to your built .jar
 
-1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker-agentless/rookout-conf)
+1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker-agentless/helloworld/rookout-conf)
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
@@ -20,9 +20,11 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 ## Running locally
 **Requirements:** `maven`, `docker`
 
+1. Set your organization token in `rookout-conf/standalone.conf` on line 38
+
 1. Build the web application: in the `helloworld` directory run `mvn package`
 
-1. Run `docker build --tag wildfly-helloworld . && docker run -it -p 8080:8080 -e "ROOKOUT_AGENT_HOST=cloud.agent.rookout.com" -e "ROOKOUT_AGENT_PORT=443" -e "ROOKOUT_TOKEN=<TOKEN>" wildfly-helloworld`
+1. Run `docker build --tag wildfly-helloworld . && docker run -it -p 8080:8080 wildfly-helloworld`
 
 1. Open [http://localhost:8080/wildfly-helloworld](http://localhost:8080/wildfly-helloworld) to make sure everything works
 
@@ -60,16 +62,12 @@ We have added Rookout to the original project by:
     JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jboss/wildfly/lib/rook.jar"
     ```
     
-1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
-    <details>
-      <summary>Not using docker</summary>
-      <p>
-      You can set these variables in the `standalone.conf` at the top of the file like so:<br/>
-      ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"<br/>
-      ROOKOUT_AGENT_PORT="443"<br/>
-      ROOKOUT_TOKEN="MY_TOKEN"
-      </p>
-    </details>
+1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right agent:
+    ```bash
+    export ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"
+    export ROOKOUT_AGENT_PORT="443"
+    export ROOKOUT_TOKEN="YOUR_TOKEN"
+    ```
     
 
 [Java + Rookout]: https://rookout.github.io/tutorials/java
