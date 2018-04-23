@@ -61,6 +61,15 @@ We have added Rookout to the original project by:
     ```
     
 1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
+  <details>
+    <summary>Not using docker</summary>
+    You can set these variables in the `standalone.conf` at the top of the file like so:
+    ```bash
+    ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"
+    ROOKOUT_AGENT_PORT="443"
+    ROOKOUT_AGENT_TOKEN="<My-Token>"
+    ```
+  </details>
     
 
 [Java + Rookout]: https://rookout.github.io/tutorials/java
