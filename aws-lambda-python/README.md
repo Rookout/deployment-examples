@@ -30,7 +30,7 @@ There are 3 simple steps to integrate Rookout into your existing Python Lambda a
 
 1. Uploading your function : 
     - Zip Upload: In order to run your rookout wrapped function on Lambda, make sure the dependencies are downloaded and zip
-    the folder (including node_modules).  
+    the folder (including all the modules installed by pip).  
     zip -r rookout_lambda_test.zip .
 
     **IMPORTANT:** _If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. The solution is doing `pip install <MODULE> -t .` on a Linux machine such as an EC2 instance and re-archive the zip for uploading to Lambda._
@@ -70,4 +70,4 @@ We have added Rookout to the original project by:
 1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
     
 
-[Python + Rookout]: https://rookout.github.io/tutorials/python
+[Python + Rookout]: https://docs.rookout.com/docs/installation-python.html

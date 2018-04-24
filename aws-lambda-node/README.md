@@ -70,4 +70,3 @@ exports.handler = rookout.wrap((event, context, callback) => {
     
 
 [Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
-[agentless]: https://docs.rookout.com/docs/installation-agent-remote.html
