@@ -39,15 +39,17 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
         $ aws lambda create-function --function-name rookout-lambda-test --runtime nodejs8.10 --handler index.handler --role <IAM-ARN>
         $ aws lambda update-function-code --function-name rookout-lambda-test --zip-file fileb://rookout_lambda_test.zip --region {REGION}
         ```  
-        **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions)**
+        **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
     - **OR** Using Cloud9 IDE integrated tools
 
+
+1. Set the Rook's agent configuration as environment variables in the Lambda configuration, fill the Environment Variables for :
+    - `ROOKOUT_AGENT_HOST` : cloud.agent.rookout.com
+    - `ROOKOUT_AGENT_PORT` : 443
+    - `ROOKOUT_TOKEN` : Your Organization Token
     
-
-1. Create a lambda function on AWS, you can follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)
-
-1. Set the Rook's agent configuration as environment variables in the Lambda configuration
+    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html)
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
