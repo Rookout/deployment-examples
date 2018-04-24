@@ -6,9 +6,10 @@ A sample application for using Python + Agentless Rookout on AWS Lambda
 <p>
 Instead of having to install your own Agent own the machine you are running the code from,
 you can use one of our hosted Agents and just tell the Rook to connect to it.<br/>
-For more information you can see [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html)
+For more information you can see <a href="https://docs.rookout.com/docs/installation-agent-remote.html">our documentation</a>
 </p>
 </details>
+
 
 Before following this guide we recommend reading the basic [Python + Rookout] guide
 
