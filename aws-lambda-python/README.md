@@ -7,9 +7,11 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 ## Rookout Integration Explained
 
-There are 3 simple steps to integrate Rookout into your existing Node application for an agentless setup:
+There are 3 simple steps to integrate Rookout into your existing Python Lambda application for an agentless setup:
 
 1. Add the pip dependency `rook` in the project folder
+
+1. Wrap your lambda_handler function in our Rookout wrapper
 
 1. Set the Rook's agent configuration as environment variables in the Lambda configuration
 
@@ -45,7 +47,16 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 ## Rookout Integration Process
 
 We have added Rookout to the original project by:
-1. Installing rookout dependency : `pip install rook -t .` (installs module in root folder) and adding it in the entry file `from rook import auto_start`
+1. Installing rookout dependency : `pip install rook -t .` (installs module in root folder)
+
+1. Wrap your function by using our Rookout lambda wrapper like so :
+    ```python
+    def _lambda_handler(event, context):
+        return 'Hello World'
+    
+    from rook import lambda_wrapper
+    lambda_handler = lambda_wrapper.wrapper(_lambda_handler)
+    ```
     
 1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
     
