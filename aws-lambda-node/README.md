@@ -7,7 +7,7 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 
 ## Rookout Integration Explained
 
-There are 3 simple steps to integrate Rookout into your existing Node application for an agentless setup:
+There are 3 simple steps to integrate Rookout into your existing Node application for an [agentless] setup:
 
 1. Add the npm dependency `rookout`
 
@@ -60,4 +60,5 @@ exports.handler = rookout.wrap((event, context, callback) => {
 1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
     
 
-[Node + Rookout]: https://rookout.github.io/tutorials/node
+[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
+[agentless]: https://docs.rookout.com/docs/installation-agent-remote.html
