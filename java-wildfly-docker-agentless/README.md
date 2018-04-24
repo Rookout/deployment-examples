@@ -70,5 +70,5 @@ We have added Rookout to the original project by:
     ```
     
 
-[Java + Rookout]: https://rookout.github.io/tutorials/java
+[Java + Rookout]: https://docs.rookout.com/docs/installation-java.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook

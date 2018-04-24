@@ -37,5 +37,5 @@ We have added Rookout to original project by:
 from rook import auto_start
 ```
 
-[Python + Rookout]: https://rookout.github.io/tutorials/python
+[Python + Rookout]: https://docs.rookout.com/docs/installation-python.html
 [here]: https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/appengine/hello-world
