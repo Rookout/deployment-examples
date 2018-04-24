@@ -11,7 +11,7 @@ __IMPORTANT FOR TYPESCRIPT:__
     $ npm install --save-dev @types/node
     ```
 
-Before following this guide we recommend reading the basic [TypeScript Node + Rookout] guide
+Before following this guide we recommend reading the basic [Node + Rookout] guide
 
 * [Agent Setup](#agent-setup)
 * [Running locally](#running-locally)
@@ -67,7 +67,7 @@ We have added Rookout to the original project by:
     ```
 
 
-[TypeScript Node + Rookout]: https://rookout.github.io/tutorials/typescript
+[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
 [npm]: https://www.npmjs.com/package/rookout
 
 

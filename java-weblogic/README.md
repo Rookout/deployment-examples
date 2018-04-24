@@ -50,5 +50,5 @@ We have added Rookout to the original project by:
 
 - Rules will be showing a warning (orange) : Source file not found. This is caused by the way WebLogic runs web applications, the rook is still working properly but will not be able to know if the file used is matching the live one.
 
-[Java + Rookout]: https://rookout.github.io/tutorials/java
+[Java + Rookout]: https://docs.rookout.com/docs/installation-java.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
