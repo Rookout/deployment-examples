@@ -62,6 +62,9 @@ We have added Rookout to the original project by:
     JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jboss/wildfly/lib/rook.jar"
     ```
     
+    *Known issue: The confirguration overrides the log manager to use jboss.logmanager no matter what. This is because
+    the Rookout javaagent uses the default java logging and Wildfly is unable to start without its logger.*
+    
 1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right agent:
     ```bash
     export ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"
