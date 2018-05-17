@@ -1,5 +1,5 @@
-def _lambda_handler(event, context):
-  return "Hello world"
+from rook import serverless_rook
 
-from rook import lambda_wrapper
-lambda_handler = lambda_wrapper.wrapper(_lambda_handler)
+@serverless_rook
+def lambda_handler(event, context):
+  return "Hello world"
