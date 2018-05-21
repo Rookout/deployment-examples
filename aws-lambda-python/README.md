@@ -26,7 +26,7 @@ There are 3 simple steps to integrate Rookout into your existing Python Lambda a
 
 
 ## Running on Lambda
-1. Make sure your python module is called `lambda_function.py`
+1. Make sure your python module is called `lambda_function.py` to use our example
 
 1. Uploading your function : 
     - Zip Upload: In order to run your rookout wrapped function on Lambda, make sure the dependencies are downloaded and zip
@@ -59,13 +59,13 @@ There are 3 simple steps to integrate Rookout into your existing Python Lambda a
 We have added Rookout to the original project by:
 1. Installing rookout dependency : `pip install rook -t .` (installs module in root folder)
 
-1. Wrap your function by using our Rookout lambda wrapper like so :
+1. Wrap your function by using our Rookout lambda decorator like so :
     ```python
-    def _lambda_handler(event, context):
+    from rook import serverless_rook
+
+    @serverless_rook
+    def lambda_handler(event, context):
         return 'Hello World'
-    
-    from rook import lambda_wrapper
-    lambda_handler = lambda_wrapper.wrapper(_lambda_handler)
     ```
     
 1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
