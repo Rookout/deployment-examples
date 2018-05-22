@@ -15,7 +15,7 @@ There are 2 simple steps to integrate Rookout into your existing node beanstalk 
 
 1. Add the `rookout` npm dependency and require it in the entry file
 
-2. Add our .ebextensions standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/node-elasticbeanstalk/.ebextensions)
+2. Add our .ebextensions standalone config script [available here](.ebextensions)
     * The script download and install the agent that is responsible for communication
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__

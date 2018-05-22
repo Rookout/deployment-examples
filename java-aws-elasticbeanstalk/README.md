@@ -10,7 +10,7 @@ There are 2 simple steps to integrate Rookout into your existing java beanstalk 
 
 1. Add the source files to your built .jar
 
-2. Add our 2 .ebextensions standalone config scripts [available here](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-elasticbeanstalk/.ebextensions)
+2. Add our 2 .ebextensions standalone config scripts [available here](.ebextensions)
     * First one download and install the agent that is responsible for communication
     * Second one download and tells the JVM to use Rookout's java agent
 
