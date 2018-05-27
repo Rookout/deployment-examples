@@ -21,7 +21,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
     $ make run
     ```
 
-4. Make sure everything worked: [http://localhost:7000/hello](http://localhost:7000/hello)
+4. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/hello)
 
 5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
@@ -32,7 +32,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 This example is based of the Java javalin "Hello-World" example available [here].
 
 We have added Rookout to the original project by:
-1. Adding soruces to the project jar(`pom.xml`):
+1. Adding your soruces to the project jar(`pom.xml`):
     ```xml
             <resources>
                 <resource>
