@@ -22,13 +22,13 @@ This is a starter application that shows how Play works with Rookout.
 
     - For Windows run:
     ``` bash
-    $ play-java-starter-example -Dplay.file=../conf/application.conf
+    $ play-java-starter-example.bat -Dplay.file=../conf/application.conf
     ```
 
-    - For Unix users
+    - For Unix run:
     ``` bash
     $ chmod +x play-java-starter-example
-    $ play-java-starter-example -Dplay.file=../conf/application.conf
+    $ ./play-java-starter-example -Dplay.file=../conf/application.conf
     ```
 
 ## Rookout Integration explained
