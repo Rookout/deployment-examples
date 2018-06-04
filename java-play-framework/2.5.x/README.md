@@ -47,7 +47,7 @@ This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
     ```
 
 ## Running with sbt run
-Create lib folder
+Create lib folder and download Rookout`s rook module
  
 ``` bash
 $ mkdir lib ; cd lib ; wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
