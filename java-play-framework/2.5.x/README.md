@@ -4,12 +4,14 @@
 
 This is a starter application that shows how Play works with Rookout.
 
-## Running
+## Run Rookout Agent 
 
 1. Run the Rookout agent:
     ``` bash
     $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     ```
+## Running with sbt dist
+
 1.  Run the following commands:
     ``` bash
     $ sbt dist
@@ -28,13 +30,9 @@ This is a starter application that shows how Play works with Rookout.
     $ chmod +x play-java-starter-example
     $ play-java-starter-example -Dplay.file=../conf/application.conf
     ```
-    
-1. And then go to http://localhost:9000 to see the running web application.
-
-1. Go to [app.rookout.com](https://app.rookout.com/) and start debugging !
 
 ## Rookout Integration explained
-1. This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
+This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
   1. Add Java Agent plugin
     ```
     addSbtPlugin("com.lightbend.sbt" % "sbt-javaagent" % "0.1.4")
@@ -47,3 +45,20 @@ This is a starter application that shows how Play works with Rookout.
     ```
     javaAgents += "com.rookout" % "rook" % "0.1.9" % "dist"
     ```
+
+## Running with sbt run
+Create lib folder
+ 
+``` bash
+$ mkdir lib ; cd lib ; wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
+```
+
+```
+sbt run
+```
+
+## Debug Playframework
+
+1. And then go to http://localhost:9000 to see the running web application.
+
+1. Go to [app.rookout.com](https://app.rookout.com/) and start debugging !
