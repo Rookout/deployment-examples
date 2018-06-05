@@ -14,6 +14,7 @@ This is a starter application that shows how Play works with Rookout.
 
 1.  Run the following commands:
     ``` bash
+    $ cd 2.6.x
     $ sbt dist
     $ cd target/universal
     $ unzip play-java-starter-example-1.0-SNAPSHOT.zip 
