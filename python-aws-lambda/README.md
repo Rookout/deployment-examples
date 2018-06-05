@@ -37,9 +37,15 @@ There are 3 simple steps to integrate Rookout into your existing Python Lambda a
 
     - aws-cli : Create a new Lambda function and update it like so :
         ```bash
-        $ aws lambda create-function --function-name rookout-lambda-test --runtime python2.7 --handler lambda_function.lambda_handler --role <IAM-ARN>
-        $ aws lambda update-function-code --function-name rookout-lambda-test --zip-file fileb://rookout_lambda_test.zip --region {REGION}
-        ```  
+        aws lambda create-function \
+                    --region <REGION> \
+                    --function-name rookout_lambda_test \
+                    --zip-file fileb://rookout_lambda_test.zip \
+                    --role <ROLE-ARN> \
+                    --handler index.handler \
+                    --runtime python2.7 \
+                    --environment Variables="{ROOKOUT_AGENT_HOST=cloud.agent.rookout.com,ROOKOUT_AGENT_PORT=443,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_TOKEN=<org_token>}"```
+
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
     - **OR** Using Cloud9 IDE integrated tools
