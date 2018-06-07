@@ -15,21 +15,11 @@ This is a starter application that shows how Play works with Rookout.
 1.  Run the following commands:
     ``` bash
     $ cd 2.6.x
-    $ sbt dist
-    $ cd target/universal
-    $ unzip play-java-starter-example-1.0-SNAPSHOT.zip 
-    $ cd play-java-starter-example-1.0-SNAPSHOT/bin
+    $ make build
     ```
-
-    - For Windows run:
-    ``` bash
-    $ play-java-starter-example.bat -Dplay.file=../conf/application.conf
-    ```
-
     - For Unix run:
     ``` bash
-    $ chmod +x play-java-starter-example
-    $ ./play-java-starter-example -Dplay.file=../conf/application.conf
+    $ make run
     ```
 
 ## Rookout Integration explained
@@ -47,15 +37,12 @@ This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
     javaAgents += "com.rookout" % "rook" % "0.1.9" % "dist"
     ```
 
+
 ## Running with sbt run
 Create lib folder and download Rookout`s rook module
  
 ``` bash
-$ mkdir lib ; cd lib ; wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
-```
-
-```
-sbt run
+    $ make run dev
 ```
 
 ## Debug Playframework
