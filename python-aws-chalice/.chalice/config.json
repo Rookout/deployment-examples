@@ -1,0 +1,14 @@
+{
+  "environment_variables": {
+    "ROOKOUT_AGENT_HOST": "cloud.agent.rookout.com",
+    "ROOKOUT_AGENT_PORT": "443",
+    "ROOKOUT_TOKEN": "<token>"
+  },
+  "stages": {
+    "dev": {
+      "api_gateway_stage": "api"
+    }
+  },
+  "version": "2.0",
+  "app_name": "python-aws-chalice"
+}
