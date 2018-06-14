@@ -42,7 +42,7 @@ There are 3 simple steps to integrate Rookout into your existing Python Lambda a
                     --function-name rookout_lambda_test \
                     --zip-file fileb://rookout_lambda_test.zip \
                     --role <ROLE-ARN> \
-                    --handler index.handler \
+                    --handler lambda_function.lambda_handler \
                     --runtime python2.7 \
                     --environment Variables="{ROOKOUT_AGENT_HOST=cloud.agent.rookout.com,ROOKOUT_AGENT_PORT=443,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_TOKEN=<org_token>}"```
 
