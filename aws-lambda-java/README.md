@@ -16,7 +16,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 ## Rookout Integration Explained
 
-There are XXXX simple steps to integrate Rookout into your existing Java application for an [agentless] setup:
+There are 3 simple steps to integrate Rookout into your existing Java application for an [agentless] setup:
 
 1. Add gradle dependencies 
 	```
