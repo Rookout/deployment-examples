@@ -16,10 +16,7 @@ dependencies {
 
     compile group: 'com.sun', name: 'tools', version: '1.7.0.13'
     compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.1.0'
-    //TODO:: should use this line - with the right version
-    //compile group: 'com.rookout', name: 'rook', version: '0.1.11'
-    //TODO:: delete this line
-    compile files("C:\\Git\\Rookout\\Rookout\\rooks\\jvm\\rook\\build\\libs\\rook-VersionGoesHere-all.jar")
+    compile group: 'com.rookout', name: 'rook', version: '0.1.12'
 }
 
 task buildZip(type: Zip) {

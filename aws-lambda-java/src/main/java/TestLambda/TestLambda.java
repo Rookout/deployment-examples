@@ -6,7 +6,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import java.util.HashMap;
 import java.util.Random;
 
-import com.rookout.rook.LoadRookToJvm;
+import com.rookout.rook.LoadRook;
 
 public class TestLambda implements RequestHandler<Object, String> {
     @Override
@@ -20,7 +20,7 @@ public class TestLambda implements RequestHandler<Object, String> {
 
     public void LoadRook(){
         try {
-            LoadRookToJvm.LoadRookToJvm();
+            LoadRook.LoadRook();
         } catch (Exception e) {
             e.printStackTrace();
         }
