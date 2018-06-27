@@ -1,0 +1,33 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://maven.nuiton.org/release/"
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'com.sun', name: 'tools', version: '1.7.0.13'
+    compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.1.0'
+    //TODO:: should use this line - with the right version
+    //compile group: 'com.rookout', name: 'rook', version: '0.1.11'
+    //TODO:: delete this line
+    compile files("C:\\Git\\Rookout\\Rookout\\rooks\\jvm\\rook\\build\\libs\\rook-VersionGoesHere-all.jar")
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+build.dependsOn buildZip
