@@ -1,4 +1,4 @@
-from rook import serverless_rook
+from rook.serverless import serverless_rook
 
 @serverless_rook
 def lambda_handler(event, context):
