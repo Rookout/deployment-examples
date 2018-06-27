@@ -26,20 +26,6 @@ public class TestLambda implements RequestHandler<Object, String> {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     String[] animals = {
             "Aardvark",
             "Abyssinian",
@@ -62,7 +48,6 @@ public class TestLambda implements RequestHandler<Object, String> {
             "Zonkey",
             "Zorse"
     };
-
 
     private void SleepLoop() {
         System.out.println("Entering sleep loop");
