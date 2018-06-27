@@ -13,7 +13,7 @@ public class TestLambda implements RequestHandler<Object, String> {
     public String handleRequest(Object myCount, Context context) {
         LoadRook();
 
-        yourLogic();
+        SleepLoop();
 
         return "Hello";
     }
@@ -33,6 +33,7 @@ public class TestLambda implements RequestHandler<Object, String> {
             "Akbash",
             "Akita",
             "Albatross",
+            "Ben",
             "Wolf",
             "Wolverine",
             "Wombat",
@@ -72,16 +73,6 @@ public class TestLambda implements RequestHandler<Object, String> {
             } catch (InterruptedException e) {
 
             }
-        }
-    }
-
-    private void yourLogic() {
-        try {
-
-            SleepLoop();
-
-        } catch (Exception e) {
-
         }
     }
 }
