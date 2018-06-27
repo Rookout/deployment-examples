@@ -67,7 +67,7 @@ We have added Rookout to the original project by:
 
 1. Wrap your function by using our Rookout lambda decorator like so :
     ```python
-    from rook import serverless_rook
+    from rook.serverless import serverless_rook
 
     @serverless_rook
     def lambda_handler(event, context):
