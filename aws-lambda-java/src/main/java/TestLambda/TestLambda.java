@@ -11,19 +11,11 @@ import com.rookout.rook.LoadRook;
 public class TestLambda implements RequestHandler<Object, String> {
     @Override
     public String handleRequest(Object myCount, Context context) {
-        LoadRook();
+        LoadRook.LoadRook();
 
         SleepLoop();
 
         return "Hello";
-    }
-
-    public void LoadRook(){
-        try {
-            LoadRook.LoadRook();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     String[] animals = {
