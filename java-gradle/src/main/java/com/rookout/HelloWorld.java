@@ -8,19 +8,7 @@ public class HelloWorld {
         Javalin app = Javalin.start(7000);
         app.get("/", new Handler() {
             public void handle(Context ctx) throws Exception {
-
-                int a = 5;
-                byte[] binary;
-                a++;
-                binary = new byte[5];
-
-
-
-                binary = null;
                 ctx.result("Hello World");
-
-
-                binary[0] = 4;
             }
         });
         app.get("/hello/:name", new Handler() {
