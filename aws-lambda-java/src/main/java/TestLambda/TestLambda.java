@@ -11,7 +11,11 @@ import com.rookout.rook.LoadRook;
 public class TestLambda implements RequestHandler<Object, String> {
     @Override
     public String handleRequest(Object myCount, Context context) {
-        LoadRook.LoadRook();
+        try{
+            LoadRook.LoadRook();
+        }catch (Exception e){
+
+        }
 
         SleepLoop();
 
