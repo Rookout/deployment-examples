@@ -23,7 +23,7 @@ For more information about Docker go [here](https://www.docker.com/).
 
 ## Rookout Integration Explained
 
-There are XXXXX simple steps to integrate Rookout into your existing Node-Electron application for an [agentless] setup:
+There are 4 simple steps to integrate Rookout into your existing Node-Electron application for an [agentless] setup:
 
 1. Adding rookout to `package.json` available on [npm]:
     ```bash
@@ -42,7 +42,7 @@ There are XXXXX simple steps to integrate Rookout into your existing Node-Electr
     "start": "electron . --inspect" },
 	```
 	
-4. Run 'npm install'
+4. Build your electron application
 
 
 FAQ
