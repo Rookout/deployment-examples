@@ -39,7 +39,8 @@ There are 4 simple steps to integrate Rookout into your existing Node-Electron a
 3. Update the command line for electron to contain --inspect, In the `package.json`:
 	```
 	"scripts": {
-    "start": "electron . --inspect" },
+    "start": "electron . --inspect" 
+	},
 	```
 	
 4. Build your electron application
