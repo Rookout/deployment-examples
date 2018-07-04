@@ -65,7 +65,7 @@ public class TestLambda implements RequestHandler<Object, String> {
             }
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
 
             }
