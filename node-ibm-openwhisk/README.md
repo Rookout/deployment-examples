@@ -20,14 +20,16 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
 1. Add the npm dependency `rookout`
 
-1. Wrap your OpenWhisk function with `rookout.wrap()`
+1. Initialize the Rookout SDK as your function is loaded (Rookout auto-connect functionality relies on envioremnt variables which are not available in OpenWhisk).
 
-1. Set the Rook's agent configuration as environment variables in the action configuration
+1. Wrap your OpenWhisk function with `rookout.wrap()`
 
 
 ## Running on IBM OpenWhisk
 
 1. Uploading your function : 
+    - Update the source to include your own organization token in index.js line 3. More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html).
+
     - Zip Upload: In order to run your rookout wrapped function on IBM OpenWhisk, make sure the dependencies are downloaded and zip
     the folder (including node_modules).  
     zip -r actionFile.zip .
@@ -36,21 +38,10 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
     - ibmcloud cli : Create a new OpenWhisk action and update it like so :
         ```bash
-        ibmcloud wsk action create packageAction \
-                    --kind nodejs:6 \
-                    --param ROOKOUT_AGENT_HOST cloud.agent.rookout.com \
-                    --param ROOKOUT_AGENT_PORT 443 \
-                    --param ROOKOUT_TOKEN <org-token>
-                    action.zip 
+        ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
+        ``` 
 
         **If you do not have access to ibmcloud cli, you can do this from the [IBM console](https://console.bluemix.net/openwhisk/actions) and follow the [IBM Documentation](https://console.bluemix.net/docs/openwhisk/openwhisk_actions.html#creating-and-invoking-javascript-actions)**
-
-1. Set the Rook's agent configuration as environment variables in the action configuration, fill the Environment Variables for :
-    - `ROOKOUT_AGENT_HOST` : cloud.agent.rookout.com
-    - `ROOKOUT_AGENT_PORT` : 443
-    - `ROOKOUT_TOKEN` : Your Organization Token
-    
-    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html)
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
@@ -69,14 +60,18 @@ We have added Rookout to the original project by:
     }
 ```
 
-1. Wrapping your function with the OpenWhisk wrapper as such :  
+1. Connecting the Rookout SDK on initialization as such:
+```javascript
+const rookout = require('rookout/openwhisk');
+
+rookout.connect('cloud.agent.rookout.com', 443, ORG_TOKEN);
+```
+
+1. Wrapping your function with the OpenWhisk wrapper as such:  
 ```javascript
 const rookout = require('rookout/openwhisk');
 
 exports.main = rookout.wrap(myAction);
 ```
-    
-1. Set action environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
-    
 
 [Node + Rookout]: https://docs.rookout.com/docs/installation-node.html

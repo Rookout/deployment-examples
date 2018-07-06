@@ -1,5 +1,7 @@
 const rookout = require('rookout/openwhisk');
 
+rookout.connect('cloud.agent.rookout.com', 443, ORG_TOKEN);
+
 function myAction(args) {
     const leftPad = require("left-pad")
     const lines = args.lines || [];
