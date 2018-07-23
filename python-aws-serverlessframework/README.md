@@ -54,9 +54,8 @@ environment:
 1. Deploy your serverless functions using the serverless framework:
 
 ```
-serverless deploy
+serverless deploy 
 ```
 
-    
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
