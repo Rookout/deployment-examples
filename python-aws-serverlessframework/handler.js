@@ -1,17 +1,26 @@
-'use strict';
-from rook.serverless import serverless_rook 
-@serverless_rook 
-module.exports.hello = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
+import json
+from rook.serverless import serverless_rook
 
-  callback(null, response);
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
-};
+@serverless_rook
+def hello(event, context):
+    body = {
+        "message": "Go Serverless v1.0! Your function executed successfully!",
+        "input": event
+    }
+
+    response = {
+        "statusCode": 200,
+        "body": json.dumps(body)
+    }
+
+    return response
+
+    # Use this code if you don't use the http event with the LAMBDA-PROXY
+    # integration
+    """
+    return {
+        "message": "Go Serverless v1.0! Your function executed successfully!",
+        "event": event
+    }
+    """
