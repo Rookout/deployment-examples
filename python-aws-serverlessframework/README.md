@@ -20,6 +20,8 @@ There are 4 simple steps to integrate Rookout into your existing Serverless fram
 
 1. Add the pip dependency `rook` in the project folder
 
+1. sls plugin install -n serverless-python-requirements
+
 1. Set dockerizePip for true in the serverless.yml file in order to allow cross compiling 
 
 1. Add Rookout's decorator to your lambda_handler function
@@ -41,7 +43,13 @@ We have added Rookout to the original project by:
     def lambda_handler(event, context):
         return 'Hello World'
     ```
-    
+1. Add to your serverless.yml the serverless-python-requirements plugin:
+
+```
+plugins:
+  - serverless-python-requirements
+```
+
 1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
 
 ```

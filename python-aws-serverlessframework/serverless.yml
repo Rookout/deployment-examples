@@ -19,7 +19,12 @@ service: python-aws-serverlessframework
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: python3.6
+  environment:
+      'ROOKOUT_AGENT_HOST': 'cloud.agent.rookout.com'
+      'ROOKOUT_AGENT_PORT': '443'
+      'ROOKOUT_TOKEN': 'YOUR-TOKEN'
+
 
 # you can overwrite defaults here
 #  stage: dev
@@ -58,15 +63,12 @@ functions:
   hello:
     handler: handler.hello
 
+plugins:
+  - serverless-python-requirements
 custom:
   pythonRequirements:
     dockerizePip: true
 
-
-environment:
-  ROOKOUT_AGENT_HOST: cloud.agent.rookout.com
-  ROOKOUT_AGENT_PORT: 443
-  ROOKOUT_TOKEN: <YOUR-TOKEN>
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -98,9 +100,7 @@ environment:
 #          trigger: PreSignUp
 
 #    Define function environment variables here
-#    environment:
-#      variable2: value2
-
+    
 # you can add CloudFormation resource templates here
 #resources:
 #  Resources:
