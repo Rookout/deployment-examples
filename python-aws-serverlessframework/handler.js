@@ -1,5 +1,6 @@
 'use strict';
-
+from rook.serverless import serverless_rook 
+@serverless_rook 
 module.exports.hello = (event, context, callback) => {
   const response = {
     statusCode: 200,
