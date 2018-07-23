@@ -16,7 +16,7 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 ## Rookout Integration Explained
 
-There are 3 simple steps to integrate Rookout into your existing Serverless framework Python Lambda application for an agentless setup:
+There are 4 simple steps to integrate Rookout into your existing Serverless framework Python Lambda application for an agentless setup:
 
 1. Add the pip dependency `rook` in the project folder
 
