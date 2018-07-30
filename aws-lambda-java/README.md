@@ -26,9 +26,9 @@ There are 3 simple steps to integrate Rookout into your existing Java applicatio
 	
 	IMPORTANT:: the com.sun.tools is from nuiton repository. ("http://maven.nuiton.org/release/")
 
-1. Call in your main function to LoadRook (add import com.rookout.rook.LoadRook;)
+1. Call in your main function to Load the Rook (add import com.rookout.rook.API;)
 	```
-	LoadRook.LoadRook();
+	API.Load();
 	```
 
 1. Set the Rook's agent configuration as environment variables in the Lambda configuration

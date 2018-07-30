@@ -6,18 +6,20 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import java.util.HashMap;
 import java.util.Random;
 
-import com.rookout.rook.LoadRook;
+import com.rookout.rook.API;
 
 public class TestLambda implements RequestHandler<Object, String> {
     @Override
     public String handleRequest(Object myCount, Context context) {
         try{
-            LoadRook.LoadRook();
+            API.Load();
         }catch (Exception e){
 
         }
 
         SleepLoop();
+
+        API.Flush();
 
         return "Hello";
     }
