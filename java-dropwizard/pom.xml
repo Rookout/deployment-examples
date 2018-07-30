@@ -271,6 +271,11 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/java</directory>
+            </resource>
+        </resources>
     </build>
 
     <profiles>
