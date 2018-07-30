@@ -46,13 +46,6 @@ To test the example application run the following commands.
 
         java -jar target/dropwizard-example-$DW_VERSION.jar db migrate example.yml
 
-## Run Rookout Router 
-
-1. Run the Rookout agent:
-    ``` bash
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
-    ```
-
 ## Deploy and Run Rookout's Java Agent
 
 1.  Download:
@@ -67,7 +60,14 @@ To test the example application run the following commands.
     java -javaagent:rook.jar -jar target/dropwizard-example-$DW_VERSION.jar server example.yml
     ```
 
-## Debug with Rookout
+## Run Rookout Router 
+
+1. Run the Rookout agent:
+    ``` bash
+    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
+    ```
+
+## Debug with Rookout's IDE
 1. Go to https://app.rookout.com and add your sources
 
 1. Apply a "Rule Point" (The same way you are used to add a break point, only Rookout does not break production)
