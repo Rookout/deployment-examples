@@ -37,14 +37,13 @@ As with all the modules the db example is wired up in the `initialize` function 
 To test the example application run the following commands.
 
 * To create the example, package the application using [Apache Maven](https://maven.apache.org/) from the root dropwizard directory.
-
-        cd dropwizard
-        ./mvnw package
-        cd dropwizard-example
-
+```
+        mvn package
+```
 * To setup the h2 database run.
-
+```
         java -jar target/dropwizard-example-$DW_VERSION.jar db migrate example.yml
+```
 
 ## Deploy and Run Rookout's Java Agent
 
