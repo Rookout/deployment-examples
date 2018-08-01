@@ -1,6 +1,6 @@
-# Quickstart for Node + Agentless Rookout on IBM OpenWhisk Functions
+# Quickstart for Node + Agentless Rookout on IBM Cloud Functions
 
-A sample application for using Node + Agentless Rookout on IBM OpenWhisk Functions
+A sample application for using Node + Agentless Rookout on IBM Cloud Functions
 <details>
 <summary>What is Agentless?</summary>
 <p>
@@ -20,23 +20,23 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
 1. Add the npm dependency `rookout`
 
-1. Initialize the Rookout SDK as your function is loaded (Rookout auto-connect functionality relies on envioremnt variables which are not available in OpenWhisk).
+1. Initialize the Rookout SDK as your function is loaded (Rookout auto-connect functionality relies on environment variables which are not available in IBM Cloud Functions).
 
-1. Wrap your OpenWhisk function with `rookout.wrap()`
+1. Wrap your IBM Cloud Function with `rookout.wrap()`
 
 
-## Running on IBM OpenWhisk
+## Running on IBM Cloud Function
 
 1. Uploading your function : 
     - Update the source to include your own organization token in index.js line 3. More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html).
 
-    - Zip Upload: In order to run your rookout wrapped function on IBM OpenWhisk, make sure the dependencies are downloaded and zip
+    - Zip Upload: In order to run your rookout wrapped function on IBM Cloud Function, make sure the dependencies are downloaded and zip
     the folder (including node_modules).  
     zip -r actionFile.zip .
     
-        **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. IBM OpenWhisk runs on Linux and thus needs the linux compiled binaries. In the example package, "npm run build" script uses a Docker to build the neccessary binaries.
+        **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. IBM Cloud Function runs on Linux and thus needs the linux compiled binaries. In the example package, "npm run build" script uses a Docker to build the neccessary binaries.
 
-    - ibmcloud cli : Create a new OpenWhisk action and update it like so :
+    - ibmcloud cli : Create a new IBM Cloud Function action and update it like so :
         ```bash
         ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
         ``` 
@@ -67,7 +67,7 @@ const rookout = require('rookout/openwhisk');
 rookout.connect('cloud.agent.rookout.com', 443, ORG_TOKEN);
 ```
 
-1. Wrapping your function with the OpenWhisk wrapper as such:  
+1. Wrapping your function with the IBM Cloud Function wrapper as such:  
 ```javascript
 const rookout = require('rookout/openwhisk');
 
