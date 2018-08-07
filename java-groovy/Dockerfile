@@ -8,6 +8,4 @@ ADD test_groovy.groovy /home/groovy/
 
 ENV JAVA_OPTS=-javaagent:/opt/groovy/bin/rook.jar
 
-ENV ROOKOUT_AGENT_HOST=cloud.agent.rookout.com
-ENV ROOKOUT_AGENT_PORT=443
-ENV ROOKOUT_TOKEN=INSERT_TOKEN_HERE
+ENV  ROOKOUT_AGENT_HOST=host.docker.internal
