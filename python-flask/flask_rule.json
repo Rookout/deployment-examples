@@ -8,7 +8,7 @@
     "operations": [
       {
         "name": "send_rookout",
-        "path": "store.rookout.extracted"
+        "path": "store.rookout.http"
       }
     ]
   },
@@ -22,7 +22,7 @@
         {
           "name": "set",
           "paths": {
-            "store.rookout.extracted": "extracted"
+            "store.rookout.http": "extracted"
           }
         }
       ]
