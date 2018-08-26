@@ -19,9 +19,9 @@ $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" us.gcr.io/rookout/go_a
 ```
 
 3. *Enable flask debugging*:
-	Set environment variable ROOKOUT_HTTP_SERVICES="flask"
+	Set environment variable ROOKOUT_HTTP_SERVICES=flask
 ```bash
-	export ROOKOUT_HTTP_SERVICES="flask"
+	export ROOKOUT_HTTP_SERVICES=flask
 ```
 
 4. *Run*:
