@@ -8,7 +8,6 @@ description = """rookoutHellopApp"""
 
 
 repositories {
-        
      maven { url "http://repo1.maven.org/maven2" }
 }
 dependencies {
@@ -27,4 +26,11 @@ task fatJar(type: Jar) {
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+apply plugin: 'application'
+applicationDefaultJvmArgs = ["-javaagent:rook.jar"]
+
+run {
+    main = 'com.rookout.HelloWorld'
 }

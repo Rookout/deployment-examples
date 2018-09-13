@@ -7,24 +7,24 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 * [Running locally](#running-locally)
 * [Using docker compose](#using-docker-compose)
 * [Rookout Integration explained](#rookout-integration-explained)
-## Running locally
-1. Run the Rookout agent:
-    ``` bash
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
-    ```
-2. Compile the project jar and download the Java agent:
+## Running local application using Agent-less
+1. Compile the project jar and download the Java agent:
      ```bash
     $ make build
     ```
-3. Run:
+2. Run:
     ```bash
-    $ make run
+    $ make run token=YOUR_TOKEN
     ```
-    
+    Replace YOUR_TOKEN with your organization token 
+3. Run using gradle:
+    ```bash
+    $ make gradle-run token=YOUR_TOKEN
+    ```    
+    Replace YOUR_TOKEN with your organization token
 4. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/)
 
 5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
-
 
 ## Rookout Integration explained
 
@@ -45,7 +45,6 @@ We have added Rookout to the original project by:
     ```bash
         java  -javaagent:rook.jar -jar build/libs/rookoutDemo-1.0.0.jar
     ```
-
 
 [Java + Rookout]: https://docs.rookout.com/docs/installation-java.html
 [here]: https://github.com/tipsy/javalin/
