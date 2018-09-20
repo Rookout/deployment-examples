@@ -12,7 +12,7 @@ This is a full example for deploying Rookout using Kubernetes
 
 1. `git clone https://github.com/rookout/deployment-examples.git`
 
-2. `cd kubernetes`
+2. `cd python-kubernetes`
 
 3. change the token inside `agent-deployment.yaml` with your token
 
