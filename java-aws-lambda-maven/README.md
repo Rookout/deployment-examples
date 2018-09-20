@@ -16,7 +16,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 ## Rookout Integration Explained
 
-There are 3 simple steps to integrate Rookout into your existing Java application for an [agentless] setup:
+There are 4 simple steps to integrate Rookout into your existing Java application for an [agentless] setup:
 
 1. Add maven dependencies to pom.xml file 
 	```
@@ -40,27 +40,19 @@ There are 3 simple steps to integrate Rookout into your existing Java applicatio
 
 	```
 	
-	IMPORTANT:: the com.sun.tools is from nuiton repository. ("http://maven.nuiton.org/release/")
+IMPORTANT:: the com.sun.tools is from nuiton repository. ("http://maven.nuiton.org/release/")
 
-<repositories>
-    <repository>
-        <id>nuiton</id>
-        <name>nuiton</name>
-        <url>http://maven.nuiton.org/release/</url>
-    </repository>
-</repositories>
+```
+	<repositories>
+		<repository>
+			<id>nuiton</id>
+			<name>nuiton</name>
+			<url>http://maven.nuiton.org/release/</url>
+		</repository>
+	</repositories>
+```
 
-1. Call in your main function to LoadRook (add import com.rookout.rook.API;)
-	```
-	API.Load();
-	```
-
-1. Set the Rook's agent configuration as environment variables in the Lambda configuration
-
-
-## Running on Lambda
-1. Using maven assembly plugin to package all dependencies.
-	- Creating an xml file as a Descriptor for maven assembly plugin
+2. Creating an xml file as a Descriptor for maven assembly plugin \ Use a pre-defined descriptor
 
 	```
 	<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
@@ -86,6 +78,16 @@ There are 3 simple steps to integrate Rookout into your existing Java applicatio
 	</dependencySets>
 	</assembly>
 	```
+
+3. Call in your main function to LoadRook (add import com.rookout.rook.API;)
+	```
+	API.Load();
+	```
+
+4. Set the Rook's agent configuration as environment variables in the Lambda configuration
+
+
+## Running on Lambda	
 
 1. Deploying your function : 
     - Zip Content: use mvn package command to package everthing within one java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar file
