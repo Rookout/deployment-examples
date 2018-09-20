@@ -1,6 +1,6 @@
 # Kubernetes Rookout Deployment Example
 
-This is a full example for deploying Rookout using Kubernetes
+This is a full example for deploying Rookout using Kubernetes.
 
 ## prerequisite:
 
@@ -24,10 +24,9 @@ This is a full example for deploying Rookout using Kubernetes
 
 4. `kubectl apply -f app-service.yaml`
 
-5. http://localhost:8888/
+5. Access the external IP received for the hello-world service in port 80
 
-6. Send a REST call:
-
+6. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
 ## License
 
