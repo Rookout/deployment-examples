@@ -20,23 +20,23 @@ There are 3 simple steps to integrate Rookout into your existing Java applicatio
 
 1. Add maven dependencies to pom.xml file 
 	```
-<dependencies>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-lambda-java-core</artifactId>
-      <version>1.1.0</version>
-    </dependency>
-    <dependency>
-	  <groupId>com.rookout</groupId>
-	  <artifactId>rook</artifactId>
-	  <version>[0.1.28,)</version>
-	</dependency>
-	<dependency>
-	  <groupId>com.sun</groupId>
-	  <artifactId>tools</artifactId>
-	  <version>1.7.0.13</version>
-	</dependency>
-</dependencies>
+	<dependencies>
+		<dependency>
+		<groupId>com.amazonaws</groupId>
+		<artifactId>aws-lambda-java-core</artifactId>
+		<version>1.1.0</version>
+		</dependency>
+		<dependency>
+		<groupId>com.rookout</groupId>
+		<artifactId>rook</artifactId>
+		<version>[0.1.28,)</version>
+		</dependency>
+		<dependency>
+		<groupId>com.sun</groupId>
+		<artifactId>tools</artifactId>
+		<version>1.7.0.13</version>
+		</dependency>
+	</dependencies>
 
 	```
 	
