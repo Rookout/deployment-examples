@@ -19,29 +19,31 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 There are 4 simple steps to integrate Rookout into your existing Java application for an [agentless] setup:
 
 1. Add maven dependencies to pom.xml file 
-```
+``` xml
 <dependencies>
 	<dependency>
-	<groupId>com.amazonaws</groupId>
-	<artifactId>aws-lambda-java-core</artifactId>
-	<version>1.1.0</version>
+		<groupId>com.amazonaws</groupId>
+		<artifactId>aws-lambda-java-core</artifactId>
+		<version>1.1.0</version>
 	</dependency>
 	<dependency>
-	<groupId>com.rookout</groupId>
-	<artifactId>rook</artifactId>
-	<version>[0.1.28,)</version>
+		<groupId>com.rookout</groupId>
+		<artifactId>rook</artifactId>
+		<version>[0.1.28,)</version>
 	</dependency>
 	<dependency>
-	<groupId>com.sun</groupId>
-	<artifactId>tools</artifactId>
-	<version>1.7.0.13</version>
+		<groupId>com.sun</groupId>
+		<artifactId>tools</artifactId>
+		<version>1.7.0.13</version>
 	</dependency>
 </dependencies>
 ```
 	
-IMPORTANT:: the com.sun.tools is from nuiton repository. ("http://maven.nuiton.org/release/")
+IMPORTANT: the com.sun.tools is from nuiton repository. ("http://maven.nuiton.org/release/")
 
-```
+Make sure you reference the following repository
+
+``` xml
 <repositories>
 	<repository>
 	<id>nuiton</id>
@@ -51,40 +53,55 @@ IMPORTANT:: the com.sun.tools is from nuiton repository. ("http://maven.nuiton.o
 </repositories>
 ```
 
-2. Creating an xml file as a Descriptor for maven assembly plugin \ Use a pre-defined descriptor
+2. Create an xml file in the project's root directory, as a Descriptor for maven assembly plugin OR use a pre-defined descriptor
 
-```
-<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
-<id>jar-with-dependencies</id>
-<formats>
-	<format>jar</format>
-</formats>
-<includeBaseDirectory>false</includeBaseDirectory>
-<dependencySets>
-	<dependencySet>
-	<outputDirectory>/lib</outputDirectory>
-	<useProjectArtifact>true</useProjectArtifact>
-	<unpack>false</unpack>
-	<scope>runtime</scope>
-	<unpackOptions>
-		<excludes>
-		<exclude>META-INF/**</exclude>
-		</excludes>
-	</unpackOptions>
-	</dependencySet>
-</dependencySets>
+``` xml
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<id>jar-with-dependencies</id>
+	<formats>
+		<format>jar</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>
+		<dependencySet>
+		<outputDirectory>/lib</outputDirectory>
+		<useProjectArtifact>true</useProjectArtifact>
+		<unpack>false</unpack>
+		<scope>runtime</scope>
+		<unpackOptions>
+			<excludes>
+			<exclude>META-INF/**</exclude>
+			</excludes>
+		</unpackOptions>
+		</dependencySet>
+	</dependencySets>
 </assembly>
 ```
 
-3. Call in your main function to LoadRook (add import com.rookout.rook.API;)
-```
-API.Load();
+3. Inside your main function, call LoadRook (add import com.rookout.rook.API;)
+
+For example:
+
+``` java
+import com.rookout.rook.API;
+
+public class TestLambda implements RequestHandler<Object, String> {
+    @Override
+    public String handleRequest(Object myCount, Context context) {
+
+		API.Load();
+		
+		// Your awesome code here :)
+    }
 ```
 
-4. Set the Rook's agent configuration as environment variables in the Lambda configuration
+4. Set the following environment variables in your Lambda configuration as part of your deploying process
 
+``` bash
+ROOKOUT_AGENT_HOST=cloud.agent.rookout.com
+ROOKOUT_AGENT_PORT=443
+ROOKOUT_TOKEN=<org_token>
+```
 
 ## Running on Lambda	
 
