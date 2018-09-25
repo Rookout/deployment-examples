@@ -2,40 +2,24 @@
 
 A sample application for using Rookout + Node.js + App Engine Flexible.
 
-Before following this guide we recommend reading the basic [Node + Rookout] guide
-
-* [Running locally](#running-locally)
 * [Deploying to App Engine](#deploying-to-app-engine)
 * [Rookout integration explain](#Rookout-integration-explain)
-## Running locally
-1. Run the agent:
-``` bash
-$ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
-```
-
-2. Install dependencies:
- ```bash
-$ npm install
-```
-
-3. Run:
-```bash
-npm start
-```
 
 ## Deploying to App Engine
 
-1. Before deploying the app you should first deploy the agent:
+1. Before deploying the app you should first deploy the agent to your App Engine:
 ```bash
 $ gcloud beta compute instances create-with-container rookout-agent \
   --zone us-east1-d --container-image=rookout/agent \
   --container-env ROOKOUT_TOKEN=YOUR_TOKEN
 ```
-2. Copy the agent ip from the `INTERNAL_IP` field, and add it to `app.yaml`.
+2. Copy the agent ip from the `INTERNAL_IP` field available once you successfully deployed it, and add it to the `app.yaml`.
 3. Deploy the service: 
 ```bash
 $ npm run deploy
 ```
+4. Access the URL provided to you once phase 3 successfully done to make sure our demo application is up and running.
+5. Go to app.rookout.com and start debugging the service!
 
 ## Rookout Integration explained
 
