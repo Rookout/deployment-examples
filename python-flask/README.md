@@ -6,7 +6,7 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 * [Running Flask Server + Rookout](#running)
 
-## Running
+## Running locally
 1. *Run the agent*:
 ``` bash
 $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" us.gcr.io/rookout/go_agent
@@ -36,5 +36,14 @@ $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" us.gcr.io/rookout/go_a
 
 6. *Enjoy the debugging*:
 Go to https://app.rookout.com and start debugging :)
+
+## Running with docker and Agentless
+
+1. Update the %YOUR_TOKEN% in the Dockerfile
+2. *Run*:
+```bash
+    docker build -t=testflask .
+	docker run -p 5000:5000 testflask
+```
 
 [Python + Rookout]: https://docs.rookout.com/docs/installation-python.html
