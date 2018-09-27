@@ -6,7 +6,7 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 * [Running Flask Server + Rookout](#running)
 
-## Running localy
+## Running locally
 1. *Run the agent*:
 ``` bash
 $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" us.gcr.io/rookout/go_agent
