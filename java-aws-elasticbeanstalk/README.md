@@ -1,18 +1,18 @@
-# Quickstart for Java + Rookout and AWS Elastic Beanstalk
+# Quickstart for debugging Java + AWS Elastic Beanstalk 
 
-A sample application for using Rookout + Java + AWS Elastic Beanstalk.
+A sample application for debugging Java + AWS Elastic Beanstalk using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
-## Elastic Beanstalk Rookout Integration Explained
+## Adding Rookout to an existing EBS Project
 
 To integrate Rookout into your existing java beanstalk application follow these steps:
 
 1. Add the source files to your built .jar file.
 
-2. Add the Rookout [.ebextensions standalone config scripts](.ebextensions) to your project configuration.
+2. Add these [.ebextensions standalone config scripts](.ebextensions) to your project configuration.
     * One sets up the Rook SDK, responsible for communicating with the Rookout service.
-    * The ither sets up and runs the Rookout java agent.
+    * The other sets up and runs the Rookout java agent.
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 

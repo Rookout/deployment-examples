@@ -1,32 +1,32 @@
-# Quickstart for Java Tomcat + Rookout and AWS Elastic Beanstalk
+# Quickstart for debugging Java Tomcat + AWS Elastic Beanstalk 
 
-A sample application for using Rookout + Java Tomcat + AWS Elastic Beanstalk .
+A sample application for debugging Java Tomcat + AWS Elastic Beanstalk using Rookout.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide .
+Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
 This sample application is the Tomcat sample app provided by AWS.
-For more information about the project structure and how to use it refer to [this documentation](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-tomcat-elasticbeanstalk/eb-tomcat-helloworld/README.md)
+For more information about the project structure and how to use it refer to [this page](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-tomcat-elasticbeanstalk/eb-tomcat-helloworld/README.md).
 
 ## Adding Rookout to an existing EBS Project
 
-There are 2 simple steps to integrate Rookout into your existing java beanstalk application:
+To integrate Rookout into your existing java beanstalk application follow these steps:
 
 1. Add the source files to your built .jar/.war
 
-2. Add our 2 .ebextensions standalone config scripts [available here](.ebextensions)
-    * First one download and install the agent that is responsible for communication
-    * Second one download and tells the JVM to use Rookout's java agent
+2. Add these [.ebextensions standalone config scripts](.ebextensions) to your project configuration(.ebextensions)
+    * One sets up the Rook SDK, responsible for communicating with the Rookout service.
+    * The other sets up and runs the Rookout java agent.
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
 
 ## Running locally
-__REQUIREMENTS: This sample project requires Tomcat8__
+__NOTE: This sample project requires Tomcat8__
 
 Run the Rookout agent:
     ~$ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
 
-Run ``make local`` to add the rook java agent to Tomcat environment locally
+Run ``make local`` to add the rook java agent to Tomcat environment locally.
 
 Run ``build.sh`` to compile the web app and create a WAR file (OS X or Linux):
 
@@ -51,13 +51,13 @@ Try to change the query parameter "name" - /?name=rookout, /?name=John
 You can use either the AWS Management Console or the EB CLI to launch the compiled WAR. Scroll down for EB CLI instructions.
 
 ##### To deploy with the AWS Management Console
-1. Open the [Elastic Beanstalk Management Console](https://console.aws.amazon.com/elasticbeanstalk/home)
+1. Open the [Elastic Beanstalk Management Console](https://console.aws.amazon.com/elasticbeanstalk/home).
 
-2. Upload the source (ROOT.war) bundle when creating a [new Beanstalk app](https://console.aws.amazon.com/elasticbeanstalk/home#/gettingStarted)
+2. Upload the source (ROOT.war) bundle when creating a [new Beanstalk app](https://console.aws.amazon.com/elasticbeanstalk/home#/gettingStarted).
 
-3. Choose 'Tomcat' Platform
+3. Choose 'Tomcat' Platform.
 
-4. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed
+4. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed.
 
 5. Change the "name" query parameter to see changes - /?name=rookout, /?name=John
 
