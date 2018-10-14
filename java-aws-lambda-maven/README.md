@@ -1,24 +1,15 @@
 # Quickstart for Java + Agentless Rookout on AWS Lambda Maven
 
-A sample application for using Java + Agentless Rookout on AWS Lambda
-<details>
-<summary>What is Agentless?</summary>
-<p>
-Instead of having to install your own Agent own the machine you are running the code from,
-you can use one of our hosted Agents and just tell the Rook to connect to it.<br/>
-For more information you can see <a href="https://docs.rookout.com/docs/installation-agent-remote.html">our documentation</a>
-</p>
-</details>
-
+A sample application for debugging Java + Maven + AWS Lambda using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
 
-## Rookout Integration Explained
+## Integrate Rookout into your Java application
 
-There are 4 simple steps to integrate Rookout into your existing Java application for an [agentless] setup:
+To integrate Rookout into your existing agentless Java application, follow these steps:
 
-1. Add maven dependencies to pom.xml file 
+1. Add the following Maven dependencies to your pom.xml file:
 ``` xml
 <dependencies>
 	<dependency>
@@ -39,9 +30,9 @@ There are 4 simple steps to integrate Rookout into your existing Java applicatio
 </dependencies>
 ```
 	
-IMPORTANT: the com.sun.tools is from nuiton repository. ("http://maven.nuiton.org/release/")
+NOTE: the com.sun.tools repository is taken from the nuiton repository - (http://maven.nuiton.org/release/).
 
-Make sure you reference the following repository
+Make sure you reference the following repository:
 
 ``` xml
 <repositories>
@@ -53,7 +44,7 @@ Make sure you reference the following repository
 </repositories>
 ```
 
-2. Create an xml file in the project's root directory, as a Descriptor for maven assembly plugin OR use a pre-defined descriptor
+2. Create an xml file in the project's root directory as a Descriptor for maven assembly plugin, or use a pre-defined descriptor:
 
 ``` xml
 <assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
@@ -78,9 +69,7 @@ Make sure you reference the following repository
 </assembly>
 ```
 
-3. Inside your main function, call LoadRook (add import com.rookout.rook.API;)
-
-For example:
+3. Call LoadRook() from your main() function to load the Rookout SDK. Make sure to import com.rookout.rook.API.
 
 ``` java
 import com.rookout.rook.API;
@@ -95,24 +84,18 @@ public class TestLambda implements RequestHandler<Object, String> {
     }
 ```
 
-4. Set the following environment variables in your Lambda configuration as part of your deploying process
+4. Set your Rookout Token ('ROOKOUT_TOKEN') as an environment variable
 
-``` bash
-ROOKOUT_AGENT_HOST=cloud.agent.rookout.com
-ROOKOUT_AGENT_PORT=443
-ROOKOUT_TOKEN=<org_token>
-```
-
-## Running on Lambda	
+## Run your application
 
 1. Deploying your function : 
-    - Zip Content: use mvn package command to package everthing within one java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar file
+    - As a Zip package: use the mvn package command to package everthing within one java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar file.
 
 	```
 	mvn package
 	```
 	
-    - aws-cli : Create a new Lambda function and update it like so :
+    - Using AWS CLI : Create a new Lambda function and update it as follows:
         ```bash
         aws lambda create-function \
                     --region <REGION> \
@@ -123,18 +106,11 @@ ROOKOUT_TOKEN=<org_token>
                     --runtime java8 \
 					--timeout 25 
 					--memory-size 400 
-                    --environment Variables="{ROOKOUT_AGENT_HOST=cloud.agent.rookout.com,ROOKOUT_AGENT_PORT=443,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_TOKEN=<org_token>}"```
+                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"```
 
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
-    - **OR** Using Cloud9 IDE integrated tools
-
-1. Set the Rook's agent configuration as environment variables in the Lambda configuration, fill the Environment Variables for :
-    - `ROOKOUT_AGENT_HOST` : cloud.agent.rookout.com
-    - `ROOKOUT_AGENT_PORT` : 443
-    - `ROOKOUT_TOKEN` : Your Organization Token
-    
-    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html)
+    - Using Cloud9 IDE integrated tools.
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 

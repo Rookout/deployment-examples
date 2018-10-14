@@ -27,7 +27,7 @@ To integrate Rookout into your existing Java application, follow these steps:
 ## Run your application
 
 1. Upload your function: 
-    - Using Cip Content: Create a sub-folder named "lib" with the required .jar files (tools.jar and rook.jar) in the root folder.
+    - As a Zip package: Create a sub-folder named "lib" with the required .jar files (tools.jar and rook.jar) in the root folder.
 
 	You can also add the files in your gradle file:
 	```
