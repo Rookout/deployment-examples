@@ -1,18 +1,18 @@
 # Quickstart for Java + Rookout and AWS Elastic Beanstalk
 
-A sample application for using Rookout + Java + AWS Elastic Beanstalk .
+A sample application for using Rookout + Java + AWS Elastic Beanstalk.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide
+Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
 ## Elastic Beanstalk Rookout Integration Explained
 
-There are 2 simple steps to integrate Rookout into your existing java beanstalk application:
+To integrate Rookout into your existing java beanstalk application follow these steps:
 
-1. Add the source files to your built .jar
+1. Add the source files to your built .jar file.
 
-2. Add our 2 .ebextensions standalone config scripts [available here](.ebextensions)
-    * First one download and install the agent that is responsible for communication
-    * Second one download and tells the JVM to use Rookout's java agent
+2. Add the Rookout [.ebextensions standalone config scripts](.ebextensions) to your project configuration.
+    * One sets up the Rook SDK, responsible for communicating with the Rookout service.
+    * The ither sets up and runs the Rookout java agent.
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
@@ -37,18 +37,18 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 
 ## Running on AWS Elastic Beanstalk
-1. Zip the project (the files, not the parent directory), use this command in the project directory to include all hidden files
+1. Zip the project (the files, not the parent directory), use this command in the project directory to include all hidden files:
     ```bash
     $ zip -r <DEST_FILE.zip> * .*
     ```
 
-2. Upload the source bundle when creating a [new Beanstalk app](https://console.aws.amazon.com/elasticbeanstalk/home#/gettingStarted)
+2. Upload the source bundle when creating a [new Beanstalk app](https://console.aws.amazon.com/elasticbeanstalk/home#/gettingStarted).
 
-3. Choose 'Java' Platform
+3. Choose 'Java' Platform.
 
-4. Upload the zip you previously archived in the base configuration part
+4. Upload the zip you previously archived in the base configuration part.
 
-5. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed
+5. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed.
 
 6. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
@@ -60,7 +60,7 @@ We have added Rookout to the original project by:
     jar cvfm target/server.jar Manifest.txt -C output/ . src/*
     ```
 
-2. Adding Rookout's Elastic Beanstalk .ebextensions to install agent on machine and add the javaagent to communicate with the app:
+2. Adding Rookout's Elastic Beanstalk .ebextensions to setup the Rook SDK and the Rookout Java Agent:
     ```
     commands: 
         "01": 
