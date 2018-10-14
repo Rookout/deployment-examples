@@ -1,6 +1,6 @@
-# Quickstart for Java + Wildfly + Agentless Rookout with Docker
+# Quickstart for Java + Wildfly debugging
 
-A sample application for using Agentless Rookout + Java + Wildfly with Docker .
+A sample application for debugging Java + Wildfly apps using Rookout and Docker.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
@@ -10,11 +10,11 @@ There are 3 simple steps to integrate Rookout into your existing Java Wildfly we
 
 1. Add the source files to your built .jar
 
-1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker-agentless/helloworld/rookout-conf)
+1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker-agentless/helloworld/rookout-conf).
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
-1. Set the Rook's agent configuration as environment variables in the Docker container
+1. Set the Rook's agent configuration as environment variables in the Docker container.
 
 
 ## Running locally
