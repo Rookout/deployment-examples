@@ -1,4 +1,4 @@
-# Quickstart for Java + Rookout and Docker-compose
+# Quickstart for Java + Gradle and Docker-compose
 
 A sample application for using Rookout to debug a Java app built using Gradle, and deployed using Docker Compose.
 
