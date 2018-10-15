@@ -1,39 +1,29 @@
-# Quickstart for Serverless framework Python + Agentless Rookout on AWS Lambda
+# Quickstart for debugging Python + AWS + Serverless Framework
 
-A sample application for using Serverless framework Python + Agentless Rookout on AWS Lambda
-<details>
-<summary>What is Agentless?</summary>
-<p>
-Instead of having to install your own Agent own the machine you are running the code from,
-you can use one of our hosted Agents and just tell the Rook to connect to it.<br/>
-For more information you can see <a href="https://docs.rookout.com/docs/installation-agent-remote.html">our documentation</a>
-</p>
-</details>
-
+A sample application for debugging Python apps deployed in AWS + Serverless Framework using Rookout.
 
 Before following this guide we recommend reading the basic [Python + Rookout] guide
 
-
 ## Rookout Integration Explained
 
-There are 4 simple steps to integrate Rookout into your existing Serverless framework Python Lambda application for an agentless setup:
+To integrate Rookout into your existing Serverless Framework Python Lambda app, follow these steps:
 
-1. Add the pip dependency `rook` in the project folder
+1. Add the pip dependency `rook` in the project folder.
 
-1. Set dockerizePip for true in the serverless.yml file in order to allow cross compiling 
+1. Set dockerizePip for true in the serverless.yml file in order to allow cross compiling.
 
-1. Add Rookout's decorator to your lambda_handler function
+1. Add Rookout's decorator to your lambda_handler function.
 
-1. Set the Rook's agent configuration as environment variables in the serverless.yml file
-    
-    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html)
+1. Set your Rookout Token as an environment variables in the serverless.yml file:
+
+- `ROOKOUT_TOKEN` : Your Organization Token
 
 ## Rookout Integration Process
 
 We have added Rookout to the original project by:
 1. Installing rookout dependency : `pip install rook` 
 
-1. Wrap your function by using our Rookout lambda decorator like so :
+1. Wrapping our function by using our Rookout lambda decorator as follows:
     ```python
     from rook.serverless import serverless_rook
 
@@ -51,12 +41,10 @@ plugins:
   - serverless-python-requirements
 ```
 
-1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
+1. Set our Rookout Token as a Lambda environment variable:
 
 ```
 environment:
- ROOKOUT_AGENT_HOST: cloud.agent.rookout.com
- ROOKOUT_AGENT_PORT: 443
  ROOKOUT_TOKEN:<YOUR_TOKEN>
 ```
 
@@ -66,5 +54,7 @@ environment:
 serverless deploy 
 ```
 
-1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
+1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
+
+[Python + Rookout]: https://docs.rookout.com/docs/installation-python.html
 
