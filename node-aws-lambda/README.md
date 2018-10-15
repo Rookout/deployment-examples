@@ -32,7 +32,8 @@ To integrate Rookout into your existing Node application follow these steps:
                     --role <ROLE-ARN> \
                     --handler index.handler \
                     --runtime nodejs8.10 \
-                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"```
+                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"
+        ```
 
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
@@ -50,18 +51,23 @@ To integrate Rookout into your existing Node application follow these steps:
 ## Rookout Integration Process
 
 We have added Rookout to the original project by:
-1. Installing rookout dependency : `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
+1. Installing the Rookout SDK : `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
 
 1. Wrapping your function with the Lambda wrapper as such :  
 `const rookout = require('rookout/lambda');`
 
-```javascript
-exports.handler = rookout.wrap((event, context, callback) => {
-    callback(null, "Hello World");
-});
-```
+    ```javascript
+    exports.handler = rookout.wrap((event, context, callback) => {
+        callback(null, "Hello World");
+    });
+    ```
     
-1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
-    
+1. Set Lambda environment for `ROOKOUT_TOKEN` in order to connect to a remote hosted agent.
+
+**NOTE:** The above example assumes that Node.js version 6 or 10 is supported by AWS Lambda. If that is not the case, you may need to run the following command lines:
+- For Node 6:
+    ```npm install --target=6.10.3 --target_arch=x64 --target_platform=linux --target_libc=glibc```
+- For Node 8:
+    ```npm install —target=8.10.0 --target_arch=x64 --target_platform=linux --target_libc=glibc```
 
 [Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
