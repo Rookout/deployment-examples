@@ -1,13 +1,14 @@
-# Quickstart for Django + Rookout
+# Quickstart for debugging a Django app 
 
-A sample application for using Rookout + Django
+A sample application for debugging Django using Rookout.
 
 Before following this guide we recommend reading the basic [Python + Rookout] guide.
 
-* [Running Django Server + Rookout](#running)
-* [Rookout integration explain](#Rookout-integration-explain)
-## Running
-1. *Run the agent*:
+* [Running Django Server with Rookout](#running-django-server-with-rookout)
+* [Rookout integration explained](#Rookout-integration-explained)
+
+## Running Django Server with Rookout
+1. *Run the Rookout agent*:
 ``` bash
 $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
 ```
@@ -18,7 +19,7 @@ $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     python manage.py migrate
 ```
 
-3. *Run*:
+3. *Run the Django Server*:
 ```bash
     #start the server (default: http://localhost:8001)
     python manage.py runserver localhost:8001
