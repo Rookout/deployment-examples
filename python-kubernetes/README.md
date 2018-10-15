@@ -1,12 +1,12 @@
-# Kubernetes Rookout Deployment Example
+# Quickstart for debugging Kubernetes deployments
 
 This is a full example for deploying Rookout using Kubernetes.
 
 ## prerequisite:
 
-1. `Have a rookout token`
+1. Get your Rookout token at [app.rookout.com](https://app.rookout.com).
 
-2. `Have a running kubernetes cluster and kubectl`
+2. Make sure you have a running kubernetes cluster and kubectl.
 
 ## Installation
 
@@ -14,7 +14,7 @@ This is a full example for deploying Rookout using Kubernetes.
 
 2. `cd python-kubernetes`
 
-3. change the token inside `agent-deployment.yaml` with your token
+3. Set your own Rookout toeen in `agent-deployment.yaml`
 
 3. `kubectl apply -f agent-deployment.yaml`
 
