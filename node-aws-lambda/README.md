@@ -64,7 +64,7 @@ We have added Rookout to the original project by:
     
 1. Set Lambda environment for `ROOKOUT_TOKEN` in order to connect to a remote hosted agent.
 
-**NOTE:** The above example assumes that Node.js version 6 or 10 is supported by AWS Lambda. If that is not the case, please try the following:
+**NOTE:** The above example assumes that Node.js version 6 or 8 is supported by AWS Lambda. If that is not the case, please try the following:
 1. Package your function normally on an EC2 instance with a NodeJS version matching the one you want to use on Lambda.
 2. Package your function using the following command to install dependencies:
     - For Node 6:
