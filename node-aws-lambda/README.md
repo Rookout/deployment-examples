@@ -6,14 +6,13 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 
 ## Rookout Integration Explained
 
-There are 3 simple steps to integrate Rookout into your existing Node application for an [agentless] setup:
+To integrate Rookout into your existing Node application follow these steps:
 
 1. Add the npm dependency `rookout`
 
 1. Wrap your lambda function with `rookout.wrap()`
 
 1. Set the Rook's agent configuration as environment variables in the Lambda configuration
-
 
 ## Running on Lambda
 
@@ -33,19 +32,17 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
                     --role <ROLE-ARN> \
                     --handler index.handler \
                     --runtime nodejs8.10 \
-                    --environment Variables="{ROOKOUT_AGENT_HOST=cloud.agent.rookout.com,ROOKOUT_AGENT_PORT=443,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_TOKEN=<org_token>}"```
+                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"```
 
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
     - **OR** Using Cloud9 IDE integrated tools
 
 
-1. Set the Rook's agent configuration as environment variables in the Lambda configuration, fill the Environment Variables for :
-    - `ROOKOUT_AGENT_HOST` : cloud.agent.rookout.com
-    - `ROOKOUT_AGENT_PORT` : 443
+1. Set your Rookout token as an environment variable in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
     
-    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html)
+    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-node.html)
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
