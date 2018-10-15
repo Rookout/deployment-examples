@@ -1,29 +1,18 @@
-# Quickstart for Node + Agentless Rookout on AWS Lambda
+# Quickstart for Debugging a Node.js + AWS Lambda app using Rookout
 
-A sample application for using Node + Agentless Rookout on AWS Lambda
-<details>
-<summary>What is Agentless?</summary>
-<p>
-Instead of having to install your own Agent own the machine you are running the code from,
-you can use one of our hosted Agents and just tell the Rook to connect to it.<br/>
-For more information you can see <a href="https://docs.rookout.com/docs/installation-agent-remote.html">our documentation</a>
-</p>
-</details>
-
+A sample application for debugging a Node + AWS Lambda using Rookout.
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
-
 ## Rookout Integration Explained
 
-There are 3 simple steps to integrate Rookout into your existing Node application for an [agentless] setup:
+To integrate Rookout into your existing Node application follow these steps:
 
 1. Add the npm dependency `rookout`
 
 1. Wrap your lambda function with `rookout.wrap()`
 
 1. Set the Rook's agent configuration as environment variables in the Lambda configuration
-
 
 ## Running on Lambda
 
@@ -43,19 +32,18 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
                     --role <ROLE-ARN> \
                     --handler index.handler \
                     --runtime nodejs8.10 \
-                    --environment Variables="{ROOKOUT_AGENT_HOST=cloud.agent.rookout.com,ROOKOUT_AGENT_PORT=443,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_TOKEN=<org_token>}"```
+                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"
+        ```
 
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
     - **OR** Using Cloud9 IDE integrated tools
 
 
-1. Set the Rook's agent configuration as environment variables in the Lambda configuration, fill the Environment Variables for :
-    - `ROOKOUT_AGENT_HOST` : cloud.agent.rookout.com
-    - `ROOKOUT_AGENT_PORT` : 443
+1. Set your Rookout token as an environment variable in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
     
-    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html)
+    More information can be found in [our documentation](https://docs.rookout.com/docs/installation-node.html)
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
@@ -63,18 +51,25 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 ## Rookout Integration Process
 
 We have added Rookout to the original project by:
-1. Installing rookout dependency : `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
+1. Installing the Rookout SDK : `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
 
 1. Wrapping your function with the Lambda wrapper as such :  
 `const rookout = require('rookout/lambda');`
 
-```javascript
-exports.handler = rookout.wrap((event, context, callback) => {
-    callback(null, "Hello World");
-});
-```
+    ```javascript
+    exports.handler = rookout.wrap((event, context, callback) => {
+        callback(null, "Hello World");
+    });
+    ```
     
-1. Set Lambda environment for `ROOKOUT_AGENT_HOST` (cloud.agent.rookout.com), `ROOKOUT_AGENT_PORT` (443) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
-    
+1. Set Lambda environment for `ROOKOUT_TOKEN` in order to connect to a remote hosted agent.
+
+**NOTE:** The above example assumes that Node.js version 6 or 8 is supported by AWS Lambda. If that is not the case, please try the following:
+1. Package your function normally on an EC2 instance with a NodeJS version matching the one you want to use on Lambda.
+2. Package your function using the following command to install dependencies:
+    - For Node 6:
+        ```npm install --target=6.10.3 --target_arch=x64 --target_platform=linux --target_libc=glibc```
+    - For Node 8:
+        ```npm install —target=8.10.0 --target_arch=x64 --target_platform=linux --target_libc=glibc```
 
 [Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
