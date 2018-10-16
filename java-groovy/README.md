@@ -1,8 +1,8 @@
-# Quickstart for Groovy + Rookout and Docker-compose
+# Debug a Groovy app using Rookout
 
-A sample application for using Rookout + Java(Maven) + Docker .
+A sample app for debugging Groovy + Docker Compose using Rookout.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide
+Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
 * [Running locally](#running-locally)
 * [Rookout Integration explained](#rookout-integration-explained)

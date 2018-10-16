@@ -1,24 +1,24 @@
-# Quickstart for Java + Rookout and Docker-compose
+# Quickstart for Java Docker Compose debugging
 
-A sample application for using Rookout + Java(Maven/Gradle) + Docker-compose .
+A sample application for using Rookout to debug a Java app built using Maven or Gradke, and deployed using Docker Compose.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide 
+Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
-* [Using docker compose](#using-docker-compose)
+* [Using Docker Compose](#using-docker-compose)
 * [Rookout Integration explained](#rookout-integration-explained)
 
-## Using docker compose
+## Using Docker Compose
 
 1. Compile the project jar:
      ```bash
     $ make build
     ```
-2. Edit docker-compose.yaml and add your token
+2. Edit docker-compose.yaml and add your Rookout token:
     ``` YAML
         environment:
           ROOKOUT_TOKEN: YOUR_TOKEN_HERE
     ```
-3. Build the image
+3. Build the image:
     ``` bash
     $ docker-compose build
     
@@ -44,18 +44,18 @@ We have added Rookout to the original project by:
             </resources>
     ```
     
-2. Download javaagent available on [maven central]:
+2. Downloading the Rookout Java Agent available on [maven central]:
     ```bash
         wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
     ```
     
-3. Changing the `ROOKOUT_TOKEN` on `docker-compose.yaml`:
+3. Configuring our `ROOKOUT_TOKEN` on `docker-compose.yaml`:
     ``` YAML
         environment:
           ROOKOUT_TOKEN: YOUR_TOKEN_HERE
     ```    
     
-3. Specified the javaagent when running:
+3. Specifying the Rookout Java Agent when running:
     ```bash
         java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar 
     ```

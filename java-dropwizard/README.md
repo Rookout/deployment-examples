@@ -1,14 +1,8 @@
 [<img src="https://img.shields.io/travis/playframework/play-java-starter-example.svg"/>](https://travis-ci.org/playframework/play-java-starter-example)
 
-# Debug DropWizard using Rookout
+# Debug a DropWizard app using Rookout
 
-This is a starter application that shows how DropWizard works with Rookout.
-
-
-## Introduction
-
-The Dropwizard example application was developed to, as its name implies, provide examples of some of the features
-present in Dropwizard.
+A sample app for debugging DropWizard using Rookout.
 
 ## Overview
 
@@ -34,13 +28,13 @@ As with all the modules the db example is wired up in the `initialize` function 
 
 ## Setting Up The Application
 
-To test the example application run the following commands.
+To test the example application run the following commands:
 
-* To create the example, package the application using [Apache Maven](https://maven.apache.org/) from the root dropwizard directory.
+* To create the example, package the application using [Apache Maven](https://maven.apache.org/) from the root dropwizard directory, run:
 ```
         mvn package
 ```
-* To setup the h2 database run.
+* To setup the h2 database run:
 ```
         java -jar target/dropwizard-example-$DW_VERSION.jar db migrate example.yml
 ```
@@ -57,13 +51,6 @@ To test the example application run the following commands.
 
     ```
     java -javaagent:rook.jar -jar target/dropwizard-example-$DW_VERSION.jar server example.yml
-    ```
-
-## Run Rookout Router 
-
-1. Run the Rookout agent:
-    ``` bash
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     ```
 
 ## Debug with Rookout's IDE
@@ -84,4 +71,4 @@ To test the example application run the following commands.
     open http://localhost:8080/people
 
 # For more information
-See our documentation site: https://docs.rookout.com/
+Visit our online documentation: https://docs.rookout.com/

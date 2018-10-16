@@ -1,6 +1,8 @@
-# Quickstart for Java + Rookout and Oracle WebLogic
+# Quickstart for debugging Java + Oracle WebLogic 
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide
+A sample application for debugging Java + Oracle WebLogic using Rookout.
+
+Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
 * [Running locally](#running-locally)
 * [Using docker compose](#using-docker-compose)
@@ -12,7 +14,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
     ``` bash
     $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     ```
-1. Add the Rookout javaagent as described in [Rookout Integration Explained](#rookout-integration-explained)
+1. Add the Rookout Java Agent as described in [Rookout Integration Explained](#rookout-integration-explained).
 1. Build the sample helloworld WebLogic application:
     ``` bash
     $ cd weblogic-helloworld
