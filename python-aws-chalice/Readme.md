@@ -1,24 +1,22 @@
-# Rookout for Chalice/AWS Lambda
+# Quickstart for debugging Python + AWS Lambda + Chalice
 
-This example shows how to debug Chalice apps on AWS Lambda using [Rookout](https://rookout.com).
+A sample application for debugging Python apps deployed in AWS Chalice using Rookout.
 
-To know more about Rookout on AWS Lambda, it is recommended to read [Rookout on Lambda documentation](https://github.com/Rookout/deployment-examples/blob/master/node-aws-lambda/README.md) first.
+Before following this guide we recommend reading the basic [Python + Lambda debugging guide](https://github.com/Rookout/deployment-examples/blob/master/python-aws-lambda/README.md).
 
 This example is based on a plain Chalice app, with the following modifications applied:
 
-1. Set the Rookout Agent host, port and token via environment variables in `.chalice/config.json`:
+1. Set your Rookout token as an environment variable in `.chalice/config.json`:
 
 ```json
 "environment_variables": {
-    "ROOKOUT_AGENT_HOST": "cloud.agent.rookout.com",
-    "ROOKOUT_AGENT_PORT": "443",
     "ROOKOUT_TOKEN": "<token>"
   }
 ```
 
-2. Add `rook` to your `requirements.txt`
+2. Add the `rook` SDK dependancy to your `requirements.txt` Chalice file.
 
-3. Initialize your Chalice app with `RookoutChalice`
+3. Initialize your Chalice app using `RookoutChalice` :
 
 ```python
 from rook.serverless import RookoutChalice
@@ -26,4 +24,4 @@ from rook.serverless import RookoutChalice
 app = RookoutChalice(app_name='python-aws-chalice')
 ```
 
-You can use then the Chalice API as usual.
+4. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
