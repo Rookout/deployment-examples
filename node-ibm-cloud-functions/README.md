@@ -1,22 +1,12 @@
-# Quickstart for Node + Agentless Rookout on IBM Cloud Functions
-
-A sample application for using Node + Agentless Rookout on IBM Cloud Functions
-<details>
-<summary>What is Agentless?</summary>
-<p>
-Instead of having to install your own Agent own the machine you are running the code from,
-you can use one of our hosted Agents and just tell the Rook to connect to it.<br/>
-For more information you can see <a href="https://docs.rookout.com/docs/installation-agent-remote.html">our documentation</a>
-</p>
-</details>
-
+# Quickstart for debugging Node applications deployed in IBM Cloud Functions
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
 ## Rookout Integration Explained
 
-There are 3 simple steps to integrate Rookout into your existing Node application for an [agentless] setup:
+There are 3 simple steps to integrate Rookout into your existing Node application:
 
 1. Add the npm dependency `rookout`
 
@@ -24,11 +14,10 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
 1. Wrap your IBM Cloud Function with `rookout.wrap()`
 
-
 ## Running on IBM Cloud Function
 
 1. Uploading your function : 
-    - Update the source to include your own organization token in index.js line 3. More information can be found in [our documentation](https://docs.rookout.com/docs/installation-agent-remote.html).
+    - Update the source to include your own organization token in index.js line 3. More information can be found in [our documentation](https://docs.rookout.com/docs/installation.html).
 
     - Zip Upload: In order to run your rookout wrapped function on IBM Cloud Function, make sure the dependencies are downloaded and zip
     the folder (including node_modules).  
@@ -43,8 +32,7 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
         **If you do not have access to ibmcloud cli, you can do this from the [IBM console](https://console.bluemix.net/openwhisk/actions) and follow the [IBM Documentation](https://console.bluemix.net/docs/openwhisk/openwhisk_actions.html#creating-and-invoking-javascript-actions)**
 
-1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
-
+1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
 
 ## Rookout Integration Process
 

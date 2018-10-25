@@ -4,6 +4,8 @@ A sample application for debugging Python apps deployed in AWS Chalice using Roo
 
 Before following this guide we recommend reading the basic [Python + Lambda debugging guide](https://github.com/Rookout/deployment-examples/blob/master/python-aws-lambda/README.md).
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 This example is based on a plain Chalice app, with the following modifications applied:
 
 1. Set your Rookout token as an environment variable in `.chalice/config.json`:

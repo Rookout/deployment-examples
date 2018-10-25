@@ -2,6 +2,8 @@
 
 A sample application for using Rookout + Node(TypeScript) .
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 __IMPORTANT FOR TYPESCRIPT:__
 
 * __Rookout need corresponding sourcemaps to work properly.__
@@ -25,7 +27,7 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
     
     ```bash
     $ docker pull rookout/agent
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
+    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/agent
     ```
 
 For more information about Docker go [here](https://www.docker.com/).

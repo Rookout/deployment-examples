@@ -4,6 +4,8 @@ A sample application for debugging Python apps deployed in AWS + Serverless Fram
 
 Before following this guide we recommend reading the basic [Python + Rookout] guide
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 ## Rookout Integration Explained
 
 To integrate Rookout into your existing Serverless Framework Python Lambda app, follow these steps:
