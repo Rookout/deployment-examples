@@ -4,6 +4,8 @@ A sample application for using Node + Agentless Rookout with Docker on AWS ECS
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 ## Rookout Integration Explained
 
 There are 2 simple steps to integrate Rookout into your existing Node application for an agentless setup:

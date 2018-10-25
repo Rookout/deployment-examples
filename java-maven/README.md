@@ -2,7 +2,9 @@
 
 A sample application for using Rookout to debug a Java app built using Maven, and deployed using Docker Compose.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide
+Before following this guide we recommend reading the basic [Java + Rookout] guide.
+
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
 * [Running locally](#running-locally)
 * [Using docker compose](#using-docker-compose)

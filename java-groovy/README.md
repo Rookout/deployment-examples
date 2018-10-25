@@ -4,6 +4,8 @@ A sample app for debugging Groovy + Docker Compose using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 * [Running locally](#running-locally)
 * [Rookout Integration explained](#rookout-integration-explained)
 ## Running locally

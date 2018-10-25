@@ -4,6 +4,8 @@ A sample application for using Rookout + Node on AWS Elastic Beanstalk.
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 * [Agent Setup](#agent-setup)
 * [Running locally](#running-locally)
 * [Running on Elastic Beanstalk](#running-on-elastic-beanstalk)

@@ -4,6 +4,8 @@
 
 This is a starter application that shows how Play works with Rookout.
 
+If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 ## Run Rookout Agent 
 
 1. Run the Rookout agent:
