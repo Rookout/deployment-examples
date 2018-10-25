@@ -4,6 +4,8 @@
 
 A sample app for debugging DropWizard using Rookout.
 
+This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 ## Overview
 
 Included with this application is an example of the optional DB API module. The examples provided illustrate a few of

@@ -2,6 +2,8 @@
 
 This is a full example for deploying Rookout using Kubernetes.
 
+This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 ## prerequisite:
 
 1. Get your Rookout token at [app.rookout.com](https://app.rookout.com).

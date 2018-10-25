@@ -4,6 +4,8 @@ A sample application for debugging Django using Rookout.
 
 Before following this guide we recommend reading the basic [Python + Rookout] guide.
 
+This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 * [Running Django Server with Rookout](#running-django-server-with-rookout)
 * [Rookout integration explained](#Rookout-integration-explained)
 
