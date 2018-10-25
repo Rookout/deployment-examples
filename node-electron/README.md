@@ -2,7 +2,7 @@
 
 A sample application for using Electron + Rookout
 
-If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
 ## IMPORTANT :: The supported version of electron is 1.8.7 or higher
 

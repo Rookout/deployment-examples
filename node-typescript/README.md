@@ -2,7 +2,7 @@
 
 A sample application for using Rookout + Node(TypeScript) .
 
-If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
 __IMPORTANT FOR TYPESCRIPT:__
 
