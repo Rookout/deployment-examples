@@ -107,7 +107,7 @@ We have added Rookout to the original project by:
            command: /etc/init.d/rookout-agent start
    ```
 
-[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
+[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [npm]: https://www.npmjs.com/package/rookout
 
 

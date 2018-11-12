@@ -84,5 +84,5 @@ We have added Rookout to the original project by:
             JAVA_TOOL_OPTIONS: '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
     ```
 
-[Java + Rookout]: https://docs.rookout.com/docs/installation-java.html
+[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook

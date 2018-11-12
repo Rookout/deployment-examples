@@ -63,4 +63,4 @@ We have added Rookout to the original project by:
 1. Setting our Rookout Token as a Lambda environment variable: `ROOKOUT_TOKEN`
     
 
-[Python + Rookout]: https://docs.rookout.com/docs/installation-python.html
+[Python + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
