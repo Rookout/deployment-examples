@@ -2,7 +2,7 @@
 
 A sample application for debugging Django using Rookout.
 
-Before following this guide we recommend reading the basic [Python + Rookout] guide.
+Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/rooks-setup.html) guide.
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
@@ -10,23 +10,19 @@ This sample may be out of date. If you face any issues, please reach out to mail
 * [Rookout integration explained](#Rookout-integration-explained)
 
 ## Running Django Server with Rookout
-1. *Run the Rookout agent*:
-``` bash
-$ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
-```
 
-2. *Install dependencies*:
+1. *Install dependencies*:
  ```bash
     pip install -r requirements.txt
     python manage.py migrate
 ```
 
-3. *Run the Django Server*:
+2. *Run the Django Server*:
 ```bash
     #start the server (default: http://localhost:8001)
     python manage.py runserver localhost:8001
 ```
-4. *Enjoy the debugging*:
+3. *Enjoy the debugging*:
 Go to https://app.rookout.com and start debugging :)
 
 ## Rookout Integration explained
