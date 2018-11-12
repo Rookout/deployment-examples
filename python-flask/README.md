@@ -38,4 +38,4 @@ $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" us.gcr.io/rookout/go_a
 
 ## Running with docker and Agentless
 
-[Python + Rookout]: https://docs.rookout.com/docs/installation-python.html
+[Python + Rookout]: https://docs.rookout.com/docs/rooks-setup.html

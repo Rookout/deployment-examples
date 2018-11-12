@@ -62,4 +62,4 @@ To integrate Rookout into your existing Java application, follow these steps:
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
-[Java + Rookout]: https://docs.rookout.com/docs/installation-java.html
+[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html

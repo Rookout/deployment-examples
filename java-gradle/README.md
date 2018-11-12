@@ -46,6 +46,6 @@ We have added Rookout to the original project by:
         java  -javaagent:rook.jar -jar build/libs/rookoutDemo-1.0.0.jar
     ```
 
-[Java + Rookout]: https://docs.rookout.com/docs/installation-java.html
+[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [here]: https://github.com/tipsy/javalin/
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook

@@ -63,5 +63,5 @@ simply delete grpc folder inside the node_modules, and run:
 $ npm install --save rookout --runtime=electron --target=ELECTRON_VERSION_HERE
 ```
 
-[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
+[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [npm]: https://www.npmjs.com/package/rookout

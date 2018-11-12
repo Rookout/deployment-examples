@@ -38,5 +38,5 @@ env_variables:
   ROOKOUT_AGENT_HOST: "YOUR_ROOKOUT_AGENT_HOST"
 ```
 
-[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
+[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [here]: https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/appengine/hello-world

@@ -87,4 +87,4 @@ We have added Rookout to the original project by:
 1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
     
 
-[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
+[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
