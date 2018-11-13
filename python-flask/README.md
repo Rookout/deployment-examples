@@ -2,19 +2,21 @@
 
 A sample application for debugging Python Flask apps using Rookout.
 
-Before following this guide we recommend reading the basic [Python + Rookout] guide.
+Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/rooks-setup.html) guide.
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
-1. *Run the Rookout agent*:
-``` bash
-$ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" us.gcr.io/rookout/go_agent
-```
+## Running Django Server with Rookout
 
-2. *Install dependencies*:
+1. *Clone and install dependencies*:
  ```bash
-	pip install flask
+    git clone https://github.com/Rookout/deployment-examples/tree/master/python-flask
+    pip install flask
     pip install rook
+```
+2. *Export organization token*:
+ ```bash
+ 	export ROOKOUT_TOKEN=<Your-Token>
 ```
 
 3. *Enable flask debugging*:
@@ -34,8 +36,3 @@ $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" us.gcr.io/rookout/go_a
 
 6. *Bonus: Setup a global HTTP rule*:
 	Use flask_rule.json in this deployment example as a template for a new Rookout Rule.
-
-
-## Running with docker and Agentless
-
-[Python + Rookout]: https://docs.rookout.com/docs/installation-python.html
