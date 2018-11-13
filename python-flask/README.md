@@ -6,7 +6,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
-## Running Django Server with Rookout
+## Running flask Server with Rookout
 
 1. *Clone and install dependencies*:
  ```bash
