@@ -15,25 +15,11 @@ __IMPORTANT FOR TYPESCRIPT:__
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
-* [Agent Setup](#agent-setup)
-* [Running locally](#running-locally)
+* [Running node server with Rookout](#running-node-server-with-rookout)
 * [Rookout Integration explained](#rookout-integration-explained)
 
 
-## Agent Setup
-
-
-1. Download and run the Rookout agent in a container:  
-    
-    ```bash
-    $ docker pull rookout/agent
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=[Your Rookout Token]" rookout/agent
-    ```
-
-For more information about Docker go [here](https://www.docker.com/).
-
-
-## Running locally
+## Running node server with Rookout
 
 
 1. Installing dependencies:
@@ -67,7 +53,6 @@ We have added Rookout to the original project by:
     ```ts
     const rook = require("rookout/auto_start");
     ```
-
 
 [Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [npm]: https://www.npmjs.com/package/rookout
