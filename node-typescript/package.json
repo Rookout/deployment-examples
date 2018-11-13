@@ -8,10 +8,10 @@
     "start": "node ./dist/app.js"
   },
   "dependencies": {
-    "rookout": "^0.1.10"
+    "rookout": "^0.1.20"
   },
   "devDependencies": {
-    "@types/node": "^9.4.6",
-    "typescript": "^2.7.2"
+    "@types/node": "^10.12.6",
+    "typescript": "^3.1.6"
   }
 }
