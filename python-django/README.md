@@ -5,9 +5,9 @@ A sample application for debugging Django using Rookout.
 Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/rooks-setup.html) guide.
 
 ## Running Django Server with Rookout
-
-1. *Install dependencies*:
+1. *Clone and install dependencies*:
  ```bash
+    git clone https://github.com/Rookout/deployment-examples/tree/fix-bags-and-updates/python-django
     pip install -r requirements.txt
     python manage.py migrate
 ```
@@ -24,4 +24,3 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 ```
 4. *Enjoy the debugging*:
 Go to https://app.rookout.com and start debugging :)
-
