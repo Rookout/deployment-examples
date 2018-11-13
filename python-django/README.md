@@ -7,7 +7,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 ## Running Django Server with Rookout
 1. *Clone and install dependencies*:
  ```bash
-    git clone https://github.com/Rookout/deployment-examples/tree/fix-bags-and-updates/python-django
+    git clone https://github.com/Rookout/deployment-examples/tree/master/python-django
     pip install -r requirements.txt
     python manage.py migrate
 ```
