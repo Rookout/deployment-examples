@@ -114,4 +114,5 @@ TEMPLATES = [
     },
 ]
 
-from rook import auto_start
+import rook
+rook.start()
