@@ -24,3 +24,16 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 ```
 4. *Enjoy the debugging*:
 Go to https://app.rookout.com and start debugging :)
+
+## Rookout Integration explained
+
+1. Install the Rookout pypi package
+```bash
+    pip install rook
+```
+
+2. Import the package in your app's entry-point file, just before it starts
+```bash
+   import rook
+   rook.start(token=<Your-Token>)
+```
