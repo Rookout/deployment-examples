@@ -36,3 +36,8 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 6. *Bonus: Setup a global HTTP rule*:
 	Use flask_rule.json in this deployment example as a template for a new Rookout Rule.
+
+## Running with docker and Agentless
+
+[Python + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+

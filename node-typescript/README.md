@@ -69,7 +69,7 @@ We have added Rookout to the original project by:
     ```
 
 
-[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
+[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [npm]: https://www.npmjs.com/package/rookout
 
 

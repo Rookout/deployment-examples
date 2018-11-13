@@ -64,4 +64,4 @@ exports.handler = rookout.wrap((event, context, callback) => {
     
 1. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
 
-[Node + Rookout]: https://docs.rookout.com/docs/installation-node.html
+[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
