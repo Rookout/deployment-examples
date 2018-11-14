@@ -15,6 +15,10 @@ This sample may be out of date. If you face any issues, please reach out to mail
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-maven
     $ make build
     ```
+2. Export organization token
+     ```bash
+     export ROOKOUT_TOKEN=<Your-Token>
+     ```
 2. Run:
     ```bash
     $ make run
