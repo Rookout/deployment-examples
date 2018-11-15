@@ -31,17 +31,17 @@ This sample may be out of date. If you face any issues, please reach out to mail
 This example is based of the Java javalin "Hello-World" example available [here].
 
 We have added Rookout to the original project by:
-1. Adding soruces to the project jar(`build.gradle`):
+1. Adding soruces and dependencies to the project jar(`build.gradle`):
     ```properties
     jar {
         from sourceSets.main.allSource
     }
+    
+    dependencies {
+    compile group: 'com.rookout', name: 'rook', version: '0.1.36'
+    }
     ```
-2. Downloading the Rookout Java Agent available on [maven central]:
-    ```bash
-        wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
-    ```
-3. Specifying the Rookout Java Agent when running:
+2. Specifying the Rookout Java Agent when running:
     ```bash
         java  -javaagent:rook.jar -jar build/libs/rookoutDemo-1.0.0.jar
     ```
