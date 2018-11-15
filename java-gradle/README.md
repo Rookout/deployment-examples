@@ -13,8 +13,6 @@ This sample may be out of date. If you face any issues, please reach out to mail
 1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-gradle
-    $ wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
-    $ gradle fatJar
     ```
 2. Export organization token:
      ```bash
