@@ -13,7 +13,6 @@ This sample may be out of date. If you face any issues, please reach out to mail
 1. Clone and compile the project jar and download the Java agent:
      ```bash
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-maven
-    $ wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
     $ mvn package
     ```
 2. Export organization token
@@ -45,9 +44,15 @@ We have added Rookout to the original project by:
             </resources>
     ```
     
-2. Downloading the Rookout Java Agent available on [maven central]:
+2. Downloading the Rookout Java Agent from available on [maven central]:
     ```bash
-        wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
+    <dependencies>
+        <dependency>
+          <groupId>com.rookout</groupId>
+          <artifactId>rook</artifactId>
+          <version>0.1.36</version>
+        </dependency>
+    </dependencies>
     ```
 3. Specifying the Rookout Java Agent when running:
     ```bash
