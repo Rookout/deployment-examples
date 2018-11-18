@@ -31,7 +31,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 This example is based of the Java javalin "Hello-World" example available [here].
 
 We have added Rookout to the original project by:
-1. Adding soruces and dependencies to the project jar (`build.gradle`):
+1. Adding sources and dependencies to the project jar (`build.gradle`):
     ```properties
     // grab resources
     jar {
