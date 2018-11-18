@@ -31,14 +31,21 @@ This sample may be out of date. If you face any issues, please reach out to mail
 This example is based of the Java javalin "Hello-World" example available [here].
 
 We have added Rookout to the original project by:
-1. Adding soruces and dependencies to the project jar(`build.gradle`):
+1. Adding soruces and dependencies to the project jar (`build.gradle`):
     ```properties
+    // grab resources
     jar {
         from sourceSets.main.allSource
     }
     
+    // declaring dependencies to Rook agent
+    configurations{
+        rookoutAgent
+    }
+    
+    // Running Rook
     dependencies {
-    compile group: 'com.rookout', name: 'rook', version: '0.1.36'
+        rookoutAgent "com.rookout:rook:0.1.36"
     }
     ```
 2. Specifying the Rookout Java Agent when running:
