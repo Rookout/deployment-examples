@@ -10,15 +10,14 @@ This sample may be out of date. If you face any issues, please reach out to mail
 * [Using docker compose](#using-docker-compose)
 * [Rookout Integration explained](#rookout-integration-explained)
 ## Running locally
-1. Clone and compile the project jar and download the Java agent:
+1. Run the Rookout agent:
+    ``` bash
+    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
+    ```
+2. Compile the project jar and download the Java agent:
      ```bash
-    $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-maven
     $ make build
     ```
-2. Export organization token
-     ```bash
-     export ROOKOUT_TOKEN=<Your-Token>
-     ```
 3. Run:
     ```bash
     $ make run
@@ -53,6 +52,6 @@ We have added Rookout to the original project by:
         java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar 
     ```
 
-[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Java + Rookout]: https://docs.rookout.com/docs/installation-java.html
 [here]: https://github.com/tipsy/javalin/
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
