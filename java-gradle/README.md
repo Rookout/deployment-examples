@@ -10,17 +10,17 @@ This sample may be out of date. If you face any issues, please reach out to mail
 * [Using docker compose](#using-docker-compose)
 * [Rookout Integration explained](#rookout-integration-explained)
 ## Running local application using Agent-less
-1. Compile the project jar and download the Rookout Java Agent:
+1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
-    $ make build
+    $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-gradle
     ```
-2. Run using your Rookout Token:
-    ```bash
-    $ make run token=YOUR_TOKEN
-    ```
+2. Export organization token:
+     ```bash
+     export ROOKOUT_TOKEN=Your-Token
+     ```
 3. Run using gradle:
     ```bash
-    $ make gradle-run token=YOUR_TOKEN
+    $ ./gradlew run
     ```
 4. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/)
 
@@ -31,17 +31,24 @@ This sample may be out of date. If you face any issues, please reach out to mail
 This example is based of the Java javalin "Hello-World" example available [here].
 
 We have added Rookout to the original project by:
-1. Adding soruces to the project jar(`build.gradle`):
+1. Adding sources and dependencies to the project jar (`build.gradle`):
     ```properties
+    // grab resources
     jar {
         from sourceSets.main.allSource
     }
+    
+    // declaring dependencies to Rook agent
+    configurations{
+        rookoutAgent
+    }
+    
+    // Running Rook
+    dependencies {
+        rookoutAgent "com.rookout:rook:0.1.36"
+    }
     ```
-2. Downloading the Rookout Java Agent available on [maven central]:
-    ```bash
-        wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
-    ```
-3. Specifying the Rookout Java Agent when running:
+2. Specifying the Rookout Java Agent when running:
     ```bash
         java  -javaagent:rook.jar -jar build/libs/rookoutDemo-1.0.0.jar
     ```
