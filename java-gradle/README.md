@@ -20,7 +20,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
      ```
 3. Run using gradle:
     ```bash
-    $ ./gradlew run
+    $ ./gradlew fatJar run
     ```
 4. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/)
 

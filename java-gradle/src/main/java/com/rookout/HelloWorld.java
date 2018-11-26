@@ -16,10 +16,5 @@ public class HelloWorld {
                 ctx.result("Hello: " + ctx.param("name"));
             }
         });
-        app.get("/", new Handler() {
-            public void handle(Context ctx) throws Exception {
-                ctx.result("Hello World");
-            }
-        });
     }
 }
