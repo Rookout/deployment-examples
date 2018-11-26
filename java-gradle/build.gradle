@@ -29,7 +29,7 @@ jar {
     from sourceSets.main.allSource
 }
 
-task runFinalJar(type: JavaExec) {
+task run(type: JavaExec) {
    classpath = files(jar.archivePath)
    classpath += sourceSets.main.runtimeClasspath
    main = 'com.rookout.HelloWorld'
