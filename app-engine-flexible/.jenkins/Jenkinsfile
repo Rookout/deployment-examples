@@ -4,15 +4,22 @@ def workingDir = "deployment_example/${testDir}"
 def dockerTag = "us.gcr.io/rookout/deployment-example-${testDir}:latest"
 podCreator.init(label: label) {
     node(label) {
-        stage('Build And Push docker Images') {
+        stage('Build And Push docker Image') {
             withEnv(["DOCKER_HOST=tcp://dind:2375"
                 ]) {
                     container('rookout-helm') {
                         githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
-                    sh("docker build ${testDir} -t ${dockerTag} && gcloud docker -- push ${env.docker_master_tag}")
-                    }
+                            sh("docker build ${testDir} -t ${dockerTag} && gcloud docker -- push ${env.docker_master_tag}")
+                        }
                     }
                 }
         }
     }
+    stage("Create app to run in background"){
+        podCreator.initRegressionTest(label: "background-" + label, backgroundImage: dockerTag, backgroundImageCmd: ["jar", "run"] ) {}
+    }
+    container('rookout-helm') {
+        println("hello im here")
+    }
+
 }
