@@ -16,7 +16,7 @@ podCreator.init(label: label) {
         }
     }
     stage("Create app to run in background"){
-        podCreator.initRegressionTest(label: "background-" + label, backgroundImage: dockerTag, backgroundImageCmd: ["jar", "run"] ) {}
+        podCreator.initRegressionTest(label: "background-" + label, backgroundImage: dockerTag, backgroundImageCmd: "jar run"] ) {}
     }
     container('rookout-helm') {
         println("hello im here")
