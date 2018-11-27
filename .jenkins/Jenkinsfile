@@ -8,8 +8,8 @@ podCreator.init(label: label) {
             withEnv(["DOCKER_HOST=tcp://dind:2375"
                 ]) {
                     container('rookout-helm') {
-                        githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
-                            sh("cd 'deployment-examples'/${testDir} && docker build . -t ${dockerTag} && gcloud docker -- push ${docker_master_tag}")
+                        githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test', workDirToRepo: "true") {
+                            sh("cd ${testDir} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
                         }
                     }
                 }
