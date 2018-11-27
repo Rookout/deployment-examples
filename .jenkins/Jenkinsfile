@@ -9,7 +9,7 @@ podCreator.init(label: label) {
                 ]) {
                     container('rookout-helm') {
                         githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
-                            sh("docker build ${testDir} -t ${dockerTag} && gcloud docker -- push ${env.docker_master_tag}")
+                            sh("cd ${testDir} && docker build . -t ${dockerTag} && gcloud docker -- push ${env.docker_master_tag}")
                         }
                     }
                 }
