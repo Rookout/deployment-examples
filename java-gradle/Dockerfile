@@ -6,6 +6,6 @@ ADD settings.gradle settings.gradle
 RUN ./gradlew build
 ADD . .
 RUN ./gradlew jar
-ENTRYPOINT ["./gradlew"]
+ENTRYPOINT ["/gradlew"]
 CMD []
 
