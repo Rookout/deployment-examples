@@ -15,9 +15,10 @@ podCreator.init(label: label) {
                 }
         }
     }
-    stage("Create app to run in background"){
-    podCreator.initRegressionTest(label: "background-" + label, backgroundImage: dockerTag, backgroundImageCmd: "jar run" ) {
-        node(label) {
+    stage("Background app and test"){
+    def newLabel = "background-" + label
+    podCreator.initRegressionTest(label: newLabel, backgroundImage: dockerTag, backgroundImageCmd: "jar run" ) {
+        node(newLabel) {
             container('rookout-helm') {
                 println("hello im here")
                 sh(script: "sleep 60")
