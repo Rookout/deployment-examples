@@ -17,9 +17,9 @@ podCreator.init(label: label) {
     }
     stage("Background app and test"){
     def newLabel = "background-" + label
-    podCreator.initRegressionTest(label: newLabel, backgroundImage: dockerTag, backgroundImageCmd: '/gradlew', backgroundImageArgs: 'jar run --project-dir=java-gradle' ) {
+    podCreator.initRegressionTest(label: newLabel, backgroundImage: dockerTag, backgroundImageCmd: '/gradlew', backgroundImageArgs: 'jar run --project-dir=/' ) {
         node(newLabel) {
-            container('rookout-helm') {d
+            container('rookout-helm') {
                 println("hello im here")
                 sh(script: "sleep 60")
                 }
