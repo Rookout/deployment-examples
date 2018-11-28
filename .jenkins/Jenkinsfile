@@ -1,42 +1,5 @@
-def label = "true".equals(env.SAME_LABEL) ? env.PROFILE : "worker-${UUID.randomUUID().toString()}"
-def testDir = 'java-gradle'
-def workingDir = "deployment_example/${testDir}"
-def dockerTag = "us.gcr.io/rookout/deployment-example-${testDir}:latest"
-podCreator.init(label: label) {
-    node(label) {
-        stage('Build And Push docker Image') {
-            withEnv(["DOCKER_HOST=tcp://dind:2375"
-                ]) {
-                    container('rookout-helm') {
-                        githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test', workDirToRepo: "true") {
-                            sh("cd ${testDir} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
-                        }
-                    }
-                }
-        }
-    }
-    stage("Background app"){
-    def newLabel = "background-" + label
-    podCreator.initRegressionTest(label: newLabel, backgroundImage: dockerTag, backgroundImageCmd: '/gradlew', backgroundImageArgs: 'jar run --project-dir=/' ) {
-        node(newLabel) {
-            container('rookout-helm') {
-                withCredentials([
-                string(credentialsId: 'CAFE_ORG_TOKEN_STAGING', variable: 'ROOKOUT_TOKEN')
-                ]) {
-                stage("Test rook") { 
-                println("Starting the test flow")
-                env.ROOKOUT_DOMAIN = "https://staging.rookout.com"
-                env.FILE_PATH =  "src/main/java/com/rookout/HelloWorld.java"
-                env.LINE_NUM =  "16" 
-                env.DEMO_ORG_ID = "DELETE_THIS"
-                env.SHA =  "7459814efb8eb2c0caf3956e441f159252ece842aa714be32ad350dd5e331d9b"
-                env.URL_FOR_TRIGGER = "http://localhost:7000/hello/ori"
-                env.TEST_NAME =  "$testDir"
-                sh("rbt reg_test full_flow")
-                }
-                }
-            }
-        }
-    }
-    }
+jobDsl(targets: '.jenkins/create_cron.groovy',
+       removedJobAction: 'DELETE',
+       removedViewAction: 'DELETE',
+       lookupStrategy: 'SEED_JOB')
 }
