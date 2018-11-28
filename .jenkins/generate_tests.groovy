@@ -1,5 +1,3 @@
-println("INSIDE")
-println(jobName)
 pipelineJob("/regression-test/$jobName") {
     properties {
         disableConcurrentBuilds()

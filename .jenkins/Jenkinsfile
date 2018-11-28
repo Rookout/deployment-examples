@@ -33,4 +33,5 @@ def echo_all(list) {
                 additionalParameters: [jobName: 'java-gradle' , realpwd: pwd(), item: i]
                 )
     }
+    println("<<<<<<<finish")
 }
