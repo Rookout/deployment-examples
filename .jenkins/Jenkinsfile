@@ -4,6 +4,7 @@ pipeline {
         stage('Build') {
             agent any
             steps {
+            for(Integer x=1; x<=2; x++){
             println(":>>>>>>>>>>>>")
             println(pwd())
             echo ">>>>>>>>>>"
@@ -11,8 +12,9 @@ pipeline {
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
                 lookupStrategy: 'SEED_JOB',
-                additionalParameters: [jobName: 'java-gradle', realpwd: pwd()]
+                additionalParameters: [jobName: 'java-gradle-' + x.toString() , realpwd: pwd()]
                 )
+            }
             }
         }
     }
