@@ -6,9 +6,9 @@ pipeline {
         stage('Build') {
             agent any
             steps {
-            checkout scm
             println(":>>>>>>>>>>>>")
             echo ">>>>>>>>>>"
+            echo_all()
             jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
@@ -21,7 +21,19 @@ pipeline {
 }
 
 
-def echo_all(list) {
+def echo_all() {
+    def files = [];
+    def dir = new File("..")
+    dir.eachFileRecurse (FileType.FILES) { file ->
+    if ("Jenkinsfile".equals(file.name)){
+    def dirName = file.getParentFile().getName()
+    if (!(".jenkins".equals(dirName))){
+        println(dirName)
+    list << dirName
+        }
+    }
+    }
+    prinln(list)
     for (int i = 0; i < list.size(); i++) {
                 sh "echo Hello ${list[i]}"
                 jobDsl(targets: '.jenkins/generate_tests.groovy',
