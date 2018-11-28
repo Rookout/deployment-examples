@@ -20,10 +20,20 @@ podCreator.init(label: label) {
     podCreator.initRegressionTest(label: newLabel, backgroundImage: dockerTag, backgroundImageCmd: '/gradlew', backgroundImageArgs: 'jar run --project-dir=/' ) {
         node(newLabel) {
             container('rookout-helm') {
-                println("hello im here")
-                sh(script: "sleep 60")
+                withCredentials([
+                string(credentialsId: 'CAFE_ORG_TOKEN_STAGING', variable: 'ROOKOUT_TOKEN')
+                ]) {
+                println("Starting the test flow")
+                env.ROOKOUT_DOMAIN = "localhost:8888" ,
+                env.FILE_PATH =  "src/main/java/com/rookout/HelloWorld.java",
+                env.LINE_NUM =  "16" ,
+                env.SHA =  "7459814efb8eb2c0caf3956e441f159252ece842aa714be32ad350dd5e331d9b",
+                env.URL_FOR_TRIGGER = "http://localhost:7000/hello/ori",
+                env.TEST_NAME: testDir,
+                rbt reg_test full_flow
                 }
             }
         }
+    }
     }
 }
