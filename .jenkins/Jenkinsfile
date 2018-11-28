@@ -24,8 +24,8 @@ pipeline {
 
 @NonCPS // has to be NonCPS or the build breaks on the call to .each
 def echo_all(list) {
-    list.each { item ->
-            jobDsl(targets: '.jenkins/generate_tests.groovy',
+    for (int i = 0; i < list.size(); i++) {
+                    jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
                 lookupStrategy: 'SEED_JOB',
