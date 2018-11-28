@@ -5,13 +5,13 @@ pipeline {
             agent any
             steps {
             println(":>>>>>>>>>>>>")
+            println(pwd())
             echo ">>>>>>>>>>"
-            println(pwd)
             jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
                 lookupStrategy: 'SEED_JOB',
-                additionalParameters: [jobName: 'java-gradle', realpwd: pwd]
+                additionalParameters: [jobName: 'java-gradle', realpwd: pwd()]
                 )
             }
         }
