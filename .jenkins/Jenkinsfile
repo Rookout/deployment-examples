@@ -1,6 +1,8 @@
 abcs = ['a', 'b', 'c']
 import org.rookout.files.Utilities
-
+            githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
+                tests = Utilities.getAllDirThatMatchFile(this, 'deployment-examples','jenkins.json')
+            }
 pipeline {
     agent none
     stages {
@@ -8,10 +10,7 @@ pipeline {
             agent any
             steps {
             println(":>>>>>>>>>>>>")
-            def x  = Utilities.getAllDirThatMatchFile(this, 'deployment-examples','jenkins.json')
-            println(x)
             echo ">>>>>>>>>>"
-            echo_all(x)
             jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
