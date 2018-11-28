@@ -7,7 +7,7 @@ pipeline {
             jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
-                lookupStrategy: 'SEED_JOB'
+                lookupStrategy: 'SEED_JOB',
                 additionalParameters: [message: 'Hello from pipeline', credentials: 'SECRET']
                 )
             }
