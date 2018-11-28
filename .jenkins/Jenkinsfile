@@ -2,9 +2,9 @@ pipeline {
     agent none
     stages {
         stage('Build') {
+            for(i in 0..2) {
             agent any
             steps {
-            for (Integer x=1; x<=2; x++) {
             println(":>>>>>>>>>>>>")
             println(pwd())
             echo ">>>>>>>>>>"
