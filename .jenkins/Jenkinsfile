@@ -1,4 +1,5 @@
 abcs = ['a', 'b', 'c']
+import org.rookout.files.Utilities
 
 pipeline {
     agent none
@@ -7,9 +8,10 @@ pipeline {
             agent any
             steps {
             println(":>>>>>>>>>>>>")
-            println(pwd())
+            def x  = Utilities.getAllDirThatMatchFile(this, 'deployment-examples','jenkins.json')
+            println(x)
             echo ">>>>>>>>>>"
-            echo_all(abcs)
+            echo_all(x)
             jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
