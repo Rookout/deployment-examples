@@ -22,7 +22,6 @@ pipeline {
 }
 
 
-@NonCPS // has to be NonCPS or the build breaks on the call to .each
 def echo_all(list) {
     for (int i = 0; i < list.size(); i++) {
                 println(i)
