@@ -1,5 +1,6 @@
 import groovy.io.FileType
-
+import org.rookout.files.Utilities
+Utilities.checkIfFileExist(this, 'helm', 'Makefile')
 def list = []
 
 def dir = new File("..")
