@@ -3,10 +3,12 @@ import org.rookout.files.Utilities
 pipeline {
     agent none
     stages {
+        script {
         stage('thing'){
                         githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
                 tests = Utilities.getAllDirThatMatchFile(this, 'deployment-examples','jenkins.json')
             }
+        }
         }
         stage('Build') {
             agent any
