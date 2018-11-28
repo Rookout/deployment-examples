@@ -1,5 +1,6 @@
-abcs = ['a', 'b', 'c']
 import org.rookout.files.Utilities
+import groovy.io.FileType
+
 pipeline {
     agent none
     stages {
@@ -22,7 +23,7 @@ pipeline {
 
 
 def echo_all() {
-    def files = [];
+    def list = [];
     def dir = new File("..")
     dir.eachFileRecurse (FileType.FILES) { file ->
     if ("Jenkinsfile".equals(file.name)){
