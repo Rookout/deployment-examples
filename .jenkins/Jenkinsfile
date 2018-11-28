@@ -1,14 +1,17 @@
 abcs = ['a', 'b', 'c']
 import org.rookout.files.Utilities
-            githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
-                tests = Utilities.getAllDirThatMatchFile(this, 'deployment-examples','jenkins.json')
-            }
 pipeline {
     agent none
     stages {
+        stage('thing'){
+                        githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
+                tests = Utilities.getAllDirThatMatchFile(this, 'deployment-examples','jenkins.json')
+            }
+        }
         stage('Build') {
             agent any
             steps {
+                step
             println(":>>>>>>>>>>>>")
             echo ">>>>>>>>>>"
             jobDsl(targets: '.jenkins/generate_tests.groovy',
