@@ -1,5 +1,5 @@
 node {
-    jobDsl(targets: '.jenkins/create_cron.groovy',
+    jobDsl(targets: '.jenkins/generate_tests.groovy',
         removedJobAction: 'DELETE',
         removedViewAction: 'DELETE',
         lookupStrategy: 'SEED_JOB')
