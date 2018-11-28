@@ -1,13 +1,14 @@
 pipeline {
-    agent any
-    stages{
-        stage('first'){
-    githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
-    jobDsl(targets: '.jenkins/generate_tests.groovy',
-        removedJobAction: 'DELETE',
-        removedViewAction: 'DELETE',
-        lookupStrategy: 'SEED_JOB')
-    }
+    agent none
+    stages {
+        stage('Build') {
+            agent any
+            steps {
+            jobDsl(targets: '.jenkins/generate_tests.groovy',
+                removedJobAction: 'DELETE',
+                removedViewAction: 'DELETE',
+                lookupStrategy: 'SEED_JOB')
+            }
         }
-}
+    }
 }
