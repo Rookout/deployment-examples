@@ -1,4 +1,6 @@
-jobDsl(targets: '.jenkins/create_cron.groovy',
-       removedJobAction: 'DELETE',
-       removedViewAction: 'DELETE',
-       lookupStrategy: 'SEED_JOB')
+node {
+    jobDsl(targets: '.jenkins/create_cron.groovy',
+        removedJobAction: 'DELETE',
+        removedViewAction: 'DELETE',
+        lookupStrategy: 'SEED_JOB')
+}
