@@ -1,6 +1,8 @@
 node {
+    githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test') {
     jobDsl(targets: '.jenkins/generate_tests.groovy',
         removedJobAction: 'DELETE',
         removedViewAction: 'DELETE',
         lookupStrategy: 'SEED_JOB')
+    }
 }
