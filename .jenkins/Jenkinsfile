@@ -29,7 +29,7 @@ podCreator.init(label: label) {
                 env.LINE_NUM =  "16" 
                 env.SHA =  "7459814efb8eb2c0caf3956e441f159252ece842aa714be32ad350dd5e331d9b"
                 env.URL_FOR_TRIGGER = "http://localhost:7000/hello/ori"
-                env.TEST_NAME: testDir,
+                env.TEST_NAME =  "$testDir"
                 rbt reg_test full_flow
                 }
             }
