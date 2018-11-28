@@ -30,7 +30,7 @@ def echo_all() {
     def dirName = file.getParentFile().getName()
     if (!(".jenkins".equals(dirName))){
         println(dirName)
-    list << dirName
+        list << dirName
         }
     }
     }
