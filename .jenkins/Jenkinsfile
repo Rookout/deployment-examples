@@ -1,5 +1,4 @@
 pipeline {
-    agent none
             for(i in 0..2) {
             agent any
             steps {
