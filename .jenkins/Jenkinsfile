@@ -7,8 +7,6 @@ pipeline {
         stage('Build') {
             agent any
             steps {
-            println(":>>>>>>>>>>>>")
-            echo ">>>>>>>>>>"
             echo_all()
             jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
@@ -44,5 +42,4 @@ def echo_all() {
                 additionalParameters: [jobName: "${list[i]}" , realpwd: pwd(), item: i]
                 )
     }
-    println("<<<<<<<finish")
 }
