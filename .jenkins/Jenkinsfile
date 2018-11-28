@@ -24,7 +24,7 @@ pipeline {
 
 def echo_all(list) {
     for (int i = 0; i < list.size(); i++) {
-                println(i)
+                sh "echo Hello ${list[i]}"
                 jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
