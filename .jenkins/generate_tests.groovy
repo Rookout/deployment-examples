@@ -1,8 +1,7 @@
 import groovy.io.FileType
-import org.rookout.files.Utilities
-Utilities.checkIfFileExist(this, 'helm', 'Makefile')
 def list = []
 println("OKOK")
+println("$message")
 def dir = new File("..")
 dir.traverse(type: FileType.DIRECTORIES, maxDepth: 0){ file ->
   if (file.isDirectory()) {
@@ -10,3 +9,4 @@ dir.traverse(type: FileType.DIRECTORIES, maxDepth: 0){ file ->
   list << file
   }
 }
+script(readFileFromWorkspace('.jenkins/sentry-cron.Jenkinsfile'))
