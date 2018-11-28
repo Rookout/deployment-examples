@@ -29,7 +29,7 @@ def echo_all(list) {
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
                 lookupStrategy: 'SEED_JOB',
-                additionalParameters: [jobName: 'java-gradle' , realpwd: pwd(), item: item]
+                additionalParameters: [jobName: 'java-gradle' , realpwd: pwd(), item: i]
                 )
     }
 }
