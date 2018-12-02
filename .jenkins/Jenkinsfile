@@ -15,7 +15,9 @@ pipeline {
 
 
 def build_all_tests() {
-    def testsNames = Utilities.getAllDirThatMatchFile(this, '.','Jenkinsfile').values().toList()
+    def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.','Jenkinsfile')
+    println(testsNamesRaw.keys())
+    def testsNames = testsNamesRaw.values().toList()
     println(testsNames)
     for (int i = 0; i < testsNames.size(); i++) {
                 sh "echo ${list[i]}"
