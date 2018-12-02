@@ -21,7 +21,6 @@ def build_all_tests() {
     for (int i = 0; i < testsNames.size(); i++) {
                 sh "echo ${testsNames[i]}"
                 jobDsl(targets: '.jenkins/generate_tests.groovy',
-                removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
                 lookupStrategy: 'SEED_JOB',
                 additionalParameters: [jobName: "${testsNames[i]}" , realpwd: pwd(), item: i]
