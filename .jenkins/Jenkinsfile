@@ -17,6 +17,8 @@ pipeline {
 def echo_all() {
     println("hello world")
     def list = [];
+    sh "echo ls"
+    sh "echo pwd()"
     def dir = new File(".")
     dir.eachFileRecurse (FileType.FILES) { file ->
     println(file)
