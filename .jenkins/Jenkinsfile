@@ -7,40 +7,23 @@ pipeline {
         stage('Build') {
             agent any
             steps {
-            echo_all()
+            build_all_tests()
             }
         }
     }
 }
 
 
-def echo_all() {
-    println("hello world")
-    def list = [];
-    sh "ls"
-    sh "echo pwd"
-    def d = new File(".")
-    testsNames = Utilities.getAllDirThatMatchFile(this, '.','Jenkinsfile')
-    d.eachFileRecurse (FileType.FILES) { file ->
-    println(file)
-    if ("Jenkinsfile".equals(file.name)){
-    println(file)
-    def dirName = file.getParentFile().getName()
-    if (!(".jenkins".equals(dirName))){
-        println(dirName)
-        list << dirName
-        }
-    }
-    }
-
-    println(list)
-    for (int i = 0; i < list.size(); i++) {
+def build_all_tests() {
+    def testsNames = Utilities.getAllDirThatMatchFile(this, '.','Jenkinsfile').values().toList()
+    println(testsNames)
+    for (int i = 0; i < testsNames.size(); i++) {
                 sh "echo ${list[i]}"
                 jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
                 lookupStrategy: 'SEED_JOB',
-                additionalParameters: [jobName: "${list[i]}" , realpwd: pwd(), item: i]
+                additionalParameters: [jobName: "${testsNames[i]}" , realpwd: pwd(), item: i]
                 )
     }
 }
