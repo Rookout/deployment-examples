@@ -7,9 +7,6 @@ RUN ./gradlew build
 RUN apt update  -y && apt install -y wget 
 ADD . .
 RUN ./gradlew jar
-ENV DISABLE_ROOKOUT "true"
-ARG NO_CACHE
-RUN wget https://sget.rookout.com/rook.jar -O rook.jar
 ENTRYPOINT [ "java" ]
 CMD [ "-javaagent:/rook.jar", "-jar", "/build/libs/rookoutDemo-1.0.0.jar"]
  
