@@ -7,6 +7,4 @@ RUN ./gradlew build
 RUN apt update  -y && apt install -y wget 
 ADD . .
 RUN ./gradlew jar
-ENTRYPOINT [ "java" ]
-CMD [ "-javaagent:/rook.jar", "-jar", "/build/libs/rookoutDemo-1.0.0.jar"]
  
