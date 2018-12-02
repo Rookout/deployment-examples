@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "lists/views.py"
+    LINE_NUM =  "15"
+    SHA =  "75be45709cf11a02c747356322a537c3604869d6a5f8b234bfab45a6ff307a36"
+    URL_FOR_TRIGGER = "http://localhost:8001/todolist/2/"
+    LANG = "Python"
+    BACKGROUND_IMAGE_CMD = " python /manage.py runserver 0.0.0.0:8001 &"
+}
