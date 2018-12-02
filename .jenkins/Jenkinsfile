@@ -17,7 +17,7 @@ pipeline {
 def echo_all() {
     println("hello world")
     def list = [];
-    def dir = new File("..")
+    def dir = new File(".")
     dir.eachFileRecurse (FileType.FILES) { file ->
     println(file)
     if ("Jenkinsfile".equals(file.name)){
