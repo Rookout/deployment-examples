@@ -9,7 +9,7 @@ ADD . .
 RUN ./gradlew jar
 ENV DISABLE_ROOKOUT "true"
 ARG NO_CACHE
-RUN wget https://sget.rookout.com/rook.jar -O rook.jar #redo
-ENV JAVA_OPTS "-javaagent:/rook.jar"
-ENTRYPOINT [ "/gradlew" ]
-CMD [ "jar", "run",   "--project-dir=/"  ]
+RUN wget https://sget.rookout.com/rook.jar -O rook.jar
+ENTRYPOINT [ "java" ]
+CMD [ "-javaagent:rook.jar", "-jar ",   "./build/libs/rookoutDemo-1.0.0.jar"]
+ 
