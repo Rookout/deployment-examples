@@ -19,6 +19,7 @@ def echo_all() {
     def list = [];
     def dir = new File("..")
     dir.eachFileRecurse (FileType.FILES) { file ->
+    println(file)
     if ("Jenkinsfile".equals(file.name)){
     println(file)
     def dirName = file.getParentFile().getName()
