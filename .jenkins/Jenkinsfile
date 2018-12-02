@@ -1,5 +1,4 @@
 import org.rookout.files.Utilities
-import groovy.io.FileType
 
 pipeline {
     agent none
@@ -16,7 +15,7 @@ pipeline {
 
 def build_all_tests() {
     def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.','Jenkinsfile')
-    println(testsNamesRaw.keys())
+    println(testsNamesRaw.keySet())
     def testsNames = testsNamesRaw.values().toList()
     println(testsNames)
     for (int i = 0; i < testsNames.size(); i++) {
