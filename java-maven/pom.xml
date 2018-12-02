@@ -26,6 +26,9 @@
       <dependency>
           <groupId>com.rookout</groupId>
           <artifactId>rook</artifactId>
+<!--
+          if you change the verision, change the dockerifle
+-->
           <version>0.1.36</version>
       </dependency>
       <dependency>
