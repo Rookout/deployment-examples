@@ -20,6 +20,7 @@ def echo_all() {
     sh "ls"
     sh "echo pwd"
     def d = new File(".")
+    testsNames = Utilities.getAllDirThatMatchFile(this, 'deployment-examples','Jenkinsfile')
     d.eachFileRecurse (FileType.FILES) { file ->
     println(file)
     if ("Jenkinsfile".equals(file.name)){
