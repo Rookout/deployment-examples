@@ -5,5 +5,3 @@ RUN mvn -B -f ./pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency:r
 RUN apt update  -y && apt install -y wget
 ADD . .
 RUN mvn package
-ENTRYPOINT [ "java" ]
-CMD [ "-javaagent:/rook.jar", "-jar", "/target/rookoutDemo-1.0.0-jar-with-dependencies.jar"]
