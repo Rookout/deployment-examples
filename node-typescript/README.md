@@ -27,17 +27,22 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
     $ npm install
     ```
 
-2. Build:
+2. Export organization token
+    ```bash
+    $ export ROOKOUT_TOKEN=<Your-Token>
+    ```
+
+3. Build:
     ```bash
     $ npm run build
     ```
 
-3. Run:
+4. Run:
     ```bash
     $ npm start
     ```
 
-4. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
 
 ## Rookout Integration explained
