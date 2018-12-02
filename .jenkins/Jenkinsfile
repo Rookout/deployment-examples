@@ -19,7 +19,7 @@ def build_all_tests() {
     def testsNames = testsNamesRaw.values().toList()
     println(testsNames)
     for (int i = 0; i < testsNames.size(); i++) {
-                sh "echo ${list[i]}"
+                sh "echo ${testsNames[i]}"
                 jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedJobAction: 'DELETE',
                 removedViewAction: 'DELETE',
