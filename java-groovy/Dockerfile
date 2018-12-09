@@ -8,4 +8,4 @@ ADD test_groovy.groovy /home/groovy/
 
 ENV JAVA_OPTS=-javaagent:/home/groovy/rook.jar
 
-ENV  ROOKOUT_AGENT_HOST=host.docker.internal
+RUN groovy /home/groovy/test_groovy.groovy
