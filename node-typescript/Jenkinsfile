@@ -1,7 +1,7 @@
 regressionTest {
-    FILE_PATH =  "src/main/java/com/rookout/HelloWorld.java"
-    LINE_NUM =  "16" 
-    SHA =  "7459814efb8eb2c0caf3956e441f159252ece842aa714be32ad350dd5e331d9b"
+    FILE_PATH =  "src/app.ts"
+    LINE_NUM =  "33" 
+    SHA =  "7559c53d67fe1aaa41d1e7162a92aca9868edd25c565e219b04b703693910c65"
     TRIGGER_TIME = "4000"
     LANG = "NodeJs"
     BACKGROUND_IMAGE_CMD = "node /dist/app.js &"
