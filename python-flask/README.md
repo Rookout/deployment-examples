@@ -16,7 +16,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 ```
 2. *Export organization token*:
  ```bash
- 	export ROOKOUT_TOKEN=<Your-Token>
+ 	export ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 
 3. *Enable flask debugging*:
