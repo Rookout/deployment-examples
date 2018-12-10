@@ -1,14 +1,14 @@
 [<img src="https://img.shields.io/travis/playframework/play-java-starter-example.svg"/>](https://travis-ci.org/playframework/play-java-starter-example)
 
-# rookout and play-java-starter-example
+# Rookout and play-java-starter-example
 
 This is a starter application that shows how Play works with Rookout.
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
-## Run Rookout Agent 
+## Run the Rookout Java Agent 
 
-1. Run the Rookout agent:
+1. Run the Rookout Java Agent:
     ``` bash
     $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     ```
@@ -25,23 +25,23 @@ This sample may be out of date. If you face any issues, please reach out to mail
     ```
 
 ## Rookout Integration explained
-This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
-  1. Add Java Agent plugin
+This example make sure to set up Rookout`s SDK as a Java Agent for Play Framework
+  1. Add the Rookout Java Agent plugin
     ```
     addSbtPlugin("com.lightbend.sbt" % "sbt-javaagent" % "0.1.4")
     ```
-  1. Enable Java Agent
+  1. Enable the Rookout Java Agent
     ```
     lazy val root = (project in file(".")).enablePlugins(PlayJava, JavaAgent)
     ```
-  1. Set rook as the Java Agent
+  1. Add the Rookout Java Agent to your configuration
     ```
     javaAgents += "com.rookout" % "rook" % "0.1.9" % "dist"
     ```
 
 
 ## Running with sbt run
-Create lib folder and download Rookout`s rook module
+Create lib folder and download The Rookout SDK (aka "Rook")
  
 ``` bash
     $ make run dev

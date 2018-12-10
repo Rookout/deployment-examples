@@ -1,4 +1,4 @@
-# Quickstart for Java + Agentless Rookout on AWS Lambda Maven
+# Quickstart Debugging Java based AWS Lambda + Maveb applications using Rookout
 
 A sample application for debugging Java + Maven + AWS Lambda using Rookout.
 

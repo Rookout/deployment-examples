@@ -9,17 +9,18 @@ This sample may be out of date. If you face any issues, please reach out to mail
 * [Running locally](#running-locally)
 * [Using docker compose](#using-docker-compose)
 * [Rookout Integration explained](#rookout-integration-explained)
+
 ## Running locally
-1. Clone and compile the project jar and download the Java agent:
+1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-maven
     $ mvn package
     ```
-2. Export organization token
+2. Export your Rookout Token
      ```bash
      export ROOKOUT_TOKEN=<Your-Token>
      ```
-3. Run:
+3. Run your application using the Rookout Java Agent:
     ```bash
     $ java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar
     ```
@@ -27,8 +28,6 @@ This sample may be out of date. If you face any issues, please reach out to mail
 4. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/hello)
 
 5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
-
-
 
 ## Rookout Integration explained
 
