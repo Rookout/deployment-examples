@@ -9,11 +9,11 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 ## Deploying to App Engine
 
-1. Before deploying the app you should first deploy the agent to your App Engine:
+1. Before deploying the app you should first deploy the Rookout ETL Agent to your App Engine:
 ```bash
 $ gcloud beta compute instances create-with-container rookout-agent \
   --zone us-east1-d --container-image=rookout/agent \
-  --container-env ROOKOUT_TOKEN=YOUR_TOKEN
+  --container-env ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 2. Copy the agent ip from the `INTERNAL_IP` field available once you successfully deployed it, and add it to the `app.yaml`.
 3. Deploy the service: 
@@ -26,16 +26,19 @@ $ npm run deploy
 ## Rookout Integration explained
 
 This example is based of the Google App Engine "Hello-World" example available [here].
+
 We have added Rookout to original project by:
-1. Adding rookout to `package.json`
-2. Adding the following snippet to the code (`app.js`)
+1. Adding Rookout to `package.json`
+
+2. Adding the following snippet to your application code (`app.js`)
 ```javascript
 var rookout = require('rookout/auto_start');
 ```
+
 3. Adding the following `env_variables` to `app.yaml`:
 ``` YAML
 env_variables:
-  ROOKOUT_AGENT_HOST: "YOUR_ROOKOUT_AGENT_HOST"
+  ROOKOUT_AGENT_HOST: "<Your Rookout ETL Agent host>"
 ```
 
 [Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html

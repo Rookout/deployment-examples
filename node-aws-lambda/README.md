@@ -10,7 +10,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 There are 3 simple steps to integrate Rookout into your existing Node application:
 
-1. Add the npm dependency `rookout`
+1. Add the Rookout SDK using the npm dependency `rookout`
 
 1. Wrap your lambda function with `rookout.wrap()`
 
@@ -19,7 +19,7 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 ## Running on Lambda
 
 1. Uploading your function : 
-    - Zip Upload: In order to run your rookout wrapped function on Lambda, make sure the dependencies are downloaded and zip
+    - Zip Upload: In order to run your Rookout-wrapped function on Lambda, make sure the dependencies are downloaded and zip
     the folder (including node_modules).  
     zip -r rookout_lambda_test.zip .
     
@@ -51,7 +51,7 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 ## Rookout Integration Process
 
 We have added Rookout to the original project by:
-1. Installing rookout dependency : `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
+1. Installing the Rookout SDK: `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
 
 1. Wrapping your function with the Lambda wrapper as such :  
 `const rookout = require('rookout/lambda');`
