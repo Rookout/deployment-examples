@@ -19,8 +19,7 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 * [Rookout Integration explained](#rookout-integration-explained)
 
 
-## Running node server with Rookout
-
+## Running Node server with Rookout
 
 1. Installing dependencies:
     ```bash
@@ -29,7 +28,7 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 
 2. Export organization token
     ```bash
-    $ export ROOKOUT_TOKEN=<Your-Token>
+    $ export ROOKOUT_TOKEN=<Your Rookout Token>
     ```
 
 3. Build:

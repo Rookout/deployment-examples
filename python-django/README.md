@@ -32,7 +32,6 @@ Go to https://app.rookout.com and start debugging :)
     pip install rook
 ```
 
-
 2. Import the package in your app's entry-point file, just before it starts
 ```bash
    import rook

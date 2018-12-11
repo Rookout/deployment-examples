@@ -16,7 +16,7 @@ There are 3 simple steps to integrate Rookout into your existing Java Wildfly we
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
-1. Set the Rook's agent configuration as environment variables in the Docker container.
+1. Set the Rookout Java Agent configuration as environment variables in the Docker container.
 
 
 ## Running locally
@@ -60,12 +60,12 @@ We have added Rookout to the original project by:
     JBOSS_MODULES_SYSTEM_PKGS="org.jboss.logmanager,com.rookout"
     JBOSS_LOGMANAGER_VERSION="1.5.2.Final"
     JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:$JBOSS_HOME/modules/system/layers/base/org/jboss/logmanager/main/jboss-logmanager-$JBOSS_LOGMANAGER_VERSION.jar"
-    # Set the rook as java agent
+    # Set the Rookout Java Agent
     JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jboss/wildfly/lib/rook.jar"
     ```
     
     *Known issue: The confirguration overrides the log manager to use jboss.logmanager no matter what. This is because
-    the Rookout javaagent uses the default java logging and Wildfly is unable to start without its logger.*
+    the Rookout Java Agent uses the default java logging and Wildfly is unable to start without its logger.*
     
 1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right agent:
     ```bash

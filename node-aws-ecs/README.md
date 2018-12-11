@@ -1,4 +1,4 @@
-# Quickstart for Node + Agentless Rookout with Docker on AWS ECS
+# Quickstart for debugging a Docker based Node app Deployed in AWS ECS using Rookout
 
 A sample application for using Node + Agentless Rookout with Docker on AWS ECS
 
@@ -12,7 +12,7 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 
 1. Add the npm dependency `rookout`
 
-1. Set the Rook's agent configuration as environment variables in the Docker container
+1. Set the Rookout ETL Agent configuration as environment variables in the Docker container
 
 
 ## Running locally
@@ -82,9 +82,8 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 
 ## Rookout Integration Process
 We have added Rookout to the original project by:
-1. Installing rookout dependency : `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/auto_start');`
+1. Installing the Rookout SDK: `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/auto_start');`
     
-1. Set Docker container ENV for `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN` in order to connect to a remote hosted agent
-    
+1. Setting up the Rookout ETL Agent by setting the following environment variables: `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN`.
 
 [Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html

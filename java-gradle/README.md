@@ -9,7 +9,8 @@ This sample may be out of date. If you face any issues, please reach out to mail
 * [Running locally](#running-locally)
 * [Using docker compose](#using-docker-compose)
 * [Rookout Integration explained](#rookout-integration-explained)
-## Running local application using Agent-less
+
+## Running local application
 1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-gradle
@@ -38,12 +39,12 @@ We have added Rookout to the original project by:
         from sourceSets.main.allSource
     }
     
-    // declaring dependencies to Rook agent
+    // declaring dependencies to the Rookout Java Agent
     configurations{
         rookoutAgent
     }
     
-    // Running Rook
+    // Running the Rookout Java Agent
     dependencies {
         rookoutAgent "com.rookout:rook:0.1.36"
     }

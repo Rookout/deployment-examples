@@ -16,8 +16,8 @@ To integrate Rookout into your existing java beanstalk application follow these 
 1. Add the source files to your built .jar/.war
 
 2. Add these [.ebextensions standalone config scripts](.ebextensions) to your project configuration(.ebextensions)
-    * One sets up the Rook SDK, responsible for communicating with the Rookout service.
-    * The other sets up and runs the Rookout java agent.
+    * One sets up the Rookout SDK (aka "Rook"), responsible for communicating with the Rookout service.
+    * The other sets up and runs the Rookout Java Agent.
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
@@ -25,10 +25,10 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 ## Running locally
 __NOTE: This sample project requires Tomcat8__
 
-Run the Rookout agent:
+Run the Rookout Java Agent:
     ~$ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
 
-Run ``make local`` to add the rook java agent to Tomcat environment locally.
+Run ``make local`` to add the Rookout Java Agent to Tomcat environment locally.
 
 Run ``build.sh`` to compile the web app and create a WAR file (OS X or Linux):
 
