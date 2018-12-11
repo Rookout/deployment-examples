@@ -2,6 +2,9 @@ pipelineJob("/regression-test/$jobName") {
     properties {
         disableConcurrentBuilds()
     }
+    parameters {
+        stringParam('NEW_VERSION')
+    }
     environmentVariables(
             testDir: "$jobName"
     )
