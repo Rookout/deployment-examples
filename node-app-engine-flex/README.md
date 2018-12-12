@@ -15,7 +15,7 @@ $ gcloud beta compute instances create-with-container rookout-agent \
   --zone us-east1-d --container-image=rookout/agent \
   --container-env ROOKOUT_TOKEN=<Your Rookout Token>
 ```
-2. Copy the agent ip from the `INTERNAL_IP` field available once you successfully deployed it, and add it to the `app.yaml`.
+2. Copy the Agent ip address from the `INTERNAL_IP` field available once you successfully deployed it, and add it to the `app.yaml`.
 3. Deploy the service: 
 ```bash
 $ npm run deploy
