@@ -16,7 +16,7 @@ There are 3 simple steps to integrate Rookout into your existing Java Wildfly we
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
-1. Set the Rookout Java Agent configuration as environment variables in the Docker container.
+1. Set the Rookout Java ETL configuration as environment variables in the Docker container.
 
 
 ## Running locally
@@ -67,7 +67,7 @@ We have added Rookout to the original project by:
     *Known issue: The confirguration overrides the log manager to use jboss.logmanager no matter what. This is because
     the Rookout Java Agent uses the default java logging and Wildfly is unable to start without its logger.*
     
-1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right agent:
+1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right ETL Agent:
     ```bash
     export ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"
     export ROOKOUT_AGENT_PORT="443"

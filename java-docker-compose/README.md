@@ -1,6 +1,6 @@
 # Quickstart for Java Docker Compose debugging
 
-A sample application for using Rookout to debug a Java app built using Maven or Gradke, and deployed using Docker Compose.
+A sample application for using Rookout to debug a Java app built using Maven or Gradle, and deployed using Docker Compose.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
