@@ -3,7 +3,9 @@ pipelineJob("/regression-test/$jobName") {
         disableConcurrentBuilds()
     }
     parameters {
-        stringParam('NEW_VERSION')
+        stringParam('NEW_VERSION', "", 'The NEW version, 8.8.8-branchname')
+        stringParam('rookNodeVersion', "","the nodejs version")
+        stringParam('rookCommit', "", "the commit of the nodejs application")
     }
     environmentVariables(
             testDir: "$jobName"
