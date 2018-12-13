@@ -7,6 +7,11 @@ pipeline {
         stage('Build') {
             agent any
             steps {
+            container('rookout-helm') {
+                githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test', workDirToRepo: "true") {
+                    sh("cd ${testDir} && docker build . -t ${dockerTag} --build-arg NO_CACHE=${BUILD_TAG} && gcloud docker -- push ${dockerTag}")
+                }
+            }                
             build_all_tests()
             }
         }
