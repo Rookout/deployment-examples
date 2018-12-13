@@ -23,7 +23,7 @@ def build_all_tests() {
                 jobDsl(targets: '.jenkins/generate_tests.groovy',
                 removedViewAction: 'DELETE',
                 lookupStrategy: 'SEED_JOB',
-                additionalParameters: [jobName: "${testsNames[i]}" , realpwd: pwd(), item: i]
+                additionalParameters: [jobName: "${testsNames[i]}" , jenkinsFilePwd: pwd() +"/${testsNames[i]}", item: i]
                 )
     }
 }
