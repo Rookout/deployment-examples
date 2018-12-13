@@ -34,8 +34,8 @@ This sample may be out of date. If you face any issues, please reach out to mail
 5. *Enjoy the debugging*:
 	Go to https://app.rookout.com and start debugging :)
 
-6. *Bonus: Setup a global HTTP rule*:
-	Use flask_rule.json in this deployment example as a template for a new Rookout Rule.
+6. *Bonus: Setup a global HTTP Breakpoint*:
+	Use flask_rule.json in this deployment example as a template for a new Rookout Breakpoint.
 
 ## Running with docker and Agentless
 
