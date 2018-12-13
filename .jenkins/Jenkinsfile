@@ -22,6 +22,6 @@ def build_all_tests() {
     println(testsNames)
     for (int i = 0; i < testsNames.size(); i++) {
                 sh "echo ${testsNames[i]}"
-                TestUtilities.createTest(this, scriptToUse "${testsNames[i]}",  pwd() +"/${testsNames[i]}" )
+                TestUtilities.createTest(this, scriptToUse ,"${testsNames[i]}",  pwd() +"/${testsNames[i]}" )
     }
 }
