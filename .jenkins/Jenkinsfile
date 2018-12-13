@@ -3,12 +3,16 @@ import org.rookout.testsUtil.TestUtilities
 
 def label = "worker-${UUID.randomUUID().toString()}"
 
-
+print(pwd())
 podCreator.initMain(label: label) {
+    print(pwd())
     node(label) {
         stage('Build') {
+            print(pwd())
             container('rookout-helm') {
                 def myRepo = checkout scm
+                print(pwd())
+                def alsoTestsNamesRaw = Utilities.getAllDirThatMatchFile(this, pwd(), 'Jenkinsfile')
                 def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
                 def testsNames = testsNamesRaw.values().toList()
                 println(testsNames)
