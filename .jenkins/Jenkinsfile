@@ -1,4 +1,5 @@
 import org.rookout.files.Utilities
+import org.rookout.testUtil.TestUtilities
 
 pipeline {
     agent none
@@ -17,16 +18,10 @@ def build_all_tests() {
     def scriptToUse = libraryResource 'generate_tests.groovy'
     println(scriptToUse)
     def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.','Jenkinsfile')
-    println(testsNamesRaw.keySet())
     def testsNames = testsNamesRaw.values().toList()
     println(testsNames)
     for (int i = 0; i < testsNames.size(); i++) {
                 sh "echo ${testsNames[i]}"
-                jobDsl(
-                scriptText: scriptToUse,
-                removedViewAction: 'DELETE',
-                lookupStrategy: 'SEED_JOB',
-                additionalParameters: [jobName: "${testsNames[i]}" , jenkinsFilePwd: pwd() +"/${testsNames[i]}", item: i]
-                )
+                TestUtilities.createTest(this, scriptToUse "${testsNames[i]}",  pwd() +"/${testsNames[i]}" )
     }
 }
