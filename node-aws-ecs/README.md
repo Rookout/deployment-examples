@@ -1,14 +1,14 @@
 # Quickstart for debugging a Docker based Node app Deployed in AWS ECS using Rookout
 
-A sample application for using Node + Agentless Rookout with Docker on AWS ECS
+A sample application for debugging a Docker based Node app Deployed in AWS ECS using Rookout.
 
-Before following this guide we recommend reading the basic [Node + Rookout] guide
+Before following this guide we recommend reading the basic [Node + Rookout] guide.
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
 ## Rookout Integration Explained
 
-There are 2 simple steps to integrate Rookout into your existing Node application for an agentless setup:
+There are 2 simple steps to integrate Rookout into your existing Node application:
 
 1. Add the npm dependency `rookout`
 
