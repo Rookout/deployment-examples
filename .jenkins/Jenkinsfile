@@ -5,23 +5,27 @@ def label = "worker-${UUID.randomUUID().toString()}"
 
 podCreator.initMain(label: label) {
     node(label) {
-        stage('Build') {
-            print(pwd())
-            container('rookout-helm') {
+        print(pwd())
+        container('rookout-helm') {
+            stage ('Getting test') {
+
                 def myRepo = checkout scm
                 def scriptToUse = libraryResource 'generate_tests.groovy'
                 print(pwd())
                 def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
                 def testsNames = testsNamesRaw.values().toList()
                 println(testsNames)
+            }
+            stage ('Creating tests and building docker files') {
                 for (int i = 0; i < testsNames.size(); i++) {
                     def jobName = "${testsNames[i]}"
                     def dockerTag = "us.gcr.io/rookout/reggresion-test-${jobName}:latest"
                     sh("cd ${jobName} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
-                    TestUtilities.createTest(this, scriptToUse, jobName , pwd() + "/${testsNames[i]}")
+                    TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}")
                 }
             }
         }
     }
+
 }
 
