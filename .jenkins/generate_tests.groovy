@@ -12,7 +12,7 @@ pipelineJob("/regression-test/$jobName") {
     )
     definition {
         cps {
-            script(readFileFromWorkspace("$realpwd/$jobName/Jenkinsfile"))
+            script(readFileFromWorkspace("$jenkinsFilePwd/Jenkinsfile"))
             sandbox()
         }
     }
