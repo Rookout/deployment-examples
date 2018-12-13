@@ -3,9 +3,7 @@ import org.rookout.testsUtil.TestUtilities
 
 def label = "worker-${UUID.randomUUID().toString()}"
 
-print(pwd())
 podCreator.initMain(label: label) {
-    print(pwd())
     node(label) {
         stage('Build') {
             print(pwd())
