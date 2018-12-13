@@ -2,28 +2,18 @@ import org.rookout.files.Utilities
 import org.rookout.testsUtil.TestUtilities
 def label = "worker-${UUID.randomUUID().toString()}"
 
-pipeline {
-    agent none
-    stages {
-        stage('Build') {
-            agent any
-            steps {
-                    podCreator.initMain(label: label) {
-        node(label) {
 
+podCreator.initMain(label: label) {
+        node(label) {
+                    stage('Build') {
             container('rookout-helm') {
                 githubWrapper.clone(repo: 'deployment-examples', branchToClone: 'adding-jenkins-test', workDirToRepo: "true") {
                     sh("cd ${testDir} && docker build . -t ${dockerTag} --build-arg NO_CACHE=${BUILD_TAG} && gcloud docker -- push ${dockerTag}")
                 }
             }
-                    }                
-            }
-            build_all_tests()
-            }
-        }
     }
+        }
 }
-
 
 def build_all_tests() {
     def scriptToUse = libraryResource 'generate_tests.groovy'
