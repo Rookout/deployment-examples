@@ -8,6 +8,7 @@ podCreator.initMain(label: label) {
     node(label) {
         stage('Build') {
             container('rookout-helm') {
+                def myRepo = checkout scm
                 def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
                 def testsNames = testsNamesRaw.values().toList()
                 println(testsNames)
