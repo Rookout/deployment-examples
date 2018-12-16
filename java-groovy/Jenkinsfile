@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "test_groovy.groovy"
+    LINE_NUM =  "8"
+    SHA =  "50a539ea048b203802710cc51fc2f5082d120d94bd6acf18672b044063d4c123"
+    URL_FOR_TRIGGER = "http://localhost:8080/hello"
+    LANG = "Java"
+    BACKGROUND_IMAGE_CMD = "groovy /home/groovy/test_groovy.groovy &"
+}

@@ -3,9 +3,6 @@ from flask import Flask
 from random import randint
 from datetime import datetime
 
-print("Starting rook from-", __file__)
-from rook import auto_start
-print("Rook start has finished!")
 
 app = Flask(__name__)
 
@@ -38,6 +35,9 @@ def hello():
     time.sleep(0.01 * randint(10, 200) + 0.1)
     return 'Hello, World'
 
+print("Starting rook from-", __file__)
+from rook import auto_start
+print("Rook start has finished!")
 
 if __name__== "__main__":
     app.run(host="0.0.0.0", port=5000, threaded=True)
