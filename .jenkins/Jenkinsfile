@@ -24,6 +24,11 @@ podCreator.initMain(label: label) {
                     TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}")
                 }
             }
+            stage ('Run the tests') {
+                fullReggressionTest {
+                    GIT_BRANCH = "$GIT_BRANCH"
+                }
+            }
         }
     }
 
