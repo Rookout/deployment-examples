@@ -16,7 +16,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 ```
 2. *Export organization token*:
  ```bash
- 	export ROOKOUT_TOKEN=<Your Rookout Token>
+ 	export ROOKOUT_TOKEN=<Your-Token>
 ```
 
 3. *Enable flask debugging*:
@@ -34,8 +34,8 @@ This sample may be out of date. If you face any issues, please reach out to mail
 5. *Enjoy the debugging*:
 	Go to https://app.rookout.com and start debugging :)
 
-6. *Bonus: Setup a global HTTP Breakpoint*:
-	Use flask_rule.json in this deployment example as a template for a new Rookout Breakpoint.
+6. *Bonus: Setup a global HTTP rule*:
+	Use flask_rule.json in this deployment example as a template for a new Rookout Rule.
 
 ## Running with docker and Agentless
 

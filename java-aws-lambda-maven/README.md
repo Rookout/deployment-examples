@@ -1,4 +1,4 @@
-# Quickstart Debugging Java based AWS Lambda + Maven applications using Rookout
+# Quickstart for Java + Agentless Rookout on AWS Lambda Maven
 
 A sample application for debugging Java + Maven + AWS Lambda using Rookout.
 
@@ -8,7 +8,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 ## Integrate Rookout into your Java application
 
-To integrate Rookout into your existing Java application, follow these steps:
+To integrate Rookout into your existing agentless Java application, follow these steps:
 
 1. Add the following Maven dependencies to your pom.xml file:
 ``` xml

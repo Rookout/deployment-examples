@@ -36,4 +36,4 @@ function testFunction() {
     console.log('Iteration ' + iteration);
 }
 
-setInterval(testFunction, 5000);
+setInterval(testFunction, 4000);

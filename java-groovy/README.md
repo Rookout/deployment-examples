@@ -8,9 +8,8 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 * [Running locally](#running-locally)
 * [Rookout Integration explained](#rookout-integration-explained)
-
 ## Running locally
-1. Run the Rookout ETL Agent:
+1. Run the Rookout agent:
     ``` bash
     $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     ```

@@ -58,7 +58,8 @@ To test the example application run the following commands:
 ## Debug with Rookout's IDE
 1. Go to https://app.rookout.com and add your sources
 
-1. Add a Breakpoint at src/main/java/com/example/helloworld/api/Saying.java : Line 17
+1. Apply a "Rule Point" (The same way you are used to add a break point)
+   src/main/java/com/example/helloworld/api/Saying.java : Line 17
 
 1. To hit the Hello World example (hit refresh a few times).
 

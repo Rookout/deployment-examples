@@ -23,7 +23,7 @@ To integrate Rookout into your existing Serverless Framework Python Lambda app, 
 ## Rookout Integration Process
 
 We have added Rookout to the original project by:
-1. Installing the Rookout SDK (aka "Rook") as a dependency : `pip install rook` 
+1. Installing rookout dependency : `pip install rook` 
 
 1. Wrapping our function by using our Rookout lambda decorator as follows:
     ```python
@@ -43,7 +43,7 @@ plugins:
   - serverless-python-requirements
 ```
 
-1. Set your Rookout Token as a Lambda environment variable:
+1. Set our Rookout Token as a Lambda environment variable:
 
 ```
 environment:

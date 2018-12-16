@@ -16,7 +16,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 2. `cd python-kubernetes`
 
-3. Set your own Rookout token in `agent-deployment.yaml`
+3. Set your own Rookout toeen in `agent-deployment.yaml`
 
 3. `kubectl apply -f agent-deployment.yaml`
 

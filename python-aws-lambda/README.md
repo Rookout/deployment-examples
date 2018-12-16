@@ -8,19 +8,19 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 ## Rookout Integration Explained
 
-To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, follow these steps:
+To integrate Rookout into your existing Python Lambda app, follow these steps:
 
 1. Add the pip dependency `rook` in the project folder.
 
 1. Wrap your lambda_handler function in our Rookout wrapper.
 
-1. Set your Rookout Token as an environment variable in the Lambda configuration.
+1. Set your Rookout Toekn as an environment variable in the Lambda configuration.
 
 ## Running on Lambda
 1. Make sure your python module is called `lambda_function.py` to use our example.
 
 1. Uploading your function : 
-    - Zip Upload: In order to run your Rookout-wrapped function on Lambda, make sure the dependencies are downloaded and zip
+    - Zip Upload: In order to run your rookout wrapped function on Lambda, make sure the dependencies are downloaded and zip
     the folder (including all the modules installed by pip).  
     zip -r rookout_lambda_test.zip .
 

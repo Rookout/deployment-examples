@@ -1,4 +1,4 @@
-# Quickstart for debugging a Java application deployed in AWS Lambda using Rookout
+# Quickstart for Java + Agentless Rookout on AWS Lambda
 
 A sample application for debugging Java + AWS Lambda using Rookout.
 

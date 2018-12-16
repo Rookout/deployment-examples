@@ -25,7 +25,7 @@ jar {
                 'Implementation-Version': version,
                 'Main-Class': 'com.rookout.HelloWorld'
     }
-
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } //Collect all dependecies for the jar
     from sourceSets.main.allSource
 }
 
@@ -33,5 +33,7 @@ task run(type: JavaExec) {
    classpath = files(jar.archivePath)
    classpath += sourceSets.main.runtimeClasspath
    main = 'com.rookout.HelloWorld'
-   jvmArgs = ["-javaagent:${configurations.rookoutAgent.singleFile}"]
+   if (!System.getenv("DISABLE_ROOKOUT")) {
+    jvmArgs = ["-javaagent:${configurations.rookoutAgent.singleFile}"]
+   }
 }
