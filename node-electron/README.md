@@ -1,6 +1,6 @@
-# Quickstart for Electron + Agentless Rookout on AWS Lambda
+# Quickstart for debugging an Electron + Lambda app using Rookout
 
-A sample application for using Electron + Rookout
+A sample application for debugging an Electron app using Rookout
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
@@ -21,7 +21,7 @@ For more information about Docker go [here](https://www.docker.com/).
 
 ## Rookout Integration Explained
 
-There are 4 simple steps to integrate Rookout into your existing Node-Electron application for an [agentless] setup:
+There are 4 simple steps to integrate Rookout into your existing Node-Electron application:
 
 1. Adding the Rookout SDK to `package.json` available on [npm]:
     ```bash

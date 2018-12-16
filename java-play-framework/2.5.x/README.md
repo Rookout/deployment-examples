@@ -6,9 +6,9 @@ This is a starter application that shows how Play works with Rookout.
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
-## Run the Rookout Java Agent 
+## Run the Rookout ETL Agent 
 
-1. Run the Rookout Java Agent:
+1. Run the Rookout ETL Agent:
     ``` bash
     $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     ```

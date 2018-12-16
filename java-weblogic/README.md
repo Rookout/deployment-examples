@@ -12,7 +12,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 * [Known Issues](#known-issues)
 
 ## Running locally
-1. Run the Rookout Java Agent:
+1. Run the Rookout ETL Agent:
     ``` bash
     $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
     ```
@@ -52,7 +52,7 @@ We have added Rookout to the original project by:
 
 ## Known Issues
 
-- Rules will be showing a warning (orange) : Source file not found. This is caused by the way WebLogic runs web applications, the rook is still working properly but will not be able to know if the file used is matching the live one.
+- Breakpoints will be showing a Warning: Source file not found. This is caused by the way WebLogic runs web applications, the rook is still working properly but will not be able to know if the file used is matching the live one.
 
 [Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
