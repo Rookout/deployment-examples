@@ -8,30 +8,30 @@ podCreator.initMain(label: label) {
     node(label) {
         print(pwd())
         container('rookout-helm') {
-            stage ('Getting test') {
+            def myRepo = checkout scm
+            if ("master".equals(env.GIT_BRANCH)) {
+                stage ('Getting test') {
+                    print(pwd())
+                    def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
+                    testsNames = testsNamesRaw.values().toList()
+                    println(testsNames)
+                }
+                stage ('Creating tests and building docker files') {
+                    def scriptToUse = libraryResource 'generate_tests.groovy'
+                    for (int i = 0; i < testsNames.size(); i++) {
+                        def jobName = "${testsNames[i]}".toString()
+                        def dockerTag = TestUtilities.getDockerTagNameForRegression(jobName)
+                        sh("cd ${jobName} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
+                        TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}")
+                    }
+                }
+                stage ('Run the tests') {
+                    triggerer.regression(GIT_BRANCH : "master"){
 
-                def myRepo = checkout scm
-                print(pwd())
-                def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
-                testsNames = testsNamesRaw.values().toList()
-                println(testsNames)
-            }
-            stage ('Creating tests and building docker files') {
-                def scriptToUse = libraryResource 'generate_tests.groovy'
-                for (int i = 0; i < testsNames.size(); i++) {
-                    def jobName = "${testsNames[i]}".toString()
-                    def dockerTag = TestUtilities.getDockerTagNameForRegression(jobName)
-                    sh("cd ${jobName} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
-                    TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}")
+                    }
                 }
             }
-            stage ('Run the tests') {
-                triggerer.regression(GIT_BRANCH : "master"){
-
-                }
-                }
         }
     }
-
 }
 
