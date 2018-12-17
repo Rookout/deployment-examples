@@ -29,6 +29,7 @@ podCreator.initMain(label: label) {
                 triggerer.regression(GIT_BRANCH : "master"){
 
                 }
+                }
         }
     }
 
