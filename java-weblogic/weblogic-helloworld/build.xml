@@ -1,42 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="weblogic-helloworld" default="war" basedir=".">
+<project name="webservices-hello_world" default="all">
+<!-- set global properties for this build -->
+<property name="wls.username" value="weblogic" />
+<property name="wls.password" value="weblogic12" />
+<property name="wls.hostname" value="localhost" />
+<property name="wls.port" value="7001" />
+<property name="wls.server.name" value="AdminServer" />
+<property name="ear.deployed.name" value="helloWorldEar" />
+<property name="example-output" value="output" />
+<property name="ear-dir" value="${example-output}/helloWorldEar" />
+<property name="clientclass-dir" value="${example-output}/clientclasses" />
+<property name="source-directory" value="src" />
+<path id="client.class.path">
+    <pathelement path="${clientclass-dir}"/>
+    <pathelement path="${java.class.path}"/>
+</path>
+<taskdef name="jwsc"
+         classname="weblogic.wsee.tools.anttasks.JwscTask" />
+<taskdef name="wldeploy"
+         classname="weblogic.ant.taskdefs.management.WLDeploy"/>
+<target name="all" depends="clean,build-service,deploy" />
+<target name="clean" depends="undeploy">
+    <delete dir="${example-output}"/>
+</target>
+<target name="build-service">
+    <jwsc
+            srcdir="src"
+            destdir="${ear-dir}"
+            debug="true">
+        <module name="${ear.deployed.name}">
+            <jws file="examples/webservices/hello_world/HelloWorldImpl.java"
+                 type="JAXWS"/>
+            <zipfileset dir=".">
+                <include name="src/**"/>
+            </zipfileset>
+        </module>
 
-    <property name="project-name" value="${ant.project.name}" />
-    <property name="builder" value="Rookout" />
-
-    <property name="war-file-name" value="${project-name}.war" />
-    <property name="source-directory" value="src" />
-    <property name="classes-directory" value="build/classes" />
-    <property name="lib-directory" value="lib" />
-    <property name="web-directory" value="web" />
-    <property name="web-xml-file" value="web/WEB-INF/web.xml" />
-    <tstamp prefix="build-info">
-        <format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
-        <format property="current-time" pattern="hh:mm:ss a z" locale="en" />
-    </tstamp>
-    <property name="build-directory" value="build" />
-
-    <target name="war" depends="">
-        <mkdir dir="${build-directory}" />
-        <mkdir dir="${classes-directory}" />
-        <delete file="${build-directory}/${war-file-name}" />
-        <javac srcdir="${source-directory}"
-               destdir="${classes-directory}"
-               classpath="${lib-directory}"
-        />
-        <war warfile="${build-directory}/${war-file-name}" webxml="${web-xml-file}">
-            <classes dir="${classes-directory}" />
-            <fileset dir="." includes="${source-directory}/**" />
-            <fileset dir="${web-directory}">
-                <!-- Need to exclude it since webxml is an attribute of the war tag above -->
-                <exclude name="WEB-INF/web.xml" />
-            </fileset>
-            <manifest>
-                <attribute name="Built-By" value="${builder}" />
-                <attribute name="Built-On" value="${build-info.current-date}" />
-                <attribute name="Built-At" value="${build-info.current-time}" />
-            </manifest>
-        </war>
-    </target>
-
+    </jwsc>
+</target>
+<target name="deploy">
+    <wldeploy action="deploy" name="${ear.deployed.name}"
+              source="${ear-dir}" user="${wls.username}"
+              password="${wls.password}" verbose="true"
+              adminurl="t3://${wls.hostname}:${wls.port}"
+              targets="${wls.server.name}" />
+</target>
+<target name="undeploy">
+    <wldeploy action="undeploy" name="${ear.deployed.name}"
+              failonerror="false"
+              user="${wls.username}" password="${wls.password}" verbose="true"
+              adminurl="t3://${wls.hostname}:${wls.port}"
+              targets="${wls.server.name}" />
+</target>
 </project>
