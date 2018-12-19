@@ -46,6 +46,6 @@ This example is based of the Java javalin "Hello-World" example available [here]
     ```
     
 
-[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://github.com/tipsy/javalin/
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook

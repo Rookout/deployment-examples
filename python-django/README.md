@@ -2,7 +2,7 @@
 
 A sample application for debugging Django using Rookout.
 
-Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/rooks-setup.html) guide.
+Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/sdk-setup.html) guide.
 
 ## Running Django Server with Rookout
 1. *Clone and install dependencies*:
@@ -38,6 +38,6 @@ Go to https://app.rookout.com and start debugging :)
    rook.start()
 ```
 
-[Python + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/appengine/hello-world
 

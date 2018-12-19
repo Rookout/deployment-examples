@@ -86,4 +86,4 @@ We have added Rookout to the original project by:
     
 1. Setting up the Rookout ETL Agent by setting the following environment variables: `ROOKOUT_AGENT_HOST` (default LOCALHOST), `ROOKOUT_AGENT_PORT` (default 7486) and `ROOKOUT_TOKEN`.
 
-[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html

@@ -58,5 +58,5 @@ serverless deploy
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
 
-[Python + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 

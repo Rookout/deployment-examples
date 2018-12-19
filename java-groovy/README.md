@@ -27,6 +27,6 @@ This sample may be out of date. If you face any issues, please reach out to mail
     $ groovy /home/groovy/test_groovy.groovy
     ```
 	
-[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://github.com/tipsy/javalin/
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
