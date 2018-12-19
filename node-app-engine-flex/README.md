@@ -41,5 +41,5 @@ env_variables:
   ROOKOUT_AGENT_HOST: "<Your Rookout ETL Agent host>"
 ```
 
-[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/master/appengine/hello-world

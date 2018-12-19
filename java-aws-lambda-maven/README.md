@@ -115,4 +115,4 @@ public class TestLambda implements RequestHandler<Object, String> {
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
-[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html

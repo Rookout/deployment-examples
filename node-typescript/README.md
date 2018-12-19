@@ -58,7 +58,7 @@ We have added Rookout to the original project by:
     const rook = require("rookout/auto_start");
     ```
 
-[Node + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [npm]: https://www.npmjs.com/package/rookout
 
 
