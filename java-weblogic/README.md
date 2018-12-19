@@ -54,5 +54,5 @@ We have added Rookout to the original project by:
 
 - Breakpoints will be showing a Warning: Source file not found. This is caused by the way WebLogic runs web applications, the rook is still working properly but will not be able to know if the file used is matching the live one.
 
-[Java + Rookout]: https://docs.rookout.com/docs/rooks-setup.html
+[Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
