@@ -4,11 +4,11 @@ A sample application for debugging Java + Oracle WebLogic using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
-* [Running locally](#running-locally)
+* [Running the app](#running-the-app)
 * [Rookout Integration explained](#rookout-integration-explained)
-* [Known Issues](#known-issues)
 
-## Running locally
+
+## Running the app
 1. Add the Rookout Java Agent as described in [Rookout Integration Explained](#rookout-integration-explained).
 1. Start your WebLogic domain `sh WEBLOGIC_HOME/user_projects/domains/DOMAIN_NAME/bin/startWebLogic.sh`
 1. Build and deploy the WebLogic webservice:
@@ -64,9 +64,6 @@ We have added Rookout to the original project by:
         export ROOKOUT_TOKEN="<Your-Rookout-Token>"
    ```
 
-## Known Issues
-
-- Breakpoints will be showing a Warning: Source file not found. This is caused by the way WebLogic runs web applications, the rook is still working properly but will not be able to know if the file used is matching the live one.
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
