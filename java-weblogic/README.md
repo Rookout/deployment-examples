@@ -9,10 +9,15 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 
 ## Running the app
-1. Add the Rookout Java Agent as described in [Rookout Integration Explained](#rookout-integration-explained).
-1. Start your WebLogic domain `sh WEBLOGIC_HOME/user_projects/domains/DOMAIN_NAME/bin/startWebLogic.sh`
+1. [Download the Rookout Java Agent](http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST)
+1. Add the Rookout Java Agent and set your organization token in the `startWebLogic.sh` script
+    ```bash
+        JAVA_OPTIONS="${SAVE_JAVA_OPTIONS} -javaagent=<ROOK_LOCATION>/rook.jar"
+        export ROOKOUT_TOKEN="<Your-Rookout-Token>"
+    ```
+1. Start your WebLogic server
 1. Build and deploy the WebLogic webservice:
-    You can change the weblogic configuration in the `build.xml`  
+    You can change the weblogic configuration in the `weblogic-helloworld/build.xml`  
     default url is `localhost:7001`  
     default username/password is `weblogic:weblogic12`
     ``` bash
