@@ -28,7 +28,7 @@ podCreator.initMain(label: label) {
                     }
                 }
                 stage ('Run the tests') {
-                    triggerer.regression(GIT_BRANCH : "reg-test-node-electron"){
+                    triggerer.regression(GIT_BRANCH : "master"){
 
                     }
                 }
