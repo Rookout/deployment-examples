@@ -1,8 +1,8 @@
 regressionTest {
-    FILE_PATH =  "src/app.ts"
-    LINE_NUM =  "33"
-    SHA =  "7559c53d67fe1aaa41d1e7162a92aca9868edd25c565e219b04b703693910c65"
-    TRIGGER_TIME = "4"
+    FILE_PATH =  "electron_main.js"
+    LINE_NUM =  "418"
+    SHA =  "3d26b206a91768059d6be90545428a13c25fc9dc8fe1a8d054aeb45970ee27b4"
+    TRIGGER_TIME = "5"
     LANG = "NodeJs"
-    BACKGROUND_IMAGE_CMD = "node /dist/app.js &"
+    BACKGROUND_IMAGE_CMD = "node /electron_main.js &"
 }

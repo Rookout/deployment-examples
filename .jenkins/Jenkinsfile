@@ -9,6 +9,8 @@ podCreator.initMain(label: label) {
         print(pwd())
         container('rookout-helm') {
             def myRepo = checkout scm
+            env.GIT_BRANCH = myRepo.GIT_BRANCH.replaceAll('/|_', '-') // Replacing characters we cannot support in deploy branch
+
             if ("master".equals(env.GIT_BRANCH)) {
                 stage ('Getting test') {
                     print(pwd())
