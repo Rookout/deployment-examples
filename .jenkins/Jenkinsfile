@@ -27,9 +27,11 @@ podCreator.initMain(label: label) {
                         TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}")
                     }
                 }
-                stage ('Run the tests') {
-                    triggerer.regression(GIT_BRANCH : "master"){
+                if ("master".equals(env.GIT_BRANCH)) {
+                    stage ('Run the tests') {
+                        triggerer.regression(GIT_BRANCH : "master"){
 
+                        }
                     }
                 }
             }
