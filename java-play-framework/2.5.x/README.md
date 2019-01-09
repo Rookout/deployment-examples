@@ -37,7 +37,7 @@ This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
     ```
   1. Add the Rookout Java Agent to your configuration
     ```
-    javaAgents += "com.rookout" % "rook" % "0.1.9" % "dist"
+    javaAgents += "com.rookout" % "rook" % "0.1.47" % "dist"
     ```
 
 ## Debug Playframework
