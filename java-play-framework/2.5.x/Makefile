@@ -1,8 +1,7 @@
 build prod:
 		sbt dist		
 		unzip target/universal/play-java-starter-example-1.0-SNAPSHOT.zip 
-		cd target/scala-2.12
-		mkdir StandBy
+		mkdir target/scala-2.12/StandBy
 		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sources.jar StandBy/
 		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar StandBy/
 		cd StandBy
