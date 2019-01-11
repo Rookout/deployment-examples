@@ -3,8 +3,8 @@ build prod:
 		unzip target/universal/play-java-starter-example-1.0-SNAPSHOT.zip 
 		cd target/scala-2.12
 		mkdir StandBy
-		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sources.jar StandBy
-		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar StandBy
+		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sources.jar StandBy/
+		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar StandBy/
 		cd StandBy
 		unzip play-java-starter-example_2.12-1.0-SNAPSHOT-sources.jar
 		jar uf play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar META-INF
@@ -15,7 +15,8 @@ build prod:
 		jar uf play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar Module.java
 		jar uf play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar application.conf
 		jar uf play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar logback.xml
-		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar ../../../play-java-starter-example-1.0-SNAPSHOT/lib
+		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar ../../../play-java-starter-example-1.0-SNAPSHOT/lib/
+		cd ../../../play-java-starter-example-1.0-SNAPSHOT/lib/
 		mv play-java-starter-example_2.12-1.0-SNAPSHOT-sans-externalized.jar play-java-starter-example.play-java-starter-example-1.0-SNAPSHOT-sans-externalized.jar
 		cd play-java-starter-example-1.0-SNAPSHOT/bin
 		../../play-java-starter-example-1.0-SNAPSHOT/bin/play-java-starter-example -Dplay.file=../conf/application.conf
