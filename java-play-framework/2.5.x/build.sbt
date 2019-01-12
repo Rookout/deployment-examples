@@ -10,8 +10,6 @@ crossScalaVersions := Seq("2.11.12", "2.12.4")
 
 libraryDependencies += guice
 
-unmanagedSourceDirectories in Compile += (baseDirectory.value / "target/scala-2.12/play-java-starter-example_2.12-1.0-SNAPSHOT-sources.jar")
-
 // Test Database
 libraryDependencies += "com.h2database" % "h2" % "1.4.197"
 
