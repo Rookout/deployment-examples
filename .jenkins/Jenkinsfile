@@ -1,4 +1,3 @@
-
 import org.rookout.files.Utilities
 import org.rookout.testsUtil.TestUtilities
 
@@ -12,7 +11,7 @@ podCreator.initMain(label: label) {
             def myRepo = checkout scm
             env.GIT_BRANCH = myRepo.GIT_BRANCH.replaceAll('/|_', '-') // Replacing characters we cannot support in deploy branch
 
-            if ("test-reg-play".equals(env.GIT_BRANCH)) {
+            if ("reg-test-play".equals(env.GIT_BRANCH)) {
                 stage ('Getting test') {
                     print(pwd())
                     def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
@@ -28,7 +27,7 @@ podCreator.initMain(label: label) {
                         TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}")
                     }
                 }
-                 if ("master".equals(env.GIT_BRANCH)) {
+                if ("master".equals(env.GIT_BRANCH)) {
                     stage ('Run the tests') {
                         triggerer.regression(GIT_BRANCH : "master"){
 
@@ -39,3 +38,4 @@ podCreator.initMain(label: label) {
         }
     }
 }
+
