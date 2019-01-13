@@ -27,10 +27,10 @@ echo "case object Temp" > Temp.scala && \
 sbt compile && \
 rm -r project && rm build.sbt && rm Temp.scala && rm -r target
 
-ADD app app
-ADD conf conf
-ADD public public
-ADD build.sbt build.sbt
-ADD project project
+WORKDIR /usr/src/app
+COPY . /usr/src/app
+RUN  cd /usr/src/app
 RUN sbt dist
-
+RUN unzip target/universal/play-java-starter-example-1.0-SNAPSHOT.zip
+RUN chmod +x adding_src.sh
+RUN ./adding_src.sh
