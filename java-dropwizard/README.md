@@ -10,6 +10,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 The entire app is only two Java files and a pom.xml. The Java files are split into the application (with the main method) and the resource (i.e. the routes).
 
+[source repository](https://github.com/pgr0ss/dropwizard-example)
 ## Setting Up The Application
 
 To test the example application run the following commands:
