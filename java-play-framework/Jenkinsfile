@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "5d017dad590336622e1498594f6767dffaf8f8a4c469b144ebd93f18249b916c"
     URL_FOR_TRIGGER = "http://localhost:9000/message"
     LANG = "Java"
-    BACKGROUND_IMAGE_CMD = "/usr/src/app/play-java-starter-example-1.0-SNAPSHOT/bin/play-java-starter-example -Dplay.file=../conf/application.conf &"
+    BACKGROUND_IMAGE_CMD = "/usr/src/app//play-java-starter-example-1.0-SNAPSHOT/bin/play-java-starter-example -Dplay.file=/usr/src/app/play-java-starter-example-1.0-SNAPSHOT//conf/application.conf &"
 }
