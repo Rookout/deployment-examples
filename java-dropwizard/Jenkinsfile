@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "src/main/java/Resource.java"
+    LINE_NUM =  "12"
+    SHA =  "4257bf2eeb19cf6f22bbae7407ab25ad5a4526bb82c161bdaa7a6e73a7f76f92"
+    URL_FOR_TRIGGER = "http://localhost:8080/hello"
+    LANG = "Java"
+    BACKGROUND_IMAGE_CMD = "java -jar target/dropwizard-example-1.0-SNAPSHOT.jar server &"
+}
