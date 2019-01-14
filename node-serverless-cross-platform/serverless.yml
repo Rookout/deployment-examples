@@ -1,8 +1,5 @@
 service: aws-nodejs
 
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
 app: serverless-app
 tenant: your-tenant
 
