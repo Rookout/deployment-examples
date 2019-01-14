@@ -34,4 +34,3 @@ RUN sbt dist
 RUN unzip target/universal/play-java-starter-example-1.0-SNAPSHOT.zip
 RUN chmod +x adding_src.sh
 RUN ./adding_src.sh
-RUN play-java-starter-example-1.0-SNAPSHOT/bin/play-java-starter-example -Dplay.file=../conf/application.conf
