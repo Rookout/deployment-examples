@@ -39,7 +39,7 @@ To test the example application run the following commands:
 
 1. Add a Breakpoint at src/main/java/Resource.java : Line 12
 
-1. To hit the Hello.
+1. Trigger the Breakpoint by navigating to our HelloWorld route:
 
     http://localhost:8080/hello
     
