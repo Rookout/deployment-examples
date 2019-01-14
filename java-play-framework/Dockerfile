@@ -1,5 +1,5 @@
 # Pull base image
-FROM openjdk:11.0.1
+FROM openjdk:8
 
 # Env variables
 ENV SCALA_VERSION 2.12.8
@@ -34,3 +34,4 @@ RUN sbt dist
 RUN unzip target/universal/play-java-starter-example-1.0-SNAPSHOT.zip
 RUN chmod +x adding_src.sh
 RUN ./adding_src.sh
+RUN play-java-starter-example-1.0-SNAPSHOT/bin/play-java-starter-example -Dplay.file=../conf/application.conf
