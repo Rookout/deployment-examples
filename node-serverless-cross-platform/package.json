@@ -1,7 +1,7 @@
 {
-  "name": "serverless-windows",
+  "name": "serverless-cross-platform",
   "version": "1.0.0",
-  "description": "example deploying rookout on node serverless app in windows",
+  "description": "example deploying rookout on node serverless app in non-linux machine",
   "main": "index.js",
   "scripts": {
     "deploy": "docker build --tag serverless-deployment . && docker run serverless-deployment"
