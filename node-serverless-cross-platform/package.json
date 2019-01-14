@@ -4,7 +4,6 @@
   "description": "example deploying rookout on node serverless app in windows",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "docker build --tag serverless-deployment . && docker run serverless-deployment"
   },
   "author": "",
