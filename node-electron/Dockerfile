@@ -9,6 +9,10 @@ RUN apt-get update && \
   libnotify-dev libgnome-keyring-dev libgconf2-dev libasound2-dev libcap-dev \
   libcups2-dev libxtst-dev libxss1 libnss3-dev gcc-multilib g++-multilib
 
+# Install Chrome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+
 RUN npm install --save rookout --runtime=electron --target=4.0.1
 
 RUN npm install electron --save-dev
