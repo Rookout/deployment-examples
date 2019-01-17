@@ -16,5 +16,3 @@ RUN npm install electron --save-dev
 ADD electron_main.js electron_main.js
 
 ADD index.html index.html
-
-RUN npm start
