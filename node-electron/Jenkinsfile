@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "3d26b206a91768059d6be90545428a13c25fc9dc8fe1a8d054aeb45970ee27b4"
     TRIGGER_TIME = "5"
     LANG = "NodeJs"
-    BACKGROUND_IMAGE_CMD = "node /electron_main.js &"
+    BACKGROUND_IMAGE_CMD = "npm start &"
 }
