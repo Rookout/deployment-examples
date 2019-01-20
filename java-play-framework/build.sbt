@@ -19,4 +19,3 @@ libraryDependencies += "org.awaitility" % "awaitility" % "3.1.5" % Test
 
 // Make verbose tests
 testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
-javaAgents += "com.rookout" % "rook" % "0.1.49" % "dist"
