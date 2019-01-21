@@ -2,36 +2,35 @@ import org.rookout.files.Utilities
 import org.rookout.testsUtil.TestUtilities
 
 def label = "worker-${UUID.randomUUID().toString()}"
-def testsNames  = null
+def testsNames = null
 
 podCreator.initMain(label: label) {
     node(label) {
         print(pwd())
         container('rookout-helm') {
             def myRepo = checkout scm
-            env.GIT_BRANCH = myRepo.GIT_BRANCH.replaceAll('/|_', '-') // Replacing characters we cannot support in deploy branch
+            env.GIT_BRANCH = myRepo.GIT_BRANCH.replaceAll('/|_', '-')
+            // Replacing characters we cannot support in deploy branch
             def testFolder = "master".equals(env.GIT_BRANCH) ? "regression-test" : "sandbox-regression-test"
+            stage('Getting test') {
+                print(pwd())
+                def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
+                testsNames = testsNamesRaw.values().toList()
+                println(testsNames)
+            }
+            stage('Creating tests and building docker files') {
+                def scriptToUse = libraryResource 'generate_tests.groovy'
+                for (int i = 0; i < testsNames.size(); i++) {
+                    def jobName = "${testsNames[i]}".toString()
+                    def dockerTag = TestUtilities.getDockerTagNameForRegression(jobName)
+                    sh("cd ${jobName} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
+                    TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
+                }
+            }
             if ("master".equals(env.GIT_BRANCH)) {
-                stage ('Getting test') {
-                    print(pwd())
-                    def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
-                    testsNames = testsNamesRaw.values().toList()
-                    println(testsNames)
-                }
-                stage ('Creating tests and building docker files') {
-                    def scriptToUse = libraryResource 'generate_tests.groovy'
-                    for (int i = 0; i < testsNames.size(); i++) {
-                        def jobName = "${testsNames[i]}".toString()
-                        def dockerTag = TestUtilities.getDockerTagNameForRegression(jobName)
-                        sh("cd ${jobName} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
-                        TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
-                    }
-                }
-                if ("master".equals(env.GIT_BRANCH)) {
-                    stage ('Run the tests') {
-                        triggerer.regression(GIT_BRANCH : "master"){
+                stage('Run the tests') {
+                    triggerer.regression(GIT_BRANCH: "master") {
 
-                        }
                     }
                 }
             }
