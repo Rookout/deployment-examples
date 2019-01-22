@@ -8,17 +8,6 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
-## ETL Agent Setup
-
-1. Download and run the Rookout ETL Agent in a container:  
-    
-    ```bash
-    $ docker pull rookout/agent
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
-    ```
-
-For more information about Docker go [here](https://www.docker.com/).
-
 ## Rookout Integration Explained
 
 There are 4 simple steps to integrate Rookout into your existing Node-Electron application:
