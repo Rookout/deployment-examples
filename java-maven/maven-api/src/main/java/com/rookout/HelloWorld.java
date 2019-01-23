@@ -8,12 +8,12 @@ import com.rookout.rook.RookOptions;
 
 public class HelloWorld {
     public static void main(String[] args) {
+        Javalin app = Javalin.start(7000);
 
         RookOptions opts = new RookOptions();
-        opts.token = "d1fee9a4a26620c993fb180677fad4ea6939677b82e6082265f889026f1cd71a";
+        opts.token = "<Your-Token>";
         API.start(opts);
 
-        Javalin app = Javalin.start(7000);
         app.get("/", new Handler() {
             public void handle(Context ctx) throws Exception {
                 ctx.result("Hello World");
