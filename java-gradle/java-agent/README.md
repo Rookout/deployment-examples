@@ -50,7 +50,7 @@ We have added Rookout to the original project by:
     ```
 2. Specifying the Rookout Java Agent when running with gradle:
     ```bash
-        jvmArgs = ["-javaagent:${configurations.rookoutAgent.singleFile}"]
+   jvmArgs = ["-javaagent:${configurations.rookoutAgent.singleFile}"]
     ```
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
