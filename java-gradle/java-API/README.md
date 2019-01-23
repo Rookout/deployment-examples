@@ -14,10 +14,6 @@ This sample may be out of date. If you face any issues, please reach out to mail
      ```bash
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-gradle
     ```
-2. Export organization token:
-     ```bash
-     export ROOKOUT_TOKEN=Your-Token
-     ```
 3. Run using gradle:
     ```bash
     $ ./gradlew jar run
