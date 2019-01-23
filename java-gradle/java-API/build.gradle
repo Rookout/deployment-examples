@@ -25,6 +25,10 @@ jar {
     from sourceSets.main.allSource
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
 task run(type: JavaExec) {
    classpath = files(jar.archivePath)
    classpath += sourceSets.main.runtimeClasspath
