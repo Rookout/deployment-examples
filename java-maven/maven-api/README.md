@@ -42,7 +42,7 @@ This example is based of the Java javalin "Hello-World" example available [here]
        import com.rookout.rook.RookOptions;
     ```
     
-3. Start running the api
+3. Start running the API
     ```java
        RookOptions opts = new RookOptions();
        opts.token = "<Your-Token>";
