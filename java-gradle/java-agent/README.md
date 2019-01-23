@@ -1,13 +1,12 @@
-# Quickstart for Java + Gradle and Docker-compose
+# Quickstart for Java + Gradle
 
-A sample application for using Rookout to debug a Java app built using Gradle, and deployed using Docker Compose.
+A sample application for using Rookout to debug a Java app built using Gradle.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
-* [Running locally](#running-locally)
-* [Using docker compose](#using-docker-compose)
+* [Running locally](#Running local application)
 * [Rookout Integration explained](#rookout-integration-explained)
 
 ## Running local application
@@ -49,9 +48,9 @@ We have added Rookout to the original project by:
         rookoutAgent "com.rookout:rook:0.1.36"
     }
     ```
-2. Specifying the Rookout Java Agent when running:
+2. Specifying the Rookout Java Agent when running with gradle:
     ```bash
-        java  -javaagent:rook.jar -jar build/libs/rookoutDemo-1.0.0.jar
+        jvmArgs = ["-javaagent:${configurations.rookoutAgent.singleFile}"]
     ```
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
