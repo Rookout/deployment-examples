@@ -51,7 +51,13 @@ We have added Rookout API to the original project by:
         import com.rookout.rook.API;
         import com.rookout.rook.RookOptions;
     ```
-
+    
+3. Start running the api
+    ```java
+       RookOptions opts = new RookOptions();
+       opts.token = "<Your-Token>";
+       API.start(opts);
+    ```
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://github.com/tipsy/javalin/
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
