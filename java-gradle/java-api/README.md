@@ -48,8 +48,8 @@ We have added Rookout API to the original project by:
     ```
 2. Importing rookout API
     ```java
-        import com.rookout.rook.API;
-        import com.rookout.rook.RookOptions;
+       import com.rookout.rook.API;
+       import com.rookout.rook.RookOptions;
     ```
     
 3. Start running the api
