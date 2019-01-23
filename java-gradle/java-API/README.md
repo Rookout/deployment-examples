@@ -1,6 +1,6 @@
 # Quickstart for Java + Gradle
 
-A sample application for using Rookout to debug a Java app built using Gradle, and deployed using Docker Compose.
+A sample application for using Rookout SDK loaded using a simple API, to debug a Java app built using Gradle. 
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
@@ -14,6 +14,8 @@ This sample may be out of date. If you face any issues, please reach out to mail
      ```bash
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-gradle
     ```
+2. Add your otganization token to line 14 at HelloWorld.java
+
 3. Run using gradle:
     ```bash
     $ ./gradlew jar run
@@ -26,7 +28,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 This example is based of the Java javalin "Hello-World" example available [here].
 
-We have added Rookout to the original project by:
+We have added Rookout API to the original project by:
 1. Adding sources and dependencies to the project jar (`build.gradle`):
     ```properties
     // grab resources
@@ -41,12 +43,13 @@ We have added Rookout to the original project by:
     
     // Running the Rookout Java Agent
     dependencies {
-        rookoutAgent "com.rookout:rook:0.1.36"
+        compile group: 'com.rookout', name: 'rook', version: '0.1.51'
     }
     ```
-2. Specifying the Rookout Java Agent when running:
-    ```bash
-        java  -javaagent:rook.jar -jar build/libs/rookoutDemo-1.0.0.jar
+2. Importing rookout API
+    ```java
+        import com.rookout.rook.API;
+        import com.rookout.rook.RookOptions;
     ```
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
