@@ -4,27 +4,28 @@ A sample application for debugging Java + Oracle WebLogic using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
-* [Running locally](#running-locally)
-* [Using docker compose](#using-docker-compose)
+* [Running the app](#running-the-app)
 * [Rookout Integration explained](#rookout-integration-explained)
-* [Known Issues](#known-issues)
 
-## Running locally
-1. Run the Rookout ETL Agent:
-    ``` bash
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
+
+## Running the app
+1. [Download the Rookout Java Agent](http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST)
+1. Add the Rookout Java Agent and set your organization token in the `startWebLogic.sh` script
+    ```bash
+        JAVA_OPTIONS="${SAVE_JAVA_OPTIONS} -javaagent=<ROOK_LOCATION>/rook.jar"
+        export ROOKOUT_TOKEN="<Your-Rookout-Token>"
     ```
-1. Add the Rookout Java Agent as described in [Rookout Integration Explained](#rookout-integration-explained).
-1. Build the sample helloworld WebLogic application:
+1. Start your WebLogic server
+1. Build and deploy the WebLogic webservice:
+    You can change the weblogic configuration in the `weblogic-helloworld/build.xml`  
+    default url is `localhost:7001`  
+    default username/password is `weblogic:weblogic12`
     ``` bash
     $ cd weblogic-helloworld
-    $ ant
+    $ ant -lib $WEBLOGIC_HOME/wlserver/server/lib/weblogic.jar
     ```
-    The built web application is now situated in `build/weblogic-helloworld.war`
-1. Start your WebLogic domain `sh WEBLOGIC_HOME/user_projects/domains/DOMAIN_NAME/bin/startWebLogic.sh`
-1. Deploy to WebLogic using the console (default url [http://localhost:7001/console](http://localhost:7001/console))
+    The built web application is now situated in `output/helloWorldEar/helloWorldEar.war`
+1. Test your WebService using the [WebLogic Test Client](http://localhost:7001/ws_utc/begin.do?wsdlUrl=http://localhost:7001/HelloWorldImpl/HelloWorldService?WSDL)
 1. Go to [app.rookout.com](https://app.rookout.com/) and start debugging !
 
 ## Rookout Integration explained
@@ -32,9 +33,23 @@ This sample may be out of date. If you face any issues, please reach out to mail
 This example is based of the Java javalin "Hello-World" example available [here].
 
 We have added Rookout to the original project by:
-1. Adding source files to the project .war in the ant task:
+1. Including source files and compiling with debug information in the ant task:
     ```xml
-       <fileset dir="." includes="${source-directory}/**" />
+       <target name="build-service">
+           <jwsc
+                   srcdir="src"
+                   destdir="${ear-dir}"
+                   debug="true">
+               <module name="${ear.deployed.name}">
+                   <jws file="examples/webservices/hello_world/HelloWorldImpl.java"
+                        type="JAXWS"/>
+                   <zipfileset dir=".">
+                       <include name="src/**"/>
+                   </zipfileset>
+               </module>
+       
+           </jwsc>
+       </target>
     ```
 1. Downloading the Rookout Java Agent available on [maven central]:
     ```bash
@@ -49,10 +64,11 @@ We have added Rookout to the original project by:
    ```bash
         JAVA_OPTIONS="${SAVE_JAVA_OPTIONS} -javaagent=ROOK_LOCATION/rook.jar"
    ```
+   - Set your `ROOKOUT_TOKEN`:
+   ```bash
+        export ROOKOUT_TOKEN="<Your-Rookout-Token>"
+   ```
 
-## Known Issues
-
-- Breakpoints will be showing a Warning: Source file not found. This is caused by the way WebLogic runs web applications, the rook is still working properly but will not be able to know if the file used is matching the live one.
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook

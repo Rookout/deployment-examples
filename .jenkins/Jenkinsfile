@@ -21,17 +21,28 @@ podCreator.initMain(label: label) {
             stage('Creating tests and building docker files') {
                 def scriptToUse = libraryResource 'generate_tests.groovy'
                 for (int i = 0; i < testsNames.size(); i++) {
+<<<<<<< HEAD
                     def dirPath = "${testsNames[i]}".toString()
                     def jobName = "${testsNames[i]}".toString().replace("/","-")
                     def dockerTag = TestUtilities.getDockerTagNameForRegression(jobName)
                     sh("cd ${dirPath} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
+=======
+                    def jobName = "${testsNames[i]}".toString()
+                    def dockerTag = TestUtilities.getDockerTagNameForRegression(jobName)
+                    sh("cd ${jobName} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
+>>>>>>> 53974a3878e69ae90f6ca09c8d22b4d2b74462a2
                     TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
                 }
             }
             if ("master".equals(env.GIT_BRANCH)) {
                 stage('Run the tests') {
                     triggerer.regression(GIT_BRANCH: "master") {
+<<<<<<< HEAD
 
+=======
+                      
+                        }
+>>>>>>> 53974a3878e69ae90f6ca09c8d22b4d2b74462a2
                     }
                 }
             }
