@@ -1,6 +1,6 @@
 regressionTest {
     FILE_PATH =  "src/main/java/com/rookout/HelloWorld.java"
-    LINE_NUM =  "16" 
+    LINE_NUM =  "24"
     SHA =  "7459814efb8eb2c0caf3956e441f159252ece842aa714be32ad350dd5e331d9b"
     URL_FOR_TRIGGER = "http://localhost:7000/hello/ori"
     LANG = "Java"
