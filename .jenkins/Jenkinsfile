@@ -11,7 +11,7 @@ podCreator.initMain(label: label) {
             def myRepo = checkout scm
             env.GIT_BRANCH = myRepo.GIT_BRANCH.replaceAll('/|_', '-')
             // Replacing characters we cannot support in deploy branch
-            def testFolder = "master".equals(env.GIT_BRANCH) ? "regression-test" : "sandbox-regression-test"
+            def testFolder = "adding-maven-api".equals(env.GIT_BRANCH) ? "regression-test" : "sandbox-regression-test"
             stage('Getting test') {
                 print(pwd())
                 def testsNamesRaw = Utilities.getAllDirThatMatchFile(this, '.', 'Jenkinsfile')
