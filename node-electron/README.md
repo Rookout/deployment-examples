@@ -20,7 +20,7 @@ There are 4 simple steps to integrate Rookout into your existing Node-Electron a
 
 2. Export Organization Token:
     ```bash
-    	$ export ROOKOUT_TOKEN=<Your-Token>
+	$ export ROOKOUT_TOKEN=<Your-Token>
     ```
 
 3. Adding a require statement to the project entry file:
