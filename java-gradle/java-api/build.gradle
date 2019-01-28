@@ -29,7 +29,7 @@ task run(type: JavaExec) {
    classpath = files(jar.archivePath)
    classpath += sourceSets.main.runtimeClasspath
    main = 'com.HelloWorld.HelloWorld'
-    if (!System.getenv("DISABLE_ROOKOUT")) {
-        jvmArgs = ["-javaagent:${configurations.rookoutAgent.singleFile}"]
-    }
+   if (!System.getenv("DISABLE_ROOKOUT")) {
+      jvmArgs = ["-javaagent:${configurations.rookoutAgent.singleFile}"]
+   }
 }
