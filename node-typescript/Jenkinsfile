@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "src/app.ts"
-    LINE_NUM =  "33" 
-    SHA =  "7559c53d67fe1aaa41d1e7162a92aca9868edd25c565e219b04b703693910c65"
+    LINE_NUM =  "32"
+    SHA =  "6c656f2a240b45b26ba36292e9e29619220224c815ebb9d5ded2f4c60c42e9a7"
     TRIGGER_TIME = "4"
     LANG = "NodeJs"
     BACKGROUND_IMAGE_CMD = "node /dist/app.js &"
