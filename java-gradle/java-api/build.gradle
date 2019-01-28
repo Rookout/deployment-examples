@@ -21,7 +21,6 @@ jar {
                 'Implementation-Version': version,
                 'Main-Class': 'com.HelloWorld.HelloWorld'
     }
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } //Collect all dependecies for the jar
     from sourceSets.main.allSource
 }
 
