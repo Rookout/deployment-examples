@@ -5,6 +5,9 @@ version = '1.0.0'
 
 description = """rookoutHellopApp"""
 
+configurations {
+    rookoutAgent
+}
 
 repositories {
      maven { url "http://repo1.maven.org/maven2" }
@@ -14,6 +17,7 @@ dependencies {
     compile group: 'io.javalin', name: 'javalin', version:'1.3.0'
     compile 'org.slf4j:slf4j-nop:1.7.25'
     compile group: 'com.rookout', name: 'rook', version: '0.1.51'
+    rookoutAgent 'com.rookout:rook:0.1.39'
 }
 
 jar {
