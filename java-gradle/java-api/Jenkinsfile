@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "0e72c93aba4a7ae483cba99d886360629a57ceca73a26983327aee27e6696680"
     URL_FOR_TRIGGER = "http://localhost:7000/hello/ori"
     LANG = "Java"
-    BACKGROUND_IMAGE_CMD = "/gradlew tasks &"
+    BACKGROUND_IMAGE_CMD = "/gradlew run &"
 }
