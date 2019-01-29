@@ -1,3 +1,3 @@
 FROM openjdk:8-slim
 ADD . .
-RUN ./gradlew jar 
+RUN ./gradlew build
