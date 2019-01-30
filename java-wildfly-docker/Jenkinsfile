@@ -2,7 +2,7 @@ regressionTest {
     FILE_PATH =  "src/main/java/org/jboss/as/quickstarts/helloworld/HelloService.java"
     LINE_NUM =  "28"
     SHA =  "cc08dd8ff4994d6e3ba608fd587a3e2a9f3fb0e18ddc10e4e3d62ad3f8b4f3b9"
-    URL_FOR_TRIGGER = "http://127.0.0.1:8080/wildfly-helloworld/"
+    URL_FOR_TRIGGER = "http://127.0.0.1:8080/wildfly-helloworld/HelloWorld"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "bash /opt/jboss/wildfly/bin/standalone.sh -bmanagement 0.0.0.0 &"
 }
