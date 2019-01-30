@@ -20,7 +20,7 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 ## Running locally
 **Requirements:** `maven`, `docker`
 
-1. Set your organization token in `rookout-conf/standalone.conf` on line 38
+1. Set your organization token in `rookout-conf/standalone.conf` on line 39
 
 1. Build the web application: in the `helloworld` directory run `mvn package`
 
