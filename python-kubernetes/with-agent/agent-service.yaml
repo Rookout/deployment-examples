@@ -5,9 +5,12 @@ metadata:
   labels:
     product: rookout
     app: agent
+    type: service
 spec:
   selector:
+    product: rookout
     app: agent
+    type: deployment
   type: ClusterIP
   ports:
     - protocol: TCP
