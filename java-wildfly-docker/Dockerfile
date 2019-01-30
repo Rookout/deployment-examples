@@ -12,4 +12,4 @@ ADD --chown=jboss:jboss helloworld/rookout /var/log/rookout
 ADD --chown=jboss:jboss http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST /opt/jboss/wildfly/lib/rook.jar
 ADD helloworld/rookout-conf/standalone.conf /opt/jboss/wildfly/bin/
 EXPOSE 8080
-RUN chmod +x /opt/jboss/wildfly/bin/standalone.sh
+RUN chmod +x helloworld/opt/jboss/wildfly/bin/standalone.sh
