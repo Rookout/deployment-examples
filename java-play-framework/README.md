@@ -15,7 +15,6 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 2.  Run the following commands:
     ``` bash
-    $ cd 2.5.x
     $ make build prod
     ```
 ## Running with sbt run
@@ -39,7 +38,6 @@ This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
     ```
     javaAgents += "com.rookout" % "rook" % "0.1.47" % "dist"
     ```
-  1. When deploying play application, sbt separates the source files and the class files into two different .jar files while rook needs both of them together. `adding_src.sh` is a script that combines between the two .jar files.
 ## Debug Playframework
 
 1. And then go to http://localhost:9000 to see the running web application.
