@@ -7,5 +7,13 @@ app = Sanic()
 async def test(request):
     return json({'hello': 'world'})
 
+@app.route('/hello')
+async def test(request):
+    return json({'hello': 'world'})
+
+print("Starting rook from-", __file__)
+from rook import auto_start
+print("Rook start has finished!")
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=5000)
