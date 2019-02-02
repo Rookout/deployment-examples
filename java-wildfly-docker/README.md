@@ -10,7 +10,7 @@ There are 3 simple steps to integrate Rookout into your existing Java Wildfly we
 
 1. Add the source files to your built .jar
 
-1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker-agentless/helloworld/rookout-conf).
+1. Add our Wildfly standalone config script [available here](https://github.com/Rookout/deployment-examples/tree/master/java-wildfly-docker/helloworld/rookout-conf).
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
@@ -20,7 +20,7 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 ## Running locally
 **Requirements:** `maven`, `docker`
 
-1. Set your organization token in `rookout-conf/standalone.conf` on line 38
+1. Set your organization token in `rookout-conf/standalone.conf` on line 39
 
 1. Build the web application: in the `helloworld` directory run `mvn package`
 
