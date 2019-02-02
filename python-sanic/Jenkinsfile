@@ -1,5 +1,5 @@
 regressionTest {
-    FILE_PATH =  "flask_rookout.py"
+    FILE_PATH =  "sanic_rookout.py"
     LINE_NUM =  "8"
     SHA =  "ff71d5f57fc2178d648a03834696d1e3650c050dfd1a1ecacb86f25610478ffe"
     URL_FOR_TRIGGER = "http://localhost:5000/"
