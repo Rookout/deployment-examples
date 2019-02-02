@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "ff71d5f57fc2178d648a03834696d1e3650c050dfd1a1ecacb86f25610478ffe"
     URL_FOR_TRIGGER = "http://localhost:5000/render"
     LANG = "Python"
-    BACKGROUND_IMAGE_CMD = "python /flask_rookout.py &"
+    BACKGROUND_IMAGE_CMD = "python3 /sanic_rookout.py &"
 }
