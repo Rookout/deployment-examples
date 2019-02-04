@@ -34,7 +34,7 @@ async def load_rookout():
                 print("Rookout occured an error while loading")
             print("Succesfully imported rook")
     except KeyError:
-        print("Please set the environment variable FOO")
+        print("Please set the environment variable ROOKOUT_TOKEN")
 
 
 def start_server():
