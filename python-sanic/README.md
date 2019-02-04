@@ -14,6 +14,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
     git clone https://github.com/Rookout/deployment-examples/tree/master/python-sanic
     pip3 install -r requirements.txt
 ```
+
 2. *Export organization token*:
  ```bash
  	export ROOKOUT_TOKEN=<Your Rookout Token>
@@ -28,6 +29,12 @@ This sample may be out of date. If you face any issues, please reach out to mail
 4. *Enjoy the debugging*:
 	Go to https://app.rookout.com and start debugging :)
 
+## Rookout Integration explained
+1. When running number of workers that handle requests in parallel, we need to import for each process.
+```python
+    async def load_rookout():
+    	from rook import auto_start
+```
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 
