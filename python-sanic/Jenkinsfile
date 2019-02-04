@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "sanic_rookout.py"
-    LINE_NUM =  "24"
-    SHA =  "da0ed1838a7b0a40e4805fed09f0108a26919165cb46a61d3531e251fe2590e6"
+    LINE_NUM =  "20"
+    SHA =  "b0f82540025ed76d037608695d6c1fddf657946543f23b5aa4f4f37e8c6a6f13"
     URL_FOR_TRIGGER = "http://localhost:5000/await"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "python3 /sanic_rookout.py &"

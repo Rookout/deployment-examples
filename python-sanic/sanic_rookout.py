@@ -1,7 +1,3 @@
-# print("Starting rook from-", __file__)
-# from rook import auto_start
-# print("Rook start has finished!")
-
 from sanic import Sanic
 import os
 from sanic import response
