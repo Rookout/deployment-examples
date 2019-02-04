@@ -2,44 +2,40 @@
 # from rook import auto_start
 # print("Rook start has finished!")
 
-from .rookout_loader import load_rookout
-from sanic import Blueprint, Sanic
-from sanic.response import file, json
+from sanic import Sanic
 import os
+from sanic import response
+from sanic.exceptions import ServerError
 
 app = Sanic(__name__)
-blueprint = Blueprint('name', url_prefix='/my_blueprint')
-blueprint2 = Blueprint('name2', url_prefix='/my_blueprint2')
-blueprint3 = Blueprint('name3', url_prefix='/my_blueprint3')
+
+@app.route("/")
+async def test_async(request):
+    return response.json({"test": True})
+
+@app.route("/exception")
+def exception(request):
+    raise ServerError("It's dead jim")
+
+@app.route("/await")
+async def test_await(request):
+    import asyncio
+    await asyncio.sleep(5)
+    return response.text("I'm feeling sleepy")
 
 
-@blueprint.route('/foo')
-async def foo(request):
-    return json({'msg': 'hi from blueprint'})
 
+async def load_rookout():
+    try:
+        if os.environ["ROOKOUT_TOKEN"]:
+            try:
+                from rook import auto_start
+            except:
+                print("Rookout occured an error while loading")
+            print("Succesfully imported rook")
+    except KeyError:
+        print("Please set the environment variable FOO")
 
-@blueprint2.route('/foo')
-async def foo2(request):
-    return json({'msg': 'hi from blueprint2'})
-
-
-@blueprint3.route('/foo')
-async def index(request):
-    return await file('websocket.html')
-
-
-@app.websocket('/feed')
-async def foo3(request, ws):
-    while True:
-        data = 'hello!'
-        print('Sending: ' + data)
-        await ws.send(data)
-        data = await ws.recv()
-        print('Received: ' + data)
-
-app.blueprint(blueprint)
-app.blueprint(blueprint2)
-app.blueprint(blueprint3)
 
 def start_server():
     app.add_task(load_rookout())
@@ -50,3 +46,4 @@ def start_server():
             workers=3)
 
 start_server()
+load_rookout()
