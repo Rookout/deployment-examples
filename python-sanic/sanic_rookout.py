@@ -26,15 +26,7 @@ async def test_await(request):
 
 
 async def load_rookout():
-    try:
-        if os.environ["ROOKOUT_TOKEN"]:
-            try:
-                from rook import auto_start
-            except:
-                print("Rookout occured an error while loading")
-            print("Succesfully imported rook")
-    except KeyError:
-        print("Please set the environment variable ROOKOUT_TOKEN")
+    from rook import auto_start
 
 
 def start_server():
