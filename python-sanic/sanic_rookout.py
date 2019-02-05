@@ -34,4 +34,3 @@ def start_server():
             workers=3)
 
 start_server()
-load_rookout()
