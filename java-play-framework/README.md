@@ -19,7 +19,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
     ```
 
 ## Rookout Integration explained
-This example make sure to set up R/ookout`s SDK as Java Agent for Play Framework
+This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
   1. Add Java Agent plugin
     ```
     addSbtPlugin("com.lightbend.sbt" % "sbt-javaagent" % "0.1.4")
