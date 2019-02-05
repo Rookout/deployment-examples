@@ -6,7 +6,7 @@ This is a starter application that shows how Play works with Rookout.
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
-## Running with sbt dist
+## Running with Rookout
 
 1. Export Organization Token:
     ``` bash
@@ -17,15 +17,9 @@ This sample may be out of date. If you face any issues, please reach out to mail
     ``` bash
     $ make build prod
     ```
-## Running with sbt run
-Create lib folder and download The Rookout SDK (aka "Rook")
- 
-``` bash
-    $ make run dev
-```
 
 ## Rookout Integration explained
-This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
+This example make sure to set up R/ookout`s SDK as Java Agent for Play Framework
   1. Add Java Agent plugin
     ```
     addSbtPlugin("com.lightbend.sbt" % "sbt-javaagent" % "0.1.4")
