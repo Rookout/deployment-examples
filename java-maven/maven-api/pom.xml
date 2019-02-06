@@ -31,7 +31,7 @@
       <dependency>
           <groupId>com.rookout</groupId>
           <artifactId>rook</artifactId>
-          <version>0.1.51</version>
+          <version>0.1.54</version>
       </dependency>
   </dependencies>
     <build>
