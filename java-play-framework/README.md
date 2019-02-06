@@ -13,13 +13,13 @@ This sample may be out of date. If you face any issues, please reach out to mail
     $ export ROOKOUT_TOKEN=<your-token>
     ```
 
-2.  Run the following commands:
+2.  Run the following command:
     ``` bash
     $ make build prod
     ```
 
 ## Rookout Integration explained
-This example make sure to set up Rookout`s SDK as Java Agent for Play Framework
+This example makes sure to set up Rookout`s SDK as Java Agent for Play Framework
   1. Add Java Agent plugin
     ```
     addSbtPlugin("com.lightbend.sbt" % "sbt-javaagent" % "0.1.4")
