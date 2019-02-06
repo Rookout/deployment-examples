@@ -15,7 +15,7 @@ This sample may be out of date. If you face any issues, please reach out to mail
     $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-maven
     $ mvn package
     ```
-2. Specifying the Rookout Java Agent when running:
+2. Run:
     ```bash
     $ java -jar target/rookoutDemo-1.0.0-jar-with-dependencies.jar
     ```
