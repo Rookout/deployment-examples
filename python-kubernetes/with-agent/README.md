@@ -1,6 +1,7 @@
 # Quickstart for debugging Kubernetes deployments
 
 This is a full example for deploying an application with Rookout using Kubernetes.
+Here we are using a local ETL Agent deployed in the cluster that the SDK will connect to.
 
 ## Pre-requisites:
 
