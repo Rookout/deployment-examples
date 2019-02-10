@@ -1,21 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: rookout-demo-app-deployment
   labels:
-    name: hello-world
+    name: rookout-demo-app-deployment
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: hello-world
+        name: rookout-demo-app-deployment
     spec:
       containers:
-      - name: hello-world
-        image: rookout/hello-world-kubernetes:latest
+      - name: rookout-demo-app
+        image: rookout/tutorial-python
+        imagePullPolicy: Always
         ports:
-        - containerPort: 8888
+        - containerPort: 5000
         env:
           - name: ROOKOUT_AGENT_HOST
             value: 'rookout-agent-service.default.svc.cluster.local'

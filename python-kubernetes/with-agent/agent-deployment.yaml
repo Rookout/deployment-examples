@@ -5,6 +5,7 @@ metadata:
   labels:
     product: rookout
     app: agent
+    type: deployment
 spec:
   replicas: 1
   template:
@@ -16,13 +17,20 @@ spec:
       containers:
       - name: agent
         image: rookout/agent
+        imagePullPolicy: Always
         resources:
+          requests:
+            cpu: "0.03"
+            memory: "32Mi"
           limits:
-            memory: "0.5Gi"
-            cpu: "0.5"
+            cpu: "1"
+            memory: "1Gi"
         env:
           - name: ROOKOUT_TOKEN
-            value: YOUR_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: rookout
+                key: token
         ports:
           - containerPort: 7486
         livenessProbe:
