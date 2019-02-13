@@ -44,7 +44,7 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 1. Set your Rookout Token as an environment variable in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
     
-    More information can be found in [our documentation](https://docs.rookout.com/docs/rooks-config.html)
+    More information can be found in [our documentation](https://docs.rookout.com/docs/sdk-setup.html)
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
 
