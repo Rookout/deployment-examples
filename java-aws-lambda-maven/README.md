@@ -90,7 +90,7 @@ public class TestLambda implements RequestHandler<Object, String> {
 ## Run your application
 
 1. Deploying your function : 
-    - As a **Zip package**: use the mvn package command to package everthing within one java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar file.
+    - As a **Zip package**: use the `mvn package` command to package everthing within one `java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar` file.
 
 	```
 	mvn package
