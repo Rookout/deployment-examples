@@ -39,7 +39,11 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
     - Using **Cloud9 IDE** integrated tools.
 
-        **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. The solution is doing `npm install` or `npm rebuild` on a Linux machine such as an EC2 instance and re-archive the zip for uploading to Lambda._
+        **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:_
+
+        ```docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs8.10 npm install```
+
+        You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
 
 1. Set your Rookout Token as an environment variable in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
