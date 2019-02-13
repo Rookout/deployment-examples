@@ -28,7 +28,7 @@ To integrate Rookout into your existing Java application, follow these steps:
 ## Run your application
 
 1. Upload your function: 
-    - As a Zip package: Create a sub-folder named "lib" with the required .jar files (tools.jar and rook.jar) in the root folder.
+    - As a **Zip package**: Create a sub-folder named "lib" with the required .jar files (tools.jar and rook.jar) in the root folder.
 
 	You can also add the files in your gradle file:
 	```
@@ -43,7 +43,7 @@ To integrate Rookout into your existing Java application, follow these steps:
 	build.dependsOn buildZip
 	```
 	
-    - Using AWS CLI: Create a new Lambda function and update it as follows:
+    - Using **AWS CLI**: Create a new Lambda function and update it as follows:
         ```bash
         aws lambda create-function \
                     --region <REGION> \
@@ -58,7 +58,7 @@ To integrate Rookout into your existing Java application, follow these steps:
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
-    - Using Cloud9 IDE integrated tools.
+    - Using **Cloud9 IDE** integrated tools.
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
