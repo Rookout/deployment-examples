@@ -40,7 +40,8 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
                     --role <ROLE-ARN> \
                     --handler lambda_function.lambda_handler \
                     --runtime python2.7 \
-                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"
+                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}" \
+                    --timeout 25
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
