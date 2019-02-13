@@ -20,22 +20,18 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
 
 
 ## Running locally
-1. Run the Rookout ETL Agent:
-    ``` bash
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
-    ```
-2. Compile the project jar and download the Java Agent:
+1. Compile the project jar and download the Java Agent:
      ```bash
     $ make build
     ```
-3. Run the application:
+2. Run the application:
     ```bash
     $ make run
     ```
 
-4. Make sure everything worked: [http://localhost:7000/?fname=rook&lname=out](http://localhost:7000/?fname=rook&lname=out)
+3. Make sure everything worked: [http://localhost:7000/?fname=rook&lname=out](http://localhost:7000/?fname=rook&lname=out)
 
-5. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+4. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
 
 
 ## Running on AWS Elastic Beanstalk
