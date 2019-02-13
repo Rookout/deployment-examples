@@ -19,13 +19,11 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 ## Running on Lambda
 
 1. Uploading your function : 
-    - Zip Upload: In order to run your Rookout-wrapped function on Lambda, make sure the dependencies are downloaded and zip
+    - **Zip Upload**: In order to run your Rookout-wrapped function on Lambda, make sure the dependencies are downloaded and zip
     the folder (including node_modules).  
-    zip -r rookout_lambda_test.zip .
-    
-        **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. The solution is doing `npm install` or `npm rebuild` on a Linux machine such as an EC2 instance and re-archive the zip for uploading to Lambda._
+    `zip -r rookout_lambda_test.zip .`
 
-    - aws-cli : Create a new Lambda function and update it like so :
+    - **aws-cli** : Create a new Lambda function and update it like so :
         ```bash
         aws lambda create-function \
                     --region <REGION> \
@@ -34,11 +32,13 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
                     --role <ROLE-ARN> \
                     --handler index.handler \
                     --runtime nodejs8.10 \
-                    --environment Variables="{ROOKOUT_TOKEN=[Your Rookout Token],ROOKOUT_ROOK_TAGS=lambda}"
+                    --environment Variables="{ROOKOUT_TOKEN=<Your Rookout Token>,ROOKOUT_ROOK_TAGS=lambda}"
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
-    - Using Cloud9 IDE integrated tools.
+    - Using **Cloud9 IDE** integrated tools.
+
+        **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. The solution is doing `npm install` or `npm rebuild` on a Linux machine such as an EC2 instance and re-archive the zip for uploading to Lambda._
 
 1. Set your Rookout Token as an environment variable in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
