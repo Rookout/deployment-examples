@@ -90,13 +90,13 @@ public class TestLambda implements RequestHandler<Object, String> {
 ## Run your application
 
 1. Deploying your function : 
-    - As a Zip package: use the mvn package command to package everthing within one java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar file.
+    - As a **Zip package**: use the mvn package command to package everthing within one java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar file.
 
 	```
 	mvn package
 	```
 	
-    - Using AWS CLI : Create a new Lambda function and update it as follows:
+    - Using **AWS CLI** : Create a new Lambda function and update it as follows:
         ```bash
         aws lambda create-function \
                     --region <REGION> \
@@ -111,7 +111,7 @@ public class TestLambda implements RequestHandler<Object, String> {
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
-    - Using Cloud9 IDE integrated tools.
+    - Using **Cloud9 IDE** integrated tools.
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
