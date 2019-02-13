@@ -22,14 +22,7 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
 1. Uploading your function : 
     - **Zip Upload**: In order to run your Rookout-wrapped function on Lambda, make sure the dependencies are downloaded and zip
     the folder (including all the modules installed by pip).  
-    zip -r rookout_lambda_test.zip .
-
-    **IMPORTANT:** If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
-    ```
-    docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python2.7 pip install rook -t .
-    ```
-    
-    You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
+    `zip -r rookout_lambda_test.zip .`
 
     - **aws-cli** : Create a new Lambda function and update it like so :
         ```bash
@@ -46,6 +39,13 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
     - Using **Cloud9 IDE** integrated tools.
+
+    **IMPORTANT:** If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
+    ```
+    docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python2.7 pip install rook -t .
+    ```
+    
+    You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
 
 1. Set your Rookout Token as an environment variables in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
