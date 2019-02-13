@@ -29,7 +29,7 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
     docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python2.7 pip install rook -t .
     ```
     
-    You can here more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
+    You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
 
     - **aws-cli** : Create a new Lambda function and update it like so :
         ```bash
