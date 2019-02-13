@@ -24,7 +24,8 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
     the folder (including all the modules installed by pip).  
     zip -r rookout_lambda_test.zip .
 
-    **IMPORTANT:** _If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. The solution is doing `pip install <MODULE> -t .` on a Linux machine such as an EC2 instance and re-archive the zip for uploading to Lambda._
+    **IMPORTANT:** _If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
+```docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python2.7 pip install -r requirements.txt pip install rook -t .```_
 
     - **aws-cli** : Create a new Lambda function and update it like so :
         ```bash
