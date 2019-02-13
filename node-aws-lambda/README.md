@@ -34,12 +34,11 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
                     --role <ROLE-ARN> \
                     --handler index.handler \
                     --runtime nodejs8.10 \
-                    --environment Variables="{ROOKOUT_TOKEN=[Your Rookout Token],ROOKOUT_ROOK_TAGS=lambda}"```
-
+                    --environment Variables="{ROOKOUT_TOKEN=[Your Rookout Token],ROOKOUT_ROOK_TAGS=lambda}"
+      ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
-    - **OR** Using Cloud9 IDE integrated tools
-
+    - Using Cloud9 IDE integrated tools.
 
 1. Set your Rookout Token as an environment variable in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
