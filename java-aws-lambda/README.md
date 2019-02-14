@@ -52,9 +52,9 @@ To integrate Rookout into your existing Java application, follow these steps:
                     --role <ROLE-ARN> \
                     --handler TestLambda.TestLambda::handleRequest \
                     --runtime java8 \
-					--timeout 25 
-					--memory-size 400 
-                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"
+			    --timeout 25 \
+			    --memory-size 400 \
+                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}" 
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
