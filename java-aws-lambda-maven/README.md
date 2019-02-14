@@ -92,9 +92,6 @@ public class TestLambda implements RequestHandler<Object, String> {
 1. Deploying your function : 
     - As a **Zip package**: use the `mvn package` command to package everthing within one `java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar` file.
 
-	```
-	mvn package
-	```
 	
     - Using **AWS CLI** : Create a new Lambda function and update it as follows:
         ```bash
