@@ -3,6 +3,8 @@ Rookout has native dependencies that are compiled specifically for the current O
 If your machine isn't compatible with the target app OS, the native dependencies might not work.  
 Thanks to Docker, we can easily emulate installing dependencies on a linux machine and therefore match the deploying OS with the target OS  
 
+This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
+
 # The App
 Our example application is a simple "Hello World!" serverless application that returns "Hello World!" for any incoming http request (see [index.js](index.js)).  
 
