@@ -30,18 +30,18 @@ To integrate Rookout into your existing Java application, follow these steps:
 1. Upload your function: 
     - As a **Zip package**: Create a sub-folder named "lib" with the required .jar files (tools.jar and rook.jar) in the root folder.
 
-	You can also add the files in your gradle file:
-	```
-	task buildZip(type: Zip) {
-		from compileJava
-		from processResources
-		into('lib') {
-			from configurations.runtime
-		}
-	}	
-	
-	build.dependsOn buildZip
-	```
+		You can also add the files in your gradle file:
+		```
+		task buildZip(type: Zip) {
+			from compileJava
+			from processResources
+			into('lib') {
+				from configurations.runtime
+			}
+		}	
+
+		build.dependsOn buildZip
+		```
 	
     - Using **AWS CLI**: Create a new Lambda function and update it as follows:
         ```bash
