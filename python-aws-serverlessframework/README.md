@@ -34,7 +34,7 @@ We have added Rookout to the original project by:
         return 'Hello World'
     ```
 
-1. sls plugin install -n serverless-python-requirements
+1. Run `sls plugin install -n serverless-python-requirements`
 
 1. Add to your serverless.yml the serverless-python-requirements plugin:
 
