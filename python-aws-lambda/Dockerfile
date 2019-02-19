@@ -40,4 +40,4 @@ CMD aws lambda create-function \
             --timeout 25 \
             --memory-size 400 ; \
             aws lambda invoke --region us-east-2 --function-name regression_test_python_lambda /dev/stdout ; \
-            aws lambda delete-function --region us-east-2 --function-name regression_test_python_lambda 
+            aws lambda delete-function --region us-east-2 --function-name regression_test_python_lambda
