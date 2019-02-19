@@ -1,5 +1,6 @@
 withCredentials([
     usernamePassword(credentialsId: 'AWS_TEST_USER', aws_access_secret_key: 'AWS_SECRET_ACCESS_KEY', aws_access_key: 'AWS_ACCESS_KEY_ID', rookout_token: 'ROOKOUT_TOKEN' )
+]){
     regressionTest {
         FILE_PATH =  "src/main/java/TestLambda/TestLambda.java"
         LINE_NUM =  "53"
@@ -8,4 +9,4 @@ withCredentials([
         LANG = "Java"
         BACKGROUND_IMAGE_CMD = "docker run --rm -e AWS_SECRET_ACCESS_KEY=${aws_access_secret_key} -e AWS_ACCESS_KEY_ID=${aws_access_key} -e ROOKOUT_TOKEN=${rookout_token} java_aws_lambda_test &"
     }
-])
+}
