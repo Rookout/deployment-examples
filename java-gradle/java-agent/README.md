@@ -4,8 +4,6 @@ A sample application for using Rookout to debug a Java app built using Gradle.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 * [Running locally](#Running local application)
 * [Rookout Integration explained](#rookout-integration-explained)
 

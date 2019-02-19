@@ -5,8 +5,6 @@ A sample application for debugging Python Sanic apps using Rookout.
 
 Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/sdk-setup.html) guide.
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 ## Running Sanic Server with Rookout
 
 1. *Clone and install dependencies*:

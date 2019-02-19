@@ -4,8 +4,6 @@ A sample application for debugging Java + Maven + AWS Lambda using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 ## Integrate Rookout into your Java application
 
 To integrate Rookout into your existing Java application, follow these steps:
@@ -90,13 +88,10 @@ public class TestLambda implements RequestHandler<Object, String> {
 ## Run your application
 
 1. Deploying your function : 
-    - As a Zip package: use the mvn package command to package everthing within one java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar file.
+    - As a **Zip package**: use the `mvn package` command to package everthing within one `java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar` file.
 
-	```
-	mvn package
-	```
 	
-    - Using AWS CLI : Create a new Lambda function and update it as follows:
+    - Using **AWS CLI** : Create a new Lambda function and update it as follows:
         ```bash
         aws lambda create-function \
                     --region <REGION> \
@@ -105,13 +100,13 @@ public class TestLambda implements RequestHandler<Object, String> {
                     --role <ROLE-ARN> \
                     --handler TestLambda.TestLambda::handleRequest \
                     --runtime java8 \
-					--timeout 25 
-					--memory-size 400 
-                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}"```
-
+			    --timeout 25 \
+			    --memory-size 400 \
+                    --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}" 
+      ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
-    - Using Cloud9 IDE integrated tools.
+    - Using **Cloud9 IDE** integrated tools.
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging !
 
