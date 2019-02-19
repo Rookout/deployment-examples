@@ -1,6 +1,6 @@
 withCredentials([
-    usernamePassword(credentialsId: 'AWS_TEST_USER', aws_access_secret_key: 'AWS_SECRET_ACCESS_KEY', aws_access_key: 'AWS_ACCESS_KEY_ID', rookout_token: 'ROOKOUT_TOKEN' )
     regressionTest {
+        usernamePassword(credentialsId: 'AWS_TEST_USER', aws_access_secret_key: 'AWS_SECRET_ACCESS_KEY', aws_access_key: 'AWS_ACCESS_KEY_ID', rookout_token: 'ROOKOUT_TOKEN' )
         FILE_PATH =  "src/main/java/TestLambda/TestLambda.java"
         LINE_NUM =  "53"
         SHA =  "938ab95c0f454bce007bc1b6d128f0f7a6f113ae5d559c765886e170867aa5d1"
