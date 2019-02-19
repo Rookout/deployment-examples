@@ -2,8 +2,6 @@
 
 A sample application for debugging an Electron app using Rookout
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
 ## Rookout Integration Explained
