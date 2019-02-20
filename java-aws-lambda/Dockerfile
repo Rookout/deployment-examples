@@ -12,7 +12,7 @@ ENV AWS_DEFAULT_REGION us-east-2
 
 COPY --from=builder /home/gradle/build/distributions/aws-lambda-java-1.0-SNAPSHOT.zip .
 
-ADD ../.jenkins/awsTest.sh .
+COPY ../.jenkins/awsTest.sh .
 
 CMD aws lambda create-function \
             --region us-east-2 \
