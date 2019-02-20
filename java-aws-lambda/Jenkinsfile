@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "938ab95c0f454bce007bc1b6d128f0f7a6f113ae5d559c765886e170867aa5d1"
     URL_FOR_TRIGGER = "http://google.com"
     LANG = "Java"
-    BACKGROUND_IMAGE_CMD = "bash awsTest java_aws_lambda_test &"
+    BACKGROUND_IMAGE_CMD = "bash awsTest.sh java_aws_lambda_test &"
 }
