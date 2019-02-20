@@ -1,10 +1,14 @@
 FROM gradle:jdk8 as builder
 
+COPY . .
+
 COPY --chown=gradle:gradle . /home/gradle
 
 WORKDIR /home/gradle/src
 
 RUN cd /home/gradle && gradle build
+
+RUN cd ../../
 
 FROM lambci/lambda:build-java8
 
