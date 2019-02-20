@@ -25,7 +25,7 @@ podCreator.initMain(label: label) {
                     def jobName = "${testsNames[i]}".toString().replace("/","-")
                     def dockerTag = TestUtilities.getDockerTagNameForRegression(testFolder, jobName)
 
-                    sh("cd ${dirPath} && docker build . -t ${dockerTag} -f awsTest.sh && gcloud docker -- push ${dockerTag}")
+                    sh("cd ${dirPath} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
                     TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
                 }
             }
