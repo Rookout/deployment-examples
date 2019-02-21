@@ -2,7 +2,7 @@
 aws lambda create-function \
             --region us-east-2 \
             --function-name java_aws_lambda_test \
-            --zip-file aws-lambda-java-1.0-SNAPSHOT.zip \
+            --zip-file fileb://aws-lambda-java-1.0-SNAPSHOT.zip \
             --role arn:aws:iam::032275105219:role/rookout-lambda-role \
             --handler TestLambda.TestLambda::handleRequest \
             --runtime java8 \
