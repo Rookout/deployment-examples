@@ -29,4 +29,6 @@ FROM lambci/lambda:python2.7
 
 USER root
 
+ADD awsTest.sh .
+
 COPY --from=img2 /apps/rookout_lambda_test.zip .
