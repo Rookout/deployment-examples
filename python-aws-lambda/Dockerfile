@@ -27,9 +27,9 @@ COPY --from=img1 /app /apps
 
 RUN zip -r rookout_lambda_test.zip .
 
-FROM lambci/lambda:python2.7
-
 USER root
+
+FROM lambci/lambda:python2.7
 
 ADD awsTest.sh .
 
