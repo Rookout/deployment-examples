@@ -17,8 +17,6 @@ RUN apt-get install -y python-pip
 RUN pip install --upgrade pip
 RUN pip install rook -t .
 
-RUN pip install rook -t .
-
 FROM kramos/alpine-zip AS img2
 
 WORKDIR /apps
