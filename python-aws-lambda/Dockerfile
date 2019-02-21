@@ -4,16 +4,18 @@
 
 # RUN pip install rook -t .
 
-FROM python:2.7-stretch AS img1
+FROM ubuntu AS img1
 
 WORKDIR /app
 
-COPY . /app
-RUN set -xe \
-    && apt-get -y update \
-    && apt-get -y install python-pip
-
+# Update
+RUN apt-get update
+RUN apt-get install -y python 
+RUN apt-get install -y python-pip
+ 
+# Install app dependencies
 RUN pip install --upgrade pip
+RUN pip install rook -t .
 
 RUN pip install rook -t .
 
