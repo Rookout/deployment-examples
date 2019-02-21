@@ -27,4 +27,6 @@ RUN zip -r rookout_lambda_test.zip .
 
 FROM lambci/lambda:python2.7
 
+USER root
+
 COPY --from=img2 /apps/rookout_lambda_test.zip .
