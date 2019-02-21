@@ -14,4 +14,4 @@ ENV AWS_DEFAULT_REGION us-east-2
 
 COPY --from=builder /home/gradle/build/distributions/aws-lambda-java-1.0-SNAPSHOT.zip .
 
-ADD awsTest.sh .
+COPY awsTest.sh .
