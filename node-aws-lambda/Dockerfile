@@ -2,10 +2,7 @@ FROM lambci/lambda:build-nodejs8.10 AS builder
 
 WORKDIR /build
 
-ADD awsTest.sh /build
-ADD index.js /build
-ADD package-lock.json /build 
-ADD package.json /build 
+COPY . . 
 
 RUN npm install
 
