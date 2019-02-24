@@ -31,4 +31,6 @@ ADD awsTest.sh ../../
 
 COPY --from=img2 /build/rookout_lambda_test.zip ../../
 
+USER root 
+
 ENTRYPOINT ["/bin/bash"]
