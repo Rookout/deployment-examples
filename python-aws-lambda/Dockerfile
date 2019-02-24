@@ -23,7 +23,7 @@ COPY --from=img1 /app /build
 
 RUN zip -r rookout_lambda_test.zip .
 
-FROM lambci/lambda:python2.7
+FROM lambci/lambda:build-python2.7
 
 ENV AWS_DEFAULT_REGION us-east-2
 
