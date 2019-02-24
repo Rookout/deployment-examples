@@ -6,7 +6,7 @@ RUN npm install
 
 WORKDIR /build
 
-ADD node_modules /build
+ADD /node_modules /build
 ADD awsTest.sh /build
 ADD index.js /build
 ADD package-lock.json /build 
