@@ -15,13 +15,10 @@ WORKDIR /apps
 
 COPY --from=builder /build /apps
 
-RUN zip -r rookout_lambda_test.zip /apps
+RUN zip -r rookout_lambda_test.zip .
 
 FROM lambci/lambda:build-nodejs8.10 
 
 ENV AWS_DEFAULT_REGION us-east-2
 
 COPY --from=img2 /apps .
-
-# docker build -t mylambda .
-# docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY mylambda
