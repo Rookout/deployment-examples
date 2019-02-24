@@ -18,5 +18,5 @@ FROM lambci/lambda:build-nodejs8.10
 
 ENV AWS_DEFAULT_REGION us-east-2
 
-COPY --from=img2 . .
+COPY --from=img2 /apps .
  

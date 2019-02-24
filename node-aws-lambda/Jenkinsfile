@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "b2e71f93fecfa7b5795c1c0c1d21f115aa408c78da5a652a25d5132ee6e877f5"
     URL_FOR_TRIGGER = "http://google.com"
     LANG = "Node"
-    BACKGROUND_IMAGE_CMD = "bash /apps/awsTest.sh &"
+    BACKGROUND_IMAGE_CMD = "bash /awsTest.sh &"
 }
