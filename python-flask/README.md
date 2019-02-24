@@ -1,31 +1,43 @@
-# Quickstart for debugging Flask
+# Quickstart for Python + Flask
 
-A sample application for debugging Python Flask apps using Rookout.
+A sample application for using Rookout API to debug Python Flask apps.
 
-Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/sdk-setup.html) guide.
+Before following this guide we recommend reading the basic [Python + Rookout] guide.
 
-## Running flask Server with Rookout
+* [Running locally](#running-locally)
+* [Rookout Integration explained](#rookout-integration-explained)
+
+## Running locally
 
 1. *Clone and install dependencies*:
  ```bash
     git clone https://github.com/Rookout/deployment-examples/tree/master/python-flask
-    pip install flask
-    pip install rook
+    cd python-flask
+    pip install -r requirements.txt
 ```
-2. *Export organization token*:
+21. *Export organization token*:
  ```bash
  	export ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 
-3. *Run the Flask server*:
+1. *Run the Flask server*:
 ```bash
-    #start the server (default: http://localhost:5000)
+    # starts the server (default URL: http://localhost:5000)
     python flask_rookout.py
 ```
 
-4. *Enjoy the debugging*:
-	Go to https://app.rookout.com and start debugging :)
+1. Make sure everything worked: [http://localhost:5000](http://localhost:5000)
+
+1. Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
+
+
+## Rookout Integration explained
+
+1. Rookout's Python SDK was installed as part of `requirements.txt` / `pip install rook`
+
+1. Add the import to the main file of the application `import rook`
+
+1. Start the SDK using `rook.start()` as early as possible in your code - it will look for the `ROOKOUT_TOKEN` environment variable, or can be passed as a parameter `rook.start(token="ROOKOUT_TOKEN")`
 
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
-
