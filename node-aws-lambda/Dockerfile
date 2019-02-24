@@ -1,4 +1,4 @@
-FROM lambci/lambda:build-nodejs8.10 AS builder
+FROM lambci/lambda:build-nodejs8.10 AS img1
 
 WORKDIR /build
 
@@ -10,7 +10,7 @@ FROM kramos/alpine-zip AS img2
 
 WORKDIR /apps
 
-COPY --from=builder /build /apps
+COPY --from=img1 /build /apps
 
 RUN zip -r rookout_lambda_test.zip .
 
@@ -19,3 +19,4 @@ FROM lambci/lambda:build-nodejs8.10
 ENV AWS_DEFAULT_REGION us-east-2
 
 COPY --from=img2 . .
+ 
