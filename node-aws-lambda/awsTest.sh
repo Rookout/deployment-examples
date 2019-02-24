@@ -3,7 +3,7 @@ aws lambda create-function \
             --function-name node_aws_lambda_regression_test \
             --zip-file fileb:///rookout_lambda_test.zip \
             --role arn:aws:iam::032275105219:role/rookout-lambda-role \
-            --handler lambda_function.lambda_handler \
+            --handler index.handler \
             --runtime nodejs8.10 \
             --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda}" \
             --timeout 25 ; \
