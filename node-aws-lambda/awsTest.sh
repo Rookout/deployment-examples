@@ -5,7 +5,7 @@ aws lambda create-function \
             --role arn:aws:iam::032275105219:role/rookout-lambda-role \
             --handler index.handler \
             --runtime nodejs8.10 \
-            --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda}" \
+            --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_LOG_TO_STDERR=1}" \
             --timeout 25 ; \
 for run in {1..5}
 do
