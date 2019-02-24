@@ -1,7 +1,7 @@
 aws lambda create-function \
             --region us-east-2 \
             --function-name node_aws_lambda_regression_test \
-            --zip-file fileb:///rookout_lambda_test.zip \
+            --zip-file fileb:///var/task/rookout_lambda_test.zip \
             --role arn:aws:iam::032275105219:role/rookout-lambda-role \
             --handler index.handler \
             --runtime nodejs8.10 \
