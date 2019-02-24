@@ -1,16 +1,13 @@
 FROM lambci/lambda:build-nodejs8.10 AS builder
 
-COPY . .
-
-RUN npm install
-
 WORKDIR /build
 
-ADD /node_modules /build
 ADD awsTest.sh /build
 ADD index.js /build
 ADD package-lock.json /build 
 ADD package.json /build 
+
+RUN npm install
 
 FROM kramos/alpine-zip AS img2
 
