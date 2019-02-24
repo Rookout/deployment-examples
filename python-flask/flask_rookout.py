@@ -2,9 +2,11 @@ import time
 from flask import Flask
 from random import randint
 from datetime import datetime
+import rook
 
 
 app = Flask(__name__)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -35,9 +37,7 @@ def hello():
     time.sleep(0.01 * randint(10, 200) + 0.1)
     return 'Hello, World'
 
-print("Starting rook from-", __file__)
-from rook import auto_start
-print("Rook start has finished!")
 
 if __name__== "__main__":
+    rook.start()
     app.run(host="0.0.0.0", port=5000, threaded=True)
