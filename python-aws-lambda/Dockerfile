@@ -1,27 +1,25 @@
-# FROM python:2.7-stretch AS builder
+FROM lambci/lambda:build-python2.7 AS img1
 
-# COPY . .
-
-# RUN pip install rook -t .
-
-FROM ubuntu AS img1
-
+# # Update
+# RUN apt-get update
+# RUN apt-get install -y python 
+# RUN apt-get install -y python-pip
+ 
 WORKDIR /app
 
-# Update
-RUN apt-get update
-RUN apt-get install -y python 
-RUN apt-get install -y python-pip
- 
+ADD . . 
+
 # Install app dependencies
 RUN pip install --upgrade pip
 RUN pip install rook -t .
 
 FROM kramos/alpine-zip AS img2
 
-WORKDIR /apps
+RUN apk add --update zip
 
-COPY --from=img1 /app /apps
+WORKDIR /build
+
+COPY --from=img1 /app /build
 
 RUN zip -r rookout_lambda_test.zip .
 
@@ -29,8 +27,8 @@ FROM lambci/lambda:python2.7
 
 ENV AWS_DEFAULT_REGION us-east-2
 
-USER root
+ADD awsTest.sh ../../
 
-ADD awsTest.sh .
+COPY --from=img2 /build/rookout_lambda_test.zip ../../
 
-COPY --from=img2 /apps/rookout_lambda_test.zip .
+ENTRYPOINT ["/bin/bash"]
