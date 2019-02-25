@@ -7,7 +7,8 @@ aws lambda create-function \
             --runtime python2.7 \
             --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_DEBUG=1,ROOKOUT_LOG_TO_STDERR=1}" \
             --timeout 25 \
-            --memory-size 400 ; \
+            --memory-size 400 \
+            sleep 60 ; \
 for run in {1..5}
 do
   aws lambda invoke --region us-east-2 --function-name regression_test_python_lambda /dev/stdout ; \
