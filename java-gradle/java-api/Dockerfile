@@ -6,6 +6,5 @@ ADD settings.gradle settings.gradle
 RUN ./gradlew build
 RUN apt update  -y && apt install -y wget
 ADD . .
-RUN cd /src/main/java/com/HelloWorld
-RUN sed -i '14s/.*/\topts.token = "$ROOKOUT_TOKEN";/' HelloWorld.java
+RUN sed -i '14s/.*/\topts.token = "$ROOKOUT_TOKEN";/' /src/main/java/com/HelloWorld/HelloWorld.java
 RUN ./gradlew jar
