@@ -5,7 +5,7 @@ aws lambda create-function \
             --role arn:aws:iam::032275105219:role/rookout-lambda-role \
             --handler lambda_function.lambda_handler \
             --runtime python2.7 \
-            --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_DEBUG=1}" \
+            --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_DEBUG=1,ROOKOUT_LOG_TO_STDERR=1}" \
             --timeout 25 \
             --memory-size 400 ; \
 for run in {1..5}
