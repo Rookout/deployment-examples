@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "flask_rookout.py"
-    LINE_NUM =  "24"
-    SHA =  "09dbfc01921123c763945b061bf026dfc43832bcf96126354980be8ed831925d"
+    LINE_NUM =  "26"
+    SHA =  "8046732decfebc24556e701c1cf2df3591d099ad80efb8db6e22126fb9fb9958"
     URL_FOR_TRIGGER = "http://localhost:5000/render"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "python /flask_rookout.py &"
