@@ -1,6 +1,6 @@
 aws lambda create-function \
             --region us-east-2 \
-            --function-name regression_test_python_lambda \
+            --function-name python_lambda_regression_test \
             --zip-file fileb:///rookout_lambda_test.zip \
             --role arn:aws:iam::032275105219:role/rookout-lambda-role \
             --handler lambda_function.lambda_handler \
@@ -11,7 +11,7 @@ aws lambda create-function \
             sleep 10 ; \
 for run in {1..5}
 do
-  aws lambda invoke --region us-east-2 --function-name regression_test_python_lambda /dev/stdout ; \
+  aws lambda invoke --region us-east-2 --function-name python_lambda_regression_test /dev/stdout ; \
   sleep 5 ; \
 done
-aws lambda delete-function --region us-east-2 --function-name regression_test_python_lambda
+aws lambda delete-function --region us-east-2 --function-name python_lambda_regression_test
