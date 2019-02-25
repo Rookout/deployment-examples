@@ -8,10 +8,4 @@ aws lambda create-function \
             --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_DEBUG=1,ROOKOUT_LOG_TO_STDERR=1}" \
             --timeout 25 \
             --memory-size 400 ; \
-            sleep 10 ; \
-for run in {1..5}
-do
-  aws lambda invoke --region us-east-2 --function-name python_lambda_regression_test /dev/stdout ; \
-  sleep 5 ; \
-done
-aws lambda delete-function --region us-east-2 --function-name python_lambda_regression_test
+            sleep 10
