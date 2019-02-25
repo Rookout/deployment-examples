@@ -10,6 +10,6 @@ aws lambda create-function \
             --memory-size 400 ; \
 for run in {1..5}
 do
-  aws lambda invoke --region us-east-2 --function-name java_aws_lambda_test /dev/stdout ; \
+  aws lambda invoke --region us-east-2 --function-name regression_test_python_lambda /dev/stdout ; \
 done
 aws lambda delete-function --region us-east-2 --function-name regression_test_python_lambda
