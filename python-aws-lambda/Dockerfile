@@ -1,9 +1,4 @@
 FROM lambci/lambda:build-python2.7 AS img1
-
-# # Update
-# RUN apt-get update
-# RUN apt-get install -y python 
-# RUN apt-get install -y python-pip
  
 WORKDIR /app
 
