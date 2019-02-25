@@ -25,12 +25,12 @@ RUN zip -r rookout_lambda_test.zip .
 
 FROM lambci/lambda:build-python2.7
 
+USER root 
+
 ENV AWS_DEFAULT_REGION us-east-2
 
 ADD awsTest.sh ../../
 
 COPY --from=img2 /build/rookout_lambda_test.zip ../../
-
-USER root 
 
 ENTRYPOINT ["/bin/bash"]
