@@ -15,6 +15,5 @@ aws lambda create-function \
             --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_DEBUG=1,ROOKOUT_LOG_TO_STDERR=1}" \
             --timeout 25 \
             --memory-size 400 \
-            --tags "TEGTESSION_TESTS=python_lambda_regression_test" ; \
-            sleep 10
+            --tags "type=regression_test" ; \
 fi

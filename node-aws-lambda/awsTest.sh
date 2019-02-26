@@ -2,8 +2,8 @@ if aws lambda list-functions --region us-east-2 | grep "node_aws_lambda_regressi
 aws lambda update-function-code \
             --function-name node_aws_lambda_regression_test \
             --zip-file fileb:///../../rookout_lambda_test.zip \
-            --region us-east-2 \
-
+            --region us-east-2 ; \
+ 
 else
 aws lambda create-function \
             --region us-east-2 \
@@ -14,5 +14,5 @@ aws lambda create-function \
             --runtime nodejs8.10 \
             --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_LOG_TO_STDERR=1,ROOKOUT_DEBUG=1}" \
             --timeout 25
-             --tags "TEGTESSION_TESTS=node_aws_lambda_regression_test" ; \
+            --tags "type=regression_test" ; \
 fi
