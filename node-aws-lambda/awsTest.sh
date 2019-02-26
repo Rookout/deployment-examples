@@ -13,5 +13,6 @@ aws lambda create-function \
             --handler index.handler \
             --runtime nodejs8.10 \
             --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=lambda,ROOKOUT_LOG_TO_STDERR=1,ROOKOUT_DEBUG=1}" \
-            --timeout 25 ; \
+            --timeout 25
+             --tags "TEGTESSION_TESTS=node_aws_lambda_regression_test" ; \
 fi
