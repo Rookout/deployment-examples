@@ -17,8 +17,3 @@ aws lambda create-function \
             --memory-size 400 \
             --tags "type=regression_test" ; \
 fi
-for {1..5}
-do
-    aws lambda invoke --region us-east-2 --function-name node_aws_lambda_regression_test /dev/stdout
-    sleep 5
-done
