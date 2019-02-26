@@ -1,3 +1,10 @@
+if aws lambda list-functions --region us-east-2 | grep "python_lambda_regression_test"; then
+aws lambda update-function-code \
+            --function-name python_lambda_regression_test \
+            --zip-file fileb:///../../rookout_lambda_test.zip \
+            --region us-east-2 \
+
+else
 aws lambda create-function \
             --region us-east-2 \
             --function-name python_lambda_regression_test \
@@ -9,3 +16,4 @@ aws lambda create-function \
             --timeout 25 \
             --memory-size 400 ; \
             sleep 10
+fi

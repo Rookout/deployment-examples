@@ -1,4 +1,3 @@
-#list all of the functions and check if the function that im working on right now exists or not
 if aws lambda list-functions --region us-east-2 | grep "node_aws_lambda_regression_test"; then
 aws lambda update-function-code \
             --function-name node_aws_lambda_regression_test \
