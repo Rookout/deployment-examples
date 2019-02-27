@@ -13,7 +13,8 @@ ADD . .
 
 RUN sed -i '5s/.*/    "ROOKOUT_TOKEN": "$ROOKOUT_TOKEN"/' .chalice/config.json
 
-RUN sed -i '13s/.*/  "app_name": "python-aws-chalice","region": "us-east-2"/' .chalice/config.json
+# RUN sed -i '13s/.*/  "app_name": "python-aws-chalice","region": "us-east-2"/' .chalice/config.json
 
 RUN chalice deploy
+
 #TODO - add to jenkinsfile URL = python-aws-chalice 
