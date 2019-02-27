@@ -14,7 +14,3 @@ ADD . .
 RUN sed -i '5s/.*/    "ROOKOUT_TOKEN": "process.env.ROOKOUT_TOKEN",\n    "ROOKOUT_ROOK_TAGS": "python_chalice_lambda_regression_test",\n    "ROOKOUT_DEBUG": "1"/' .chalice/config.json
 
 RUN sed -i '15s/.*/  "app_name": "python_chalice_lambda_regression_test"/' .chalice/config.json
-
-# RUN chalice deploy
-
-#TODO - add to jenkinsfile URL = python-aws-chalice 
