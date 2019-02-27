@@ -73,3 +73,4 @@ rooks/python/rook/services/pyx_bdb.c
 temp.json
 test_all.json
 test.json
+.chalice/deployed/
