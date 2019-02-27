@@ -6,6 +6,7 @@ if aws lambda list-functions --region us-east-2 | grep "python_chalice_lambda_re
                 --region us-east-2 \
 
 else
+    cd /app 
     chalice deploy ; \
     aws lambda update-function-configuration \
                 --function-name python_chalice_lambda_regression_test-dev \
