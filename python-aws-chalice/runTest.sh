@@ -8,9 +8,12 @@ if aws lambda list-functions --region us-east-2 | grep "python_chalice_lambda_re
                 --region us-east-2 
 
 else
-    chalice deploy ; \
+    declare RESULT=($(chalice deploy)) ; \
+    echo $RESULT
     aws lambda update-function-configuration \
                 --function-name python_chalice_lambda_regression_test-dev \
                 --region us-east-2 \
                 --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=python_chalice_lambda_regression_test-dev,ROOKOUT_DEBUG=1,ROOKOUT_LOG_TO_STDERR=1}" 
+    sleep 10
+    curl ${RESULT[26]}
 fi
