@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "example.py"
+    LINE_NUM =  "21"
+    SHA =  "ddb16fd616822a305e514678c843d4bb289ec00d600a11f2353ff06f122ba522"
+    TRIGGER_TIME = "10"
+    LANG = "Python"
+    BACKGROUND_IMAGE_CMD = "spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon example.py &"
+}
