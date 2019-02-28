@@ -4,8 +4,6 @@ This is a full example for deploying an application with Rookout using Kubernete
 
 Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/sdk-setup.html) guide.
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 ## prerequisite:
 
 1. Get your Rookout token at [app.rookout.com](https://app.rookout.com).
