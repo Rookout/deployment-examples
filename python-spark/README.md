@@ -14,7 +14,8 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 ```
 
 2. *Export organization token*:
- ```export ROOKOUT_TOKEN=<Your Rookout Token>
+ ```
+ export ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 
 3. *Use `spark-submit` to submit the job while loading Rookout into Spark executors*:
