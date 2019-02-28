@@ -9,7 +9,7 @@ if aws lambda list-functions --region us-east-2 | grep "python_chalice_lambda_re
 
 else
     declare RESULT=($(chalice deploy)) ; \
-    echo $RESULT
+    printf '%s\n' "${my_array[@]}"
     aws lambda update-function-configuration \
                 --function-name python_chalice_lambda_regression_test-dev \
                 --region us-east-2 \
