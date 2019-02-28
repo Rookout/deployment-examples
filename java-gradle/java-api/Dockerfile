@@ -6,4 +6,3 @@ ADD settings.gradle settings.gradle
 RUN ./gradlew build
 RUN apt update  -y && apt install -y wget
 ADD . .
-RUN ./gradlew jar
