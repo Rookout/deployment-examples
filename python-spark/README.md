@@ -23,11 +23,13 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
     spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon example.py
 ```
 
-4. *Enjoy the debugging*:
+If running under YARN, specify the `ROOKOUT_TOKEN` environment variable for your application master and executor nodes: `--conf spark.yarn.appMasterEnv.ROOKOUT_TOKEN=[Your Rookout Token]` and `--conf spark.executorEnv.ROOKOUT_TOKEN=[Your Rookout Token]` respectively.
+
+4. *Have fun debugging*:
 	Go to https://app.rookout.com and start debugging :)
 	
 	Try placing breakpoints: In `example.py`, `main` will run in the Spark driver, while `map_partitions_handler` and `multiply_latlong` (a UDF) 
-will run on executor nodes.
+will run on executor nodes. Try placing breakpoints on line 24 (`multiply_latlong`) and 48 (`map_partitions_handler`).
 
     To try this application with a YARN (potentially AWS EMR) cluster, try uploading a sample data CSV formatted like so:
     ```0,lat,long```
@@ -46,7 +48,7 @@ responsible for starting the Python worker processes on executor nodes. The conf
 When specifying this option, Rookout will automatically load to worker processes. This is necessary for placing breakpoints in any code that runs on executor nodes.
 
 In `example.py`, `main` will run in the Spark driver, while `map_partitions_handler` and `multiply_latlong` (a UDF) 
-will run on executor nodes.
+will run on executor nodes. Try placing breakpoints on line 24 (`multiply_latlong`) and 48 (`map_partitions_handler`).
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 
