@@ -1,6 +1,6 @@
 regressionTest {
     FILE_PATH =  "example.py"
-    LINE_NUM =  "21"
+    LINE_NUM =  "40"
     SHA =  "baea3d8598acb4b2ce7264a39129af59e1ba0cba37468d3cc362f55e1263846a"
     TRIGGER_TIME = "1"
     LANG = "Python"
