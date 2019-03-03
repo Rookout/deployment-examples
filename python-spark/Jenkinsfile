@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "example.py"
     LINE_NUM =  "43"
-    SHA =  "baea3d8598acb4b2ce7264a39129af59e1ba0cba37468d3cc362f55e1263846a"
+    SHA =  "5be05e77248c57e27f95f1ce498d47844f97994f08d80e077597f2f6c43c1f51"
     TRIGGER_TIME = "1"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "(sleep 30; spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon /app/example.py) &"
