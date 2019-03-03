@@ -18,37 +18,36 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
  export ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 
-3. *Use `spark-submit` to submit the job while loading Rookout into Spark executors*:
+3. *Use `spark-submit` to submit the job while loading Rookout into Spark executors (Spark standalone)*:
 ```
-    spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon example.py
+spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon example.py
 ```
 
-If running under YARN, specify the `ROOKOUT_TOKEN` environment variable for your application master and executor nodes: `--conf spark.yarn.appMasterEnv.ROOKOUT_TOKEN=[Your Rookout Token]` and `--conf spark.executorEnv.ROOKOUT_TOKEN=[Your Rookout Token]` respectively.
 
 4. *Have fun debugging*:
 	Go to https://app.rookout.com and start debugging :)
 	
-	Try placing breakpoints: In `example.py`, `main` will run in the Spark driver, while `map_partitions_handler` and `multiply_latlong` (a UDF) 
-will run on executor nodes. Try placing breakpoints on line 24 (`multiply_latlong`) and 48 (`map_partitions_handler`).
+    #### Usage example
+    Try placing breakpoints at these locations in `example.py`:
+    * In `main` on line 65
+    * In `map_partitions_handler` on line 48
+    * In `multiply_latlong` (a UDF) on line 24
+    * Run your program
 
-    To try this application with a YARN (potentially AWS EMR) cluster, try uploading a sample data CSV formatted like so:
-    ```0,lat,long```
-    to S3, and calling `spark_session.read.csv` with `s3a://bucket-name/sample-data.csv` for the path, where `bucket-name` is replaced by the bucket that contains your uploaded file.
+## Running under YARN (AWS EMR)
+1. Upload the `sample-data.csv` file to a S3 bucket, and modify the code so it calls `spark_session.read.csv` with `s3a://bucket-name/sample-data.csv` for the path, where `bucket-name` is replaced by the bucket that contains your uploaded file.
+2. Specify the `ROOKOUT_TOKEN` environment variable:
 
+```
+spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon --conf spark.yarn.appMasterEnv.ROOKOUT_TOKEN=[Your Rookout Token]` `--conf spark.executorEnv.ROOKOUT_TOKEN=[Your Rookout Token] example.py
+```
+
+
+    
 ## Rookout Integration explained
-Several separate Python processes work in tandem to complete a Spark job.
-- In `--deploy-mode client`, the Spark driver (which runs `example.py`) runs locally, on the system that executed `spark-submit`.
-- In `--deploy-mode cluster`, the Spark driver runs as part of the cluster. In a YARN cluster, it runs on the ApplicationMaster for your job.
+1. Rookout is loaded into the Spark driver on line 74 in main.py, by calling `rook.start()` directly. This is the standard way of loading Rookout, but we still haven't loaded Rookout into the executor nodes.
 
-To place Rookout breakpoints in code that runs in the Spark driver, you must start Rookout in your Spark driver code. Note how the beginning of `main` in `example.py` imports `rook` and calls `rook.start()`.
-
-Processing code (mapPartitions, Spark UDFs) runs on executor nodes. Spark allows you to specify the Python module
-responsible for starting the Python worker processes on executor nodes. The configuration option `--conf spark.python.daemon.module=rook.pyspark_daemon` accomplishes this task.
-
-When specifying this option, Rookout will automatically load to worker processes. This is necessary for placing breakpoints in any code that runs on executor nodes.
-
-In `example.py`, `main` will run in the Spark driver, while `map_partitions_handler` and `multiply_latlong` (a UDF) 
-will run on executor nodes. Try placing breakpoints on line 24 (`multiply_latlong`) and 48 (`map_partitions_handler`).
+2. Specifying the configuration option `--conf spark.python.daemon.module=rook.pyspark_daemon` loads Rookout into the executor nodes. When specifying this option, Rookout will automatically load to worker processes. This is necessary for placing breakpoints in any code that runs on executor nodes.
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 
