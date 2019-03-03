@@ -9,6 +9,7 @@ sleep 40
 #https://github.com/aws/chalice/issues/490
 for {1..5} do 
     curl ${RESULT[26]}
+    sleep 5
 done
 sleep 140
 aws lambda delete-function --region us-east-2 --function-name python_chalice_lambda_regression_test-dev
