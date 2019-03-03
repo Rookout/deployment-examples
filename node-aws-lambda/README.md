@@ -4,8 +4,6 @@ A sample application for debugging Node.js + AWS Lambda.
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide.
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 ## Rookout Integration Explained
 
 There are 3 simple steps to integrate Rookout into your existing Node application:

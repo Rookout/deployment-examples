@@ -4,8 +4,6 @@ A sample application for debugging Python apps deployed in AWS Lambda using Rook
 
 Before following this guide we recommend reading the basic [Python + Rookout] guide
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 ## Rookout Integration Explained
 
 To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, follow these steps:

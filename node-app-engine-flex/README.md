@@ -2,6 +2,8 @@
 
 A sample application for using Rookout + Node.js + App Engine Flexible.
 
+Before following this guide we recommend reading the basic [Node + Rookout] guide.
+
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 
 * [Deploying to App Engine](#deploying-to-app-engine)
