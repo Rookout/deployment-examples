@@ -22,7 +22,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
     #start the server (default: http://localhost:8001)
     python manage.py runserver localhost:8001
 ```
-4. *Enjoy the debugging*:
+4. *Have fun debugging*:
 Go to https://app.rookout.com and start debugging :)
 
 ## Rookout Integration explained
