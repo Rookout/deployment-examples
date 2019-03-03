@@ -8,6 +8,6 @@ aws lambda update-function-configuration \
 sleep 20
 #https://github.com/aws/chalice/issues/490
 curl ${RESULT[26]}
-sleep 80
+sleep 140
 aws lambda delete-function --region us-east-2 --function-name python_chalice_lambda_regression_test-dev
 
