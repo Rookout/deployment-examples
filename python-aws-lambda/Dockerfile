@@ -24,8 +24,8 @@ USER root
 
 ENV AWS_DEFAULT_REGION us-east-2
 
-ADD awsTest.sh ../../
+ADD awsTest.sh /
 
-COPY --from=img2 /build/rookout_lambda_test.zip ../../
+COPY --from=img2 /build/rookout_lambda_test.zip /
 
 ENTRYPOINT ["/bin/bash"]
