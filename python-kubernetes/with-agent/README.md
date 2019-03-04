@@ -5,8 +5,6 @@ Here we are using a local ETL Agent deployed in the cluster that the SDK will co
 
 Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/sdk-setup.html) guide.
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 ## Pre-requisites:
 
 1. Get your Rookout token at [app.rookout.com](https://app.rookout.com).
