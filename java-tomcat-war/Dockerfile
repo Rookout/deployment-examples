@@ -19,7 +19,6 @@ COPY --from=MAVEN_TOOL_CHAIN /tmp/target/sample.war $CATALINA_HOME/webapps/
 ADD --chown=root:root http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST $CATALINA_HOME/rook.jar
 
 ENV CATALINA_OPTS "$CATALINA_OPTS -javaagent:$CATALINA_HOME/rook.jar"
-# -Djava.util.logging.config.file=/tmp/logging-conf.conf"
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
 
