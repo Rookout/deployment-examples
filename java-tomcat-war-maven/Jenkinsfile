@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "SampleLib.java"
+    LINE_NUM =  "7"
+    SHA =  "2c17f2307572b8286d640f238b895e26e58c480024efaa507faceb62590c9dcb"
+    URL_FOR_TRIGGER = "http://127.0.0.1:8080/sample"
+    LANG = "Java"
+    BACKGROUND_IMAGE_CMD = "catalina.sh run &"
+}

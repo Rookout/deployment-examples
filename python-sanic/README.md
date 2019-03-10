@@ -24,7 +24,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
     python3 sanic_rookout.py
 ```
 
-4. *Enjoy the debugging*:
+4. *Have fun debugging*:
 	Go to https://app.rookout.com and start debugging :)
 
 ## Rookout Integration explained
