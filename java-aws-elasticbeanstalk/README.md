@@ -4,8 +4,6 @@ A sample application for debugging Java + AWS Elastic Beanstalk using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 ## Adding Rookout to an existing EBS Project
 
 To integrate Rookout into your existing java beanstalk application follow these steps:
