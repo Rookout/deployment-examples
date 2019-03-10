@@ -4,8 +4,6 @@ A sample application for debugging Java Tomcat + AWS Elastic Beanstalk using Roo
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
 This sample application is the Tomcat sample app provided by AWS.
 For more information about the project structure and how to use it refer to [this page](https://github.com/Rookout/deployment-examples/tree/master/aws-beanstalk/java-tomcat-elasticbeanstalk/eb-tomcat-helloworld/README.md).
 
@@ -16,17 +14,12 @@ To integrate Rookout into your existing java beanstalk application follow these 
 1. Add the source files to your built .jar/.war
 
 2. Add these [.ebextensions standalone config scripts](.ebextensions) to your project configuration(.ebextensions)
-    * One sets up the Rookout ETL Agent, responsible for communicating with the Rookout service.
-    * The other sets up and runs the Rookout Java Agent, allowing instrumentation and real time fetching of debug messages.
-
+    * Sets up the Rookout ETL Agent, responsible for communicating with the Rookout service.
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
 
 ## Running locally
 __NOTE: This sample project requires Tomcat8__
-
-Run the Rookout ETL Agent:
-    ~$ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your-Token>" rookout/agent
 
 Run ``make local`` to add the Rookout Java Agent to Tomcat environment locally.
 
@@ -72,16 +65,7 @@ We have added Rookout to the original project by:
     
     ~$ jar -cf ROOT.war WEB-INF .ebextensions/* com
 
-2. Adding Rookout's Elastic Beanstalk .ebextensions to install the Rookout ETL Agent and add the Java Agent to communicate with the app:
-    ```
-    commands: 
-        "01": 
-            command: wget "https://get.rookout.com" -O setup.sh
-        "02": 
-            command: sudo /bin/bash setup.sh agent --token=<YOUR_TOKEN>
-        "03": 
-            command: /etc/init.d/rookout-agent start
-    ```
+2. Adding Rookout's Elastic Beanstalk .ebextensions to install the Rookout ETL Agent and add the Java Agent to communicate with the app: command: /etc/init.d/rookout-agent start
     ```
     files:
         "/opt/elasticbeanstalk/lib/rook.jar" :
