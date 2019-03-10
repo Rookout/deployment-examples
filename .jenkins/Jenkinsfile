@@ -25,7 +25,12 @@ podCreator.initMain(label: label) {
                     def jobName = "${testsNames[i]}".toString().replace("/","-")
                     def dockerTag = TestUtilities.getDockerTagNameForRegression(testFolder, jobName)
 
-                    sh("cd ${dirPath} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
+                    withCredentials([
+                            string(credentialsId: 'ROOKOUT_REGGRESION_TOKEN', variable: 'ROOKOUT_TOKEN'),
+                            usernamePassword(credentialsId: 'AWS_TEST_USER', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
+                    ]) {
+                        sh("cd ${dirPath} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
+                    }
                     TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
                 }
             }
