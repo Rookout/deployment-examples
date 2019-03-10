@@ -13,8 +13,7 @@ To integrate Rookout into your existing java beanstalk application follow these 
 1. Add the source files to your built .jar file.
 
 2. Add these [.ebextensions standalone config scripts](.ebextensions) to your project configuration.
-    * One sets up the Rookout ETL Agent, responsible for communicating with the Rookout service.
-    * The other sets up and runs the Rookout Java Agent, allowing instrumentation and real time fetching of debug messages.
+    * sets up and runs the Rookout Java Agent, allowing instrumentation and real time fetching of debug messages.
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
@@ -58,16 +57,7 @@ We have added Rookout to the original project by:
     jar cvfm target/server.jar Manifest.txt -C output/ . src/*
     ```
 
-2. Adding Rookout's Elastic Beanstalk .ebextensions to setup the Rookout SDK and the Rookout Java Agent:
-    ```
-    commands: 
-        "01": 
-            command: wget "https://get.rookout.com" -O setup.sh
-        "02": 
-            command: sudo /bin/bash setup.sh agent --token=<YOUR_TOKEN>
-        "03": 
-            command: /etc/init.d/rookout-agent start
-    ```
+2. Adding Rookout's Elastic Beanstalk .ebextensions to setup the Rookout Java Agent:
     ```
     files:
         "/opt/elasticbeanstalk/lib/rook.jar" :
