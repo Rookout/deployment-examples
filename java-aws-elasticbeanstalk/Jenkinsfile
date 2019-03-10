@@ -1,5 +1,5 @@
 regressionTest {
-    FILE_PATH =  "src/HttpRequestHandler.java"
+    FILE_PATH =  "src/httpserver/HttpRequestHandler.java"
     LINE_NUM =  "70"
     SHA =  "86cf02a9c131ae2352f266ef15ee4b7a058d0c224a0bb3ccbdfd2c11fe8d6ef1"
     URL_FOR_TRIGGER = "http://java-aws-elasticbeanstalk.us-east-2.elasticbeanstalk.com/"
