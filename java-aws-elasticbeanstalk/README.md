@@ -57,7 +57,7 @@ We have added Rookout to the original project by:
     jar cvfm target/server.jar Manifest.txt -C output/ . src/*
     ```
 
-2. Adding Rookout's Elastic Beanstalk .ebextensions to setup the Rookout SDK and the Rookout Java Agent:
+2. Adding Rookout's Elastic Beanstalk .ebextensions to setup the Rookout Java Agent:
     ```
     files:
         "/opt/elasticbeanstalk/lib/rook.jar" :
