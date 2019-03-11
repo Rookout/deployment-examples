@@ -4,10 +4,6 @@ A sample application for using Rookout + Node on AWS Elastic Beanstalk.
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
-This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
-
-* [Agent Setup](#agent-setup)
-* [Running locally](#running-locally)
 * [Running on Elastic Beanstalk](#running-on-elastic-beanstalk)
 * [Rookout Integration explained](#rookout-integration-explained)
 
@@ -21,20 +17,6 @@ There are 2 simple steps to integrate Rookout into your existing node beanstalk 
     * The script download and install the Rookout ETL Agent
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
-
-
-## Running locally
-
-#### ETL Agent Setup
-
-1. Download and run the Rookout ETL Agent as a container:  
-    
-    ```bash
-    $ docker pull rookout/agent
-    $ docker run -p 7486:7486 -e "ROOKOUT_TOKEN=<Your Rookout Token>" rookout/agent
-    ```
-
-For more information about Docker go [here](https://www.docker.com/).
 
 #### App Setup
 
@@ -91,17 +73,6 @@ We have added Rookout to the original project by:
     ```js
     const rook = require("rookout/auto_start");
     ```
-
-1. Adding Rookout's Elastic Beanstalk .ebextensions to install the Rookout ETL Agent on the server to communicate with the app:
-   ```
-   commands: 
-       "01": 
-           command: wget "https://get.rookout.com" -O setup.sh
-       "02": 
-           command: sudo /bin/bash setup.sh agent --token=<YOUR_TOKEN>
-       "03": 
-           command: /etc/init.d/rookout-agent start
-   ```
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [npm]: https://www.npmjs.com/package/rookout
