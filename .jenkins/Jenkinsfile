@@ -24,7 +24,6 @@ podCreator.initMain(label: label) {
                     def dirPath = "${testsNames[i]}".toString()
                     def jobName = "${testsNames[i]}".toString().replace("/","-")
                     def dockerTag = TestUtilities.getDockerTagNameForRegression(testFolder, jobName)
-
                     withCredentials([
                             string(credentialsId: 'ROOKOUT_REGGRESION_TOKEN', variable: 'ROOKOUT_TOKEN'),
                             usernamePassword(credentialsId: 'AWS_TEST_USER', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
