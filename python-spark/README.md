@@ -19,10 +19,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
  export ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 
-3. 
-
-#### Usage example
-Try placing breakpoints at these locations in `example.py`:
+3. *Try placing breakpoints at these locations in `example.py`*:
 * In `main` on line 65
 * In `map_partitions_handler` on line 48
 * In `multiply_latlong` (a UDF) on line 24
