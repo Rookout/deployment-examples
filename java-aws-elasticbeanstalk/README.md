@@ -11,7 +11,7 @@ To integrate Rookout into your existing java beanstalk application follow these 
 1. Add the source files to your built .jar file.
 
 2. Add these [.ebextensions standalone config scripts](.ebextensions) to your project configuration.
-    * sets up and runs the Rookout Java Agent, allowing instrumentation and real time fetching of debug messages.
+    * sets up and runs Rook, allowing instrumentation and real time fetching of debug messages.
 
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
