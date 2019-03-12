@@ -65,7 +65,7 @@ We have added Rookout to the original project by:
     
     ~$ jar -cf ROOT.war WEB-INF .ebextensions/* com
 
-2. Adding Rookout's Elastic Beanstalk .ebextensions to install the Rookout ETL Agent and add the Java Agent to communicate with the app: command: /etc/init.d/rookout-agent start
+2. Adding Rookout's Elastic Beanstalk .ebextensions to install Rook and add the Java Agent to communicate with the app:
     ```
     files:
         "/opt/elasticbeanstalk/lib/rook.jar" :
@@ -76,7 +76,7 @@ We have added Rookout to the original project by:
     option_settings:
         aws:elasticbeanstalk:container:tomcat:jvmoptions:
             JVM Options: '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
-	    ROOKOUT_TOKEN: '<your-token>'
+	    ROOKOUT_TOKEN: '<your-token>' //Add your token here
     ```
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
