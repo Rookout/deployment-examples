@@ -1,6 +1,6 @@
-aws s3 cp /app/java-elastic-beanstalk.zip s3://java-elastic-beanstalk-regression-test ; \
+aws s3 cp /app/java-elastic-beanstalk.zip s3://java-elastic-beanstalk-regression-test
 
-now="$(date +'%d-%m-%Y-%H:%M:%S')" ; \
+now="$(date +'%d-%m-%Y-%H:%M:%S')"
 
 aws elasticbeanstalk create-application-version \
                                 --application-name regression-tests \
