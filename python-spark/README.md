@@ -9,7 +9,8 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 
 1. *Clone and install dependencies*:
  ```bash
-    git clone https://github.com/Rookout/deployment-examples/tree/master/python-spark
+    git clone https://github.com/Rookout/deployment-examples.git
+    cd deployment-examples/python-spark
     pip install -r requirements.txt  # also on executor nodes, if running in a cluster
 ```
 
@@ -18,21 +19,23 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
  export ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 
-3. *Use `spark-submit` to submit the job while loading Rookout into Spark executors (Spark standalone)*:
+3. *Try placing breakpoints at these locations in `example.py`*:
+* In `main` on line 65
+* In `map_partitions_handler` on line 48
+* In `multiply_latlong` (a UDF) on line 24
+* Run your program
+
+
+4. *Use `spark-submit` to submit the job while loading Rookout into Spark executors (Spark standalone)*:
 ```
 spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon example.py
 ```
 
 
-4. *Have fun debugging*:
+5. *Have fun debugging*:
 	Go to https://app.rookout.com and start debugging :)
 	
-    #### Usage example
-    Try placing breakpoints at these locations in `example.py`:
-    * In `main` on line 65
-    * In `map_partitions_handler` on line 48
-    * In `multiply_latlong` (a UDF) on line 24
-    * Run your program
+
 
 ## Running under YARN (AWS EMR)
 1. Upload the `sample-data.csv` file to a S3 bucket, and modify the code so it calls `spark_session.read.csv` with `s3a://bucket-name/sample-data.csv` for the path, where `bucket-name` is replaced by the bucket that contains your uploaded file.
