@@ -66,6 +66,7 @@ We have added Rookout to the original project by:
     option_settings:
         aws:elasticbeanstalk:application:environment:
             JAVA_TOOL_OPTIONS: '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
+            ROOKOUT_TOKEN: '<your-token>' //Add your token here
     ```
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
