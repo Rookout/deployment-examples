@@ -49,5 +49,8 @@ spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon --conf spark.
 
 2. Specifying the configuration option `--conf spark.python.daemon.module=rook.pyspark_daemon` loads Rookout into the executor nodes. When specifying this option, Rookout will automatically load to worker processes. This is necessary for placing breakpoints in any code that runs on executor nodes.
 
+## Limitations
+Rookout cannot currently place executor breakpoints in nested functions, lambdas, staticmethods, or functions defined in the `__main__` module as a result of how PySpark serializes functions before sending them to executors. 
+
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 
