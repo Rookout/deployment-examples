@@ -1,4 +1,4 @@
-FROM java:8
+FROM lambci/lambda:build-java8
 
 ADD . .
 
