@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "/src/com/snakes/model/Movie.java"
+    LINE_NUM =  "111"
+    SHA =  "a02363beb155e117e65b55c3225285cdd8c54bf120a458af6f2f3b917dbc26eb"
+    URL_FOR_TRIGGER = "http://java-tomcat-aws-elasticbeanstalk.us-east-2.elasticbeanstalk.com/search?query=good_movie"
+    LANG = "Java"
+    BACKGROUND_IMAGE_CMD = "bash /runTest.sh &"
+}
