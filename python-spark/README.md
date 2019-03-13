@@ -28,10 +28,12 @@ spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon example.py
 	Go to https://app.rookout.com and start debugging :)
 	
     #### Usage example
-    Try placing breakpoints at these locations in `example.py`:
-    * In `main` on line 65
-    * In `map_partitions_handler` on line 48
-    * In `multiply_latlong` (a UDF) on line 24
+    You cannot place breakpoints in executor nodes in the `__main__` module, as a side effect of how PySpark serializes functions.
+    
+    Try placing breakpoints at:
+    * In `example.main` on line 36
+    * In `example_executor_module.handle_record` on line 30
+    * In `example_executor_module.multiply_latlong` (a UDF) on line 7
     * Run your program
 
 ## Running under YARN (AWS EMR)
