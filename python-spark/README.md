@@ -42,7 +42,7 @@ spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon example.py
 2. Specify the `ROOKOUT_TOKEN` environment variable:
 
 ```
-spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon --conf spark.yarn.appMasterEnv.ROOKOUT_TOKEN=[Your Rookout Token]` `--conf spark.executorEnv.ROOKOUT_TOKEN=[Your Rookout Token] example.py
+spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon --conf spark.yarn.appMasterEnv.ROOKOUT_TOKEN=[Your Rookout Token] --conf spark.executorEnv.ROOKOUT_TOKEN=[Your Rookout Token] example.py
 ```
 
 
