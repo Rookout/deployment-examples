@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "4d9b2e7512c3cba0b673a27cf83a7e49806c15a6268e5d0f2a61f08d7754d302"
     TRIGGER_TIME = "30"
     LANG = "Python"
-    BACKGROUND_IMAGE_CMD = "(sleep 30; spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon /app/example.py) &"
+    BACKGROUND_IMAGE_CMD = "(sleep 30; cd /app && spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon /app/example.py) &"
 }
