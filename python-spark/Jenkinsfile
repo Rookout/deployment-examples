@@ -1,5 +1,5 @@
 regressionTest {
-    FILE_PATH =  "example.py"
+    FILE_PATH =  "example_executor_module.py"
     LINE_NUM =  "7,21"
     SHA =  "4d9b2e7512c3cba0b673a27cf83a7e49806c15a6268e5d0f2a61f08d7754d302"
     TRIGGER_TIME = "30"
