@@ -18,5 +18,6 @@ RUN mkdir /opt/spark
 RUN mv -v spark-2.4.0-bin-hadoop2.7/* /opt/spark/
 RUN pip install six
 ADD example.py /app
+ADD example_executor_module.py /app
 WORKDIR /app
 ENV PATH $PATH:/opt/spark/bin/
