@@ -11,7 +11,7 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 1. *Clone and install dependencies*:
  ```bash
-    git clone https://github.com/Rookout/deployment-examples/tree/master/python-flask
+    git clone https://github.com/Rookout/deployment-examples
     cd python-flask
     pip install -r requirements.txt
 ```
