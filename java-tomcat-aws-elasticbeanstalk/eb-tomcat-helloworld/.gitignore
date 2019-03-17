@@ -1,7 +1,6 @@
 *.DS_Store
 *.war
 *.zip
-*.class
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
