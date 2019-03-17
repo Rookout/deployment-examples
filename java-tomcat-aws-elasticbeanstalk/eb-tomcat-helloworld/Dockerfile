@@ -1,5 +1,7 @@
 FROM lambci/lambda:build-java8
 
+WORKDIR app
+
 ADD . .
 
-RUN ./build.sh
+RUN zip -r java-aws-tomcat-test.zip .
