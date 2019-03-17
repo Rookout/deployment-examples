@@ -1,4 +1,5 @@
 cd /app
+
 aws s3 cp java-aws-tomcat-test.zip s3://java-tomcat-elastic-beanstalk-reg-test
 
 now="$(date +'%d-%m-%Y-%H:%M:%S')"
