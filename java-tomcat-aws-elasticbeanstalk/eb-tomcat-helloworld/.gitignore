@@ -1,8 +1,0 @@
-*.DS_Store
-*.war
-*.zip
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
