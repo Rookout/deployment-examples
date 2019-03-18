@@ -2,7 +2,7 @@ cd /app
 aws s3 cp java-aws-tomcat-test.zip s3://java-tomcat-elastic-beanstalk-reg-test
 
 version=$(uuidgen)
-echo version
+
 aws elasticbeanstalk create-application-version \
                                 --application-name regression-tests \
                                 --version-label $version \
