@@ -17,30 +17,6 @@ To integrate Rookout into your existing java beanstalk application follow these 
     * Sets up the Rookout ETL Agent, responsible for communicating with the Rookout service.
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
-
-## Running locally
-__NOTE: This sample project requires Tomcat8__
-
-Run ``make local`` to add the Rookout Java Agent to Tomcat environment locally.
-
-Run ``build.sh`` to compile the web app and create a WAR file (OS X or Linux):
-
-	~/eb-tomcat-helloworld$ ./build.sh
-
-**IMPORTANT**
-Always run build.sh from the root of the project directory.
-
-The script compiles the project's classes, packs the necessary files into a web archive, and then attempts to copy the WAR file to ``/Library/Tomcat`` for local testing. If you installed Tomcat to another location, change the path in ``build.sh`` and in the Makefile:
-
-	if [ -d "/path/to/Tomcat/webapps" ]; then
-	  cp ROOT.war /path/to/Tomcat/webapps
-
-Open [http://localhost:8080/?name=rookout](http://localhost:8080/?name=rookout) in a web browser to view the application running locally.
-Try to change the query parameter "name" - /?name=rookout, /?name=John
-
-**Finally** Go to [http://app.rookout.com](http://app.rookout.com) and start debugging! 
-
-
 ## Deploying on AWS Elastic Beanstalk
 
 You can use either the AWS Management Console or the EB CLI to launch the compiled WAR. Scroll down for EB CLI instructions.
@@ -61,11 +37,8 @@ You can use either the AWS Management Console or the EB CLI to launch the compil
 
 ## Rookout Integration Process
 We have added Rookout to the original project by:
-1. Adding the source files to the project .war when building (we added the 'com' folder here):
-    
-    ~$ jar -cf ROOT.war WEB-INF .ebextensions/* com
 
-2. Adding Rookout's Elastic Beanstalk .ebextensions to install Rook and add the Java Agent to communicate with the app:
+1. Adding Rookout's Elastic Beanstalk .ebextensions to install Rook:
     ```
     files:
         "/opt/elasticbeanstalk/lib/rook.jar" :
@@ -73,11 +46,20 @@ We have added Rookout to the original project by:
             owner: root
             group: root
             source: "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"
-    option_settings:
-        aws:elasticbeanstalk:container:tomcat:jvmoptions:
-            JVM Options: '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
-	    ROOKOUT_TOKEN: '<your-token>' //Add your token here
     ```
+2. Adding Rookout's token to elastic beasntalk environment variables and add the Java Agent to communicate with the app:
+```
+  - namespace:  aws:elasticbeanstalk:container:tomcat:jvmoptions
+    option_name:  JVM Options
+    value:  '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
+  - namespace:  aws:elasticbeanstalk:container:tomcat:jvmoptions
+    option_name:  JVM Options
+    value:  '-javaagent:/opt/elasticbeanstalk/lib/rook.jar'
+  - namespace: aws:elasticbeanstalk:application:environment
+    option_name: ROOKOUT_TOKEN
+    value: '<your-token>'
+    
+```
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
