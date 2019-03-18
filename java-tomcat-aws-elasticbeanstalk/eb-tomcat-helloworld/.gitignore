@@ -1,8 +1,8 @@
 *.DS_Store
 *.war
 *.zip
-!*.class
-
+*.class
+!*aws*.class
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
