@@ -47,7 +47,7 @@ We have added Rookout to the original project by:
             group: root
             source: "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"
     ```
-2. Adding Rookout's token to elastic beasntalk environment variables and add the Java Agent to communicate with the app:
+2. Adding Rookout's token to elastic beanstalk environment variables and add the Java Agent to communicate with the app:
 ```
   - namespace:  aws:elasticbeanstalk:container:tomcat:jvmoptions
     option_name:  JVM Options
