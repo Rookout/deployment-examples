@@ -27,11 +27,6 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
     $ npm install
     ```
 
-1. Build:
-    ```bash
-    $ npm run build
-    ```
-
 1. Run:
     ```bash
     $ npm start
