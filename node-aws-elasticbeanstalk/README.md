@@ -26,18 +26,16 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
     ```bash
     $ npm install
     ```
+**IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS elastic beanstalk runs on Linux machine and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:_
 
-1. Build:
-    ```bash
-    $ npm run build
-    ```
+     docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs8.10 npm install
 
-1. Run:
+2. Run:
     ```bash
     $ npm start
     ```
 
-1. Go to [https://app.rookout.com](https://app.rookout.com) and start debugging! 
+3. Go to [https://app.rookout.com](https://app.rookout.com) and start debugging! 
 
 
 ## Running on Elastic Beanstalk
@@ -54,7 +52,7 @@ You can use either the AWS Management Console or the EB CLI to launch the node a
 
 1. Upload the source (node-example.zip) bundle when creating a [new Beanstalk app](https://console.aws.amazon.com/elasticbeanstalk/home#/gettingStarted)
 
-1. Choose 'Node' Platform
+1. Choose 'Node' Platform (Make sure that the version you are choosing supports rook)
 
 1. Make sure everything worked by accessing the url provided by Elastic Beanstalk after build completed
 
