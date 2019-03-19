@@ -2,7 +2,7 @@
 *.war
 *.zip
 *.class
-
+!*aws*.class
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "eb-tomcat-helloworld/src/ConditionalAWSXRayServletFilter.java"
+    LINE_NUM =  "31"
+    SHA =  "49708436924d2f811b2e7b1112d83d2aaa8d6f5744acd17012d9779845b9e7f3"
+    URL_FOR_TRIGGER = "http://java-tomcat-aws-elasticbeanstalk.us-east-2.elasticbeanstalk.com/"
+    LANG = "Java"
+    BACKGROUND_IMAGE_CMD = "bash /app/runTest.sh &"
+}
