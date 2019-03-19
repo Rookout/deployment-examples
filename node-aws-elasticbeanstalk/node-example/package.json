@@ -4,7 +4,7 @@
   "private": true,
   "description": "Rookout Node deployment example to elastic beanstalk",
   "dependencies": {
-    "rookout": "^0.1.50"
+    "rookout": "^0.1.51"
   },
   "scripts": {
     "start": "node app.js"
