@@ -1,5 +1,5 @@
 regressionTest {
-    FILE_PATH =  "node-example/app.js"
+    FILE_PATH =  "app.js"
     LINE_NUM =  "32"
     SHA =  "3fa2554c6e4e5de3d7e7db17379c63e39398092993553dbe78d03a4c056dc4bd"
     URL_FOR_TRIGGER = "http://node-aws-elasticbeanstalk.us-east-2.elasticbeanstalk.com/"
