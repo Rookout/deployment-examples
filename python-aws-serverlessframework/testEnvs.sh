@@ -1,6 +1,6 @@
 cd /app 
 
-sls deploy
+sudo sls deploy
 
 aws lambda update-function-configuration \
             --function-name python-aws-serverlessframework-regression-test-dev-hello \

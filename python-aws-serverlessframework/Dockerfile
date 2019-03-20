@@ -36,3 +36,5 @@ COPY . .
 RUN sls plugin install -n serverless-python-requirements
 
 RUN sed -i '14s/.*/service: python-aws-serverlessframework-regression-test/' serverless.yml
+
+USER root
