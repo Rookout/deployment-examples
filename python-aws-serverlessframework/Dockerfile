@@ -1,6 +1,4 @@
-FROM node:8.10.0
-
-RUN npm install -g serverless
+FROM andrewfarley/docker-python-serverless
 
 WORKDIR /app
 
