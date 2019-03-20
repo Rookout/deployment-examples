@@ -5,5 +5,5 @@ regressionTest {
     SHA =  "65c176e5a4e694fded082bf476ef7dd14daa20b98d999b04c2a263380f474c02"
     URL_FOR_TRIGGER = "python-aws-serverlessframework-dev-hello"
     LANG = "NodeJs"
-    BACKGROUND_IMAGE_CMD = "sls deploy &"
+    BACKGROUND_IMAGE_CMD = "bash /app/runTest.sh &"
 }
