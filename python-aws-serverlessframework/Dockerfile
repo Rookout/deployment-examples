@@ -29,12 +29,8 @@ RUN pip-3 install --no-cache-dir --upgrade pip awscli mysqlclient pyyaml && \
   
 WORKDIR /app
 
-RUN npm install
-
 COPY . .
 
 RUN sls plugin install -n serverless-python-requirements
 
 RUN sed -i '14s/.*/service: python-aws-serverlessframework-regression-test/' serverless.yml
-
-USER root
