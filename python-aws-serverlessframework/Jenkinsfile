@@ -5,4 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "python-aws-serverlessframework-dev-hello"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "bash /app/testEnvs.sh &"
+    ADD_DIND: true
 }
