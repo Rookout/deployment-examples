@@ -1,3 +1,5 @@
+cd /app
+
 sls deploy
 
 aws lambda update-function-configuration \

@@ -1,5 +1,5 @@
 # use your node version
-FROM node:8.10.0
+FROM lambci/lambda:build-nodejs8.10
 
 # install serverless framework
 RUN npm install -g serverless
