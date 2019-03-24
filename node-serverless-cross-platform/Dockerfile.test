@@ -16,3 +16,5 @@ RUN npm install
 
 # copy our application contents
 COPY . .
+
+RUN sed -i '1s/.*/service: node-serverless-regression-test/' serverless.yml
