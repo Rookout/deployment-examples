@@ -1,4 +1,3 @@
-
 regressionTest {
     FILE_PATH =  "index.js"
     LINE_NUM =  "13"
