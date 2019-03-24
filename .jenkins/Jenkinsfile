@@ -29,7 +29,7 @@ podCreator.initMain(label: label) {
                             string(credentialsId: 'ROOKOUT_REGGRESION_TOKEN', variable: 'ROOKOUT_TOKEN'),
                             usernamePassword(credentialsId: 'AWS_TEST_USER', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')
                     ]) {
-                        if(file_test.exists()){
+                        if(checkIfFileExist(this, dirPath, "Dockerfile.test")){
                             sh("cd ${dirPath} && docker build -f Dockerfile.test -t ${dockerTag} . && gcloud docker -- push ${dockerTag}")
                         }
                         else{
