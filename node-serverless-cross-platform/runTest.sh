@@ -1,6 +1,6 @@
 cd /app
 
-sls deploy
+sls deploy --force
 
 aws lambda update-function-configuration \
             --function-name node-serverless-regression-test-dev \
