@@ -1,8 +1,6 @@
 cd /app
 
-sls remove 
-
-sls deploy --force
+sls deploy 
 
 aws lambda update-function-configuration \
             --function-name node-serverless-reg-test-dev-example \
