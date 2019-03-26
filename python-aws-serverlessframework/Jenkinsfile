@@ -2,7 +2,7 @@ regressionTest {
     FILE_PATH =  "handler.py"
     LINE_NUM =  "13"
     SHA =  "f0ac96765edbfdb43a6381f977e070844b56808cd04f919ba7775a50a944fd28"
-    URL_FOR_TRIGGER = "python-aws-serverlessframework-dev-hello"
+    URL_FOR_TRIGGER = "python-aws-serverless-reg-test-dev-hello"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "bash /app/testEnvs.sh &"
     ADD_DIND: true
