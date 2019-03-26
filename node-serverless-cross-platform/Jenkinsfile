@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "index.js"
-    LINE_NUM =  "13"
-    SHA =  "65c176e5a4e694fded082bf476ef7dd14daa20b98d999b04c2a263380f474c02"
+    LINE_NUM =  "8"
+    SHA =  "594ebcf3eee0376f2ef2095e20aa85bc1840d8d6ec463ff735732ce7b39a5573"
     URL_FOR_TRIGGER = "node-serverless-reg-test-dev-example"
     LANG = "NodeJs"
     BACKGROUND_IMAGE_CMD = "bash /app/runTest.sh &"

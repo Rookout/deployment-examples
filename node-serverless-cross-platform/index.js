@@ -1,4 +1,3 @@
-const rook = require('rookout/auto_start');
 const lambdaWrapper = require('rookout/lambda');
 const serverless = require('serverless-http');
 const express = require('express');
