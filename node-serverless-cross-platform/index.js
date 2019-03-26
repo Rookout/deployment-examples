@@ -1,12 +1,8 @@
-const rook = require('rookout');
+const rook = require('rookout/auto_start');
 const lambdaWrapper = require('rookout/lambda');
 const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
-
-rook.start({
-    token: '<ROOKOUT TOKEN HERE>'
-});
 
 // our simple hello worl http handler
 app.get('/', function (req, res) {
