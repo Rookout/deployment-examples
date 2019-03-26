@@ -4,7 +4,7 @@ WORKDIR /build
 
 ADD . . 
 
-RUN pip install -r requirements.txt 
+RUN pip install -r requirements.txt -t . 
 
 FROM lambci/lambda:build-nodejs8.10
 
@@ -16,5 +16,3 @@ WORKDIR /app
 COPY --from=builder /build .
 
 RUN sed -i '14s/.*/service: python-aws-serverless-reg-test/' serverless.yml
-
-CMD sls deploy
