@@ -1,4 +1,4 @@
-service: aws-nodejs
+service: node-serverless-reg-test
 
 app: node-serverless-app
 tenant: your-tenant
