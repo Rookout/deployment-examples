@@ -13,6 +13,6 @@ RUN npm install -g serverless
 
 WORKDIR /app
 
-COPY --from=builder /build .
+COPY --from=builder /build /app
 
 RUN sed -i '14s/.*/service: python-aws-serverless-reg-test/' serverless.yml
