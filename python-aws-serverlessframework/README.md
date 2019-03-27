@@ -12,8 +12,6 @@ To integrate Rookout into your existing Serverless Framework Python Lambda app, 
 
 1. Add the pip dependency `rook` in the project folder.
 
-1. Set dockerizePip for true in the serverless.yml file in order to allow cross compiling.
-
 1. Add Rookout's decorator to your lambda_handler function.
 
 1. Set your Rookout Token as an environment variables in the serverless.yml file:
@@ -34,14 +32,12 @@ We have added Rookout to the original project by:
         return 'Hello World'
     ```
 
-1. Run `sls plugin install -n serverless-python-requirements`
-
-1. Add to your serverless.yml the serverless-python-requirements plugin:
-
-```
-plugins:
-  - serverless-python-requirements
-```
+1. Run `pip install -r requirements.txt -t .`
+   
+   **IMPORTANT:** If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
+   ```
+    docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python2.7 pip install rook -t .
+    ```
 
 1. Set your Rookout Token as a Lambda environment variable:
 
@@ -50,13 +46,13 @@ environment:
  ROOKOUT_TOKEN:<YOUR_TOKEN>
 ```
 
-1. Deploy your serverless functions using the serverless framework:
+5. Deploy your serverless functions using the serverless framework:
 
 ```
 serverless deploy 
 ```
 
-1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
+6. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 
