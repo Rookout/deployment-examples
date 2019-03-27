@@ -1,11 +1,14 @@
 service: aws-nodejs
 
-app: serverless-app
+app: node-serverless-app
 tenant: your-tenant
 
 provider:
   name: aws
   runtime: nodejs8.10
+  region: ${opt:region, self:custom.defaultRegion}
+custom:
+    defaultRegion: us-east-2
 
 functions:
   example:
