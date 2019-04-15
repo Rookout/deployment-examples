@@ -9,4 +9,5 @@ aws lambda update-function-configuration \
 sleep 20
 curl ${RESULT[26]}
 sleep 60
+chalice logs index
 chalice delete --stage dev
