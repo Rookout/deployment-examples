@@ -12,10 +12,10 @@ sleep 20
 echo "Triggering the lambda/ checking to see the result" 
 curl ${RESULT[26]}
 echo "Trying to get logs" 
-chalice logs index
-chalice logs python_chalice_lambda_regression_test-dev
+chalice logs  --name index
+chalice logs  --name python_chalice_lambda_regression_test-dev
 echo "Sleeping for 60 seconds more" 
-sleep 60
+sleep 20
 echo "Deleting the stage" 
 chalice delete --stage dev
 echo "DONEEE"
