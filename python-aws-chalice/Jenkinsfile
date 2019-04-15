@@ -5,4 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "python_chalice_lambda_regression_test-dev"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "bash /var/task/runTest.sh &"
+    BACKGROUND_SCRIPT_END_STRING = "DONEEE"
 }
