@@ -2,7 +2,7 @@
 #!bin/bash
 cd /var/task
 echo "Deploying the lambda, and update with envs" 
-declare RESULT=($(chalice deploy)) ; \
+declare RESULT=($(chalice deploy)) ; echo $RESULT ; \
 aws lambda update-function-configuration \
             --function-name python_chalice_lambda_regression_test-dev \
             --region us-east-2 \
@@ -10,7 +10,8 @@ aws lambda update-function-configuration \
 echo "Sleeping for 20 secs" 
 sleep 20
 echo "Triggering the lambda/ checking to see the result" 
-curl ${RESULT[26]}
+URL=$(echo $RESULT | grep -oE 'Rest API URL: (.+\/api\/)' | cut -d\  -f4)
+curl $URL
 echo "Trying to get logs" 
 chalice logs  --name index
 chalice logs  --name python_chalice_lambda_regression_test-dev
