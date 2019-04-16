@@ -2,8 +2,7 @@
 #!bin/bash
 cd /var/task
 echo "Deploying the lambda, and update with envs" 
-echo "MICKAEL WAS HERE"
-declare RESULT=($(chalice deploy)) ; echo $RESULT ; \
+RESULT=$(chalice deploy) ; echo $RESULT ; \
 aws lambda update-function-configuration \
             --function-name python_chalice_lambda_regression_test-dev \
             --region us-east-2 \
