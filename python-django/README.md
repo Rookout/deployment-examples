@@ -8,7 +8,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 1. *Clone and install dependencies*:
  ```bash
     git clone https://github.com/Rookout/deployment-examples.git
-    cd deployment-examples/python-djando
+    cd deployment-examples/python-django
     pip install -r requirements.txt
     python manage.py migrate
 ```
