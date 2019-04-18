@@ -10,8 +10,9 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 ## Running locally
 1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
-    $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-maven
-    $ mvn package
+    git clone https://github.com/Rookout/deployment-examples.git
+    cd deployment-examples/java-maven/maven-agent
+    mvn package
     ```
 2. Export your Rookout Token
      ```bash

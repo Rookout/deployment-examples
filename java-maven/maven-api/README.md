@@ -10,12 +10,13 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 ## Running locally
 1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
-    $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-maven
-    $ mvn package
+    git clone https://github.com/Rookout/deployment-examples.git
+    cd deployment-examples/java-maven/maven-api
+    mvn package
     ```
 2. Run:
     ```bash
-    $ java -jar target/rookoutDemo-1.0.0-jar-with-dependencies.jar
+    java -jar target/rookoutDemo-1.0.0-jar-with-dependencies.jar
     ```
 
 3. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/hello)
