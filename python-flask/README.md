@@ -11,8 +11,8 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 1. *Clone and install dependencies*:
  ```bash
-    git clone https://github.com/Rookout/deployment-examples
-    cd python-flask
+    git clone https://github.com/Rookout/deployment-examples.git
+    cd deployment-examples/python-flask
     pip install -r requirements.txt
 ```
 21. *Export organization token*:

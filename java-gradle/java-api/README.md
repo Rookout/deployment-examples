@@ -10,13 +10,14 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 ## Running local application
 1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
-    $ git clone https://github.com/Rookout/deployment-examples/tree/master/java-gradle
+    git clone https://github.com/Rookout/deployment-examples.git
+    cd deployment-examples/java-gradle/java-api
     ```
 2. Add your otganization token to line 14 at HelloWorld.java
 
 3. Run using gradle:
     ```bash
-    $ ./gradlew jar run
+    ./gradlew jar run
     ```
 4. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/)
 
