@@ -1,11 +1,9 @@
-FROM python:2.7.15-slim
+FROM python:2.7.15-stretch
 RUN mkdir /app
-# https://stackoverflow.com/a/46407052/2107339
-RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y software-properties-common
+RUN apt update && apt upgrade -y
+RUN apt install -y software-properties-common
 RUN apt-add-repository ppa:webupd8team/java
-RUN apt-get update
+RUN apt update
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | \
   debconf-set-selections
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | \
