@@ -1,7 +1,7 @@
-FROM python:2.7.15-stretch
+FROM python:2.7.15-slim
 RUN mkdir /app
 # https://stackoverflow.com/a/46407052/2107339
-RUN printf "deb http://archive.debian.org/debian/ stretch main\ndeb-src http://archive.debian.org/debian/ stretch main\ndeb http://security.debian.org stretch/updates main\ndeb-src http://security.debian.org stretch/updates main" > /etc/apt/sources.list
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y software-properties-common
 RUN apt-add-repository ppa:webupd8team/java
