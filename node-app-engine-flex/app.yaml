@@ -29,5 +29,5 @@ resources:
   memory_gb: 0.5
   disk_size_gb: 10
 env_variables:
-  ROOKOUT_AGENT_HOST: YOUR_AGENT_INNER_IP
+  ROOKOUT_CONTROLLER_HOST: YOUR_AGENT_INNER_IP
 # [END app_yaml]

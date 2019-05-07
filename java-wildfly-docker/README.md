@@ -65,10 +65,10 @@ We have added Rookout to the original project by:
     *Known issue: The confirguration overrides the log manager to use jboss.logmanager no matter what. This is because
     the Rookout Java Agent uses the default java logging and Wildfly is unable to start without its logger.*
     
-1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right ETL Agent:
+1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right ETL Controller:
     ```bash
-    export ROOKOUT_AGENT_HOST="cloud.agent.rookout.com"
-    export ROOKOUT_AGENT_PORT="443"
+    export ROOKOUT_CONTROLLER_HOST="cloud.agent.rookout.com"
+    export ROOKOUT_CONTROLLER_PORT="443"
     export ROOKOUT_TOKEN="YOUR_TOKEN"
     ```
     
