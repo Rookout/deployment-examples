@@ -17,5 +17,7 @@ rook.start();
 ```
 4. Go to [app.rookout.com](https://app.rookout.com/) and start debugging !
 
+We recommend to increase the memory of the function to 1GB due to low CPU resources.
+
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [npm]: https://www.npmjs.com/package/rookout
