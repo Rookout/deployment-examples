@@ -76,6 +76,6 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 We have added Rookout to the original project by:
 1. Installing the Rookout SDK: `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/auto_start');`
     
-1. Setting up the Rookout ETL Controller by setting the following environment variable: `ROOKOUT_TOKEN`.
+1. Setting up the Rookout SDK by setting the following environment variable: `ROOKOUT_TOKEN`.
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
