@@ -1,10 +1,10 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: rookout-agent-deployment
+  name: rookout-controller-deployment
   labels:
     product: rookout
-    app: agent
+    app: controller
     type: deployment
 spec:
   replicas: 1
@@ -12,11 +12,11 @@ spec:
     metadata:
       labels:
         product: rookout
-        app: agent
+        app: controller
     spec:
       containers:
-      - name: agent
-        image: rookout/agent
+      - name: controller
+        image: rookout/controller
         imagePullPolicy: Always
         resources:
           requests:

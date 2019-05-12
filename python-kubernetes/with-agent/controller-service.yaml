@@ -1,15 +1,15 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: rookout-agent-service
+  name: rookout-controller-service
   labels:
     product: rookout
-    app: agent
+    app: controller
     type: service
 spec:
   selector:
     product: rookout
-    app: agent
+    app: controller
     type: deployment
   type: ClusterIP
   ports:

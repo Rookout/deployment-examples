@@ -14,7 +14,7 @@ To integrate Rookout into your existing java beanstalk application follow these 
 1. Add the source files to your built .jar/.war
 
 2. Add these [.ebextensions standalone config scripts](.ebextensions) to your project configuration(.ebextensions)
-    * Sets up the Rookout ETL Agent, responsible for communicating with the Rookout service.
+    * Sets up the Rookout ETL Controller, responsible for communicating with the Rookout service.
 __The process is described here : [Rookout Integration Process](#rookout-integration-process)__
 
 ## Deploying on AWS Elastic Beanstalk

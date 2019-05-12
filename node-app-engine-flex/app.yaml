@@ -18,7 +18,7 @@ runtime: nodejs
 env: flex
 
 
-# This sample incurs costs to run on the App Engine flexible environment. 
+# This sample incurs costs to run on the App Engine flexible environment.
 # The settings below are to reduce costs during testing and are not appropriate
 # for production use. For more information, see:
 # https://cloud.google.com/appengine/docs/flexible/python/configuring-your-app-with-app-yaml
@@ -29,5 +29,5 @@ resources:
   memory_gb: 0.5
   disk_size_gb: 10
 env_variables:
-  ROOKOUT_AGENT_HOST: YOUR_AGENT_INNER_IP
+  ROOKOUT_TOKEN: YOUR_TOKEN_HERE
 # [END app_yaml]

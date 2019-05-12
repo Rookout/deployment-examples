@@ -1,7 +1,7 @@
 # Quickstart for debugging Kubernetes deployments
 
 This is a full example for deploying an application with Rookout using Kubernetes.
-Here we are using a local ETL Agent deployed in the cluster that the SDK will connect to.
+Here we are using a local ETL Controller deployed in the cluster that the SDK will connect to.
 
 Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/sdk-setup.html) guide.
 
@@ -19,7 +19,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 
 1. Create a kubernetes secret for your ROOKOUT_TOKEN: `kubectl create secret generic rookout --from-literal=token=<Your-Rookout-Token>`
 
-1. Deploy the agent `kubectl apply -f agent-deployment.yaml -f agent-service.yaml`
+1. Deploy the controller `kubectl apply -f controller-deployment.yaml -f controller-service.yaml`
 
 1. Deploy the demo application `kubectl apply -f app-deployment.yaml -f app-service.yaml`
 

@@ -18,5 +18,5 @@ spec:
         ports:
         - containerPort: 5000
         env:
-          - name: ROOKOUT_AGENT_HOST
-            value: 'rookout-agent-service.default.svc.cluster.local'
+          - name: ROOKOUT_CONTROLLER_HOST
+            value: 'rookout-controller-service.default.svc.cluster.local'
