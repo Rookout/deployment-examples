@@ -1,9 +1,9 @@
 FROM python:2.7.15-stretch
 RUN mkdir /app
-RUN apt-get update
+RUN apt-get --allow-releaseinfo-change update
 RUN apt-get install -y software-properties-common
 RUN apt-add-repository ppa:webupd8team/java
-RUN apt-get update
+RUN apt-get --allow-releaseinfo-change update
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | \
   debconf-set-selections
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | \
