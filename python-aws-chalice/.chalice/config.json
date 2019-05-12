@@ -1,7 +1,5 @@
 {
   "environment_variables": {
-    "ROOKOUT_CONTROLLER_HOST": "cloud.agent.rookout.com",
-    "ROOKOUT_CONTROLLER_PORT": "443",
     "ROOKOUT_TOKEN": "<token>"
   },
   "stages": {

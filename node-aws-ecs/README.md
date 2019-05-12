@@ -18,7 +18,7 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 ## Running locally
 **Requirements:** `node`, `docker`
 
-1. Run `docker build --tag node-ecs-example . && docker run -it -p 8080:8080 -e "ROOKOUT_CONTROLLER_HOST=cloud.agent.rookout.com" -e "ROOKOUT_CONTROLLER_PORT=443" -e "ROOKOUT_TOKEN=<TOKEN>" node-ecs-example`
+1. Run `docker build --tag node-ecs-example . && docker run -it -p 8080:8080 -e "ROOKOUT_TOKEN=<TOKEN>" node-ecs-example`
 
 1. Open [http://localhost:8080/](http://localhost:8080/) to make sure everything works
 
@@ -38,7 +38,7 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
     - Memory Limits: Hard limit: 128
     - Port mappings: Host 80 / Container 8080
     - **Environment**
-        - Env Variables: `ROOKOUT_CONTROLLER_HOST`, `ROOKOUT_CONTROLLER_PORT`, `ROOKOUT_TOKEN`
+        - Env Variable: `ROOKOUT_TOKEN`
     
     Or using JSON Configuration :
     ```json
@@ -58,14 +58,6 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
           ],
           "environment": [
             {
-              "name": "ROOKOUT_CONTROLLER_HOST",
-              "value": "cloud.agent.rookout.com"
-            },
-            {
-              "name": "ROOKOUT_CONTROLLER_PORT",
-              "value": "443"
-            },
-            {
               "name": "ROOKOUT_TOKEN",
               "value": "TOKEN"
             }
@@ -84,6 +76,6 @@ There are 2 simple steps to integrate Rookout into your existing Node applicatio
 We have added Rookout to the original project by:
 1. Installing the Rookout SDK: `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/auto_start');`
     
-1. Setting up the Rookout ETL Controller by setting the following environment variables: `ROOKOUT_CONTROLLER_HOST` (default LOCALHOST), `ROOKOUT_CONTROLLER_PORT` (default 7486) and `ROOKOUT_TOKEN`.
+1. Setting up the Rookout ETL Controller by setting the following environment variable: `ROOKOUT_TOKEN`.
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html

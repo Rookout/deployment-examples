@@ -11,19 +11,12 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 ## Deploying to App Engine
 
-1. Before deploying the app you should first deploy the Rookout ETL Controller to your App Engine:
-```bash
-$ gcloud beta compute instances create-with-container rookout-controller \
-  --zone us-east1-d --container-image=rookout/controller \
-  --container-env ROOKOUT_TOKEN=<Your Rookout Token>
-```
-2. Copy the Controller ip address from the `INTERNAL_IP` field available once you successfully deployed it, and add it to the `app.yaml`.
-3. Deploy the service: 
+1. Deploy the service: 
 ```bash
 $ npm run deploy
 ```
-4. Access the URL provided to you once phase 3 successfully done to make sure our demo application is up and running.
-5. Go to app.rookout.com and start debugging the service!
+2. Access the URL provided to you once phase 3 successfully done to make sure our demo application is up and running.
+3. Go to app.rookout.com and start debugging the service!
 
 ## Rookout Integration explained
 
@@ -40,7 +33,7 @@ var rookout = require('rookout/auto_start');
 3. Adding the following `env_variables` to `app.yaml`:
 ``` YAML
 env_variables:
-  ROOKOUT_CONTROLLER_HOST: "<Your Rookout ETL Controller host>"
+  ROOKOUT_TOKEN: "<Your Rookout Token>"
 ```
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html

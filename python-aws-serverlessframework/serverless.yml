@@ -21,8 +21,6 @@ provider:
   name: aws
   runtime: python3.6
   environment:
-      'ROOKOUT_CONTROLLER_HOST': 'cloud.agent.rookout.com'
-      'ROOKOUT_CONTROLLER_PORT': '443'
       'ROOKOUT_TOKEN': 'YOUR-TOKEN'
   region: ${opt:region, self:custom.defaultRegion}
 custom:

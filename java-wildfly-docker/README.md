@@ -67,8 +67,6 @@ We have added Rookout to the original project by:
     
 1. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right ETL Controller:
     ```bash
-    export ROOKOUT_CONTROLLER_HOST="cloud.agent.rookout.com"
-    export ROOKOUT_CONTROLLER_PORT="443"
     export ROOKOUT_TOKEN="YOUR_TOKEN"
     ```
     
