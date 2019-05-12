@@ -1,14 +1,7 @@
-FROM python:2.7.15-stretch
+FROM openjdk:8u212-jdk-stretch
+#python:2.7.15-stretch
 RUN mkdir /app
-RUN apt-get --allow-releaseinfo-change update
-RUN apt-get install -y software-properties-common
-RUN apt-add-repository ppa:webupd8team/java
-RUN apt-get --allow-releaseinfo-change update
-RUN echo debconf shared/accepted-oracle-license-v1-1 select true | \
-  debconf-set-selections
-RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | \
-  debconf-set-selections
-RUN apt-get install --allow-unauthenticated -y oracle-java8-installer
+RUN apt-get update && apt-get install python-pip -y
 RUN mkdir /opt/scala
 RUN curl -LJO http://downloads.lightbend.com/scala/2.12.1/scala-2.12.1.deb
 RUN dpkg -i scala-2.12.1.deb
