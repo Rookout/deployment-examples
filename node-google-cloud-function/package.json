@@ -1,0 +1,12 @@
+{
+  "name": "google-cloud-function-rookout-demo",
+  "version": "0.0.1",
+  "description": "Rookout example for google cloud functions",
+  "main": "index.js",
+  "author": "Rookout Labs",
+  "license": "ISC",
+  "dependencies": {
+    "rookout": "^0.1.59",
+	"escape-html": "1.0.3"
+  }
+}
