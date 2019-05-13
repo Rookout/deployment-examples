@@ -15,11 +15,11 @@ URL=$(echo $RESULT | grep -oE 'Rest API URL: (.+\/api\/)' | cut -d\  -f4)
 echo "URL_TO_TRIGGER -- START"
 echo $URL
 echo "URL_TO_TRIGGER -- END"
+echo "Sleeping for 90 seconds more"
+sleep 90
 echo "Trying to get logs" 
 chalice logs  --name index
 chalice logs  --name python_chalice_lambda_regression_test-dev
-echo "Sleeping for 20 seconds more" 
-sleep 20
-echo "Deleting the stage" 
+echo "Deleting the stage"
 chalice delete --stage dev
 echo "DONEEE"
