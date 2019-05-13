@@ -1,8 +1,9 @@
-
 #!bin/bash
 cd /var/task
 echo "Deploying the lambda, and update with envs" 
 RESULT=$(chalice deploy) ; echo $RESULT ; \
+echo "Sleeping for 20 secs"
+sleep 20
 aws lambda update-function-configuration \
             --function-name python_chalice_lambda_regression_test-dev \
             --region us-east-2 \
