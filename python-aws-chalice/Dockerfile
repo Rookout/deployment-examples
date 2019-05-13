@@ -1,6 +1,6 @@
 FROM lambci/lambda:build-python2.7
  
-ADD .chalice app.py requirements.txt ./
+ADD .chalice/* app.py requirements.txt ./
 
 # Install app dependencies
 RUN pip install --upgrade pip
