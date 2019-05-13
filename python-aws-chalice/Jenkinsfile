@@ -6,5 +6,5 @@ regressionTest {
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "bash /var/task/runTest.sh &"
     BACKGROUND_SCRIPT_END_STRING = "DONEEE"
-    URL_TO_TRIGGER_IN_FILE = "true"
+    URL_FOR_TRIGGER_IN_FILE = "true"
 }
