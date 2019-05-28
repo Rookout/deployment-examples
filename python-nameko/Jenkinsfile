@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "http.py"
+    LINE_NUM =  "13"
+    SHA =  "a8a5694dc3b91dbc1f35f42ed8144f982feec82827962786fc027104cb7e18f7"
+    URL_FOR_TRIGGER = "http://localhost:8000/get/42"
+    LANG = "Python"
+    BACKGROUND_IMAGE_CMD = "python3 -m nameko run http &"
+}
