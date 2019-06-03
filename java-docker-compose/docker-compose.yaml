@@ -11,6 +11,7 @@ services:
     container_name: rookout-demo-app
     environment:
       ROOKOUT_CONTROLLER_HOST: controller
+      ROOKOUT_CONTROLLER_PORT: 7486
     ports:
       - 7000:7000
     command:  java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar
