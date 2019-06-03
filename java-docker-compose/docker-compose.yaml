@@ -1,4 +1,7 @@
 version: '3'
+environment:
+  ROOKOUT_TOKEN: YOUR_TOKEN_HERE
+
 services:
   app:
     build: .
