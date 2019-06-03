@@ -1,5 +1,3 @@
-# http.py
-
 import json
 import rook
 rook.start()
