@@ -8,11 +8,11 @@ rook.start();
 
 // Specify using a rookoutOptions class:
 // import {rookoutOptions} from "rookout";
-// let x : rookoutOptions = {
+// let options : rookoutOptions = {
 //     tags: ['tag1', 'tag2'],
 //     token: 'rookout-token',
 // };
-// rook.start(x);
+// rook.start(options);
 
 const animals: Array<string> = ["Aardvark",
     "Abyssinian",
