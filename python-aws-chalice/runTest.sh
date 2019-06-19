@@ -2,7 +2,11 @@
 cd /var/task
 echo "Updating reg-test chalice config.json and replacing the original config.json"
 sed -i.new -E "s/ROOKOUT_TOKEN_GOES_HERE/${ROOKOUT_TOKEN}/g" .chalice/config-reg-test.json
+echo "Printing config-reg-test.json.new"
+cat .chalice/config-reg-test.json.new
 mv .chalice/config-reg-test.json.new .chalice/config.json
+echo "Printing configjson"
+cat .chalice/config.json
 echo "Deploying the lambda, and update with envs" 
 RESULT=$(chalice deploy) ; echo $RESULT ;
 echo "Fetching URL to trigger"
