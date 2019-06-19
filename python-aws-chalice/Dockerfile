@@ -1,7 +1,7 @@
 FROM lambci/lambda:build-python2.7
  
 ADD .chalice/config.json .chalice/config.json
-ADD .chalice/config-reg-test.json ./chalice/config-reg-test.json
+ADD .chalice/config-reg-test.json .chalice/config-reg-test.json
 ADD app.py requirements.txt ./
 
 # Install app dependencies
