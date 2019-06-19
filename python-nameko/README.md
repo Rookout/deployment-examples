@@ -22,7 +22,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 3. *Run nameko*:
 ```bash
     # start the server (default: http://localhost:8000)
-    nameko run nameko_example.py
+    nameko run nameko_example
 ```
 
 4. *Have fun debugging*:
