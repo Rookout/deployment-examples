@@ -1,10 +1,10 @@
-#!bin/bash
+#!/bin/bash
 cd /var/task
 echo "Updating reg-test chalice config.json and replacing the original config.json"
-sed -i.new -E "s/ROOKOUT_TOKEN_GOES_HERE/${ROOKOUT_TOKEN}/g" .chalice/config-reg-test.json
-echo "Printing config-reg-test.json.new"
-cat .chalice/config-reg-test.json.new
-mv .chalice/config-reg-test.json.new .chalice/config.json
+sed -i-E "s/ROOKOUT_TOKEN_GOES_HERE/$ROOKOUT_TOKEN/g" .chalice/config-reg-test.json
+echo "Printing config-reg-test.json"
+cat .chalice/config-reg-test.json
+mv .chalice/config-reg-test.json .chalice/config.json
 echo "Printing configjson"
 cat .chalice/config.json
 echo "Deploying the lambda, and update with envs" 
