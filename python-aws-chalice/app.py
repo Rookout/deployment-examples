@@ -1,6 +1,6 @@
 from rook.serverless import RookoutChalice
 
-# In order to pass params to the rook directly - uncomment the section below
+# In order to pass parameters using the Rookout API, uncomment the section below:
 # import rook
 # rook.start(token="<token>", tags=["tag1", "tag2"])
 

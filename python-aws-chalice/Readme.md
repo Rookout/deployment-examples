@@ -24,7 +24,7 @@ from rook.serverless import RookoutChalice
 app = RookoutChalice(app_name='python-aws-chalice')
 ```
 
-You can also specify rook params using the api (use before the RookoutChalice initialization): 
+You may also pass parameters using the Rookout API (use before the RookoutChalice initialization):
 
 ```python
 import rook
