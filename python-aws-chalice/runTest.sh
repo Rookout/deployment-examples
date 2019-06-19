@@ -13,8 +13,8 @@ echo "URL_TO_TRIGGER -- END"
 echo "Sleeping for 240 seconds more"
 sleep 240
 echo "Trying to get logs" 
-chalice logs  --name index
-chalice logs  --name python_chalice_lambda_regression_test-dev
+chalice logs --name index
+chalice logs --name python_chalice_lambda_regression_test-dev
 echo "Deleting the stage"
 chalice delete --stage dev
 echo "DONEEE"
