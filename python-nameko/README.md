@@ -19,10 +19,10 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
  	export ROOKOUT_TOKEN=<Your Rookout Token>
 ```
 
-3. *Run the sanic server*:
+3. *Run nameko*:
 ```bash
-    #start the server (default: http://localhost:8000)
-    nameko nameko_example.py
+    # start the server (default: http://localhost:8000)
+    nameko run nameko_example
 ```
 
 4. *Have fun debugging*:
