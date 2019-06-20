@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "app.py"
-    LINE_NUM =  "7"
-    SHA =  "4de4fa45b00152327dc2892d0bfb2eb6a2ed53ea22bda7dee319ecb97299e239"
+    LINE_NUM =  "11"
+    SHA =  "3e577424d98028ef44cb12f322a68524b66c2788d203682301f0bea300fb80d3"
     URL_FOR_TRIGGER = "python_chalice_lambda_regression_test-dev"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "bash /var/task/runTest.sh &"
