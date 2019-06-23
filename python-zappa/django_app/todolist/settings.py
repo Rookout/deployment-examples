@@ -22,7 +22,7 @@ SECRET_KEY = '@e2(yx)v&tgh3_s=0yja-i!dpebxsz^dg47x)-k&kq_3zf*9e*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "*"]
 
 
 # Application definition
@@ -114,5 +114,6 @@ TEMPLATES = [
     },
 ]
 
-import rook
-rook.start()
+from rook.serverless import setup_zappa_support
+setup_zappa_support()
+
