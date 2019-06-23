@@ -1,0 +1,11 @@
+{
+    "devv": {
+        "app_function": "app.app",
+        "aws_region": "us-east-1",
+        "profile_name": "default",
+        "project_name": "flask-app",
+        "runtime": "python2.7",
+        "s3_bucket": "zappa-irlljlfd8",
+        "aws_environment_variables" : {"ROOKOUT_TOKEN": "<token>"}
+    }
+}

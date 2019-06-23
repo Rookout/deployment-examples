@@ -1,0 +1,4 @@
+Django==1.11.6
+djangorestframework==3.7.1
+rook>=0.1.20
+zappa
