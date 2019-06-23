@@ -24,4 +24,11 @@ from rook.serverless import RookoutChalice
 app = RookoutChalice(app_name='python-aws-chalice')
 ```
 
+You may also pass parameters using the Rookout API (use before the RookoutChalice initialization):
+
+```python
+import rook
+rook.start(token="<token>", tags=["tag1", "tag2"])
+```
+
 4. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
