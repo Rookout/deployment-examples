@@ -1,4 +1,3 @@
-import time
 import json
 from rook.serverless import serverless_rook
 
@@ -14,9 +13,6 @@ def hello(event, context):
         "statusCode": 200,
         "body": json.dumps(body)
     }
-
-    for _ in range(2):
-        time.sleep(1)
 
     return response
 
