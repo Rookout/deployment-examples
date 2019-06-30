@@ -4,9 +4,7 @@
 const rook = require('rookout');
 // You can either specify your token here as an option map, or don't specify it and instead use the ROOKOUT_TOKEN
 // environment variable to specify it.
-rook.start({
-     tags: ['tag1', 'tag2'],
-});
+rook.start();
 
 const animals: Array<string> = ["Aardvark",
     "Abyssinian",
