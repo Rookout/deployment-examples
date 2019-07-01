@@ -4,7 +4,7 @@ sls deploy --force
 
 sls package --package /tmp/pkg
 
-lambda update-function-code --function-name python-aws-serverless-reg-test-dev-hello \
+aws lambda update-function-code --function-name python-aws-serverless-reg-test-dev-hello \
             --zip-file fileb:/tmp/pkg/python-aws-serverless-reg-test.zip
 
 aws lambda update-function-configuration \
