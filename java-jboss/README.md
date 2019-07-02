@@ -8,7 +8,9 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 There are 4 simple steps to integrate Rookout into your existing JBoss web application:
 
-1. Add the following JAVA_OPTS arguments in the standalone config script:
+1. Copy the `module.xml` and the rook.jar to the `<JBOSS_FOLDER>\modules\org\jboss\rookout\Main` folder.
+
+2. Add the following JAVA_OPTS arguments in the standalone config script:
 ```bash
 -javaagent:<PATH_TO_ROOK> -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager 
 -Xbootclasspath/p:<JBOSS_FOLDER>\modules\org\jboss\logmanager\main\jboss-logmanager-1.2.2.GA.jar 
@@ -18,7 +20,7 @@ There are 4 simple steps to integrate Rookout into your existing JBoss web appli
 
 This will add the rookout sdk as a java agent, and will fix any logmanager loading issues.
 
-2. Modify standalone.xml file:
+3. Modify standalone.xml file:
 ```bash
 <subsystem xmlns="urn:jboss:domain:ee:1.0">
     <global-modules>
@@ -28,9 +30,6 @@ This will add the rookout sdk as a java agent, and will fix any logmanager loadi
 ```
 
 Due to JavaEE class isolation we need to add the rookout sdk as a global module. 
-
-
-3. Extract the rookout.zip in the `<JBOSS_FOLDER>\modules\org\jboss` folder.
 
 4. Set these variables in the `standalone.conf` at the top of the file like so in order to connect to the right ETL Controller:
 ```bash
