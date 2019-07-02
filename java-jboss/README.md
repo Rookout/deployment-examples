@@ -19,6 +19,7 @@ There are 4 simple steps to integrate Rookout into your existing JBoss web appli
 ```
 
 This will add the rookout sdk as a java agent, and will fix any logmanager loading issues.
+Notice that the versions of the jars will defer on various JBoss installations
 
 3. Modify standalone.xml file:
 ```bash
