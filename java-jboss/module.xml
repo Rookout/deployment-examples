@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<module xmlns="urn:jboss:module:1.0" name="org.jboss.rookout">
+    <dependencies>
+        <module name="javaee.api"/>
+    </dependencies>
+    <resources>
+        <resource-root path="rook.jar"/>
+    </resources>
+</module>
