@@ -68,6 +68,14 @@ We have added Rookout to the original project by:
     ```
     
 1. Setting our Rookout Token as a Lambda environment variable: `ROOKOUT_TOKEN`
+
+You may also pass parameters using the Rookout API (use after the serverless import):
+
+```python
+import rook
+rook.start(token="<token>", tags=["tag1", "tag2"])
+```
+
     
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
