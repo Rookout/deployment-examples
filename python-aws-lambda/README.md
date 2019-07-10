@@ -12,7 +12,7 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
 
    If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
 
-1. Wrap your lambda_handler function in our Rookout wrapper.
+1. Wrap your lambda_handler function in our Rookout wrapper ([Example](#rookout-integration-process)).
 
 1. Set your Rookout Token as an environment variable in the Lambda configuration.
 
