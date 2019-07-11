@@ -10,7 +10,9 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
 
 1. Add the pip dependency `rook` in the project folder.
 
-1. Wrap your lambda_handler function in our Rookout wrapper.
+   If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
+
+1. Wrap your lambda_handler function in our Rookout wrapper ([Example](#rookout-integration-process)).
 
 1. Set your Rookout Token as an environment variable in the Lambda configuration.
 
@@ -38,7 +40,8 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
 
     - Using **Cloud9 IDE** integrated tools.
 
-    **IMPORTANT:** If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
+    #### Building on MacOS/Windows
+    If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
     ```
     docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python2.7 pip install rook -t .
     ```
@@ -65,6 +68,14 @@ We have added Rookout to the original project by:
     ```
     
 1. Setting our Rookout Token as a Lambda environment variable: `ROOKOUT_TOKEN`
+
+You may also pass parameters using the Rookout API (use after the serverless import):
+
+```python
+import rook
+rook.start(token="<token>", tags=["tag1", "tag2"])
+```
+
     
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
