@@ -1,17 +1,11 @@
 version: '3'
-services:
-  controller:
-    container_name: rookout-controller
-    environment:
-      ROOKOUT_TOKEN: YOUR_TOKEN_HERE
-    image: "rookout/controller"
+environment:
+  ROOKOUT_TOKEN: YOUR_TOKEN_HERE
 
+services:
   app:
     build: .
     container_name: rookout-demo-app
-    environment:
-      ROOKOUT_CONTROLLER_HOST: controller
-      ROOKOUT_CONTROLLER_PORT: 7486
     ports:
       - 7000:7000
     command:  java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar
