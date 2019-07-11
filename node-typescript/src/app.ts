@@ -6,11 +6,6 @@ const rook = require('rookout');
 // environment variable to specify it.
 rook.start();
 
-// Specify using an option map:
-// rook.start({
-//     token: 'rookout-token'
-// })
-
 const animals: Array<string> = ["Aardvark",
     "Abyssinian",
     "Affenpinscher",

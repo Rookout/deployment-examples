@@ -10,7 +10,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 1. *Clone and install dependencies*:
  ```bash
     git clone https://github.com/Rookout/deployment-examples.git
-    cd deployment-examples/python-sonic
+    cd deployment-examples/python-sanic
     pip3 install -r requirements.txt
 ```
 

@@ -1,0 +1,9 @@
+regressionTest {
+    FILE_PATH =  "nameko_example.py"
+    LINE_NUM =  "11"
+    SHA =  "5029d528e8b7af1ed2343f6a5059f7d3da434582a350f232b528cd19fb2ccba9"
+    URL_FOR_TRIGGER = "http://localhost:8000/get/42"
+    LANG = "Python"
+    BACKGROUND_IMAGE_CMD = "cd /nameko; nameko run nameko_example &"
+    USE_WEBSOCKET_PROTOCOL = "true"
+}

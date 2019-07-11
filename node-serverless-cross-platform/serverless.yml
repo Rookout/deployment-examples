@@ -1,8 +1,4 @@
-service: aws-nodejs
-
-app: node-serverless-app
-tenant: your-tenant
-
+service: node-serverless-app
 provider:
   name: aws
   runtime: nodejs8.10
