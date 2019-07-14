@@ -1,6 +1,5 @@
 import json
 import rook
-rook.start()
 from nameko.web.handlers import http
 
 class HttpService:
@@ -17,3 +16,5 @@ class HttpService:
     @http('GET,PUT,POST,DELETE', '/multi')
     def do_multi(self, request):
         return request.method
+
+rook.start()
