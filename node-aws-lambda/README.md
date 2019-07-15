@@ -4,15 +4,23 @@ A sample application for debugging Node.js + AWS Lambda.
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide.
 
-## Rookout Integration Explained
+## Rookout Integration Process
 
 There are 3 simple steps to integrate Rookout into your existing Node application:
 
-1. Add the Rookout SDK using the npm dependency `rookout`
+1. Installing the Rookout SDK: `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
 
-1. Wrap your lambda function with `rookout.wrap()`
+2. Wrapping your function with the Lambda wrapper as such :  
 
-1. Set your Rookout Token as an environment variable in the Lambda configuration.
+```javascript
+function handler(event, context, callback) {
+        callback(null, "Hello World");
+}
+
+exports.handler = rookout.wrap(handler);
+```
+    
+3. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
 
 ## Running on Lambda
 
@@ -49,23 +57,5 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
     More information can be found in [our documentation](https://docs.rookout.com/docs/sdk-setup.html)
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
-
-## Rookout Integration Process
-
-We have added Rookout to the original project by:
-1. Installing the Rookout SDK: `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
-
-2. Wrapping your function with the Lambda wrapper as such :  
-`const rookout = require('rookout/lambda');`
-
-```javascript
-function handler(event, context, callback) {
-        callback(null, "Hello World");
-}
-
-exports.handler = rookout.wrap(handler);
-```
-    
-3. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
