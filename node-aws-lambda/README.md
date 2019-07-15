@@ -59,9 +59,11 @@ We have added Rookout to the original project by:
 `const rookout = require('rookout/lambda');`
 
 ```javascript
-exports.handler = rookout.wrap((event, context, callback) => {
-    callback(null, "Hello World");
-});
+function handler(event, context, callback) {
+        callback(null, "Hello World");
+}
+
+exports.handler = rookout.wrap(handler);
 ```
     
 3. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
