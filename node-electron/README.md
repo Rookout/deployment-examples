@@ -21,7 +21,7 @@ There are 4 simple steps to integrate Rookout into your existing Node-Electron a
 
 3. Adding a require statement to the project entry file:
     ```js
-    const rook = require("rookout/auto_start");
+    const rookout = require("rookout/auto_start");
     ```
 
 4. Update the command line for electron to contain --inspect, In the `package.json`:

@@ -1,7 +1,7 @@
 "use strict";
 
 console.log("Starting rook from-", __filename);
-const rook = require('rookout/auto_start');
+const rookout = require('rookout/auto_start');
 console.log("Rook start has finished!");
 // [START app]
 const express = require('express');

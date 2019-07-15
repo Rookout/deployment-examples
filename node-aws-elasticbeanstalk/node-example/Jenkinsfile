@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "app.js"
     LINE_NUM =  "32"
-    SHA =  "3fa2554c6e4e5de3d7e7db17379c63e39398092993553dbe78d03a4c056dc4bd"
+    SHA =  "7ef9f8d2a2969121af0da1769059e8bdd4aac97a70a21724aef5eedada13a0c8"
     URL_FOR_TRIGGER = "http://node-aws-ebs-reg-test.us-east-2.elasticbeanstalk.com/"
     LANG = "Node"
     BACKGROUND_IMAGE_CMD = "bash /runTest.sh &"
