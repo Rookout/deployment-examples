@@ -10,16 +10,12 @@ There are 4 simple steps to integrate Rookout into your existing JBoss web appli
 
 1. Copy the `module.xml` and the `rook.jar` to the `<JBOSS_FOLDER>\modules\org\jboss\rookout\Main` folder.
 
-2. Add the following JAVA_OPTS arguments in the standalone config script:
+2. Add the following JAVA_OPTS arguments in the standalone (<JBOSS_FOLDER>\bin\standalone.sh) config script:
 ```bash
--javaagent:<PATH_TO_ROOK> -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager 
--Xbootclasspath/p:<JBOSS_FOLDER>\modules\org\jboss\logmanager\main\jboss-logmanager-1.2.2.GA.jar 
--Xbootclasspath/p:<JBOSS_FOLDER>\modules\org\jboss\logmanager\log4j\main\jboss-logmanager-log4j-1.0.0.GA.jar 
--Xbootclasspath/p:<JBOSS_FOLDER>\modules\org\apache\log4j\main\log4j-1.2.16.jar
+-javaagent:<PATH_TO_ROOK>
 ```
 
-This will add the rookout sdk as a java agent, and will fix any logmanager loading issues.
-Notice that the versions of the jars will defer on various JBoss installations
+This will add the rookout sdk as a java agent.
 
 3. Modify standalone.xml file:
 ```bash
