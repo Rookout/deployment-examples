@@ -69,7 +69,7 @@ We have added Rookout to the original project by:
 
 1. Adding a require statement to the project entry file app.ts:
     ```js
-    const rook = require("rookout/auto_start");
+    const rookout = require("rookout/auto_start");
     ```
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html

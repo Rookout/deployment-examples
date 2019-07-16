@@ -1,7 +1,7 @@
 const escapeHtml = require('escape-html');
 
-const rook = require('rookout');
-rook.start();
+const rookout = require('rookout');
+rookout.start();
 
 /**
  * Responds to any HTTP request.

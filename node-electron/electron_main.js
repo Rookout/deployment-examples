@@ -1,7 +1,7 @@
 const electron = require( "electron" );
 const { app, BrowserWindow } = electron;
 
-const rook = require('rookout/auto_start');
+const rookout = require('rookout/auto_start');
 
 let mainWindow = null;
 

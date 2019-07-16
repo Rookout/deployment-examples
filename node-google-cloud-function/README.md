@@ -12,8 +12,8 @@ To integrate Rookout into your google function, follow these steps:
 2. Set your Rookout Token as the ROOKOUT_TOKEN environment variable
 3. Call to rook start function in the beginning of your index.js file:
 ``` js
-const rook = require('rookout');
-rook.start();
+const rookout = require('rookout');
+rookout.start();
 ```
 4. Go to [app.rookout.com](https://app.rookout.com/) and start debugging !
 
