@@ -9,7 +9,7 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 There are 3 simple steps to integrate Rookout into your existing Node application:
 
 1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html)
-    
+
     You can skip this step by installing the Rookout SDK: `npm install --save rookout`
     
     If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
@@ -54,6 +54,7 @@ exports.handler = rookout.wrap(handler);
     
     #### Building on MacOS/Windows
     If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
+    
     ```docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs8.10 npm install```
     
     You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
