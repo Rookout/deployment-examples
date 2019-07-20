@@ -8,9 +8,9 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, follow these steps:
 
-1. Add the pip dependency `rook` in the project folder.
-
-   If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
+1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html) 
+    You can skip this step by adding the pip dependency `rook` in the project folder.
+    If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
 
 1. Wrap your lambda_handler function in our Rookout wrapper ([Example](#rookout-integration-process)).
 
@@ -34,6 +34,7 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
                     --handler lambda_function.lambda_handler \
                     --runtime python2.7 \
                     --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}" \
+                    --layers "LAYER-ARN" \
                     --timeout 25
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
@@ -75,7 +76,5 @@ You may also pass parameters using the Rookout API (use after the serverless imp
 import rook
 rook.start(token="<token>", tags=["tag1", "tag2"])
 ```
-
-    
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
