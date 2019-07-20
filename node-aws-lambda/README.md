@@ -53,10 +53,16 @@ exports.handler = rookout.wrap(handler);
     - Using **Cloud9 IDE** integrated tools.
     
     #### Building on MacOS/Windows
-    If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
+    If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. 
     
-    ```docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs8.10 npm install```
+    AWS Lambda runs on Linux and thus needs the linux compiled binaries. 
     
+    To build AWS Lambda compatible native extensions, simply run the following command line (Add your node version):
+    
+    ```
+    docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs<YOUR-NODE-VERSION> npm install
+    ```
+       
     You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
 
 1. Set your Rookout Token as an environment variable in the Lambda configuration:

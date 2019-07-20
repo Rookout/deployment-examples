@@ -44,10 +44,15 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
     - Using **Cloud9 IDE** integrated tools.
 
     #### Building on MacOS/Windows
-    If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. AWS Lambda runs on Linux and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:
+    If you are building on a MacOS/Windows machine, pip will compile native binaries for this platform. 
+    
+    AWS Lambda runs on Linux and thus needs the linux compiled binaries. 
+    
+    To build AWS Lambda compatible native extensions, simply run the following command line (Add your python version):
     ```
-    docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python2.7 pip install rook -t .
-    ```
+    docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-python<Your-Python-Version> pip install rook -t .
+    ``` 
+    
     
     You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
 
