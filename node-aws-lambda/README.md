@@ -9,7 +9,9 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 There are 3 simple steps to integrate Rookout into your existing Node application:
 
 1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html)
+    
     You can skip this step by installing the Rookout SDK: `npm install --save rookout`
+    
     If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
 
 2. Wrapping your function with the Lambda wrapper as such :  

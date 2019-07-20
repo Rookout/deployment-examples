@@ -9,7 +9,9 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, follow these steps:
 
 1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html) 
+    
     You can skip this step by adding the pip dependency `rook` in the project folder.
+    
     If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
 
 1. Wrap your lambda_handler function in our Rookout wrapper ([Example](#rookout-integration-process)).
