@@ -10,9 +10,9 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
 1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html)
 
-    You can skip this step by installing the Rookout SDK: `npm install --save rookout`
-    
-    If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
+For further information check aws-lambda-docs [here](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
+
+For alternative import check [this](#manual-rookout-sdk-installation) section
 
 2. Wrapping your function with the Lambda wrapper as such :  
 
@@ -28,7 +28,7 @@ exports.handler = rookout.wrap(handler);
     
 3. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
 
-## Running on Lambda
+## Creating your function
 
 1. Uploading your function : 
     - **Zip Upload**: In order to run your Rookout-wrapped function on Lambda, make sure the dependencies are downloaded and zip
@@ -45,14 +45,14 @@ exports.handler = rookout.wrap(handler);
                     --handler index.handler \
                     --runtime nodejs8.10 \
                     --environment Variables="{ROOKOUT_TOKEN=<Your Rookout Token>,ROOKOUT_ROOK_TAGS=lambda}" \
-                    --layers "LAYER-ARN" \
+                    --layers "ROOKOUT-LAYER-ARN" \
                     --timeout 25
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
     - Using **Cloud9 IDE** integrated tools.
     
-    #### Building on MacOS/Windows
+    ### Building on MacOS/Windows
     If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. 
     
     AWS Lambda runs on Linux and thus needs the linux compiled binaries. 
@@ -69,6 +69,12 @@ exports.handler = rookout.wrap(handler);
     - `ROOKOUT_TOKEN` : Your Organization Token
     
     More information can be found in [our documentation](https://docs.rookout.com/docs/sdk-setup.html)
+
+## Manual rookout SDK installation
+
+To install the Rookout SDK run the following command: `npm install --save rookout`
+    
+If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
 
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
 
