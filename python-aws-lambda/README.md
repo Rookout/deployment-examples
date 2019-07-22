@@ -8,9 +8,16 @@ Before following this guide we recommend reading the basic [Python + Rookout] gu
 
 To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, follow these steps:
 
-1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html) 
+1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html), make sure to replace the region and version placeholder with yours  
     
-    You can skip this step by adding the pip dependency `rook` in the project folder.
+    Example:
+    ```bash
+    aws lambda update-function-configuration --function-name YOUR-FUNCTION-NAME --layer arn:aws:lambda:us-east-1:032275105219:layer:rookout_python27_v_0_1_66_1:1
+    ```
+    
+    For further information check aws layers docs [here](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
+    
+    For alternative import add the pip dependency `rook` in the project folder.
     
     If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
 
@@ -36,7 +43,7 @@ To integrate the Rookout SDK (aka "rook") into your existing Python Lambda app, 
                     --handler lambda_function.lambda_handler \
                     --runtime python2.7 \
                     --environment Variables="{ROOKOUT_TOKEN=<org_token>,ROOKOUT_ROOK_TAGS=lambda}" \
-                    --layers "LAYER-ARN" \
+                    --layers "ROOKOUT-LAYER-ARN" \
                     --timeout 25
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**

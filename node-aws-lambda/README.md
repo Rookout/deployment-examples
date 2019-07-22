@@ -8,11 +8,16 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 
 There are 3 simple steps to integrate Rookout into your existing Node application:
 
-1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html)
+1. Add our lambda layer, you can find the latest version [here](https://docs.rookout.com/docs/sdk-digests.html), make sure to replace the region and version placeholder with yours  
+    
+    Example:
+    ```bash
+    aws lambda update-function-configuration --function-name YOUR-FUNCTION-NAME --layer arn:aws:lambda:us-east-1:032275105219:layer:rookout_python27_v_0_1_66_1:1
+    ```
 
-For further information check aws-lambda-docs [here](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
+For further information check aws layers docs [here](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
 
-For alternative import check [this](#manual-rookout-sdk-installation) section
+For alternative import, install the Rookout SDK run the following command: `npm install --save rookout`
 
 2. Wrapping your function with the Lambda wrapper as such :  
 
@@ -50,32 +55,11 @@ exports.handler = rookout.wrap(handler);
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
 
-    - Using **Cloud9 IDE** integrated tools.
-    
-    ### Building on MacOS/Windows
-    If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. 
-    
-    AWS Lambda runs on Linux and thus needs the linux compiled binaries. 
-    
-    To build AWS Lambda compatible native extensions, simply run the following command line (Add your node version):
-    
-    ```
-    docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs<YOUR-NODE-VERSION> npm install
-    ```
-       
-    You can read more about building a local native extension in our [blog](https://www.rookout.com/3_min_hack_for_building_local_native_extensions/).
-
 1. Set your Rookout Token as an environment variable in the Lambda configuration:
     - `ROOKOUT_TOKEN` : Your Organization Token
     
     More information can be found in [our documentation](https://docs.rookout.com/docs/sdk-setup.html)
-
-## Manual rookout SDK installation
-
-To install the Rookout SDK run the following command: `npm install --save rookout`
     
-If you are using MacOS/Windows check [this](#building-on-macoswindows) section.
-
 1. Go to [app.rookout.com](https://app.rookout.com) and start debugging!
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
