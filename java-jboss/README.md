@@ -17,11 +17,12 @@ There are 4 simple steps to integrate Rookout into your existing JBoss web appli
 
 This will add the rookout sdk as a java agent.
 
-3. Modify standalone.xml file:
+3. Add rookout SDK as a global module by modify the standalone.xml file: 
 ```bash
-<subsystem xmlns="urn:jboss:domain:ee:1.0">
+<subsystem xmlns="urn:jboss:domain:ee:<EE-SUBSYSTEM-VERSION>">
     <global-modules>
         <module name="org.jboss.rookout" slot="main"/>
+        ........
     </global-modules>
 </subsystem>
 ```
