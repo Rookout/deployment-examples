@@ -8,7 +8,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 There are 4 simple steps to integrate Rookout into your existing JBoss web application:
 
-1. Copy the `module.xml` and the `rook.jar` to the `<JBOSS_FOLDER>\modules\org\jboss\rookout\Main` folder.
+1. Copy the `module.xml` and the `rook.jar` to the `<JBOSS_FOLDER>\modules\org\jboss\rookout\main` folder.
 
 2. Add the following JAVA_OPTS arguments in the standalone (<JBOSS_FOLDER>\bin\standalone.sh) config script:
 ```bash
