@@ -10,20 +10,14 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
 
 1. Installing the Rookout SDK: `npm install --save rookout` and adding it in the entry file `const rookout = require('rookout/lambda');`
 
-2. Wrapping your function with the Lambda wrapper:  
-
-```javascript
-wrap(your_handler, options = {})
-```
-
-For example:
+2. Wrapping your function with the Lambda wrapper which get the handler and optional rookout options:    
 
 ```javascript
 function handler(event, context, callback) {
         callback(null, "Hello World");
 }
 
-exports.handler = rookout.wrap(handler);
+exports.handler = rookout.wrap(handler, {tags:['rookout_lambda']});
 ```
     
 3. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
