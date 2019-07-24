@@ -50,7 +50,6 @@ exports.handler = rookout.wrap(handler);
                     --handler index.handler \
                     --runtime nodejs8.10 \
                     --environment Variables="{ROOKOUT_TOKEN=<Your Rookout Token>,ROOKOUT_ROOK_TAGS=lambda}" \
-                    --layers "ROOKOUT-LAYER-ARN" \
                     --timeout 25
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
