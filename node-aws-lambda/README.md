@@ -19,7 +19,7 @@ For further information check aws layers docs [here](https://docs.aws.amazon.com
 
 For alternative import, install the Rookout SDK run the following command: `npm install --save rookout`
 
-2. Wrapping your function with the Lambda wrapper as such :  
+2. Wrapping your function with the Lambda wrapper which get the handler and optional rookout options:    
 
 ```javascript
 const rookout = require('rookout/lambda');
@@ -28,7 +28,7 @@ function handler(event, context, callback) {
         callback(null, "Hello World");
 }
 
-exports.handler = rookout.wrap(handler);
+exports.handler = rookout.wrap(handler, {tags:['rookout_lambda']});
 ```
     
 3. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
