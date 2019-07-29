@@ -12,7 +12,7 @@ There are 3 simple steps to integrate Rookout into your existing Node applicatio
     
     Example:
     ```bash
-    aws lambda update-function-configuration --function-name YOUR-FUNCTION-NAME --layer arn:aws:lambda:us-east-1:032275105219:layer:rookout_python27_v_0_1_66_1:1
+    aws lambda update-function-configuration --function-name YOUR-FUNCTION-NAME --layer arn:aws:lambda:us-east-1:032275105219:layer:rookout_nodejs_v_0_1_67_1:1 
     ```
 
 For further information check aws layers docs [here](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
