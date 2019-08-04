@@ -5,6 +5,7 @@ WORKDIR /tmp/
 RUN mvn package
 
 FROM jetty:latest
+USER root
 COPY --from=SAMPLE_LIB /tmp/target/jetty-helloworld.war /var/lib/jetty/webapps/
 RUN echo '--exec \n-javaagent:/var/lib/jetty/rook.jar' >> /var/lib/jetty/start.d/server.ini
 ADD --chown=jetty:jetty http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST /var/lib/jetty/rook.jar
