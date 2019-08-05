@@ -12,8 +12,7 @@ There are 4 simple steps to integrate Rookout into your existing Node-Electron a
     ```bash
     $ npm install --save rookout
     ```
-	IMPORTANT:: replace ELECTRON_VERSION_HERE with your electron version
-
+	
 2. Export Organization Token:
     ```bash
 	$ export ROOKOUT_TOKEN=<Your-Token>
