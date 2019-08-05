@@ -16,7 +16,7 @@ To integrate Rookout into your existing Java application, follow these steps:
 ```
 3. Set your Rookout Token as the `ROOKOUT_TOKEN` environment variable, or append the server.ini (after the javaagent):
 ```bash
--DROOKOUT_TOKEN=***REMOVED***
+-DROOKOUT_TOKEN=<YOUT-TOKEN>
 ```
 
 ## Run your application on an existing Jetty server
