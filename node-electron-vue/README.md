@@ -1,34 +1,31 @@
-# Quickstart for debugging an Electron + Lambda app using Rookout
+# Quickstart for debugging an Electron vue app using Rookout
 
-A sample application for debugging an Electron app using Rookout
+A sample application for debugging an Electron Vue app using Rookout
 
 Before following this guide we recommend reading the basic [Node + Rookout] guide
 
 ## Rookout Integration Explained
 
-There are 4 simple steps to integrate Rookout into your existing Node-Electron application:
+There are XXXXXXXXXXXXX simple steps to integrate Rookout into your existing Node-Electron application:
 
 1. Adding the Rookout SDK to `package.json` available on [npm]:
     ```bash
     $ npm install --save rookout
     ```
-	IMPORTANT:: replace ELECTRON_VERSION_HERE with your electron version
-
+	
 2. Export Organization Token:
     ```bash
 	$ export ROOKOUT_TOKEN=<Your-Token>
     ```
 
-3. Adding a require statement to the project entry file:
+3. Adding a require statement to the project entry file (src/main/index.js):
     ```js
     const rookout = require("rookout/auto_start");
     ```
 
-4. Update the command line for electron to contain --inspect, In the `package.json`:
+4. Modify all webpack .config.js files (.electron-vur/webpack.[main, renderer, web].config.js) by chaging the way webpack is packed:
 	```
-	"scripts": {
-    "start": "electron . --inspect" 
-	},
+	devtool: 'inline-source-map',
 	```
 	
 5. Build your electron application
