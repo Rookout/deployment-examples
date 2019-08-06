@@ -6,7 +6,7 @@ Before following this guide we recommend reading the basic [Node + Rookout] guid
 
 ## Rookout Integration Explained
 
-There are XXXXXXXXXXXXX simple steps to integrate Rookout into your existing Node-Electron application:
+Follow these simple steps to integrate Rookout into your existing Node-Electron application:
 
 1. Adding the Rookout SDK to `package.json` available on [npm]:
     ```bash
