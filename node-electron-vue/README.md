@@ -23,7 +23,7 @@ Follow these simple steps to integrate Rookout into your existing Node-Electron 
     const rookout = require("rookout/auto_start");
     ```
 
-4. Modify all webpack .config.js files (.electron-vur/webpack.[main, renderer, web].config.js) by chaging the way webpack is packed:
+4. Modify all webpack .config.js files (.electron-vue/webpack. [main, renderer, web] .config.js) by changing the way webpack is packed:
 	```
 	devtool: 'inline-source-map',
 	```
