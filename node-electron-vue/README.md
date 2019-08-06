@@ -20,7 +20,11 @@ Follow these simple steps to integrate Rookout into your existing Node-Electron 
 
 3. Adding a require statement to the project entry file (src/main/index.js):
     ```js
-    const rookout = require("rookout/auto_start");
+    const rookout = require('rookout');
+
+    rookout.start({
+       token: 'YOUR-TOKEN', debug:true
+    });
     ```
 
 4. Modify all webpack .config.js files (.electron-vue/webpack. [main, renderer, web] .config.js) by changing the way webpack is packed:
