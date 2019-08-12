@@ -10,10 +10,9 @@ There are 4 simple steps to integrate Rookout into your existing Node-Electron a
 
 1. Adding the Rookout SDK to `package.json` available on [npm]:
     ```bash
-    $ npm install --save rookout --runtime=electron --target=4.0.1
+    $ npm install --save rookout
     ```
-	IMPORTANT:: replace ELECTRON_VERSION_HERE with your electron version
-
+	
 2. Export Organization Token:
     ```bash
 	$ export ROOKOUT_TOKEN=<Your-Token>
@@ -33,21 +32,6 @@ There are 4 simple steps to integrate Rookout into your existing Node-Electron a
 	
 5. Build your electron application
 
-
-FAQ
-====
-In case of an error like this:
-```
-Error: Failed to load gRPC binary module because it was not installed for the current system
-Expected directory: electron-v1.8-win32-x64-unknown
-Found: [node-v59-win32-x64-unknown]
-```
-
-simply delete grpc folder inside the node_modules, and run:
-
-```bash
-$ npm install --save rookout --runtime=electron --target=4.0.1
-```
 
 [Node + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [npm]: https://www.npmjs.com/package/rookout
