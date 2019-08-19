@@ -1,12 +1,12 @@
-# Quickstart Debugging Java Sbt scala using Rookout
+# Quickstart Debugging sbt app using Rookout
 
-A sample application for debugging Java Sbt scala using Rookout.
+A sample application for debugging sbt app using Rookout.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide
 
-## Integrate Rookout into your Java application
+## Integrate Rookout into your sbt application
 
-To integrate Rookout into your existing Java application, follow these steps:
+To integrate Rookout into your existing sbt application, follow these steps:
 
 1. [Download the Rookout Java Agent](http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST)
 2. Add Rookout as a javaagent to your environment variable as following:
