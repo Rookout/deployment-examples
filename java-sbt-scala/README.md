@@ -13,10 +13,8 @@ To integrate Rookout into your existing Java application, follow these steps:
 ```bash
 JAVA_OPTS=-javaagent:<PATH-TO-ROOK.JAR>
 ```
-3. Set your Rookout Token as the `ROOKOUT_TOKEN` environment variable, or append the server.ini (after the javaagent):
-```bash
--DROOKOUT_TOKEN=<YOUR-TOKEN>
-```
+3. Set your Rookout Token as the `ROOKOUT_TOKEN` environment variable.
+
 4. Add your sources to your jar by adding the following line to your main `build.sbt` file:
 ```bash
 resourceDirectory in Compile := sourceDirectory.value
