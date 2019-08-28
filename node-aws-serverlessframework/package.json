@@ -1,7 +1,7 @@
 {
-  "name": "serverless-cross-platform",
+  "name": "serverless-node",
   "version": "1.0.0",
-  "description": "example deploying rookout on node serverless app in non-linux machine",
+  "description": "example deploying rookout on node serverless app",
   "main": "index.js",
   "scripts": {
     "deploy": "docker build --tag serverless-deployment . && docker run serverless-deployment"
@@ -10,7 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "rookout": "^0.1.36",
+    "rookout": "^0.1.72",
     "serverless-http": "^1.8.0"
+  },
+  "devDependencies": {
+    "serverless": "^1.50.1"
   }
 }

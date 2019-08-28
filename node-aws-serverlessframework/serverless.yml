@@ -1,8 +1,10 @@
-service: node-serverless-app
+service: node-serverless-app-mickael
 provider:
   name: aws
   runtime: nodejs8.10
   region: ${opt:region, self:custom.defaultRegion}
+  environment:
+    'ROOKOUT_TOKEN': ${opt:ROOKOUT_TOKEN, 'YOUR_TOKEN'}
 custom:
     defaultRegion: us-east-2
 
