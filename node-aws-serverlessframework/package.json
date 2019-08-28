@@ -12,5 +12,8 @@
     "express": "^4.16.4",
     "rookout": "^0.1.72",
     "serverless-http": "^1.8.0"
+  },
+  "devDependencies": {
+    "serverless": "^1.50.1"
   }
 }

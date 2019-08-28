@@ -1,4 +1,4 @@
-service: node-serverless-app
+service: node-serverless-app-mickael
 provider:
   name: aws
   runtime: nodejs8.10
