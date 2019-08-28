@@ -1,0 +1,15 @@
+service: node-serverless-app
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: ${opt:region, self:custom.defaultRegion}
+  environment:
+    'ROOKOUT_TOKEN': ${opt:ROOKOUT_TOKEN, 'YOUR_TOKEN'}
+custom:
+    defaultRegion: us-east-2
+
+functions:
+  example:
+    handler: index.handler
+    events:
+      - http: ANY /
