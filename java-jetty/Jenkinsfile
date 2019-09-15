@@ -5,5 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "http://127.0.0.1:8080/jetty-helloworld"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "cd /var/lib/jetty && java -jar /usr/local/jetty/start.jar &"
-    DISABLE_LOAD_JAVA_AGENT = true
+    DISABLE_LOAD_JAVA_AGENT = "true"
 }
