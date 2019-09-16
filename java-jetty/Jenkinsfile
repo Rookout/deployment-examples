@@ -2,7 +2,7 @@ regressionTest {
     FILE_PATH =  "HelloWorldServlet.java"
     LINE_NUM =  "50"
     SHA =  "3673018c8bd288e8597789ff2a93b7c45af678b80ad394ae88f868e8a7f043ed"
-    URL_FOR_TRIGGER = "http://127.0.0.1:8080/jetty-helloworld"
+    URL_FOR_TRIGGER = "http://127.0.0.1:8080/jetty-helloworld/HelloWorld"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "cd /var/lib/jetty && java -jar /usr/local/jetty/start.jar &"
     DISABLE_LOAD_JAVA_AGENT = "true"
