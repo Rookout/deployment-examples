@@ -14,6 +14,15 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
     cd deployment-examples/java-maven/maven-agent
     mvn package
     ```
+    Note: If your build fails with the message: `[ERROR] Source option 5 is no longer supported. Use 7 or later.`  You may need to add the maven.compiler properties to your pom.xml after the `<name>` field as follows:
+
+    ```xml
+    <properties>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+    ```
+
 2. Export your Rookout Token
      ```bash
      export ROOKOUT_TOKEN=<Your-Token>
