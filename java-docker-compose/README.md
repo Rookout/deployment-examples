@@ -13,7 +13,11 @@ This sample may be out of date. If you face any issues, please reach out to mail
 
 1. Compile the project jar:
      ```bash
-    $ make build
+    $ make build-local-maven
+    ```
+    or
+    ```bash
+    $ make build-local-gradle
     ```
 2. Edit docker-compose.yaml and add your Rookout token:
     ``` YAML
