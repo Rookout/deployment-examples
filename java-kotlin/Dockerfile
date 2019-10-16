@@ -1,10 +1,10 @@
 FROM openjdk:8-slim
-ADD gradlew gradlew
-ADD build.gradle build.gradle
-ADD gradle gradle
-ADD settings.gradle settings.gradle
-RUN ./gradlew build
-RUN apt update  -y && apt install -y wget 
-ADD . .
-RUN ./gradlew jar
- 
+RUN mkdir /proj
+ADD gradlew /proj/gradlew
+ADD build.gradle /proj/build.gradle
+ADD gradle /proj/gradle
+ADD settings.gradle /proj/settings.gradle
+RUN ./proj/gradlew build
+RUN apt update  -y && apt install -y wget
+ADD . ./proj
+RUN ./proj/gradlew jar
