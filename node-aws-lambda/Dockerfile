@@ -1,22 +1,8 @@
-FROM lambci/lambda:build-nodejs8.10 AS img1
-
+FROM lambci/lambda:build-nodejs8.10
+RUN mkdir -p /build
+RUN mkdir -p /dist
 WORKDIR /build
-
 COPY . . 
-
 RUN npm install
-
-FROM kramos/alpine-zip AS img2
-
-WORKDIR /apps
-
-COPY --from=img1 /build /apps
-
-RUN zip -r rookout_lambda_test.zip .
-
-FROM lambci/lambda:build-nodejs8.10 
-
+RUN zip -r /dist/rookout_lambda_test.zip .
 ENV AWS_DEFAULT_REGION us-east-2
-
-COPY --from=img2 /apps ../../
- 
