@@ -28,7 +28,7 @@ function handler(event, context, callback) {
         callback(null, "Hello World");
 }
 
-exports.handler = rookout.wrap(handler, {tags:['rookout_lambda']});
+exports.handler = rookout.wrap(handler);
 ```
     
 3. Set Lambda environment for `ROOKOUT_TOKEN` to connect with the Rookout service.    
@@ -49,7 +49,7 @@ exports.handler = rookout.wrap(handler, {tags:['rookout_lambda']});
                     --role <ROLE-ARN> \
                     --handler index.handler \
                     --runtime nodejs8.10 \
-                    --environment Variables="{ROOKOUT_TOKEN=<Your Rookout Token>,ROOKOUT_ROOK_TAGS=lambda}" \
+                    --environment Variables="{ROOKOUT_TOKEN=<Your Rookout Token>,ROOKOUT_ROOK_TAGS=rookout_lambda}" \
                     --timeout 25
       ```
         **If you do not have access to aws-cli, you can do this from the [AWS console](https://console.aws.amazon.com/lambda/home/functions) and follow the [Amazon Documentation](https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html)**
