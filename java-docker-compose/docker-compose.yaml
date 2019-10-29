@@ -1,13 +1,11 @@
 version: '3'
-environment:
-  ROOKOUT_TOKEN: YOUR_TOKEN_HERE
 
 services:
   app:
+    environment:
+      ROOKOUT_TOKEN: c7a0d0a38b4af5546152ffdba16c8831c9b52f7f20e2107e3051bd74bd6517ae
     build: .
     container_name: rookout-demo-app
     ports:
       - 7000:7000
     command:  java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0.jar
-
-
