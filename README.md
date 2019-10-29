@@ -1,4 +1,4 @@
-# Examples for deploying Rookout
+# Examples for deploying Rookout.
 
 This repository contains full deployment examples, developed by Rookout   and the community, and supported by Rookout engineer team. 
 
