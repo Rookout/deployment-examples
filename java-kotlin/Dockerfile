@@ -9,3 +9,4 @@ RUN apt update  -y && apt install -y wget
 ADD . /proj
 WORKDIR /proj
 RUN ./gradlew jar
+
