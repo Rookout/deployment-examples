@@ -2,6 +2,9 @@
 *.egg
 *.iml
 *.jar
+**/.settings
+**/bin
+!gradle-wrapper.jar
 !jsp-api.jar
 !servlet-api.jar
 *.log
