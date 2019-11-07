@@ -1,8 +1,8 @@
 regressionTest {
-    FILE_PATH =  "src\main\kotlin\demo\helloWorld.kt"
+    FILE_PATH =  "src/main/kotlin/demo/helloWorld.kt"
     LINE_NUM =  "17"
     SHA =  "74c0ba7745db50425308d0ec6caad47a015d8b77cf4cb2348e3528bc70a9f6ee"
     URL_FOR_TRIGGER = "http://localhost:9090/hello"
     LANG = "Java"
-    BACKGROUND_IMAGE_CMD = "java -jar /build/libs/rookoutDemo.jar &"
+    BACKGROUND_IMAGE_CMD = "java -jar build/libs/rookoutDemo.jar &"
 }
