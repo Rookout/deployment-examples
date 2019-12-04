@@ -1,0 +1,8 @@
+regressionTest {
+    FILE_PATH =  "serve.js"
+    LINE_NUM =  "9"
+    SHA =  "4fb3012310dc0959f4d53af92bb1076ddf279afd0ab43758c10214ccbe46d7cc"
+    TRIGGER_TIME = "4"
+    LANG = "NodeJs"
+    BACKGROUND_IMAGE_CMD = "node /dist/index.js &"
+}
