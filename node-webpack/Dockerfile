@@ -2,5 +2,5 @@ FROM node
 
 COPY . .
 RUN mkdir -p /dist
-RUN npm install
+RUN npm ci
 RUN npm run build
