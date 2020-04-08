@@ -202,6 +202,8 @@
                             <overWriteIfNewer>true</overWriteIfNewer>
                             <includeScope>runtime</includeScope>
                             <excludeArtifactIds>azure-functions-java-library</excludeArtifactIds>
+                            <!-- Rookout: strip the rook.jar version-->
+                            <stripVersion>true</stripVersion>
                         </configuration>
                     </execution>
                 </executions>
