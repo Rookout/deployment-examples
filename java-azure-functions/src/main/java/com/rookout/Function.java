@@ -3,7 +3,6 @@ package com.rookout;
 import java.util.*;
 import com.microsoft.azure.functions.annotation.*;
 import com.microsoft.azure.functions.*;
-import com.rookout.rook.*;
 
 /**
  * Azure Functions with HTTP Trigger.
@@ -18,7 +17,6 @@ public class Function {
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
-        API.start();
         context.getLogger().info("Java HTTP trigger processed a request.");
 
         // Parse query parameter
