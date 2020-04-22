@@ -8,7 +8,16 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 This example is based of the Java word-count-beam example available [here].
 
-1. We imported Rookout packages and the Google services API to the project jar(`pom.xml`):
+1. Add your sources to the package:
+    ```xml
+    <resources>
+        <resource>
+           <directory>${basedir}/src/main/java</directory>
+        </resource>
+    </resources>
+    ```
+
+2. We imported Rookout packages and the Google services API to the project jar(`pom.xml`):
     ```xml
         <dependency>
             <groupId>com.rookout</groupId>
@@ -29,7 +38,7 @@ This example is based of the Java word-count-beam example available [here].
         </dependency>
     ```
    
-2. Add nuiton repository to your repositories section:
+3. Add nuiton repository to your repositories section:
     ```xml
         <repository>
             <id>nuiton</id>
@@ -37,7 +46,7 @@ This example is based of the Java word-count-beam example available [here].
             <url>http://maven.nuiton.org/release/</url>
         </repository> 
    ```
-3. Adding the RookoutJvmInitializer class to your solution
+4. Adding the RookoutJvmInitializer class to your solution
     ```java
     package <YOUR-PACKAGE>;
    
@@ -53,12 +62,15 @@ This example is based of the Java word-count-beam example available [here].
         public void beforeProcessing(PipelineOptions options) {
             RookOptions opts = new RookOptions();
             opts.token = "<YOUR-TOKEN>";
+            opts.labels = new HashMap<String, String>() {{
+                put("env", "prod");
+            }};
             API.start(opts);
         }
     }
     ```
 
-4. Deploy your app and go to [http://app.rookout.com](http://app.rookout.com) and start debugging!
+5. Deploy your app and go to [http://app.rookout.com](http://app.rookout.com) and start debugging!
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://beam.apache.org/get-started/wordcount-example/

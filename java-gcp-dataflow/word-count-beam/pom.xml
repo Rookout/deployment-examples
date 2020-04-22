@@ -70,6 +70,12 @@
   </repositories>
 
   <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/java</directory>
+      </resource>
+    </resources>
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -510,7 +516,6 @@
       <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
-
 
     <dependency>
       <groupId>com.rookout</groupId>
