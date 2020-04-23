@@ -47,6 +47,9 @@
                         <manifest>
                             <mainClass>com.rookout.HelloWorld</mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <Rookout-Changlist>12345</Rookout-Changlist>
+                        </manifestEntries>
                     </archive>
 
                 </configuration>
