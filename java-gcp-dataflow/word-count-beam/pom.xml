@@ -62,6 +62,7 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <!-- Nuiton repo required for Rookout's com.sun:tools -->
     <repository>
       <id>nuiton</id>
       <name>nuiton</name>
@@ -517,10 +518,11 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Rookout dependencies -->
     <dependency>
       <groupId>com.rookout</groupId>
       <artifactId>rook</artifactId>
-      <version>0.1.112</version>
+      <version>LATEST</version>
     </dependency>
 
     <dependency>
@@ -528,7 +530,7 @@
       <artifactId>tools</artifactId>
       <version>1.7.0.13</version>
     </dependency>
-
+    <!-- Needed for Rookout initializer service registration -->
     <dependency>
       <groupId>com.google.auto.service</groupId>
       <artifactId>auto-service</artifactId>

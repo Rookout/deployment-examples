@@ -22,7 +22,7 @@ This example is based of the Java word-count-beam example available [here].
         <dependency>
             <groupId>com.rookout</groupId>
            <artifactId>rook</artifactId>
-           <version>0.1.111</version>
+           <version>LATEST</version>
         </dependency>
         
         <dependency>
@@ -55,7 +55,8 @@ This example is based of the Java word-count-beam example available [here].
     import org.apache.beam.sdk.harness.JvmInitializer;
     import org.apache.beam.sdk.options.PipelineOptions;
     import com.google.auto.service.AutoService;
-    
+    import java.util.HashMap;
+
     @AutoService(JvmInitializer.class)
     public class RookoutJvmInitializer implements JvmInitializer {
         @Override
