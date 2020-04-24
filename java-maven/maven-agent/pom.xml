@@ -83,6 +83,7 @@
                     <includeOnlyProperties>
                         <includeOnlyProperty>^git.commit.id.(full)$</includeOnlyProperty>
                         <includeOnlyProperty>^git.branch$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.remote.origin.url$</includeOnlyProperty>
                     </includeOnlyProperties>
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                 </configuration>
