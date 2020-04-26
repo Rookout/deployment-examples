@@ -154,7 +154,7 @@ This example is based of the Java javalin "Hello-World" example available [here]
         </configuration>
     </plugin>
     ```
-For more info on integrating Perforce with Maven - see [https://swarm.workshop.perforce.com/files/guest/dantran/p4maven/README.md](P4MAVEN)
+For more info on integrating Perforce with Maven - see [P4MAVEN](https://swarm.workshop.perforce.com/files/guest/dantran/p4maven/README.md)
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://github.com/tipsy/javalin/
