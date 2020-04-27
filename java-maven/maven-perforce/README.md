@@ -38,17 +38,22 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
         <connection>scm:p4:rookout.com:1666://depot/rookout/maven-example</connection>
     </scm>
     ```
-4. Export your Rookout Token
-     ```bash
-     export ROOKOUT_TOKEN=<Your-Token>
-     ```
-5. Downloading the Rookout Java Agent from available on [maven central]::
+4. Downloading the Rookout Java Agent from available on [maven central]::
     ```bash
     $ wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
     ```  
-6. Specifying the Rookout Java Agent when running:
+5. Simply add the Rookout SDK as a Java Agent to your environment:
     ```bash
-    $ java  -javaagent:rook.jar -jar target/rookoutDemo-1.0.0-jar-with-dependencies.jar
+    # Add the Rookout Java Agent to your application using an environment variable
+    $ export JAVA_TOOL_OPTIONS="-javaagent:(pwd)/rook.jar -DROOKOUT_TOKEN=[Your Rookout Token]"
+    # Optional labels
+    $ export ROOKOUT_LABELS=env:dev
+    # Run the jar 
+    $ java  -jar target/rookoutDemo-1.0.0-jar-with-dependencies.jar
+    ```
+6.  Run the Jar:
+    ```bash    
+    $ java  -jar target/rookoutDemo-1.0.0-jar-with-dependencies.jar
     ```
 
 7. Make sure everything worked: [http://localhost:7000/](http://localhost:7000/hello)
@@ -59,13 +64,13 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 This example is based of the Java javalin "Hello-World" example available [here].
 
-1. We added the source to the project jar(`pom.xml`) to enable rookout:
+1. We added the source to the project jar(`pom.xml`) for better source synchronization when debugging. This step is optional, as the Perforce integration will handle the source synchronization and make sure that you use the correct source versions.
     ```xml
-            <resources>
-                <resource>
-                    <directory>${basedir}/src/main/java</directory>
-                </resource>
-            </resources>
+    <resources>
+        <resource>
+            <directory>${basedir}/src/main/java</directory>
+        </resource>
+    </resources>
  
    ```
 2. In order for Rookout's agent to sync with the right source code version, in this project we udpate the JAR's MANIFEST with the depot path and changelist:
@@ -114,6 +119,7 @@ This example is based of the Java javalin "Hello-World" example available [here]
             </execution>
         </executions>
         <configuration>
+            <!-- 'doCheck' can be set to 'true' to first check and see if you have locally modified files, and will fail if there are any. -->
             <doCheck>false</doCheck>
             <doUpdate>false</doUpdate>
         </configuration>

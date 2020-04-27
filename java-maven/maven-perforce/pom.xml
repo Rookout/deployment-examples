@@ -138,6 +138,7 @@
                 </executions>
             </plugin>
         </plugins>
+        <!-- Packaging sources - This is optional as the Perforce integration will handle this -->
         <resources>
             <resource>
                 <directory>${basedir}/src/main/java</directory>
