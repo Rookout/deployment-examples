@@ -123,6 +123,11 @@
                         <manifest>
                             <mainClass>com.rookout.HelloWorld</mainClass>
                         </manifest>
+                        <!-- We can also use the assembly plugin to add Rookout's Perforce changelist and depot path -->
+                        <manifestEntries>                            
+                            <Rookout-Revision>${buildNumber}</Rookout-Revision>
+                            <Rookout-Repository>Perforce:${depotPath}</Rookout-Repository>
+                        </manifestEntries>
                     </archive>
 
                 </configuration>
