@@ -160,6 +160,13 @@ This example is based of the Java javalin "Hello-World" example available [here]
         </configuration>
     </plugin>
     ```
+4. Note that if you are running your Jar as a module on a different Jar (your Jar isn't the executable Jar). 
+   Then you will have to direct Rookout to your Jar's path by setting the ROOKOUT_JAR_PATH environment variable.
+    For Example:
+    ```bash    
+    $ export ROOKOUT_JAR_PATH=./target/rookoutDemo-1.0.0-jar-with-dependencies.jar
+    ```
+    
 For more info on integrating Perforce with Maven - see [P4MAVEN](https://swarm.workshop.perforce.com/files/guest/dantran/p4maven/README.md)
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
