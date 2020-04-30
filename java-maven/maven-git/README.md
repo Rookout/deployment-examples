@@ -1,6 +1,6 @@
 # Quickstart for Java + Maven 
 
-A sample application for using Rookout to debug a Java app built using Maven.
+A sample application for using Rookout to debug a Java app built using Maven and git integration.
 
 Before following this guide we recommend reading the basic [Java + Rookout] guide.
 
@@ -11,7 +11,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 1. Clone and compile the project jar and download the Rookout Java Agent:
      ```bash
     git clone https://github.com/Rookout/deployment-examples.git
-    cd deployment-examples/java-maven/maven-agent
+    cd deployment-examples/java-maven/maven-git
     mvn package
     ```
     Note: If your build fails with the message: `[ERROR] Source option 5 is no longer supported. Use 7 or later.`  You may need to add the maven.compiler properties to your pom.xml after the `<name>` field as follows:
@@ -22,21 +22,9 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     ```
-2. Update the pom.xml with your Perforce depot path:
+2. Update the pom.xml with your Git remote origin path:
     ```xml
-    <depotPath>//depot/path/to/project</depotPath>
-    ```
-3. Update the pom.xml with your Perforce connection string (see P4PORT):
-    ```xml
-    <scm>
-        <connection>scm:p4:[protocol:][[username[:password]@]hostname:port:]${depotPath}</connection>
-    </scm>
-    ```
-    For example:
-     ```xml
-    <scm>
-        <connection>scm:p4:rookout.com:1666://depot/rookout/maven-example</connection>
-    </scm>
+    <remoteOrigin>https://github.com/Rookout/deployment-examples.git</remoteOrigin>
     ```
 4. Downloading the Rookout Java Agent from available on [maven central]::
     ```bash
@@ -64,7 +52,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 This example is based of the Java javalin "Hello-World" example available [here].
 
-1. We added the source to the project jar(`pom.xml`) for better source synchronization when debugging. This step is optional, as the Perforce integration will handle the source synchronization and make sure that you use the correct source versions.
+1. We added the source to the project jar(`pom.xml`) for better source synchronization when debugging. This step is optional, as the Git integration will handle the source synchronization and make sure that you use the correct source versions.
     ```xml
     <resources>
         <resource>
@@ -73,26 +61,24 @@ This example is based of the Java javalin "Hello-World" example available [here]
     </resources>
  
    ```
-2. In order for Rookout's agent to sync with the right source code version, in this project we udpate the JAR's MANIFEST with the depot path and changelist:
+2. In order for Rookout's agent to sync with the right source code version, in this project we udpate the JAR's MANIFEST with commit hash and remote origin:
     ```xml
-    <Rookout-Revision>${buildNumber}</Rookout-Revision>
-    <Rookout-Repository>Perforce:${depotPath}</Rookout-Repository>
+    <ROOKOUT_COMMIT>${buildNumber}</ROOKOUT_COMMIT>    
+    <ROOKOUT_REMOTE_ORIGIN>${remoteOrigin}</ROOKOUT_REMOTE_ORIGIN>      
     ```
 3. All of the MANIFEST update is accomplished using several plugins. We have added the following to the application's original pom.xml:
     Required properties:    
     ```xml
-     <properties>
-        <!-- p4maven version, for easy version upgrade -->
-        <p4maven.version>1.0.6</p4maven.version>
-        <!-- Your Perforce depot path -->
-        <depotPath>//depot/path/to/project</depotPath>
+    <properties>
+        <!-- Your remote origin path -->
+        <remoteOrigin>https://github.com/Rookout/deployment-examples</remoteOrigin>
     </properties>
     ```
     Source control connection string:
     ```xml
-      <!-- Set your Perforce connection string -->
+   <!-- Setting the SCM plugin that we're using git -->
     <scm>
-        <connection>scm:p4:[protocol:][[username[:password]@]hostname:port:]${depotPath}</connection>
+        <connection>scm:git:</connection>
     </scm>
     ```
     Adding the following plugins into your plugins tag:
@@ -101,15 +87,7 @@ This example is based of the Java javalin "Hello-World" example available [here]
     <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
-        <version>1.4</version>
-
-        <dependencies>
-            <dependency>
-                <groupId>com.perforce.p4maven</groupId>
-                <artifactId>p4maven-provider</artifactId>
-                <version>${p4maven.version}</version>
-            </dependency>
-        </dependencies>
+        <version>1.4</version>       
         <executions>
             <execution>
                 <phase>validate</phase>
@@ -128,21 +106,14 @@ This example is based of the Java javalin "Hello-World" example available [here]
     <!-- scm plugin configuration -->
     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-scm-plugin</artifactId>
-        <dependencies>
-            <dependency>
-                <groupId>com.perforce.p4maven</groupId>
-                <artifactId>p4maven-provider</artifactId>
-                <version>${p4maven.version}</version>
-            </dependency>
-        </dependencies>
+        <artifactId>maven-scm-plugin</artifactId>       
         <configuration>
             <!-- we'll be using the 'connection' configuration -->
             <connectionType>connection</connectionType>
         </configuration>
     </plugin>
 
-    <!-- Use Jar plugin to add Rookout's Perforce changelist and depot path -->
+    <!-- Use Jar plugin to add Rookout's git commit hash and remote origin -->
     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -153,21 +124,13 @@ This example is based of the Java javalin "Hello-World" example available [here]
                     <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                 </manifest>
                 <manifestEntries>                            
-                    <Rookout-Revision>${buildNumber}</Rookout-Revision>
-                    <Rookout-Repository>Perforce:${depotPath}</Rookout-Repository>
+                    <ROOKOUT_COMMIT>${buildNumber}</ROOKOUT_COMMIT>    
+                    <ROOKOUT_REMOTE_ORIGIN>${remoteOrigin}</ROOKOUT_REMOTE_ORIGIN>                                                        
                 </manifestEntries>
             </archive>
         </configuration>
     </plugin>
     ```
-4. Note that if you are running your Jar as a module on a different Jar (your Jar isn't the executable Jar). 
-   Then you will have to direct Rookout to your Jar's path by setting the ROOKOUT_JAR_PATH environment variable.
-    For Example:
-    ```bash    
-    $ export ROOKOUT_JAR_PATH=./target/rookoutDemo-1.0.0-jar-with-dependencies.jar
-    ```
-    
-For more info on integrating Perforce with Maven - see [P4MAVEN](https://swarm.workshop.perforce.com/files/guest/dantran/p4maven/README.md)
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [here]: https://github.com/tipsy/javalin/

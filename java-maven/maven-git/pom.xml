@@ -30,9 +30,14 @@
         </dependency>
     </dependencies>
 
-    <!-- Set your Perforce connection string -->
+     <properties>
+        <!-- Your remote origin path -->
+        <remoteOrigin>https://github.com/Rookout/deployment-examples.git</remoteOrigin>
+    </properties>
+
+    <!-- Setting the SCM plugin that we're using git -->
     <scm>
-        <connection>scm:git:file://localhost/Users/dudi/projects/rookout/deployment-examples/java-maven/maven-git/</connection>
+        <connection>scm:git:</connection>
     </scm>
 
     <build>
@@ -66,7 +71,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Use Jar plugin to add Rookout's Perforce changelist and depot path -->
+            <!-- Use Jar plugin to add Rookout's git commit hash and remote origin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -77,7 +82,8 @@
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                         <manifestEntries>                            
-                            <ROOKOUT_COMMIT>${buildNumber}</ROOKOUT_COMMIT>                            
+                            <ROOKOUT_COMMIT>${buildNumber}</ROOKOUT_COMMIT>    
+                            <ROOKOUT_REMOTE_ORIGIN>${remoteOrigin}</ROOKOUT_REMOTE_ORIGIN>                                                        
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -101,7 +107,8 @@
                         </manifest>
                         <!-- We can also use the assembly plugin to add Rookout's Perforce changelist and depot path -->
                         <manifestEntries>                            
-                            <ROOKOUT_COMMIT>${buildNumber}</ROOKOUT_COMMIT>                            
+                            <ROOKOUT_COMMIT>${buildNumber}</ROOKOUT_COMMIT>    
+                            <ROOKOUT_REMOTE_ORIGIN>${remoteOrigin}</ROOKOUT_REMOTE_ORIGIN>                                                                                
                         </manifestEntries>
                     </archive>
 
