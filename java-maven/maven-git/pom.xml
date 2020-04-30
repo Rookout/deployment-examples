@@ -105,7 +105,7 @@
                         <manifest>
                             <mainClass>com.rookout.HelloWorld</mainClass>
                         </manifest>
-                        <!-- We can also use the assembly plugin to add Rookout's Perforce changelist and depot path -->
+                        <!-- Use Jar plugin to add Rookout's git commit hash and remote origin -->
                         <manifestEntries>                            
                             <ROOKOUT_COMMIT>${buildNumber}</ROOKOUT_COMMIT>    
                             <ROOKOUT_REMOTE_ORIGIN>${remoteOrigin}</ROOKOUT_REMOTE_ORIGIN>                                                                                
