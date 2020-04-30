@@ -12,4 +12,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgPegasus Condition=" '$(PkgPegasus)' == '' ">C:\Users\Ben\.nuget\packages\pegasus\4.1.0</PkgPegasus>
+  </PropertyGroup>
 </Project>

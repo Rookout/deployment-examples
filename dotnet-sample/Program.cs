@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Rook;
 
 namespace myWebApp
 {
@@ -13,6 +14,12 @@ namespace myWebApp
     {
         public static void Main(string[] args)
         {
+            Rook.RookOptions options = new Rook.RookOptions()
+            {
+                labels = new Dictionary<string, string> { { "env", "dev" } }
+            };
+            Rook.API.Start(options);
+
             CreateHostBuilder(args).Build().Run();
         }
 

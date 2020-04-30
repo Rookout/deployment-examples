@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp\\myWebApp.csproj": {}
+    "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp\\myWebApp.csproj": {
+    "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp\\myWebApp.csproj",
+        "projectUniqueName": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp.csproj",
         "projectName": "myWebApp",
-        "projectPath": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp\\myWebApp.csproj",
+        "projectPath": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp.csproj",
         "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp\\obj\\",
+        "outputPath": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Rookout": {
+              "target": "Package",
+              "version": "(, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
