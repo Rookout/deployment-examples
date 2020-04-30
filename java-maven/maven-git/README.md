@@ -33,9 +33,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 5. Simply add the Rookout SDK as a Java Agent to your environment:
     ```bash
     # Add the Rookout Java Agent to your application using an environment variable
-    $ export JAVA_TOOL_OPTIONS="-javaagent:(pwd)/rook.jar -DROOKOUT_TOKEN=[Your Rookout Token]"
-    # Optional labels
-    $ export ROOKOUT_LABELS=env:dev
+    $ export JAVA_TOOL_OPTIONS="-javaagent:(pwd)/rook.jar -DROOKOUT_TOKEN=[Your Rookout Token] -DROOKOUT_LABELS=env:dev"
     # Run the jar 
     $ java  -jar target/rookoutDemo-1.0.0-jar-with-dependencies.jar
     ```
