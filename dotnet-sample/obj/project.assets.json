@@ -1,0 +1,446 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Google.Protobuf/3.10.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Protobuf.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Microsoft.DiaSymReader.Native/1.7.0": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win-x64/native/Microsoft.DiaSymReader.Native.amd64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/Microsoft.DiaSymReader.Native.x86.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          },
+          "runtimes/win/native/Microsoft.DiaSymReader.Native.amd64.dll": {
+            "assetType": "native",
+            "rid": "win"
+          },
+          "runtimes/win/native/Microsoft.DiaSymReader.Native.arm.dll": {
+            "assetType": "native",
+            "rid": "win"
+          },
+          "runtimes/win/native/Microsoft.DiaSymReader.Native.x86.dll": {
+            "assetType": "native",
+            "rid": "win"
+          },
+          "runtimes/win8-arm/native/Microsoft.DiaSymReader.Native.arm.dll": {
+            "assetType": "native",
+            "rid": "win8-arm"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "Pegasus/4.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Pegasus.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Rookout/0.1.20": {
+        "type": "package",
+        "dependencies": {
+          "Google.Protobuf": "3.10.0",
+          "Microsoft.DiaSymReader.Native": "1.7.0",
+          "Newtonsoft.Json": "12.0.3",
+          "Pegasus": "4.1.0",
+          "System.Collections.Immutable": "1.7.0",
+          "System.Reflection.Metadata": "1.8.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/DotNetRook.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/DotNetRook.dll": {}
+        }
+      },
+      "System.Collections.Immutable/1.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      },
+      "System.Memory/4.5.2": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
+        }
+      },
+      "System.Reflection.Metadata/1.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Reflection.Metadata.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Google.Protobuf/3.10.0": {
+      "sha512": "Vg7uAamIF6bECZ2F3tMv2N8IvCbO750q/M+Yz16wu3W2F+grIV3eFcb/qLWzNBc/HJTTbHk2sLqDL8tMF1Xd5Q==",
+      "type": "package",
+      "path": "google.protobuf/3.10.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "google.protobuf.3.10.0.nupkg.sha512",
+        "google.protobuf.nuspec",
+        "lib/net45/Google.Protobuf.dll",
+        "lib/net45/Google.Protobuf.pdb",
+        "lib/net45/Google.Protobuf.xml",
+        "lib/netstandard1.0/Google.Protobuf.dll",
+        "lib/netstandard1.0/Google.Protobuf.pdb",
+        "lib/netstandard1.0/Google.Protobuf.xml",
+        "lib/netstandard2.0/Google.Protobuf.dll",
+        "lib/netstandard2.0/Google.Protobuf.pdb",
+        "lib/netstandard2.0/Google.Protobuf.xml"
+      ]
+    },
+    "Microsoft.DiaSymReader.Native/1.7.0": {
+      "sha512": "vIzndj0MoWW2Mp/iztUSKvmR9vZTqOVQ6PBvwA57+CDoiz7eUMU15rrAX+/QA0bkmwQ08GRibFBB9LNOl0EiBA==",
+      "type": "package",
+      "path": "microsoft.diasymreader.native/1.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Microsoft.DiaSymReader.Native.props",
+        "microsoft.diasymreader.native.1.7.0.nupkg.sha512",
+        "microsoft.diasymreader.native.nuspec",
+        "runtimes/win-x64/native/Microsoft.DiaSymReader.Native.amd64.dll",
+        "runtimes/win-x86/native/Microsoft.DiaSymReader.Native.x86.dll",
+        "runtimes/win/native/Microsoft.DiaSymReader.Native.amd64.dll",
+        "runtimes/win/native/Microsoft.DiaSymReader.Native.arm.dll",
+        "runtimes/win/native/Microsoft.DiaSymReader.Native.x86.dll",
+        "runtimes/win8-arm/native/Microsoft.DiaSymReader.Native.arm.dll"
+      ]
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "Pegasus/4.1.0": {
+      "sha512": "i7qGKD6i5BEvP7Al2K8T/UzBp2bZABjgItPjRn7OjgQTcgFAb9X3wrxcJV06X5p1FEFDoy4FxnoUmneDgnXTww==",
+      "type": "package",
+      "path": "pegasus/4.1.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Pegasus.targets",
+        "build/net45/Microsoft.CodeAnalysis.CSharp.dll",
+        "build/net45/Microsoft.CodeAnalysis.dll",
+        "build/net45/Pegasus.Common.dll",
+        "build/net45/Pegasus.Common.pdb",
+        "build/net45/Pegasus.Common.xml",
+        "build/net45/Pegasus.exe",
+        "build/net45/Pegasus.exe.config",
+        "build/net45/Pegasus.pdb",
+        "build/net45/Pegasus.xml",
+        "build/net45/System.Collections.Immutable.dll",
+        "build/net45/System.Reflection.Metadata.dll",
+        "build/netcoreapp2.0/Microsoft.Build.Framework.dll",
+        "build/netcoreapp2.0/Microsoft.Build.Utilities.Core.dll",
+        "build/netcoreapp2.0/Microsoft.CodeAnalysis.CSharp.dll",
+        "build/netcoreapp2.0/Microsoft.CodeAnalysis.dll",
+        "build/netcoreapp2.0/Pegasus.Common.dll",
+        "build/netcoreapp2.0/Pegasus.Common.pdb",
+        "build/netcoreapp2.0/Pegasus.Common.xml",
+        "build/netcoreapp2.0/Pegasus.deps.json",
+        "build/netcoreapp2.0/Pegasus.dll",
+        "build/netcoreapp2.0/Pegasus.dll.config",
+        "build/netcoreapp2.0/Pegasus.pdb",
+        "build/netcoreapp2.0/Pegasus.runtimeconfig.dev.json",
+        "build/netcoreapp2.0/Pegasus.runtimeconfig.json",
+        "build/netcoreapp2.0/Pegasus.xml",
+        "build/netcoreapp2.0/System.CodeDom.dll",
+        "lib/net35/Pegasus.Common.dll",
+        "lib/net35/Pegasus.Common.pdb",
+        "lib/net35/Pegasus.Common.xml",
+        "lib/net40/Pegasus.Common.dll",
+        "lib/net40/Pegasus.Common.pdb",
+        "lib/net40/Pegasus.Common.xml",
+        "lib/net45/Pegasus.Common.dll",
+        "lib/net45/Pegasus.Common.pdb",
+        "lib/net45/Pegasus.Common.xml",
+        "lib/netstandard1.0/Pegasus.Common.deps.json",
+        "lib/netstandard1.0/Pegasus.Common.dll",
+        "lib/netstandard1.0/Pegasus.Common.pdb",
+        "lib/netstandard1.0/Pegasus.Common.xml",
+        "lib/netstandard2.0/Pegasus.Common.deps.json",
+        "lib/netstandard2.0/Pegasus.Common.dll",
+        "lib/netstandard2.0/Pegasus.Common.pdb",
+        "lib/netstandard2.0/Pegasus.Common.xml",
+        "pegasus.4.1.0.nupkg.sha512",
+        "pegasus.nuspec",
+        "readme.txt",
+        "tools/workbench/ICSharpCode.TextEditor.dll",
+        "tools/workbench/Microsoft.CodeAnalysis.CSharp.dll",
+        "tools/workbench/Microsoft.CodeAnalysis.dll",
+        "tools/workbench/Newtonsoft.Json.dll",
+        "tools/workbench/Newtonsoft.Json.xml",
+        "tools/workbench/Pegasus.Common.dll",
+        "tools/workbench/Pegasus.Common.pdb",
+        "tools/workbench/Pegasus.Common.xml",
+        "tools/workbench/Pegasus.Workbench.exe",
+        "tools/workbench/Pegasus.Workbench.exe.CodeAnalysisLog.xml",
+        "tools/workbench/Pegasus.Workbench.exe.config",
+        "tools/workbench/Pegasus.Workbench.exe.lastcodeanalysissucceeded",
+        "tools/workbench/Pegasus.Workbench.pdb",
+        "tools/workbench/Pegasus.exe",
+        "tools/workbench/Pegasus.exe.config",
+        "tools/workbench/Pegasus.pdb",
+        "tools/workbench/Pegasus.xml",
+        "tools/workbench/ReactiveUI.Blend.dll",
+        "tools/workbench/ReactiveUI.Blend.xml",
+        "tools/workbench/ReactiveUI.dll",
+        "tools/workbench/ReactiveUI.xml",
+        "tools/workbench/Splat.dll",
+        "tools/workbench/Splat.pdb",
+        "tools/workbench/System.Collections.Immutable.dll",
+        "tools/workbench/System.Reactive.Core.dll",
+        "tools/workbench/System.Reactive.Core.xml",
+        "tools/workbench/System.Reactive.Interfaces.dll",
+        "tools/workbench/System.Reactive.Interfaces.xml",
+        "tools/workbench/System.Reactive.Linq.dll",
+        "tools/workbench/System.Reactive.Linq.xml",
+        "tools/workbench/System.Reactive.PlatformServices.dll",
+        "tools/workbench/System.Reactive.PlatformServices.xml",
+        "tools/workbench/System.Reactive.Windows.Threading.dll",
+        "tools/workbench/System.Reactive.Windows.Threading.xml",
+        "tools/workbench/System.Reflection.Metadata.dll",
+        "tools/workbench/System.Windows.Interactivity.dll",
+        "tools/workbench/de/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/en/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/es/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/fr/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/it/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/ja/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/ko/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/ru/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/zh-Hans/System.Windows.Interactivity.resources.dll",
+        "tools/workbench/zh-Hant/System.Windows.Interactivity.resources.dll"
+      ]
+    },
+    "Rookout/0.1.20": {
+      "sha512": "Ol3pIVnNrJxnCwK+ZK11NKJG+/fD6e/5H3RcmwPJ1iFr93OORciJadzu0tC6nlyt3f47C8J7gpgL1pbc8Nu18w==",
+      "type": "package",
+      "path": "rookout/0.1.20",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "icon.png",
+        "lib/net45/DotNetRook.dll",
+        "lib/net45/DotNetRook.pdb",
+        "lib/netcoreapp3.0/DotNetRook.dll",
+        "lib/netcoreapp3.0/DotNetRook.pdb",
+        "rookout.0.1.20.nupkg.sha512",
+        "rookout.nuspec"
+      ]
+    },
+    "System.Collections.Immutable/1.7.0": {
+      "sha512": "RVSM6wZUo6L2y6P3vN6gjUtyJ2IF2RVtrepF3J7nrDKfFQd5u/SnSUFclchYQis8/k5scHy9E+fVeKVQLnnkzw==",
+      "type": "package",
+      "path": "system.collections.immutable/1.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard1.0/System.Collections.Immutable.dll",
+        "lib/netstandard1.0/System.Collections.Immutable.xml",
+        "lib/netstandard1.3/System.Collections.Immutable.dll",
+        "lib/netstandard1.3/System.Collections.Immutable.xml",
+        "lib/netstandard2.0/System.Collections.Immutable.dll",
+        "lib/netstandard2.0/System.Collections.Immutable.xml",
+        "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll",
+        "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.xml",
+        "system.collections.immutable.1.7.0.nupkg.sha512",
+        "system.collections.immutable.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Memory/4.5.2": {
+      "sha512": "fvq1GNmUFwbKv+aLVYYdgu/+gc8Nu9oFujOxIjPrsf+meis9JBzTPDL6aP/eeGOz9yPj6rRLUbOjKMpsMEWpNg==",
+      "type": "package",
+      "path": "system.memory/4.5.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.2.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Reflection.Metadata/1.8.0": {
+      "sha512": "RRnWHNjNmb14+S+INsYe1A0b+q05uzLNzENcKe1GCkXT2gaKCjPxVc5TsLVgFZdAAPREnLHFohVbo6bGzEWFlA==",
+      "type": "package",
+      "path": "system.reflection.metadata/1.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard1.1/System.Reflection.Metadata.dll",
+        "lib/netstandard1.1/System.Reflection.Metadata.xml",
+        "lib/netstandard2.0/System.Reflection.Metadata.dll",
+        "lib/netstandard2.0/System.Reflection.Metadata.xml",
+        "lib/portable-net45+win8/System.Reflection.Metadata.dll",
+        "lib/portable-net45+win8/System.Reflection.Metadata.xml",
+        "system.reflection.metadata.1.8.0.nupkg.sha512",
+        "system.reflection.metadata.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "Rookout"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Ben\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp.csproj",
+      "projectName": "myWebApp",
+      "projectPath": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\myWebApp.csproj",
+      "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\Rookout\\deployment-examples\\dotnet-sample\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Ben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\temp": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "dependencies": {
+          "Rookout": {
+            "target": "Package",
+            "version": "(, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
