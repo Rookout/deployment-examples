@@ -3,6 +3,6 @@ regressionTest {
     LINE_NUM =  "22"
     SHA =  "4f7a08b3e160a4abf6e0c28c02eda0fa36316f8701941d720780dd5ecbf6b1a6"
     URL_FOR_TRIGGER = "http://localhost:8080/Privacy"
-    LANG = "Dotnet"
+    LANG = "Dotnetcore"
     BACKGROUND_IMAGE_CMD = "dotnet myWebApp.dll &"
 }
