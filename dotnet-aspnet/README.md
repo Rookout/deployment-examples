@@ -11,7 +11,10 @@ Before following this guide we recommend reading the basic [DotNet + Rookout] gu
     git clone https://github.com/Rookout/deployment-examples.git
     cd deployment-examples/dotnet-aspnet/dotnet-core-3
     ```
-2. Add your organization token to line 21 at Program.cs
+2. Export organization token:
+```bash
+ 	export ROOKOUT_TOKEN=<Your Rookout Token>
+```
 
 3. Build and Run your project:
     ```bash

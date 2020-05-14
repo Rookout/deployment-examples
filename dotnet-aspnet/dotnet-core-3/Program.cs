@@ -18,7 +18,6 @@ namespace SimpleHttpServer
         {
 			Rook.RookOptions options = new Rook.RookOptions()
             {
-                token = "<Your-Token>",
                 labels = new Dictionary<string, string> { { "env", "dev" } }
             };
             Rook.API.Start(options);
