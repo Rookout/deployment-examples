@@ -13,7 +13,10 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
     git clone https://github.com/Rookout/deployment-examples.git
     cd deployment-examples/java-gradle/java-api
     ```
-2. Add your otganization token to line 14 at HelloWorld.java
+2. Export organization token:
+```bash
+ 	export ROOKOUT_TOKEN=<Your Rookout Token>
+```
 
 3. Run using gradle:
     ```bash
