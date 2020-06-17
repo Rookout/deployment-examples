@@ -4,14 +4,12 @@
     <TargetFrameworks>netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
     <EmbedAllSources>true</EmbedAllSources>
     <Optimize>false</Optimize>
-    <MSBuildGitHashCommand>git rev-parse HEAD</MSBuildGitHashCommand>
-    <RepositoryUrl>https://github.com/Rookout/deployment-examples</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+    <MSBuildGitHashCommand>git config --get remote.origin.url %26%26 git rev-parse HEAD</MSBuildGitHashCommand>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MSBuildGitHash" Version="2.0.1" />
     <PackageReference Include="Rookout" Version="0.1.*" />
+    <PackageReference Include="MSBuildGitHash" Version="2.0.1" />
   </ItemGroup>
 
 </Project>
