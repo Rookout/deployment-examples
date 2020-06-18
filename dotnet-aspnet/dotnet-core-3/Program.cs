@@ -9,8 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using Rook;
-using System.Reflection;
-
 
 namespace SimpleHttpServer
 {
