@@ -16,33 +16,8 @@ namespace SimpleHttpServer
 {
     public class Program
     {
-        private static string GetBuildHashFromAssembly()
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var customAttributes = assembly?.CustomAttributes ?? Enumerable.Empty<CustomAttributeData>();
-            return customAttributes
-                // MSBuildGitHash adds custom attribute to assembly of the following format:
-                // [assembly: AssemblyMetadata("GitHash", "MYHASHVAL")]
-                .Where(c => c.ConstructorArguments.Count >= 2 && c.ConstructorArguments[0].Value as string == "GitHash")
-                .Select(c => c.ConstructorArguments[1].Value as string)
-                .FirstOrDefault() ?? "??";
-        }
-        private static string GetBuildOriginFromAssembly()
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var customAttributes = assembly?.CustomAttributes ?? Enumerable.Empty<CustomAttributeData>();
-            return customAttributes
-                // MSBuildGitHash adds custom attribute to assembly of the following format:
-                // [assembly: AssemblyMetadata("GitRepository", "MYURL")]
-                .Where(c => c.ConstructorArguments.Count >= 2 && c.ConstructorArguments[0].Value as string == "GitRepository")
-                .Select(c => c.ConstructorArguments[1].Value as string)
-                .FirstOrDefault() ?? "??";
-        }
         public static void Main(string[] args)
         {
-            Console.WriteLine(GetBuildHashFromAssembly());
-            Console.WriteLine(GetBuildOriginFromAssembly());
-
 			Rook.RookOptions options = new Rook.RookOptions()
             {
                 labels = new Dictionary<string, string> { { "env", "dev" } }
