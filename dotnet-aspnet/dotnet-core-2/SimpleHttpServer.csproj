@@ -4,6 +4,7 @@
     <TargetFrameworks>netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
     <EmbedAllSources>true</EmbedAllSources>
     <Optimize>false</Optimize>
+    <MSBuildGitHashCommand>git config --get remote.origin.url %26%26 git rev-parse HEAD</MSBuildGitHashCommand>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Rookout" Version="0.1.*" />
+    <PackageReference Include="MSBuildGitHash" Version="2.0.1" />
   </ItemGroup>
 
 </Project>

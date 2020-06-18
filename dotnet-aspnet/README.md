@@ -36,6 +36,7 @@ Before following this guide we recommend reading the basic [DotNet + Rookout] gu
     ```xml
      <ItemGroup>
         <PackageReference Include="Rookout" Version="0.1.*" />
+        <PackageReference Include="MSBuildGitHash" Version="2.0.1" />
      </ItemGroup>
     ```
 2. Make sure you set the following properties in your .csproj file, under your PropertyGroup:
@@ -43,6 +44,7 @@ Before following this guide we recommend reading the basic [DotNet + Rookout] gu
     <PropertyGroup>        
         <EmbedAllSources>true</EmbedAllSources>
         <Optimize>false</Optimize>
+        <MSBuildGitHashCommand>git config --get remote.origin.url %26%26 git rev-parse HEAD</MSBuildGitHashCommand>
     </PropertyGroup>
     ```
 3. Start the Rookout SDK with the API:
