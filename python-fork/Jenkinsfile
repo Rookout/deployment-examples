@@ -1,0 +1,9 @@
+regressionTest {
+    FILE_PATH =  "fork_rookout.py"
+    LINE_NUM =  "19,24"
+    SHA =  "5f2db3c45841cc873219b2bee76a09ac6e787e1acc56258d35855b557a572038"
+    URL_FOR_TRIGGER = "http://localhost:5000/hello"
+    LANG = "Python"
+    BACKGROUND_IMAGE_CMD = "python /fork_rookout.py &"
+
+}
