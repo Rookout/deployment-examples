@@ -1,0 +1,17 @@
+{
+  "name": "rookout-node-mjs-example",
+  "version": "1.0.0",
+  "description": "Example project integrating Rookout",
+  "main": "/src/app.mjs",
+  "scripts": {
+    "start": "node /src/app.mjs"
+  },
+  "dependencies": {
+    "build": "^0.1.4",
+    "rookout": "^0.1.20"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.6",
+    "typescript": "^3.1.6"
+  }
+}
