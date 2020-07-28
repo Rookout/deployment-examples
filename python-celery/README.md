@@ -13,7 +13,7 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
 
 2. *Install requirements*
 ```bash
-    pip -r requirements.txt
+    pip install -r requirements.txt
 ```
 
 3. *Add your token*:
