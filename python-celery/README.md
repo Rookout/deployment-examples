@@ -11,14 +11,14 @@ Before following this guide we recommend reading the basic [Python + Rookout](ht
     docker run -d -p 5672:5672 rabbitmq
 ```
 
-2. *Install requirments*
+2. *Install requirements*
 ```bash
     pip -r requirements.txt
 ```
 
 3. *Add your token*:
 ```bash
-    export ROOKOUT_TOKEN=[YOUT-TOKEN]
+    export ROOKOUT_TOKEN=[YOUR-TOKEN]
 ```
 
 4. *Run the server*:
@@ -46,8 +46,8 @@ Go to https://app.rookout.com and start debugging :)
 2. Import the package in your app's entry-point file, just before it starts
 ```bash
    import rook
-   rook.start()
+   rook.start(fork=True)
 ```
 
-[Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
+[Python + Rookout]: https://docs.rookout.com/docs/python-setup/
 
