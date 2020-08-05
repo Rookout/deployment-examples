@@ -1,8 +1,9 @@
 regressionTest {
     FILE_PATH =  "src/app.ts"
-    LINE_NUM =  "27"
-    SHA =  "fa167d9a3515a51d4be15b4fbe067ed9f9de6d4e15902bc820e0b02b1e236d18"
+    LINE_NUM =  "12"
+    SHA =  "0d113f70cd0fe4ad05438f245ccc88f2da10c76c346a00e30a19206ed4aa3f0e"
     TRIGGER_TIME = "4"
     LANG = "NodeJs"
     BACKGROUND_IMAGE_CMD = "node /dist/app.js &"
+    URL_FOR_TRIGGER = "http://localhost:5000/hello/yuval"
 }

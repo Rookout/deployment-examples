@@ -2,41 +2,14 @@
 
 "use strict";
 const rookout = require('rookout');
-// You can either specify your token here as an option map, or don't specify it and instead use the ROOKOUT_TOKEN
-// environment variable to specify it.
 rookout.start();
 
-const animals: Array<string> = ["Aardvark",
-    "Abyssinian",
-    "Affenpinscher",
-    "Akbash",
-    "Akita",
-    "Albatross",
-    "Alligator",
-    "Alpaca",
-    "Angelfish",
-    "Ant",
-    "Zorse"];
+const express = require("express");
+const app = express();
 
-class TestClass {
-    number: number;
-    animal: string;
+app.get('/', (req, res) => res.send("Hello World"));
+app.get("/hello/:name", (req, res) => {
+    res.send("Hello, " + req.params.name);
+});
 
-    constructor(number: number, animal: string) {
-        this.number = number;
-        this.animal = animal;
-    }
-}
-
-let iteration: number = 0;
-
-function testFunction() {
-    iteration += 1;
-
-    let local_iteration: number = iteration;
-    let obj: TestClass = new TestClass(Math.random(), animals[Math.floor(Math.random() * animals.length)]);
-
-    console.log('Iteration ' + iteration);
-}
-
-setInterval(testFunction, 4000);
+app.listen(5000);
