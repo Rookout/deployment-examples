@@ -1,0 +1,9 @@
+regressionTest {
+    FILE_PATH =  "src/app.js"
+    LINE_NUM =  "9"
+    SHA =  "0b57a3770075874d8dddde393a67217fd0dddf037d39a1d744afda343c8ac6ce"
+    TRIGGER_TIME = "4"
+    LANG = "NodeJs"
+    BACKGROUND_IMAGE_CMD = "node /src/app.js &"
+    URL_FOR_TRIGGER = "http://localhost:5000/hello/world"
+}

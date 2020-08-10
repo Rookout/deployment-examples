@@ -1,0 +1,16 @@
+{
+  "name": "rookout-node-14-example",
+  "version": "1.0.0",
+  "description": "Example project integrating Rookout",
+  "main": "/src/app.js",
+  "scripts": {
+    "start": "node /src/app.js"
+  },
+  "dependencies": {
+    "build": "^0.1.4",
+    "rookout": "^0.1.20"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.6"
+  }
+}
