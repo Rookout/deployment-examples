@@ -44,7 +44,7 @@ We have added Rookout to the original project by:
     
     // Running the Rookout Java Agent
     dependencies {
-        rookoutAgent "com.rookout:rook:0.1.36"
+        rookoutAgent "com.rookout:rook:0.1.133"
     }
     ```
 2. Specifying the Rookout Java Agent when running with gradle:
