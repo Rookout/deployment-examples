@@ -44,6 +44,7 @@ Before following this guide we recommend reading the basic [DotNet + Rookout] gu
     <PropertyGroup>        
         <EmbedAllSources>true</EmbedAllSources>
         <Optimize>false</Optimize>
+        <EmbedAllSources>true</EmbedAllSources>
         <MSBuildGitHashCommand>git config --get remote.origin.url %26%26 git rev-parse HEAD</MSBuildGitHashCommand>
     </PropertyGroup>
     ```
