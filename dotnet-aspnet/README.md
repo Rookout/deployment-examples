@@ -43,6 +43,7 @@ Before following this guide we recommend reading the basic [DotNet + Rookout] gu
     ```xml
     <PropertyGroup>        
         <EmbedAllSources>true</EmbedAllSources>
+        <DebugType>pdbonly</DebugType>
         <Optimize>false</Optimize>
         <MSBuildGitHashCommand>git config --get remote.origin.url %26%26 git rev-parse HEAD</MSBuildGitHashCommand>
     </PropertyGroup>
