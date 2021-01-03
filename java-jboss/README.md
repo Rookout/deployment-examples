@@ -6,7 +6,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 ## Rookout Integration Explained
 
-There are 4 simple steps to integrate Rookout into your existing JBoss web application:
+There are up to 6 simple steps to integrate Rookout into your existing JBoss web application:
 
 1. Copy the `module.xml` and the `rook.jar` to the `<JBOSS_FOLDER>\modules\org\jboss\rookout\main` folder.
 
@@ -33,6 +33,16 @@ Due to JavaEE class isolation we need to add the rookout sdk as a global module.
 ```bash
 export ROOKOUT_TOKEN="YOUR_TOKEN"
 ```
+5. On some JBoss deployments you might need to update your jboss.modules.system.pkgs property.
+It is probably already defined in your JBoss' startup script (maybe standalone.sh), and should probably be something like this right now:
+```bash
+JAVA_OPTS="$JAVA_OPTS -Djboss.modules.system.pkgs=org.jboss.byteman"
+```
+Change it and append Rookout's packages:
+```bash
+JAVA_OPTS="$JAVA_OPTS -Djboss.modules.system.pkgs=org.jboss.byteman,com.rookout,com.rookout."
+```
+(Note the placement of dots in package names. The package name without the dot (e.g., com.rookout) identifies the package itself, while the same package with a dot (com.rookout.) causes sub-packages to be included. Be sure to include both. 
 
 [Java + Rookout]: https://docs.rookout.com/docs/sdk-setup.html
 [maven central]: https://mvnrepository.com/artifact/com.rookout/rook
