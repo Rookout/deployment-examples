@@ -6,7 +6,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
 
 ## Rookout Integration Explained
 
-There are up to 6 simple steps to integrate Rookout into your existing JBoss web application:
+There are up to 5 simple steps to integrate Rookout into your existing JBoss web application:
 
 1. Copy the `module.xml` and the `rook.jar` to the `<JBOSS_FOLDER>\modules\org\jboss\rookout\main` folder.
 
