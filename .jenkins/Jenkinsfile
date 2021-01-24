@@ -45,7 +45,7 @@ podCreator.initMain(label: label) {
                     }
                 }
                 stage('Run node tests') {
-                    triggerer.regressionEx(GIT_BRANCH: "master", GIT_REPO: "NodeRook", LANGUAGE_TO_RUN: "nodejs") {
+                    triggerer.regressionEx(GIT_BRANCH: "master", GIT_REPO: "NodeRook", LANGUAGE_TO_RUN: "node") {
 
                     }
                 }
