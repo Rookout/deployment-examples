@@ -39,8 +39,18 @@ podCreator.initMain(label: label) {
                 }
             }
             if ("master".equals(env.GIT_BRANCH)) {
-                stage('Run the tests') {
-                    triggerer.regression(GIT_BRANCH: "master") {
+                stage('Run python tests') {
+                    triggerer.regressionEx(GIT_BRANCH: "master", GIT_REPO: "PythonRook", LANGUAGE_TO_RUN: "python") {
+
+                    }
+                }
+                stage('Run node tests') {
+                    triggerer.regressionEx(GIT_BRANCH: "master", GIT_REPO: "NodeRook", LANGUAGE_TO_RUN: "nodejs") {
+
+                    }
+                }
+                stage('Run java tests') {
+                    triggerer.regressionEx(GIT_BRANCH: "master", GIT_REPO: "JavaRook", LANGUAGE_TO_RUN: "java") {
 
                     }
                 }
