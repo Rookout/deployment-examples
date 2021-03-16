@@ -43,10 +43,10 @@ Go to https://app.rookout.com and start debugging :)
 
 - Log in to the [Rookout IDE](https://app.rookout.com/)
 - Set up your debug session by selecting the Python app you started. See [Debug session setup](https://docs.rookout.com/docs/debug-session-setup) for more information
-- Add the source code according to the following [instructions](https://docs.rookout.com/docs/source-repos/). In this case, use the [local filesystem option](https://docs.rookout.com/docs/source-repos/) to associate the code in your local 'tutorial-python' folder.
+- Add the source code according to the following [instructions](https://docs.rookout.com/docs/source-repos/). In this case, use the [local filesystem option](https://docs.rookout.com/docs/source-repos/) to associate the code in your local 'python-django' folder.
 - Open the file 'manage.py'
 - Add a Breakpoint next to a line of code by clicking next the the line number in the file viewer
-- Go the the app webpage http://localhost:5000/ and add a todo in order to trigger the Breakpoint
+- Go the the app webpage http://localhost:8001/ and add a todo in order to trigger the Breakpoint
 - Check the bottom pane **Messages** and you'll see the snapshot you just added, as it was triggered by the handler of the web api when you added a todo
 
 Go through the [bug list](https://docs.rookout.com/docs/sample-applications.html#bug-hunt) and follow instructions to see some basic use cases.
