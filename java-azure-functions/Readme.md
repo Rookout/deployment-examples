@@ -10,7 +10,7 @@
 mvn clean package azure-functions:deploy
 ```
 
-3. Set Rookout token either via the Azure Portal or the CLI:
+3. Set Rookout token (accessed from [app.rookout.com](https://app.rookout.com)) either via the Azure Portal or the CLI:
 
 ```sh
 az functionapp config appsettings set --name <your_function_name>  --settings  "JAVA_OPTS=-javaagent:./lib/rook.jar -DROOKOUT_TOKEN=<your_rookout_org_token>" --resource-group <your_resource_group>
