@@ -46,7 +46,7 @@ Go to https://app.rookout.com and start debugging :)
 - Add the source code according to the following [instructions](https://docs.rookout.com/docs/source-repos/). In this case, use the [local filesystem option](https://docs.rookout.com/docs/source-repos/) to associate the code in your local 'tutorial-python' folder.
 - Open the file 'manage.py'
 - Add a Breakpoint next to a line of code by clicking next the the line number in the file viewer
-- Go the the app webpage http://localhost:5000/ and add a todo in order to trigger the Breakpoint
+- Go the the app webpage http://localhost:8001/ and add a todo in order to trigger the Breakpoint
 - Check the bottom pane **Messages** and you'll see the snapshot you just added, as it was triggered by the handler of the web api when you added a todo
 
 Go through the [bug list](https://docs.rookout.com/docs/sample-applications.html#bug-hunt) and follow instructions to see some basic use cases.
