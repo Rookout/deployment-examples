@@ -2,7 +2,7 @@
 
 A sample application for debugging celery using Rookout.
 
-Before following this guide we recommend reading the basic [Python + Rookout](https://docs.rookout.com/docs/sdk-setup.html) guide.
+Before following this guide we recommend completing the basic [Python + Rookout](https://github.com/Rookout/tutorial-python) tutorial.
 
 ## Running Django Server with Rookout
 1. *Run redis and rabbitmq*:
