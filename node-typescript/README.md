@@ -11,7 +11,7 @@ __IMPORTANT FOR TYPESCRIPT:__
     $ npm install --save @types/node
     ```
 
-For a more in-depth explanation, see the  [Node + Rookout] guide
+For a more in-depth explanation, see the  [Node + Rookout](https://docs.rookout.com/docs/node-setup/) guide
 
 
 ## Running this sample
