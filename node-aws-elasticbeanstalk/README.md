@@ -2,7 +2,7 @@
 
 A sample application for using Rookout + Node on AWS Elastic Beanstalk.
 
-Before following this guide we recommend reading the basic [Node + Rookout] guide
+Before following this guide we recommend completing the basic [Rookout + Node.JS](https://github.com/Rookout/tutorial-nodejs) tutorial.
 
 * [Running on Elastic Beanstalk](#running-on-elastic-beanstalk)
 * [Rookout Integration explained](#rookout-integration-explained)

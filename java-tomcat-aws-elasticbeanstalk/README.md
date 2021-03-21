@@ -2,7 +2,7 @@
 
 A sample application for debugging Java Tomcat + AWS Elastic Beanstalk using Rookout.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide.
+Before following this guide we recommend completing the basic [Rookout Java deployment tutorial](https://github.com/Rookout/tutorial-java).
 
 This sample application is the Tomcat sample app provided by AWS.
 For more information about the project structure and how to use it refer to [this page](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/java-getstarted.html).

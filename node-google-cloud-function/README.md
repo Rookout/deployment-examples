@@ -2,7 +2,7 @@
 
 A sample application for debugging a google cloud function + NodeJS using Rookout
 
-Before following this guide we recommend reading the basic [Node + Rookout] guide
+Before following this guide we recommend reading the basic [Node + Rookout](https://docs.rookout.com/docs/node-setup/) guide
 
 ## Rookout Integration Explained
 

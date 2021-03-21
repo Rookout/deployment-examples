@@ -2,7 +2,7 @@
 
 A sample application for debugging Java + Maven + AWS Lambda using Rookout.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide
+Before following this guide we recommend completing the basic [Rookout Java deployment tutorial](https://github.com/Rookout/tutorial-java).
 
 ## Integrate Rookout into your Java application
 
