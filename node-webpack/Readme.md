@@ -1,4 +1,4 @@
-# Quickstart for TypeScript Node + Rookout
+# Quickstart for Webpack + Node + Rookout
 
 A sample application for using Rookout + Node + Webpack.
 
