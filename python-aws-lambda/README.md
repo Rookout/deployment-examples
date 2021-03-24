@@ -2,7 +2,8 @@
 
 A sample application for debugging Python apps deployed in AWS Lambda using Rookout.
 
-Before following this guide we recommend completing the basic [Python + Rookout](https://github.com/Rookout/tutorial-python) tutorial.
+
+Before following this guide we recommend completing the basic [Python + Rookout tutorial](https://github.com/Rookout/tutorial-python).
 
 ## Rookout Integration Explained
 
