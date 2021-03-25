@@ -2,7 +2,7 @@
 
 A sample application for using Rookout API to debug a Java app built using Maven.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide.
+Before following this guide we recommend completing the basic [Java + Rookout tutorial](https://github.com/Rookout/tutorial-java).
 
 ## Rookout Integration explained
 

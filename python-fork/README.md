@@ -2,7 +2,7 @@
 
 A sample application for using Rookout API when forking the process.
 
-Before following this guide we recommend completing the basic [Python + Rookout](https://github.com/Rookout/tutorial-python) tutorial.
+Before following this guide we recommend completing the basic [Python + Rookout tutorial](https://github.com/Rookout/tutorial-python).
 
 * [Running locally](#running-locally)
 * [Rookout Integration explained](#rookout-integration-explained)

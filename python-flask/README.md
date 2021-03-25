@@ -2,7 +2,7 @@
 
 A sample application for using Rookout API to debug Python Flask apps.
 
-Before following this guide we recommend reading the basic [Python + Rookout] guide.
+Before following this guide we recommend completing the basic [Python + Rookout tutorial](https://github.com/Rookout/tutorial-python).
 
 * [Running locally](#running-locally)
 * [Rookout Integration explained](#rookout-integration-explained)

@@ -11,7 +11,7 @@ To integrate Rookout into your existing Scala application, follow these steps:
 ```bash
 JAVA_OPTS=-javaagent:<PATH-TO-ROOK.JAR>
 ```
-3. Set your Rookout Token as the `ROOKOUT_TOKEN` environment variable.
+3. Set your Rookout Token as the `ROOKOUT_TOKEN` environment variable. (Your token is available in your [Rookout App](app.rookout.com).
 
 4. Add your sources to your jar by adding the following line to your main `build.sbt` file:
 ```bash
