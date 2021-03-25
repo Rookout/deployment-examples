@@ -1,5 +1,5 @@
 import time
-from flask import Flask
+from flask import Flask, render_template
 from random import randint
 from datetime import datetime
 import rook
