@@ -2,7 +2,7 @@
 
 A sample application for debugging an Electron Vue app using Rookout
 
-Before following this guide we recommend reading the basic [Node + Rookout] guide
+Before following this guide we recommend completing the basic [Node.JS + Rookout tutorial](https://github.com/Rookout/tutorial-nodejs).
 
 ## Rookout Integration Explained
 

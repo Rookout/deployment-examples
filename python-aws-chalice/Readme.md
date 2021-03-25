@@ -2,7 +2,7 @@
 
 A sample application for debugging Python apps deployed in AWS Chalice using Rookout.
 
-Before following this guide we recommend reading the basic [Python + Lambda debugging guide](https://github.com/Rookout/deployment-examples/blob/master/python-aws-lambda/README.md).
+Before following this guide we recommend completing the basic [Python + Rookout tutorial](https://github.com/Rookout/tutorial-python) and reading the [Python + Lambda debugging guide](https://github.com/Rookout/deployment-examples/blob/master/python-aws-lambda/README.md).
 
 This example is based on a plain Chalice app, with the following modifications applied:
 
