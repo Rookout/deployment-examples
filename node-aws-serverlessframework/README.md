@@ -2,7 +2,7 @@
 
 A sample application for debugging Node.JS + AWS Lambda functions using Rookout and Serverless Framework.
 
-Before following this guide we recommend reading the basic [Node + Rookout] guide.
+Before following this guide we recommend completing the basic [Node.JS + Rookout tutorial](https://github.com/Rookout/tutorial-nodejs).
 
 ## Rookout Integration Process
 

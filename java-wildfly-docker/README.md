@@ -2,7 +2,7 @@
 
 A sample application for debugging Java + Wildfly apps using Rookout and Docker.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide.
+Before following this guide we recommend completing the basic [Rookout Java deployment tutorial](https://github.com/Rookout/tutorial-java).
 
 ## Rookout Integration Explained
 

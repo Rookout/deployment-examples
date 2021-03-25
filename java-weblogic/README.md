@@ -2,7 +2,7 @@
 
 A sample application for debugging Java + Oracle WebLogic using Rookout.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide.
+Before following this guide we recommend completing the basic [Rookout Java deployment tutorial](https://github.com/Rookout/tutorial-java).
 
 * [Running the app](#running-the-app)
 * [Rookout Integration explained](#rookout-integration-explained)

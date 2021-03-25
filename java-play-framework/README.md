@@ -4,7 +4,7 @@
 
 This is a starter application that shows how Play works with Rookout.
 
-Before following this guide we recommend reading the basic [Java + Rookout] guide
+Before following this guide we recommend completing the basic [Java + Rookout tutorial](https://github.com/Rookout/tutorial-java).
 
 ## Running with Rookout
 
