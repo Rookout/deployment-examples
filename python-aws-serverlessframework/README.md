@@ -2,7 +2,7 @@
 
 A sample application for debugging Python apps deployed in AWS + Serverless Framework using Rookout.
 
-Before following this guide we recommend reading the basic [Python + Rookout] guide
+Before following this guide we recommend completing the basic [Python + Rookout tutorial](https://github.com/Rookout/tutorial-python).
 
 This sample may be out of date. If you face any issues, please reach out to mailto:support@rookout.com and let us know.
 

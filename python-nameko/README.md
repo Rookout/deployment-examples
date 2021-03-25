@@ -3,7 +3,9 @@
 
 A sample application for debugging Python Nameko apps using Rookout.
 
-Before following this guide we recommend completing the basic [Python + Rookout](https://github.com/Rookout/tutorial-python) tutorial.
+
+Before following this guide we recommend completing the basic [Python + Rookout tutorial](https://github.com/Rookout/tutorial-python).
+
 
 ## Running Nameko Server with Rookout
 
