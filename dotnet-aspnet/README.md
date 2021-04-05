@@ -32,22 +32,25 @@ Before following this guide we recommend reading the basic [DotNet + Rookout] gu
     ```bash
        using Rook;
     ```
-    Add its dependency to your .csproj file:
+    Add its dependency As `Directory.Build.props` file:
+   ```xml
+   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+     <ItemGroup>
+       <PackageReference Include="Rookout" Version="0.1.*" />
+     </ItemGroup>
+
+   </Project>
+   ```
+   
+   You can also skip the `Directory.Build.props` file and add directly to your .csproj file:
     ```xml
      <ItemGroup>
         <PackageReference Include="Rookout" Version="0.1.*" />
-        <PackageReference Include="MSBuildGitHash" Version="2.0.1" />
      </ItemGroup>
     ```
-2. Make sure you set the following properties in your .csproj file, under your PropertyGroup:
-    ```xml
-    <PropertyGroup>        
-        <EmbedAllSources>true</EmbedAllSources>
-        <Optimize>false</Optimize>
-        <MSBuildGitHashCommand>git config --get remote.origin.url %26%26 git rev-parse HEAD</MSBuildGitHashCommand>
-    </PropertyGroup>
-    ```
-3. Start the Rookout SDK with the API:
+
+2. Start the Rookout SDK with the API:
     ```bash
     Rook.RookOptions options = new Rook.RookOptions()
     {
@@ -59,7 +62,8 @@ Before following this guide we recommend reading the basic [DotNet + Rookout] gu
     ```bash
     using System.Collections.Generic;
     ```
-4. Note that when you deploy your application, you will need to deploy your application's PDB file with it. Read more [here](https://docs.rookout.com/docs/dotnet-setup/#debug-information)
+   
+3. Note that when you deploy your application, you will need to deploy your application's PDB file with it. Read more [here](https://docs.rookout.com/docs/dotnet-setup/#debug-information)
 
 
 
