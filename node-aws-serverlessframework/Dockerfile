@@ -1,5 +1,5 @@
 # use your node version
-FROM node:8.10.0
+FROM node:14.17.0
 
 # install serverless framework
 RUN npm install -g serverless
