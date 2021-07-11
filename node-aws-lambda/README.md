@@ -48,7 +48,7 @@ exports.handler = rookout.wrap(handler);
                     --zip-file fileb://rookout_lambda_test.zip \
                     --role <ROLE-ARN> \
                     --handler index.handler \
-                    --runtime nodejs8.10 \
+                    --runtime nodejs10.x \
                     --environment Variables="{ROOKOUT_TOKEN=<Your Rookout Token>,ROOKOUT_ROOK_TAGS=rookout_lambda}" \
                     --timeout 25
       ```
