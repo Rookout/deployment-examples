@@ -28,7 +28,7 @@ __The process is described here : [Rookout Integration Process](#rookout-integra
     ```
 **IMPORTANT:** _If you are building on a MacOS/Windows machine, npm will compile native binaries for this platform. AWS elastic beanstalk runs on Linux machine and thus needs the linux compiled binaries. To build AWS Lambda compatible native extensions, simply run the following command line:_
 
-     docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs8.10 npm install
+     docker run -v `pwd`:`pwd` -w `pwd` -i -t lambci/lambda:build-nodejs12.x npm install
 
 2. Run:
     ```bash
