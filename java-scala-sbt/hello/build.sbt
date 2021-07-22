@@ -11,4 +11,6 @@ lazy val root = (project in file("."))
   .settings(
     name := "hello",
     libraryDependencies += scalaTest % Test
-  )
+)
+
+libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
