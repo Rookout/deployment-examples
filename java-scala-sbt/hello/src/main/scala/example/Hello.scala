@@ -4,6 +4,7 @@ import scala.language.experimental.macros
 import scala.reflect.macros.Context
 import scala.collection.mutable.{ListBuffer, Stack}
 import scala.collection.mutable.Map
+import java.io.{IOException, FileNotFoundException}
 
 object Hello extends Greeting with App {
   def trace(msg: String) = println(msg)
@@ -42,49 +43,69 @@ object Hello extends Greeting with App {
     def unit: Int = 0
   }
 
-  private def fact(i: Int, name: Option[String], lastName: Option[String], mmm: Map[String, String], point: Point)(implicit m: Point): Point = {
+  private def FACT(
+                    i: Int,
+                    name: Option[String],
+                    lastName: Option[String],
+                    mmm: Map[String, String],
+                    point: Point)(implicit m: Point): Point = {
     import exampless._
-    if (i <= 1) {
-      Macross.printf("hello %s %s %s!\n", "macrooooooooooooooooo", name getOrElse "", lastName getOrElse "1")
-      point
-    }
-    else
-      fact(i - 1, name, lastName, mmm, point)(m)
+    try {
 
+      val xy: Option[Int] = new Some(123)
+      trace("in private")
+      //trace(toInt("200").getOrElse(10))
+      trace("value for x is :: " + xy.getOrElse(0))
+
+      val decodedMessage = "decodedMessage"
+      val mySpecialString = Seq("Nidhi", "Singh")
+      val specificParserOpt = mySpecialString.flatMap(_.toLowerCase)
+      println(specificParserOpt)
+      val mmapp = Map("mimeType" -> Option(mySpecialString).filter(_.nonEmpty).getOrElse(List(1, 2, 3)))
+      println(mmapp)
+
+      val resultContent = specificParserOpt match {
+        //case resultContent if decodedMessage.isEmpty && this != null =>
+        //  println(resultContent1)
+        case _ =>
+          if (point.x == 5) {
+            AA(point)
+            return new Point(2, 3)
+          }
+      }
+
+      if (this.point1.x != 6) {
+        if (i <= 1) {
+          lazy val lazzzy = name getOrElse "lazy"
+          //Macross.printf("hello %s %s %s!\n", "macrooooooooooooooooo", lazzzy, lastName getOrElse "1")
+          //point
+        }
+        else
+          FACT(i - 1, name, lastName, mmm, point)(m)
+
+        return new Point(2, 3)
+      }
+    }
+    catch {
+      case e: FileNotFoundException => println("Couldn't find that file.")
+      case e: IOException => println("Had an IOException trying to read that file")
+      }
     return new Point(2, 3)
   }
 
   private def AA(point: Point) {
     import exampless._
-    Macross.printf("hello %s!\n", "macrooooooooooooooooo")
+    //Macross.printf("hello %s!\n", "macrooooooooooooooooo")
 
 
     //fun[String]("length")
-    val xy: Option[Int] = new Some(123)
-    trace("in private")
-    //trace(toInt("200").getOrElse(10))
-    trace("value for x is :: " + xy.getOrElse(0))
-
-    val decodedMessage = "decodedMessage"
-    val mySpecialString = Seq("Nidhi", "Singh")
-    val specificParserOpt = mySpecialString.flatMap(_.toLowerCase)
-    println(specificParserOpt)
-    val mmapp = Map("mimeType" -> Option(mySpecialString).filter(_.nonEmpty).getOrElse(List(1, 2, 3)))
-    println(mmapp)
-    fact(5, Some("5"), Some("5"), Map(
+    FACT(5, Some("5"), Some("5"), Map(
       "AK" -> "Alaska",
       "AL" -> "Alabama",
       "AR" -> "Arizona"
     ), new Point(2, 3))(new Point(1, 1))
-    val resultContent = specificParserOpt match {
-      //case resultContent if decodedMessage.isEmpty && this != null =>
-      //  println(resultContent1)
-      case _ =>
-        if (point.x == 5) {
-          AA(point)
-        }
-    }
-    return " 3"
+
+    //" 3"
   }
 
   val point1 = new Point(2, 3)
