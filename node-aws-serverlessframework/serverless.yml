@@ -1,7 +1,7 @@
 service: node-serverless-app
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs10.x
   region: ${opt:region, self:custom.defaultRegion}
   environment:
     'ROOKOUT_TOKEN': ${opt:ROOKOUT_TOKEN, 'YOUR_TOKEN'}
