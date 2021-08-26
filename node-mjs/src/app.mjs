@@ -1,7 +1,7 @@
-const rookout = require('rookout');
+import rookout from 'rookout';
 rookout.start();
 
-const express = require("express");
+import express from 'express';
 const app = express();
 
 app.get('/', (req, res) => res.send("Hello World"));
