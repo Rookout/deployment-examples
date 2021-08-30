@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+"use strict";
+const rookout = require('rookout');
+rookout.start();
+
+const express = require("express");
+const app = express();
+
+app.get('/', (req: any, res: any) => res.send("Hello World"));
+app.get("/hello/:name", (req: any, res: any) => {
+    res.send("Hello, " + req.params.name);
+});
+
+app.listen(5000);

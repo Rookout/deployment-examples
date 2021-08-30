@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        //"sourceMap": true,
+        "target": "ES2017",
+        "module": "CommonJS",
+        "lib": ["es2017", "esnext.asynciterable"],
+        "allowJs": true,
+        "outDir": "dist",
+        "rootDir": "./src",
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "typeRoots": ["node_modules/@types"],
+        "types": ["jest", "node"],
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "emitDecoratorMetadata": true,
+        "inlineSources": true,
+        "inlineSourceMap": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
