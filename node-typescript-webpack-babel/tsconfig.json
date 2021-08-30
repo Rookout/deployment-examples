@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "sourceMap": true,
         "inlineSourceMap": true,
         "inlineSources": true,
         "target": "ES2018",
