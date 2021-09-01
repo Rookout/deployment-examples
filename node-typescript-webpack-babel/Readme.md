@@ -1,6 +1,25 @@
-# Quickstart for Webpack + Node + Rookout
+# Quickstart for Webpack + TypeScript + Node + Rookout
 
-A sample application for using Rookout + Node + Webpack.
+A sample application for using Rookout + TypeScript + Node + Webpack.
+
+## Typescript notes:
+
+* Have `tsc` generate __sourcemaps__ and include them in the final deployment. We recommend this configuration for `tsconfig.json`:
+    ```
+    {
+        "compilerOptions": {
+            "inlineSourceMap": true,
+            "inlineSources": true,
+        }
+    }
+    ```
+    
+* In order to use require(), you must have the node types package installed:
+    ```bash
+    $ npm install --save @types/node
+    ```
+
+For a more in-depth explanation, see the [Node.JS + Rookout guide](https://docs.rookout.com/docs/node-setup/).
 
 ## Running this sample
 
