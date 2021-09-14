@@ -4,7 +4,7 @@
   "description": "Example project integrating Rookout",
   "main": "./dist/app.js",
   "scripts": {
-    "build": "./node_modules/typescript/bin/tsc -inlineSources",
+    "build": "./node_modules/typescript/bin/tsc -inlineSources -inlineSourceMap",
     "start": "node ./dist/app.js"
   },
   "dependencies": {

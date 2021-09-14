@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
-        "sourceMap": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "inlineSources": true,
+        "inlineSourceMap": true
     },
     "include": [
         "src/**/*"
