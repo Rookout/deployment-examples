@@ -5,4 +5,6 @@ regressionTest {
     URL_FOR_TRIGGER = "http://localhost:8080/hello"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "groovy /home/groovy/test_groovy.groovy &"
+    FILES_TO_FUZZ = "test_groovy.groovy"
+    MAX_LINES_IN_FILE_TO_FUZZ = "15"
 }

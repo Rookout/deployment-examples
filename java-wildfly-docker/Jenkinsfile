@@ -6,4 +6,6 @@ regressionTest {
     TRIGGER_TIME = "30"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "bash /opt/jboss/wildfly/bin/standalone.sh -bmanagement 0.0.0.0 &"
+    FILES_TO_FUZZ = "src/main/java/org/jboss/as/quickstarts/helloworld/HelloService.java"
+    MAX_LINES_IN_FILE_TO_FUZZ = "32"
 }

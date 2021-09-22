@@ -5,4 +5,6 @@ regressionTest {
     URL_FOR_TRIGGER = "http://localhost:9090/hello"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "java -jar /proj/build/libs/rookoutDemo.jar &"
+    FILES_TO_FUZZ = "src/main/kotlin/demo/helloWorld.kt"
+    MAX_LINES_IN_FILE_TO_FUZZ = "25"
 }
