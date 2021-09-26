@@ -1,6 +1,6 @@
 regressionTest {
     FILE_PATH =  "lambda_function.py"
-    LINE_NUM =  "5"
+    LINE_NUM =  ""
     SHA =  "33e7260e49e3ecc9a71b0596d193aaf49a685c3bde357c1e18785062ecfb45b6"
     URL_FOR_TRIGGER = "python_lambda_regression_test"
     LANG = "Python"
