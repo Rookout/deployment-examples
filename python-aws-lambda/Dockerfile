@@ -7,6 +7,8 @@ ADD . .
 # Install app dependencies
 RUN pip install --upgrade pip
 RUN pip install rook -t .
+RUN pip uninstall -y protobuf
+RUN pip install protobuf==3.17.3
 RUN pip list
 
 FROM kramos/alpine-zip AS img2
