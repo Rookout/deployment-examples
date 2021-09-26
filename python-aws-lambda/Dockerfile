@@ -7,6 +7,7 @@ ADD . .
 # Install app dependencies
 RUN pip install --upgrade pip
 RUN pip install rook -t .
+RUN pip list
 
 FROM kramos/alpine-zip AS img2
 

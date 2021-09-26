@@ -4,5 +4,5 @@ regressionTest {
     SHA =  "33e7260e49e3ecc9a71b0596d193aaf49a685c3bde357c1e18785062ecfb45b6"
     URL_FOR_TRIGGER = "python_lambda_regression_test"
     LANG = "Python"
-    BACKGROUND_IMAGE_CMD = "bash /awsTest.sh &"
+    BACKGROUND_IMAGE_CMD = "pip list && bash /awsTest.sh &"
 }
