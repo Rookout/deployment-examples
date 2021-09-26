@@ -1,4 +1,4 @@
-FROM python:2.7-stretch
+FROM python:3.7-stretch
 RUN mkdir /nameko
 WORKDIR /nameko
 ADD requirements.txt /nameko
