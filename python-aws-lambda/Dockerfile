@@ -1,4 +1,4 @@
-FROM lambci/lambda:build-python2.7 AS img1
+FROM lambci/lambda:build-python3.7 AS img1
  
 WORKDIR /app
 
@@ -7,9 +7,6 @@ ADD . .
 # Install app dependencies
 RUN pip install --upgrade pip
 RUN pip install rook -t .
-RUN pip uninstall -y protobuf
-RUN pip install protobuf==3.17.3
-RUN pip list
 
 FROM kramos/alpine-zip AS img2
 
@@ -21,7 +18,7 @@ COPY --from=img1 /app /build
 
 RUN zip -r rookout_lambda_test.zip .
 
-FROM lambci/lambda:build-python2.7
+FROM lambci/lambda:build-python3.7
 
 USER root 
 
