@@ -1,6 +1,7 @@
-FROM node:10
+FROM node:12.5
 
 COPY . .
+RUN npm install webpack webpack-dev-server --save-dev
 RUN mkdir -p /dist
-RUN npm ci
+RUN npm install --only=prod
 RUN npm run build
