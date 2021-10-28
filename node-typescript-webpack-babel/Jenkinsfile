@@ -1,9 +1,0 @@
-regressionTest {
-    FILE_PATH =  "index.ts"
-    LINE_NUM =  "10"
-    SHA =  "3b3b6b11d8a2a8bf21d37324a11716a01ddcef00b9f1ed7fbc73ce4d2befe1bd"
-    TRIGGER_TIME = "4"
-    LANG = "NodeJs"
-    BACKGROUND_IMAGE_CMD = "node /dist/index.js &"
-    URL_FOR_TRIGGER = "http://localhost:5000/hello/ori"
-}
