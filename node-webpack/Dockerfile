@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:12.22.7
 
 COPY . .
 RUN mkdir -p /dist
