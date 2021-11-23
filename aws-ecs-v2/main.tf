@@ -10,7 +10,7 @@ provider "aws" {
 }
 
 data "aws_ecs_cluster" "dop-example" {
-  cluster_name = "ecs-test"
+  cluster_name = var.cluster_name
 }
 
 resource "aws_cloudwatch_log_group" "rookout" {
@@ -106,13 +106,13 @@ resource "aws_ecs_task_definition" "datastore" {
   memory                   = 512
   execution_role_arn       = aws_iam_role.task_exec_role.arn
   container_definitions = templatefile("./datastore_task_def.tpl", {
-    name          = "rookout-datastore"
-    cpu           = 256
-    memory        = 512
-    log_group     = aws_cloudwatch_log_group.rookout.name
-    log_stream    = aws_cloudwatch_log_stream.datastore_log_stream.name
-    aws_region    = local.region
-    rookout_token = var.rookout_token
+    name                  = "rookout-datastore"
+    cpu                   = 256
+    memory                = 512
+    log_group             = aws_cloudwatch_log_group.rookout.name
+    log_stream            = aws_cloudwatch_log_stream.datastore_log_stream.name
+    aws_region            = local.region
+    rookout_token         = var.rookout_token
     datastore_server_mode = var.datastore_server_mode
   })
 }
