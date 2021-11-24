@@ -35,7 +35,7 @@ resource "aws_iam_role_policy" "task_exec_role_policy" {
 }
 
 resource "aws_iam_role" "task_exec_role" {
-  name = "${local.name_prefix}-exec-role"
+  name = "${var.name_prefix}-exec-role"
 
   assume_role_policy = <<-EOF
   {
@@ -74,7 +74,7 @@ resource "aws_ecs_task_definition" "controller" {
 }
 
 resource "aws_ecs_service" "controller" {
-  name            = "${local.name_prefix}-rookout-controller"
+  name            = "${var.name_prefix}-rookout-controller"
   cluster         = data.aws_ecs_cluster.dop-example.id
   task_definition = aws_ecs_task_definition.controller.arn
   desired_count   = 1
@@ -111,7 +111,7 @@ resource "aws_ecs_task_definition" "datastore" {
   })
 }
 resource "aws_ecs_service" "datastore" {
-  name            = "${local.name_prefix}-rookout-datastore"
+  name            = "${var.name_prefix}-rookout-datastore"
   cluster         = data.aws_ecs_cluster.dop-example.id
   task_definition = aws_ecs_task_definition.datastore.arn
   desired_count   = 1
@@ -137,7 +137,7 @@ data "aws_subnet" "selected" {
 }
 
 resource "aws_security_group" "allow_controller" {
-  name        = "${local.name_prefix}-sg-allow-rookout-controller"
+  name        = "${var.name_prefix}-sg-allow-rookout-controller"
   description = "Allow inbound/outbound traffic for Rookout controller"
   vpc_id      = data.aws_vpc.selected.id
   ingress {
