@@ -14,20 +14,20 @@
     "environment": [
       {
         "name": "ROOKOUT_DOP_LOGGING_TOKEN",
-        "value": "<YOUR TOKEN>"
-       },
-       {
-        "name": "ROOKOUT_DOP_SERVER_MODE",
-        "value": "PLAIN"
-       },
-       {
+        "value": "${rookout_token}"
+      },
+      {
+      "name": "ROOKOUT_DOP_SERVER_MODE",
+        "value": "${datastore_server_mode}"
+      },
+      {
         "name": "ROOKOUT_DOP_CORS_ALL",
         "value": "true"
-       },
-       {
+      },
+      {
         "name": "ROOKOUT_DOP_IN_MEMORY_DB",
         "value": "true"
-       }
+      }
     ],
      "logConfiguration": {
         "logDriver": "awslogs",

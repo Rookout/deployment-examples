@@ -12,16 +12,20 @@
       }
     ],
     "environment": [
-     {
+      {
         "name": "ROOKOUT_TOKEN",
-        "value": "<YOUR TOKEN>"
-       },
-     {
+        "value": "${rookout_token}"
+      },
+      {
         "name": "ROOKOUT_DOP_NO_SSL_VERIFY",
         "value": "true"
-       }
+      },
+      {
+        "name": "ONPREM_ENABLED",
+        "value": "true"
+      }
     ],
-     "logConfiguration": {
+    "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
             "awslogs-group": "${log_group}",

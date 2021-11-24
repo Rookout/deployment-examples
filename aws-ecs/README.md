@@ -1,22 +1,18 @@
-# Install Rookout's controller & data-on-prem on AWS ECS cluster
+## Deploy Rookout Hybrid Deployment on AWS ECS Cluster using Terraform
+Compatible with Terraform version: `~> v0.13`
 
-Checkout the relevant terraform modules:
-```
-make clone_terraform_modules
-```
+This terraform deployment is to be used to deploy the Rookout Controller and Rookout Datastore on your AWS ECS Fargate cluster.
 
-Modify the following files :
-- [dop_task_def.tpl](dop_task_def.tpl) : data-on-prem task definition settings
-  * ROOKOUT_DOP_LOGGING_TOKEN env var required
-- [controller_task_def.tpl](./controller_task_def.tpl) - controller task definition settings
-  * ROOKOUT_TOKEN env var required
+**note:** the datastore will be deployed in `PLAIN` mode, meaning it won't deal with certificates itself but rather rely on being behind an LB with SSL termination.
 
-Deploy the changes at your AWS account by running
-```
-make patch_terraform init_terraform deploy_terraform
-```
-
-You should see the controller & data-on-prem DNS at the end of the deployment.
-
-
-
+`TLS` mode is also available, contact us for more info.
+### Steps
+1. `git clone https://github.com/Rookout/deployment-examples.git && cd deployment-examples/aws-ecs`
+1. Configure required environment variables to be used in the Terraform
+    1. `export TF_VAR_rookout_token=<your Rookout organization token>`
+    2. `export TF_VAR_region=<REGION_CODE>` - AWS Region code to deploy in (e.g us-east-1)
+    3. `export TF_VAR_cluster_name=<CLUSTER_NAME>` - Cluster name of the cluster to deploy in
+    4. `export TF_VAR_vpc_id=<VPC_ID>` - ID of an existing VPC to use to expose the Rookout components to the interent
+    5. `export TF_VAR_subnet<SUBNET_ID>` - ID of an existing subnet that has access to the internet (outbound + inbound)
+2. run `terraform init`
+3. run `terraform apply`
