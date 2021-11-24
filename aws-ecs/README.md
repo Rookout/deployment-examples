@@ -8,7 +8,7 @@ This terraform deployment is to be used to deploy the Rookout Controller and Roo
 `TLS` mode is also available, contact us for more info.
 ### Steps
 1. `git clone https://github.com/Rookout/deployment-examples.git && cd deployment-examples/aws-ecs`
-1. Configure required environment variables to be used in the Terraform
+1. Supply values for the required terraform variables:
     1. `export TF_VAR_rookout_token=<your Rookout organization token>`
     3. `export TF_VAR_region=<REGION_CODE>` - AWS Region code to deploy in (e.g us-east-1)
     4. `export TF_VAR_cluster_name=<CLUSTER_NAME>` - Cluster name of the cluster to deploy in
