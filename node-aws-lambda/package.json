@@ -7,6 +7,6 @@
   "license": "ISC",
   "repository": "https://github.com/Rookout/deployment-examples",
   "dependencies": {
-    "rookout": "^0.1.13"
+    "rookout": "^0.23.0"
   }
 }

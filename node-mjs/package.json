@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "build": "^0.1.4",
-    "rookout": "^0.1.20"
+    "rookout": "^0.23.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.6",

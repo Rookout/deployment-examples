@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:12.22.7
 ADD package.json .
 RUN npm install
 RUN npm install express

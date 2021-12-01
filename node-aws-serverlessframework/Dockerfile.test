@@ -1,5 +1,5 @@
 # use your node version
-FROM lambci/lambda:build-nodejs10.x
+FROM lambci/lambda:build-nodejs12.x
 
 # install serverless framework
 RUN npm install -g serverless

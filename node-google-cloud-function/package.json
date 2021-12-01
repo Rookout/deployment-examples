@@ -6,7 +6,7 @@
   "author": "Rookout Labs",
   "license": "ISC",
   "dependencies": {
-    "rookout": "^0.1.59",
-	"escape-html": "1.0.3"
+    "rookout": "^0.23.0",
+	  "escape-html": "1.0.3"
   }
 }

@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "rookout": "file:../../r.tgz",
+    "rookout": "^0.23.0",
     "uuid": "^3.3.2",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
