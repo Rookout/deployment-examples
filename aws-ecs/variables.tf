@@ -2,9 +2,9 @@ variable "vpc_id" {
   description = "VPC ID"
   type        = string
 }
-variable "subnet_id" {
-  description = "Subnet ID"
-  type        = string
+variable "availability_zones_names" {
+  description = "Names of Availability Zones with subnets (a minimum of 2 is needed for ALB)"
+  type        = list(string)
 }
 variable "region" {
   description = "AWS Region"

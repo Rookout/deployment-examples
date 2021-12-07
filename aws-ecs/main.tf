@@ -80,9 +80,14 @@ resource "aws_ecs_service" "controller" {
   desired_count   = 1
   launch_type     = "FARGATE"
   network_configuration {
-    security_groups  = [aws_security_group.allow_controller.id]
-    subnets          = [data.aws_subnet.selected.id]
+    security_groups  = [aws_security_group.controller.id]
+    subnets          = data.aws_subnets.selected.ids
     assign_public_ip = true
+  }
+  load_balancer {
+    target_group_arn = aws_alb_target_group.controller.arn
+    container_name   = "rookout-controller"
+    container_port   = 7488
   }
 }
 
@@ -117,9 +122,14 @@ resource "aws_ecs_service" "datastore" {
   desired_count   = 1
   launch_type     = "FARGATE"
   network_configuration {
-    security_groups  = [aws_security_group.allow_controller.id]
-    subnets          = [data.aws_subnet.selected.id]
+    security_groups  = [aws_security_group.datastore.id]
+    subnets          = data.aws_subnets.selected.ids
     assign_public_ip = true
+  }
+  load_balancer {
+    target_group_arn = aws_alb_target_group.datastore.arn
+    container_name   = "rookout-datastore"
+    container_port   = 8080
   }
 }
 resource "aws_cloudwatch_log_stream" "datastore_log_stream" {
@@ -131,28 +141,25 @@ resource "aws_cloudwatch_log_stream" "datastore_log_stream" {
 data "aws_vpc" "selected" {
   id = var.vpc_id
 }
-
-data "aws_subnet" "selected" {
-  id = var.subnet_id
-}
-
-resource "aws_security_group" "allow_controller" {
-  name        = "${var.name_prefix}-sg-allow-rookout-controller"
-  description = "Allow inbound/outbound traffic for Rookout controller"
-  vpc_id      = data.aws_vpc.selected.id
-  ingress {
-    description = "Inbound from IGW to controller"
-    from_port   = 7488
-    to_port     = 7488
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+data "aws_subnets" "selected" {
+  filter {
+    name   = "availability-zone"
+    values = var.availability_zones_names
   }
+  filter {
+    name   = "vpc-id"
+    values = [var.vpc_id]
+  }
+}
+resource "aws_security_group" "controller" {
+  name   = "${var.name_prefix}-rookout-controller-sg"
+  vpc_id = data.aws_vpc.selected.id
   ingress {
-    description = "Inbound from IGW to datastore"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    description     = "Inbound from ALB"
+    from_port       = 7488
+    to_port         = 7488
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
   }
   egress {
     description      = "Outbound all"
@@ -163,3 +170,129 @@ resource "aws_security_group" "allow_controller" {
     ipv6_cidr_blocks = ["::/0"]
   }
 }
+
+resource "aws_security_group" "datastore" {
+  name   = "${var.name_prefix}-rookout-datastore-sg"
+  vpc_id = data.aws_vpc.selected.id
+  ingress {
+    description     = "Inbound from ALB"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+  egress {
+    description      = "Outbound all"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
+resource "aws_lb" "main" {
+  name               = "${var.name_prefix}-rookout-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.alb.id]
+  subnets            = data.aws_subnets.selected.ids
+
+  enable_deletion_protection = false
+}
+
+resource "aws_security_group" "alb" {
+  name        = "${var.name_prefix}-rookout-alb-sg"
+  description = "TBD"
+  vpc_id      = data.aws_vpc.selected.id
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_alb_target_group" "controller" {
+  name        = "${var.name_prefix}-rookout-controller-alb-tg"
+  port        = 7488
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    healthy_threshold   = "3"
+    interval            = "30"
+    protocol            = "HTTP"
+    matcher             = "200"
+    timeout             = "3"
+    path                = "/"
+    unhealthy_threshold = "2"
+  }
+}
+
+resource "aws_alb_target_group" "datastore" {
+  name        = "${var.name_prefix}-rookout-datastore-alb-tg"
+  port        = 8080
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    healthy_threshold   = "3"
+    interval            = "30"
+    protocol            = "HTTP"
+    matcher             = "200"
+    timeout             = "3"
+    path                = "/healthz"
+    unhealthy_threshold = "2"
+  }
+}
+
+resource "aws_alb_listener" "http" {
+  load_balancer_arn = aws_lb.main.id
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Use /datastore for Datastore or /controller for Controller"
+      status_code  = "200"
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "controller" {
+  listener_arn = aws_alb_listener.http.arn
+  action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.controller.arn
+  }
+  condition {
+    path_pattern {
+      values = ["/controller/*"]
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "datastore" {
+  listener_arn = aws_alb_listener.http.arn
+  action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.datastore.arn
+  }
+  condition {
+    path_pattern {
+      values = ["/datastore/*"]
+    }
+  }
+}
+
