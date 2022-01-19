@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack && cp -R ./node_modules ./dist/",
     "start": "node dist/index.js"
   },
   "author": "",
@@ -15,5 +15,8 @@
     "rookout": "^0.39.0",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.3"
+  },
+  "devDependencies": {
+    "webpack-node-externals": "^3.0.0"
   }
 }
