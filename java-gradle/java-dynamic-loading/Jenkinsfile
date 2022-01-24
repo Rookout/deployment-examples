@@ -5,5 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "http://localhost:7000/hello/ori"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "unset JAVA_TOOL_OPTIONS && JAVA_TOOL_OPTIONS= java -jar /build/libs/rookoutDemo-1.0.0.jar & export ROOKOUT_TARGET_PID=\$(ps -ef | grep 'java -jar /build/libs/rookoutDemo-1.0.0.jar' | grep -v grep | awk '{print \$2}') && JAVA_TOOL_OPTIONS= java -jar /home/jenkins/agent/rook.jar &"
-    CUSTOM_SLEEP_TIME = 30
+    CUSTOM_SLEEP_TIME = 50
 }
