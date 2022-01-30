@@ -1,24 +1,29 @@
-package TestLambda;
+package example;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import com.rookout.rook.API;
+import com.rookout.rook.RookOptions;
 
-public class TestLambda implements RequestHandler<Object, String> {
+public class Handler implements RequestHandler<Map<String,String>, String> {
     @Override
-    public String handleRequest(Object myCount, Context context) {
-        try{
-            API.Load();
-        }catch (Exception e){
+    public String handleRequest(Map<String,String> event, Context context) {
+        RookOptions opts = new RookOptions();
+        HashMap<String, String> labels = new HashMap<String, String>();
+        labels.put("name", context.getFunctionName());
+        opts.labels = labels;
 
-        }
-
+        API.start(opts);
+      
         SleepLoop();
 
+        API.flush();
+        
         return "Hello";
     }
 

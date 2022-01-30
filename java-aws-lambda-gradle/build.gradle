@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://nexus.nuiton.org/nexus/service/local/repositories/thirdparty/content/"
+    }
+}
+
+dependencies {
+    implementation 'com.sun:tools:1.7.0.13'
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
+    implementation 'com.rookout:rook:0.1.216'
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtimeClasspath
+    }
+}
+
+build.dependsOn buildZip
