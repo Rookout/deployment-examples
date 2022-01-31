@@ -25,7 +25,7 @@
      <dependency>
     <groupId>com.rookout</groupId>
     <artifactId>rook</artifactId>
-    <version>0.1.216</version>
+    <version>RELEASE</version>
 </dependency>
  <dependency>
       <groupId>com.sun</groupId>

@@ -15,7 +15,7 @@ repositories {
 dependencies {
     implementation 'com.sun:tools:1.7.0.13'
     implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
-    implementation 'com.rookout:rook:0.1.216'
+    implementation 'com.rookout:rook:latest.release'
 }
 
 task buildZip(type: Zip) {
