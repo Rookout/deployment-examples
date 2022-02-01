@@ -1,5 +1,9 @@
 # Deployment Example - Java + AWS Lambda + Gradle
 
+This is an example of an AWS Lambda with Rookout integrated into it. Deploy this example to test things out, or follow [our docs](https://docs.rookout.com/docs/jvm-setup/#serverless-and-paas-deployments) to learn how to integrate Rookout into your own application.
+
+This example is written for Java 11, but Rookout also supports Java 8 on AWS Lambda.
+
 ## Structure
 
 * `build/` - output folder (generated at build)
