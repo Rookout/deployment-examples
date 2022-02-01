@@ -1,4 +1,4 @@
-Django==1.11.6
+Django==2.2.26
 djangorestframework==3.7.1
 rook>=0.1.20
 zappa
