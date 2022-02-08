@@ -12,8 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "rookout": "^0.39.0",
+    "rookout": "^0.47.0",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.3"
+  },
+  "devDependencies": {
+    "webpack-node-externals": "^3.0.0"
   }
 }
