@@ -27,6 +27,7 @@ For a more in-depth explanation, see the [Node.JS + Rookout guide](https://docs.
     ```bash
     $ npm install
     ```
+Note that you will have to copy `node_modules` if you move the packed js and run it elsewhere.
 
 2. Export organization token (found under Organization Settings -> Token)
     ```bash
