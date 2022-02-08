@@ -8,7 +8,7 @@ A sample application for using Rookout + Node + Webpack.
     ```bash
     $ npm install
     ```
-Note that you will have to copy `node_modules` if you move the packed js and run it somewhere else
+Note that you will have to copy `node_modules` if you move the packed js and run it elsewhere.
 
 2. Export organization token (found under Organization Settings -> Token)
     ```bash
