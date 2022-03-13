@@ -1,0 +1,34 @@
+[
+    {
+        "ParameterKey": "TokenSecretName",
+        "ParameterValue": "rookout_token-JeQYA2"
+    },
+    {
+        "ParameterKey": "Environment",
+        "ParameterValue": "dev"
+    },
+    {
+        "ParameterKey": "UseLB",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "PublishControllerLB",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "VpcId",
+        "ParameterValue": "vpc-0ddd4385198044b6f"
+    },
+    {
+        "ParameterKey": "PrivateSubnets",
+        "ParameterValue": "subnet-03f4f427215b537f8,subnet-0ca48570c011966a3,subnet-066366c3f9b5807e0"
+    },
+    {
+        "ParameterKey": "PublicSubnets",
+        "ParameterValue": "subnet-0b24284913b02c8d8,subnet-02b76d71542167f00,subnet-095cdd69fcda33cc0"
+    },
+    {
+        "ParameterKey": "DefaultVPC",
+        "ParameterValue": "true"
+    }
+]

@@ -1,0 +1,450 @@
+Description: >
+    This template deploys a Controller\Datastore ECS tasks exposed trough NLB \ Service Discovery or Via Public IP directly.
+
+Parameters:
+
+  PrivateDNSZoneName:
+    Type: String
+    Default: cluster.local
+    AllowedPattern: '^[!-~]{1,1024}$'
+    ConstraintDescription: Must specify a string for zone name, eg. example.local
+
+  DefaultVPC:
+    Description: Set true if you want to use default VPC or VPC without private networks.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  PublicSubnets:
+    Type: 'List<AWS::EC2::Subnet::Id>'
+    Description: Select list of public subnets for LoadBalancer and for ECS tasks in case of default vpc deployment.
+
+  PrivateSubnets:
+    Type: 'List<AWS::EC2::Subnet::Id>'
+    Description: Select list of private subnets for ECS tasks. They should be in same VPC and has routes between PublicSubnets.
+
+  VpcId:
+    Type: 'AWS::EC2::VPC::Id'
+    Description: Select a VPC where subnets located.
+
+  PublishControllerLB:
+    Description: Set true if you want to make Controller available trough LoadBalancer. CreateLB parameter should be set to true.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  UseLB:
+    Description: Set true if you want to use LoadBalancer for chosen deployment.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  Environment:
+    Description: Deployment type. Set true if you want to use LoadBalancer for chosen deployment.
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+      - stage
+      
+  TokenSecretName:
+    Description: Secret name for AWS Secrets Manager secret with rookout token.
+    Type: String
+    Default: rookout_token
+    
+
+Conditions:
+  PrivateTask: !Equals [false, !Ref DefaultVPC]
+  CreateLB: !Equals [true, !Ref UseLB]
+  NoLB: !Equals [false, !Ref UseLB]
+  PublicController: !And
+    - !Equals [true, !Ref UseLB]
+    - !Equals [true, !Ref PublishControllerLB]
+
+Resources:
+
+  PrivateNamespace:
+    Type: AWS::ServiceDiscovery::PrivateDnsNamespace
+    Properties: 
+      Description: Local cloud map namespaces for ECS cluster.
+      Name: !Ref PrivateDNSZoneName
+      Vpc: !Ref VpcId
+
+  ControllerServiceDiscovery:
+    Type: AWS::ServiceDiscovery::Service
+    Properties: 
+      Description: Controller service discovery
+      Name: !Sub 'rookout-controller-${Environment}'
+      NamespaceId: !GetAtt PrivateNamespace.Id
+      DnsConfig:
+        DnsRecords:
+          - TTL: 30
+            Type: A
+  
+  DatastoreServiceDiscovery:
+    Type: AWS::ServiceDiscovery::Service
+    Properties: 
+      Description: Controller service discovery
+      Name: !Sub 'rookout-datastore-${Environment}'
+      NamespaceId: !GetAtt PrivateNamespace.Id
+      DnsConfig:
+        DnsRecords:
+          - TTL: 30
+            Type: A
+
+  EcsCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Ref 'AWS::StackName'
+
+  ControllerTask:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Sub 'rookout-controller-${Environment}'
+      Cpu: 256
+      Memory: 512
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
+      TaskRoleArn: !Ref TaskExecutionRole
+      ContainerDefinitions:
+        - Name: rookout-controller
+          Image: rookout/controller:latest
+          Cpu: 256
+          Memory: 512
+          Essential: true
+          PortMappings:
+            - ContainerPort: 7488
+          Environment:
+            - Name: ROOKOUT_DOP_NO_SSL_VERIFY
+              Value: true
+            - Name: ONPREM_ENABLED
+              Value: true
+          Secrets:
+            - Name: ROOKOUT_TOKEN
+              ValueFrom: !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref RookoutLogGroup
+              awslogs-region: !Ref AWS::Region
+              awslogs-stream-prefix: !Ref ControllerLogStream
+    
+  DatastoreTask:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Sub 'rookout-datastore-${Environment}'
+      Cpu: 256
+      Memory: 512
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
+      TaskRoleArn: !Ref TaskExecutionRole
+      ContainerDefinitions:
+        - Name: rookout-datastore
+          Image: rookout/data-on-prem:latest
+          Cpu: 256
+          Memory: 512
+          Essential: true
+          PortMappings:
+            - ContainerPort: 8080
+          Environment:
+            - Name: ROOKOUT_DOP_SERVER_MODE
+              Value: PLAIN
+            - Name: ROOKOUT_DOP_CORS_ALL
+              Value: true
+            - Name: ROOKOUT_DOP_IN_MEMORY_DB
+              Value: true
+          Secrets:
+            - Name: ROOKOUT_DOP_LOGGING_TOKEN
+              ValueFrom: !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref RookoutLogGroup
+              awslogs-region: !Ref AWS::Region
+              awslogs-stream-prefix: !Ref DatastoreLogStream
+  
+  ControllerServiceLB:
+    Type: AWS::ECS::Service
+    Condition: CreateLB
+    Properties:
+      ServiceName: !Sub 'rookout-controller-${Environment}'
+      Cluster: !Ref EcsCluster
+      LaunchType: FARGATE
+      PlatformVersion: LATEST
+      TaskDefinition: !Ref ControllerTask
+      EnableECSManagedTags: true
+      LoadBalancers:
+        - ContainerName: rookout-controller
+          ContainerPort: 7488
+          TargetGroupArn: !Ref ControllerTargetGroup
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DesiredCount: 1
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: !If [ PrivateTask, DISABLED, ENABLED ] 
+          Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
+          SecurityGroups:
+            - !Ref ControllerSecurityGroup
+  
+  ControllerServiceNoLB:
+    Type: AWS::ECS::Service
+    Condition: NoLB
+    Properties:
+      ServiceName: !Sub 'rookout-controller-${Environment}'
+      Cluster: !Ref EcsCluster
+      LaunchType: FARGATE
+      PlatformVersion: LATEST
+      TaskDefinition: !Ref ControllerTask
+      EnableECSManagedTags: true
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DesiredCount: 1
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: !If [ PrivateTask, DISABLED, ENABLED ] 
+          Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
+          SecurityGroups:
+            - !Ref ControllerSecurityGroup
+    
+  DatastoreServiceLB:
+    Type: AWS::ECS::Service
+    Condition: CreateLB
+    Properties:
+      ServiceName: !Sub 'rookout-datastore-${Environment}'
+      Cluster: !Ref EcsCluster
+      LaunchType: FARGATE
+      PlatformVersion: LATEST
+      TaskDefinition: !Ref DatastoreTask
+      EnableECSManagedTags: true
+      LoadBalancers:
+        - ContainerName: rookout-datastore
+          ContainerPort: 8080
+          TargetGroupArn: !Ref DatastoreTargetGroup
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DesiredCount: 1
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: !If [ PrivateTask, DISABLED, ENABLED ] 
+          Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
+          SecurityGroups:
+            - !Ref DatastoreSecurityGroup
+    
+  DatastoreServiceNoLB:
+    Type: AWS::ECS::Service
+    Condition: NoLB
+    Properties:
+      ServiceName: !Sub 'rookout-datastore-${Environment}'
+      Cluster: !Ref EcsCluster
+      LaunchType: FARGATE
+      PlatformVersion: LATEST
+      TaskDefinition: !Ref DatastoreTask
+      EnableECSManagedTags: true
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DesiredCount: 1
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: !If [ PrivateTask, DISABLED, ENABLED ] 
+          Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
+          SecurityGroups:
+            - !Ref DatastoreSecurityGroup
+  
+  ControllerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub 'controller-ecs-${Environment}'
+      GroupDescription: Allow inbound/outbound traffic for Rookout controller
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 7488
+          ToPort: 7488
+          CidrIp: 0.0.0.0/0
+          Description: Inbound from IGW to controller
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+          Description: Outbound all
+
+  DatastoreSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub 'datastore-ecs-${Environment}'
+      GroupDescription: Allow inbound/outbound traffic for Rookout datastore.
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+          Description: Inbound from IGW to controller
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+          Description: Outbound all
+  
+  ALB:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Condition: CreateLB
+    Properties:         
+      Name: !Sub 'rookout-${Environment}'
+      Scheme: internet-facing
+      Subnets: !Ref PublicSubnets
+      Type: application
+  
+  ControllerTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Condition: PublicController
+    DependsOn: ALB
+    Properties:
+      Name: !Sub 'rookout-controller-${Environment}'
+      Port: 7488
+      Protocol: HTTP
+      VpcId: !Ref VpcId
+      IpAddressType: ipv4
+      TargetType: ip
+  
+  DatastoreTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Condition: CreateLB
+    DependsOn: ALB
+    Properties:
+      Name: !Sub 'rookout-datastore-${Environment}'
+      Port: 8080
+      Protocol: HTTP 
+      VpcId: !Ref VpcId
+      IpAddressType: ipv4
+      TargetType: ip
+  
+  ControllerALBListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Condition: PublicController
+    Properties: 
+      LoadBalancerArn: !Ref ALB
+      Port: 7488
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref ControllerTargetGroup
+  
+  DatastoreALBListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Condition: CreateLB
+    Properties: 
+      LoadBalancerArn: !Ref ALB
+      Port: 8080
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref DatastoreTargetGroup
+  
+  TaskExecutionRolePolicyLogs:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub 'rookout-logs-${Environment}'
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:DescribeLogStreams
+              - logs:PutLogEvents
+            Resource: 'arn:aws:logs:*'
+      Roles:
+        - !Ref TaskExecutionRole
+  
+  TaskExecutionRolePolicySecrets:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub 'rookout-secrets-${Environment}'
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+              - kms:Decrypt
+            Resource: 
+              - !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
+              #- arn:aws:kms:::key/*
+      Roles:
+        - !Ref TaskExecutionRole
+
+  TaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'rookout-task-execution-role-${Environment}'
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ecs-tasks.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+  
+  RookoutLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      LogGroupName: !Join ['/', ['', aws, ecs, !Ref 'AWS::StackName']]
+      RetentionInDays: 14
+  
+  ControllerLogStream:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogGroupName: !Ref RookoutLogGroup
+      LogStreamName: !Sub 'rookout-controller-${Environment}'
+
+  DatastoreLogStream:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogGroupName: !Ref RookoutLogGroup
+      LogStreamName: !Sub 'rookout-datastore-${Environment}'
+
+Outputs:
+  RookoutLogGroup:
+    Value: !Ref RookoutLogGroup
+
+  CrontrollerLBEndpoint:
+    Condition: CreateLB
+    Value: !Join
+              - ':'
+              - - !GetAtt ALB.DNSName
+                - '7488'
+  
+  DatastoreLBEndpoint:
+    Condition: CreateLB
+    Value: !Join
+              - ':'
+              - - !GetAtt ALB.DNSName
+                - '8080'
