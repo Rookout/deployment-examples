@@ -25,7 +25,7 @@ def debug_here(i):
 
 
 def child_routine():
-    for i in range(10):
+    for i in range(30):
         debug_here(i)
         time.sleep(5)
 
