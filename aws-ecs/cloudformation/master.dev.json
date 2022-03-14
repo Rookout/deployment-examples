@@ -17,7 +17,7 @@
     },
     {
         "ParameterKey": "PublishControllerLB",
-        "ParameterValue": "true"
+        "ParameterValue": "false"
     },
     {
         "ParameterKey": "VpcCIDR",
@@ -38,5 +38,9 @@
     {
         "ParameterKey": "PrivateSubnet2CIDR",
         "ParameterValue": "10.10.3.0/24"
+    },
+    {
+        "ParameterKey": "CertificateArn",
+        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
     }
 ]

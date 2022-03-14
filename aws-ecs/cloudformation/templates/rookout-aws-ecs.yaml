@@ -48,6 +48,11 @@ Parameters:
       - false
     ConstraintDescription: must specify true or false.
 
+  CertificateArn:
+    Type: String
+    AllowedPattern: "^arn:aws:acm:.*:.*:certificate/.*$"
+    Description: ACM Certificate Arn for TLS deployment if TLS set to true.
+
   Environment:
     Description: Deployment type. Set true if you want to use LoadBalancer for chosen deployment.
     Type: String
@@ -65,8 +70,10 @@ Parameters:
 
 Conditions:
   PrivateTask: !Equals [false, !Ref DefaultVPC]
+  LBEnableTLS: !Not [ !Equals ["", !Ref CertificateArn] ]
   CreateLB: !Equals [true, !Ref UseLB]
-  NoLB: !Equals [false, !Ref UseLB]
+  NoLB: !Equals [false, !Ref UseLB]  
+  PrivateController: !Equals [false, !Ref PublishControllerLB]
   PublicController: !And
     - !Equals [true, !Ref UseLB]
     - !Equals [true, !Ref PublishControllerLB]
@@ -87,17 +94,21 @@ Resources:
       Name: !Sub 'rookout-controller-${Environment}'
       NamespaceId: !GetAtt PrivateNamespace.Id
       DnsConfig:
+        RoutingPolicy: MULTIVALUE
         DnsRecords:
           - TTL: 30
             Type: A
+      HealthCheckCustomConfig: 
+        FailureThreshold: 1
   
   DatastoreServiceDiscovery:
     Type: AWS::ServiceDiscovery::Service
     Properties: 
-      Description: Controller service discovery
+      Description: Datastore service discovery
       Name: !Sub 'rookout-datastore-${Environment}'
       NamespaceId: !GetAtt PrivateNamespace.Id
       DnsConfig:
+        RoutingPolicy: MULTIVALUE
         DnsRecords:
           - TTL: 30
             Type: A
@@ -179,7 +190,8 @@ Resources:
   
   ControllerServiceLB:
     Type: AWS::ECS::Service
-    Condition: CreateLB
+    Condition: PublicController
+    DependsOn: ControllerALBListener
     Properties:
       ServiceName: !Sub 'rookout-controller-${Environment}'
       Cluster: !Ref EcsCluster
@@ -201,10 +213,12 @@ Resources:
           Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
           SecurityGroups:
             - !Ref ControllerSecurityGroup
+      ServiceRegistries:
+        - RegistryArn: !GetAtt ControllerServiceDiscovery.Arn
   
   ControllerServiceNoLB:
     Type: AWS::ECS::Service
-    Condition: NoLB
+    Condition: PrivateController
     Properties:
       ServiceName: !Sub 'rookout-controller-${Environment}'
       Cluster: !Ref EcsCluster
@@ -222,10 +236,13 @@ Resources:
           Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
           SecurityGroups:
             - !Ref ControllerSecurityGroup
+      ServiceRegistries:
+        - RegistryArn: !GetAtt ControllerServiceDiscovery.Arn
     
   DatastoreServiceLB:
     Type: AWS::ECS::Service
     Condition: CreateLB
+    DependsOn: DatastoreALBListener
     Properties:
       ServiceName: !Sub 'rookout-datastore-${Environment}'
       Cluster: !Ref EcsCluster
@@ -247,6 +264,8 @@ Resources:
           Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
           SecurityGroups:
             - !Ref DatastoreSecurityGroup
+      ServiceRegistries:
+        - RegistryArn: !GetAtt DatastoreServiceDiscovery.Arn
     
   DatastoreServiceNoLB:
     Type: AWS::ECS::Service
@@ -268,6 +287,8 @@ Resources:
           Subnets: !If [ PrivateTask, !Ref PrivateSubnets, !Ref PublicSubnets ] 
           SecurityGroups:
             - !Ref DatastoreSecurityGroup
+      ServiceRegistries:
+        - RegistryArn: !GetAtt DatastoreServiceDiscovery.Arn
   
   ControllerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -299,7 +320,7 @@ Resources:
           FromPort: 8080
           ToPort: 8080
           CidrIp: 0.0.0.0/0
-          Description: Inbound from IGW to controller
+          Description: Inbound from IGW to datastore
       SecurityGroupEgress:
         - IpProtocol: -1
           FromPort: 0
@@ -307,6 +328,30 @@ Resources:
           CidrIp: 0.0.0.0/0
           Description: Outbound all
   
+  ALBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub 'rookout-lb-${Environment}'
+      GroupDescription: Allow inbound/outbound traffic for Rookout datastore.
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+          Description: Inbound from IGW to datastore
+        - IpProtocol: tcp
+          FromPort: 7488
+          ToPort: 7488
+          CidrIp: 0.0.0.0/0
+          Description: Inbound from IGW to controller
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+          Description: Outbound all
+
   ALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Condition: CreateLB
@@ -314,6 +359,8 @@ Resources:
       Name: !Sub 'rookout-${Environment}'
       Scheme: internet-facing
       Subnets: !Ref PublicSubnets
+      SecurityGroups: 
+        - !Ref ALBSecurityGroup
       Type: application
   
   ControllerTargetGroup:
@@ -338,15 +385,24 @@ Resources:
       Protocol: HTTP 
       VpcId: !Ref VpcId
       IpAddressType: ipv4
+      HealthCheckPath: /healthz
       TargetType: ip
   
   ControllerALBListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Condition: PublicController
-    Properties: 
+    Properties:
+      Certificates: 
+      - !If
+        - LBEnableTLS
+        - CertificateArn: !Ref CertificateArn
+        - !Ref "AWS::NoValue"
       LoadBalancerArn: !Ref ALB
       Port: 7488
-      Protocol: HTTP
+      Protocol: !If
+        - LBEnableTLS
+        - HTTPS
+        - HTTP
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref ControllerTargetGroup
@@ -356,8 +412,16 @@ Resources:
     Condition: CreateLB
     Properties: 
       LoadBalancerArn: !Ref ALB
+      Certificates: 
+      - !If
+        - LBEnableTLS
+        - CertificateArn: !Ref CertificateArn
+        - !Ref "AWS::NoValue"
       Port: 8080
-      Protocol: HTTP
+      Protocol:  !If
+        - LBEnableTLS
+        - HTTPS
+        - HTTP
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref DatastoreTargetGroup

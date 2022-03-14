@@ -7,6 +7,11 @@ Parameters:
     Type: String
     Description: Bucket name where all templates and Lambda bundles are stored
 
+  CertificateArn:
+    Type: String
+    AllowedPattern: "^arn:aws:acm:.*:.*:certificate/.*$"
+    Description: ACM Certificate Arn for TLS deployment
+
   PrivateDNSZoneName:
     Description: Name for private AWS Cloud Map Namespaces.
     Type: String
@@ -92,9 +97,10 @@ Metadata:
         Parameters:
           - UseLB
           - TokenSecretName
-          - PrivateSubnet2CIDR
+          - DefaultVPC
           - PrivateDNSZoneName
           - PublishControllerLB
+          - CertificateArn
       - Label:
           default: VPC Details
         Parameters:
@@ -131,4 +137,5 @@ Resources:
         TokenSecretName: !Ref TokenSecretName
         PrivateDNSZoneName: !Ref PrivateDNSZoneName
         PublishControllerLB: !Ref PublishControllerLB
+        CertificateArn: !Ref CertificateArn
 
