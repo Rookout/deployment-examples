@@ -13,11 +13,15 @@
     },
     {
         "ParameterKey": "UseLB",
-        "ParameterValue": "true"
+        "ParameterValue": "false"
     },
     {
         "ParameterKey": "PublishControllerLB",
         "ParameterValue": "false"
+    },
+    {
+        "ParameterKey": "DefaultVPC",
+        "ParameterValue": "true"
     },
     {
         "ParameterKey": "VpcCIDR",

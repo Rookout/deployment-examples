@@ -9,11 +9,11 @@
     },
     {
         "ParameterKey": "UseLB",
-        "ParameterValue": "true"
+        "ParameterValue": "false"
     },
     {
         "ParameterKey": "PublishControllerLB",
-        "ParameterValue": "true"
+        "ParameterValue": "false"
     },
     {
         "ParameterKey": "VpcId",
@@ -33,6 +33,14 @@
     },
     {
         "ParameterKey": "CertificateArn",
-        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "CertificateS3Bucket",
+        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
+    },
+    {
+        "ParameterKey": "CertificateS3BucketPrefix",
+        "ParameterValue": "certs/"
     }
 ]

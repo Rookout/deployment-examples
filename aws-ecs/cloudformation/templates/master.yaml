@@ -9,7 +9,6 @@ Parameters:
 
   CertificateArn:
     Type: String
-    AllowedPattern: "^arn:aws:acm:.*:.*:certificate/.*$"
     Description: ACM Certificate Arn for TLS deployment
 
   PrivateDNSZoneName:
@@ -132,6 +131,7 @@ Resources:
         Environment: !Ref Environment
         UseLB: !Ref UseLB
         VpcId: !GetAtt VPC.Outputs.VPC
+        DefaultVPC: !Ref DefaultVPC
         PublicSubnets: !GetAtt VPC.Outputs.PublicSubnets
         PrivateSubnets: !GetAtt VPC.Outputs.PrivateSubnets
         TokenSecretName: !Ref TokenSecretName

@@ -38,6 +38,24 @@ Parameters:
       - true
       - false
     ConstraintDescription: must specify true or false.
+  
+  DOPInMemoryDB:
+    Description: Set true if you want to use InMemory db mode for datastore. ROOKOUT_DOP_IN_MEMORY_DB env variable will be set for datastore service.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  DOPCorsAll:
+    Description: ROOKOUT_DOP_CORS_ALL env variable will be set for datastore service.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
 
   UseLB:
     Description: Set true if you want to use LoadBalancer for chosen deployment.
@@ -50,8 +68,18 @@ Parameters:
 
   CertificateArn:
     Type: String
-    AllowedPattern: "^arn:aws:acm:.*:.*:certificate/.*$"
+    Default: ""
     Description: ACM Certificate Arn for TLS deployment if TLS set to true.
+  
+  CertificateS3Bucket: 
+    Type: String
+    Default: ""
+    Description: S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume.
+  
+  CertificateS3BucketPrefix:
+    Type: String
+    Default: ""
+    Description: S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume.
 
   Environment:
     Description: Deployment type. Set true if you want to use LoadBalancer for chosen deployment.
@@ -71,6 +99,7 @@ Parameters:
 Conditions:
   PrivateTask: !Equals [false, !Ref DefaultVPC]
   LBEnableTLS: !Not [ !Equals ["", !Ref CertificateArn] ]
+  DatastoreEnableTLS: !Not [ !Equals ["", !Ref CertificateS3Bucket] ]
   CreateLB: !Equals [true, !Ref UseLB]
   NoLB: !Equals [false, !Ref UseLB]  
   PrivateController: !Equals [false, !Ref PublishControllerLB]
@@ -156,28 +185,58 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: !Sub 'rookout-datastore-${Environment}'
-      Cpu: 256
-      Memory: 512
+      Cpu: 512
+      Memory: 1024
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
       ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
       TaskRoleArn: !Ref TaskExecutionRole
       ContainerDefinitions:
+        - !If
+          - DatastoreEnableTLS
+          - Name: s3-downloader
+            Image: amazon/aws-cli:latest
+            Cpu: 128
+            Memory: 128
+            Essential: false
+            Command: ["s3","sync", !Sub "s3://${CertificateS3Bucket}/${CertificateS3BucketPrefix}", "/var/rookout"]
+            MountPoints:
+              - ContainerPath: /var/rookout
+                SourceVolume: certs
+            LogConfiguration:
+              LogDriver: awslogs
+              Options:
+                awslogs-group: !Ref RookoutLogGroup
+                awslogs-region: !Ref AWS::Region
+                awslogs-stream-prefix: !Ref DatastoreLogStream
+          - !Ref 'AWS::NoValue'
         - Name: rookout-datastore
           Image: rookout/data-on-prem:latest
+          DependsOn:
+          - !If
+            - DatastoreEnableTLS
+            - Condition: SUCCESS
+              ContainerName: s3-downloader
+            - !Ref 'AWS::NoValue'
           Cpu: 256
           Memory: 512
           Essential: true
+          MountPoints:
+          - !If
+            - DatastoreEnableTLS
+            - ContainerPath: /var/rookout
+              SourceVolume: certs
+            - !Ref 'AWS::NoValue'
           PortMappings:
-            - ContainerPort: 8080
+            - ContainerPort: !If [DatastoreEnableTLS, 4343, 8080]
           Environment:
             - Name: ROOKOUT_DOP_SERVER_MODE
-              Value: PLAIN
+              Value: !If [DatastoreEnableTLS, TLS, PLAIN]
             - Name: ROOKOUT_DOP_CORS_ALL
-              Value: true
+              Value: !Ref DOPCorsAll
             - Name: ROOKOUT_DOP_IN_MEMORY_DB
-              Value: true
+              Value: !Ref DOPInMemoryDB
           Secrets:
             - Name: ROOKOUT_DOP_LOGGING_TOKEN
               ValueFrom: !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
@@ -187,6 +246,8 @@ Resources:
               awslogs-group: !Ref RookoutLogGroup
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: !Ref DatastoreLogStream
+      Volumes:
+        - Name: certs
   
   ControllerServiceLB:
     Type: AWS::ECS::Service
@@ -317,8 +378,8 @@ Resources:
       VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 8080
-          ToPort: 8080
+          FromPort: !If [DatastoreEnableTLS, 4343, 8080]
+          ToPort: !If [DatastoreEnableTLS, 4343, 8080]
           CidrIp: 0.0.0.0/0
           Description: Inbound from IGW to datastore
       SecurityGroupEgress:
@@ -330,6 +391,7 @@ Resources:
   
   ALBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    Condition: CreateLB
     Properties:
       GroupName: !Sub 'rookout-lb-${Environment}'
       GroupDescription: Allow inbound/outbound traffic for Rookout datastore.
@@ -399,10 +461,7 @@ Resources:
         - !Ref "AWS::NoValue"
       LoadBalancerArn: !Ref ALB
       Port: 7488
-      Protocol: !If
-        - LBEnableTLS
-        - HTTPS
-        - HTTP
+      Protocol: !If [LBEnableTLS, HTTPS, HTTP]
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref ControllerTargetGroup
@@ -418,10 +477,7 @@ Resources:
         - CertificateArn: !Ref CertificateArn
         - !Ref "AWS::NoValue"
       Port: 8080
-      Protocol:  !If
-        - LBEnableTLS
-        - HTTPS
-        - HTTP
+      Protocol: !If [LBEnableTLS, HTTPS, HTTP]
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref DatastoreTargetGroup
@@ -456,7 +512,23 @@ Resources:
               - kms:Decrypt
             Resource: 
               - !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
-              #- arn:aws:kms:::key/*
+      Roles:
+        - !Ref TaskExecutionRole
+    
+  TaskExecutionRolePolicyS3:
+    Type: AWS::IAM::Policy
+    Condition: DatastoreEnableTLS
+    Properties:
+      PolicyName: !Sub 'rookout-s3-${Environment}'
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:*
+            Resource: 
+              - !Sub 'arn:aws:s3:::${CertificateS3Bucket}'
+              - !Sub 'arn:aws:s3:::${CertificateS3Bucket}/*'
       Roles:
         - !Ref TaskExecutionRole
 
