@@ -4,8 +4,8 @@
         "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
     },
     {
-        "ParameterKey": "TokenSecretName",
-        "ParameterValue": "rookout_token-JeQYA2"
+        "ParameterKey": "TokenSecretArn",
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
     },
     {
         "ParameterKey": "Environment",
@@ -13,7 +13,7 @@
     },
     {
         "ParameterKey": "UseLB",
-        "ParameterValue": "false"
+        "ParameterValue": "true"
     },
     {
         "ParameterKey": "PublishControllerLB",
@@ -21,7 +21,7 @@
     },
     {
         "ParameterKey": "DefaultVPC",
-        "ParameterValue": "true"
+        "ParameterValue": "false"
     },
     {
         "ParameterKey": "VpcCIDR",

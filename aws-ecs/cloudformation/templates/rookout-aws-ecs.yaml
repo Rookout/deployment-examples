@@ -24,6 +24,7 @@ Parameters:
 
   PrivateSubnets:
     Type: 'List<AWS::EC2::Subnet::Id>'
+    Default: ""
     Description: Select list of private subnets for ECS tasks. They should be in same VPC and has routes between PublicSubnets.
 
   VpcId:
@@ -31,7 +32,7 @@ Parameters:
     Description: Select a VPC where subnets located.
 
   PublishControllerLB:
-    Description: Set true if you want to make Controller available trough LoadBalancer. CreateLB parameter should be set to true.
+    Description: Set true if you want to publish trough LoadBalancer. UseLB parameter should be set to true.
     Type: String
     Default: false
     AllowedValues:
@@ -69,20 +70,20 @@ Parameters:
   CertificateArn:
     Type: String
     Default: ""
-    Description: ACM Certificate Arn for TLS deployment if TLS set to true.
-  
+    Description: ACM Certificate Arn for TLS deployment with LoadBalancer.
+
   CertificateS3Bucket: 
     Type: String
     Default: ""
-    Description: S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume.
+    Description: S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS
   
   CertificateS3BucketPrefix:
     Type: String
     Default: ""
-    Description: S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume.
+    Description: S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume. Can be optionally set along with CertificateS3Bucket.
 
   Environment:
-    Description: Deployment type. Set true if you want to use LoadBalancer for chosen deployment.
+    Description: Deployment environment (dev|prod|stage).
     Type: String
     Default: dev
     AllowedValues:
@@ -90,10 +91,9 @@ Parameters:
       - prod
       - stage
       
-  TokenSecretName:
-    Description: Secret name for AWS Secrets Manager secret with rookout token.
+  TokenSecretArn:
+    Description: Secret's ARN for AWS Secrets Manager secret with rookout token.
     Type: String
-    Default: rookout_token
     
 
 Conditions:
@@ -173,7 +173,7 @@ Resources:
               Value: true
           Secrets:
             - Name: ROOKOUT_TOKEN
-              ValueFrom: !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
+              ValueFrom: !Ref TokenSecretArn
           LogConfiguration:
             LogDriver: awslogs
             Options:
@@ -239,7 +239,7 @@ Resources:
               Value: !Ref DOPInMemoryDB
           Secrets:
             - Name: ROOKOUT_DOP_LOGGING_TOKEN
-              ValueFrom: !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
+              ValueFrom: !Ref TokenSecretArn
           LogConfiguration:
             LogDriver: awslogs
             Options:
@@ -511,7 +511,7 @@ Resources:
               - secretsmanager:GetSecretValue
               - kms:Decrypt
             Resource: 
-              - !Sub 'arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${TokenSecretName}'
+              - !Ref TokenSecretArn
       Roles:
         - !Ref TaskExecutionRole
     
