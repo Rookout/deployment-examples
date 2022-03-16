@@ -9,7 +9,7 @@ export AWS_DEFAULT_REGION=${REGION}
 
 # Bucket details for Cloudformation templates and Lambda
 export ENV_NAME=${ENV_NAME:-'dev'}
-export S3_BUCKET=cf-templates-11x1qjid1uaq7-us-east-1
+export S3_BUCKET=cf-templates-xxxxx-us-east-1
 export S3_PREFIX=${ENV_NAME}-rookout
 
 if [[ "$0" != "${BASH_SOURCE[0]}" ]]; then

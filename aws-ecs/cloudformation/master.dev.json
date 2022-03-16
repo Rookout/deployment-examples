@@ -1,11 +1,11 @@
 [
     {
         "ParameterKey": "TemplatesS3Bucket",
-        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
+        "ParameterValue": "cf-templates-xxx-us-east-1"
     },
     {
         "ParameterKey": "TokenSecretArn",
-        "ParameterValue": "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:xxxxxxxxxxxx:secret:rookout_token-xxxxxx"
     },
     {
         "ParameterKey": "Environment",
@@ -45,6 +45,6 @@
     },
     {
         "ParameterKey": "CertificateArn",
-        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
+        "ParameterValue": "arn:aws:acm:us-east-1:xxxxxxxxxxxx:certificate/xxxxxx-xxxxxx-xxxxx"
     }
 ]

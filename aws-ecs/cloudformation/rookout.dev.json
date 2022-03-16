@@ -1,7 +1,7 @@
 [
     {
         "ParameterKey": "TokenSecretArn",
-        "ParameterValue": "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:xxxxxxxxxxxx:secret:rookout_token-xxxxxx"
     },
     {
         "ParameterKey": "Environment",
@@ -17,15 +17,15 @@
     },
     {
         "ParameterKey": "VpcId",
-        "ParameterValue": "vpc-0ddd4385198044b6f"
+        "ParameterValue": "vpc-xxxx"
     },
     {
         "ParameterKey": "PrivateSubnets",
-        "ParameterValue": "subnet-03f4f427215b537f8,subnet-0ca48570c011966a3,subnet-066366c3f9b5807e0"
+        "ParameterValue": ""
     },
     {
         "ParameterKey": "PublicSubnets",
-        "ParameterValue": "subnet-0b24284913b02c8d8,subnet-02b76d71542167f00,subnet-095cdd69fcda33cc0"
+        "ParameterValue": "subnet-xxxx,subnet-xxxx,subnet-xxxx"
     },
     {
         "ParameterKey": "DefaultVPC",
@@ -37,10 +37,10 @@
     },
     {
         "ParameterKey": "CertificateS3Bucket",
-        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
+        "ParameterValue": ""
     },
     {
         "ParameterKey": "CertificateS3BucketPrefix",
-        "ParameterValue": "certs/"
+        "ParameterValue": ""
     }
 ]
