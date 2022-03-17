@@ -21,10 +21,8 @@ object Main {
 }
 
 class MyClass {
-  private val map: mutable.Map[Int, String] = mutable.Map.empty
-
   def matchCaseFunc(): String = {
-    map.get(1) match {
+    Option("a") match {
       case Some(s) => s
       case None => "abc" // SET BP HERE
     }
