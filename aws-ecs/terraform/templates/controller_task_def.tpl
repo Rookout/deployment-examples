@@ -1,35 +1,33 @@
 [
   {
     "name": "${name}",
-    "image": "rookout/data-on-prem:latest",
+    "image": "rookout/controller:latest",
     "cpu": ${cpu},
     "memory": ${memory},
     "memoryReservation": ${memory},
     "essential": true,
     "portMappings": [
       {
-        "containerPort": 8080
+        "containerPort": 7488
       }
     ],
     "environment": [
       {
-        "name": "ROOKOUT_DOP_LOGGING_TOKEN",
-        "value": "${rookout_token}"
-      },
-      {
-      "name": "ROOKOUT_DOP_SERVER_MODE",
-        "value": "${datastore_server_mode}"
-      },
-      {
-        "name": "ROOKOUT_DOP_CORS_ALL",
+        "name": "ROOKOUT_DOP_NO_SSL_VERIFY",
         "value": "true"
       },
       {
-        "name": "ROOKOUT_DOP_IN_MEMORY_DB",
+        "name": "ONPREM_ENABLED",
         "value": "true"
       }
     ],
-     "logConfiguration": {
+    "secrets": [
+      {
+        "name": "ROOKOUT_TOKEN",
+        "valueFrom": "${rookout_token_arn}"
+      }
+    ],
+    "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
             "awslogs-group": "${log_group}",
