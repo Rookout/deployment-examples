@@ -29,11 +29,6 @@ variable "publish_controller_lb" {
   default = false
 }
 
-variable "datastore_server_mode" {
-  type = string
-  default = "PLAIN"
-}
-
 variable "region" {
   description = "AWS Region"
   type        = string
@@ -71,16 +66,22 @@ variable "certificate_arn" {
 variable "certificate_bucket_name" {
   description = "AWS S3 bucket name where certificates will be located if datastore use native TLS mode"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "certificate_bucket_prefix" {
   description = "AWS S3 bucket prefix where certificates will be located if datastore use native TLS mode"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "prviate_namespace_name" {
   type    = string
   default = "cluster.local"
+}
+
+variable "tags" {
+  description = "Additional tags for deployment"
+  type    = map(string)
+  default = {}
 }

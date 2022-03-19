@@ -2,14 +2,14 @@
   {
     "name": "s3-downloader",
     "image": "amazon/aws-cli:latest",
-    "cpu": "128",
+    "cpu": 128,
     "memory": 128,
-    "essential": "false",
+    "essential": false,
     "command": ["s3","sync", "s3://${certificate_bucket_name}/${certificate_bucket_prefix}", "/var/rookout"],
     "mountPoints": [
       {
         "containerPath": "/var/rookout",
-        "serviceVolume": "certs"
+        "sourceVolume": "certs"
       }
     ],
     "logConfiguration": {
@@ -28,6 +28,12 @@
     "memory": ${memory},
     "memoryReservation": ${memory},
     "essential": true,
+    "dependsOn": [
+      {
+        "condition": "SUCCESS",
+        "containerName": "s3-downloader"
+      }
+    ],
     "portMappings": [
       {
         "containerPort": 4343
@@ -56,7 +62,7 @@
     "mountPoints": [
       {
         "containerPath": "/var/rookout",
-        "serviceVolume": "certs"
+        "sourceVolume": "certs"
       }
     ],
      "logConfiguration": {

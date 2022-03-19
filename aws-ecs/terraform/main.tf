@@ -28,6 +28,7 @@ resource "aws_ecs_task_definition" "controller" {
   cpu                      = 256
   memory                   = 512
   execution_role_arn       = aws_iam_role.task_exec_role.arn
+  task_role_arn            = aws_iam_role.task_exec_role.arn
   container_definitions = templatefile("${path.module}/templates/controller_task_def.tpl", {
     name              = "rookout-controller"
     cpu               = 256
@@ -76,7 +77,8 @@ resource "aws_ecs_task_definition" "datastore" {
   cpu                      = 512
   memory                   = 1024
   execution_role_arn       = aws_iam_role.task_exec_role.arn
-  container_definitions = templatefile(local.datastore_server_mode == "TLS" ? "${path.module}/templates/datastore_tls_task_def.tpl" : "${path.module}/templates/datastore_task_def.tpl", {
+  task_role_arn            = aws_iam_role.task_exec_role.arn
+  container_definitions = templatefile((local.datastore_server_mode == "TLS" ? "${path.module}/templates/datastore_tls_task_def.tpl" : "${path.module}/templates/datastore_task_def.tpl"), {
     name                      = "rookout-datastore"
     cpu                       = 256
     memory                    = 512
@@ -91,7 +93,7 @@ resource "aws_ecs_task_definition" "datastore" {
   dynamic "volume" {
     for_each = local.datastore_volumes
     content {
-      name = volume.value
+      name = volume.value["name"]
     }
   }
 }
@@ -133,18 +135,14 @@ resource "aws_service_discovery_private_dns_namespace" "main" {
 
 resource "aws_service_discovery_service" "controller" {
   name = "${local.name_prefix}-controller"
-
   dns_config {
     namespace_id = aws_service_discovery_private_dns_namespace.main.id
-
     dns_records {
       ttl  = 10
       type = "A"
     }
-
     routing_policy = "MULTIVALUE"
   }
-
   health_check_custom_config {
     failure_threshold = 1
   }
@@ -152,18 +150,14 @@ resource "aws_service_discovery_service" "controller" {
 
 resource "aws_service_discovery_service" "datastore" {
   name = "${local.name_prefix}-datastore"
-
   dns_config {
     namespace_id = aws_service_discovery_private_dns_namespace.main.id
-
     dns_records {
       ttl  = 10
       type = "A"
     }
-
     routing_policy = "MULTIVALUE"
   }
-
   health_check_custom_config {
     failure_threshold = 1
   }
@@ -185,7 +179,7 @@ resource "aws_lb" "alb" {
 resource "aws_lb_target_group" "controller" {
   count = var.create_lb && var.publish_controller_lb ? 1 : 0
 
-  name        = "${local.name_prefix}-datastore"
+  name        = "${local.name_prefix}-controller"
   port        = 7488
   protocol    = "HTTP"
   target_type = "ip"
@@ -202,7 +196,7 @@ resource "aws_lb_listener" "controller" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.datastore[0].arn
+    target_group_arn = aws_lb_target_group.controller[0].arn
   }
 }
 
@@ -252,6 +246,7 @@ resource "aws_security_group" "allow_controller" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+  tags = local.tags
 }
 
 resource "aws_security_group" "allow_datastore" {
@@ -273,6 +268,7 @@ resource "aws_security_group" "allow_datastore" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+  tags = local.tags
 }
 
 resource "aws_security_group" "allow_alb" {
@@ -303,4 +299,5 @@ resource "aws_security_group" "allow_alb" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+  tags = local.tags
 }

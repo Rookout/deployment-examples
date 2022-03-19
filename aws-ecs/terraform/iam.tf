@@ -44,7 +44,7 @@ resource "aws_iam_role_policy" "task_exec_role_policy_secrets" {
 
 
 resource "aws_iam_role_policy" "task_exec_role_policy_s3" {
-  count = var.datastore_server_mode == "TLS" ? 1 : 0
+  count = local.datastore_server_mode == "TLS" ? 1 : 0
 
   name = "${local.name_prefix}-rookout_role_s3_policy"
   role = aws_iam_role.task_exec_role.id
@@ -60,7 +60,7 @@ resource "aws_iam_role_policy" "task_exec_role_policy_s3" {
         "Effect": "Allow",
         "Resource": [
           "arn:aws:s3:::${var.certificate_bucket_name}",
-          "arn:aws:s3:::${var.certificate_bucket_name}/*",
+          "arn:aws:s3:::${var.certificate_bucket_name}/*"
         ]
       }
     ]

@@ -1,18 +1,45 @@
+provider "aws" {
+  region = var.region
+}
+
+locals {
+  tags = {
+    Terraform   = true
+    Environment = var.environment
+    Service     = "rookout"
+  }
+}
+
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "my-vpc"
-  cidr = "10.0.0.0/16"
+  name = "${var.environment}-rookout-vpc"
+  cidr = var.vpc_cidr
 
-  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  azs             = var.azs
+  private_subnets = var.private_cidrs
+  public_subnets  = var.public_cidrs
 
-  enable_nat_gateway = true
-  enable_vpn_gateway = true
+  enable_nat_gateway   = true
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
-  tags = {
-    Terraform = "true"
-    Environment = "dev"
-  }
+  tags = local.tags
+}
+
+module "rookout" {
+  source = "../"
+
+  vpc_id                 = module.vpc.vpc_id
+  public_subnets         = module.vpc.public_subnets
+  private_subnets        = module.vpc.private_subnets
+  create_lb              = var.create_lb
+  publish_controller_lb  = var.publish_controller_lb
+  region                 = var.region
+  rookout_token_arn      = var.rookout_token_arn
+  environment            = var.environment
+  certificate_arn        = var.certificate_arn
+  prviate_namespace_name = var.prviate_namespace_name
+
+  tags = local.tags
 }
