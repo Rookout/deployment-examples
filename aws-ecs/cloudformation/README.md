@@ -1,7 +1,7 @@
 ## Deploy Rookout Hybrid Deployment on AWS ECS Cluster using AWS Cloudformation
 This CloudFormation deployment is to be used to deploy the Rookout Controller and Rookout Datastore within AWS ECS Fargate cluster.
 
-![alt text](https://github.com/gchuev-opsfleet/deployment-examples/blob/aws-ecs-cloudformation/aws-ecs/cloudformation/Rookout-aws-ecs.png?raw=true)
+![alt text](https://github.com/gchuev-opsfleet/deployment-examples/blob/OP-3-create-ecs-deployment-method-datastore-controller/aws-ecs/cloudformation/Rookout-aws-ecs.png?raw=true)
 
 ### Prerequisites
 

@@ -4,27 +4,30 @@ variable "azs" {
 }
 
 variable "vpc_cidr" {
-  description = "VPC ID"
+  description = "VPC cidr"
   type        = string
 }
 
 variable "public_cidrs" {
-  description = "Subnet ID"
+  description = "List of public subnets cidrs to create"
   type        = list(string)
 }
 
 variable "private_cidrs" {
-  description = "Subnet ID"
+  description = "List of private subnets cidrs to create"
   type        = list(string)
 }
 
 variable "create_lb" {
-  description = "Set to true if you want to publish services publically via Application Load Balancer"
+  description = "Set to true if you want to publish services publicly via Application Load Balancer"
   type        = bool
+  default     = false
 }
 
 variable "publish_controller_lb" {
-  type    = bool
+  description = "Set true if you want to publish controller trough LoadBalancer. create_lb parameter should be set to true."
+  type   = bool
+  default = false
 }
 
 variable "region" {
@@ -40,7 +43,6 @@ variable "rookout_token_arn" {
 variable "environment" {
   description = "Environment name prefix to use in all created resources"
   type        = string
-  
 }
 
 variable "certificate_arn" {
