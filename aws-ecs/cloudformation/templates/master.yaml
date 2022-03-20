@@ -1,0 +1,142 @@
+Description: >
+  This template deploys a Controller\Datastore ECS tasks exposed trough NLB \ Service Discovery or Via Public IP directly and VPC.
+
+Parameters:
+
+  TemplatesS3Bucket:
+    Type: String
+    Description: Bucket name where all templates are stored
+
+  CertificateArn:
+    Type: String
+    Default: ""
+    Description: ACM Certificate Arn for TLS deployment with LoadBalancer.
+
+  PrivateDNSZoneName:
+    Description: Name for private AWS Cloud Map Namespaces.
+    Type: String
+    Default: cluster.local
+    AllowedPattern: "^[!-~]{1,1024}$"
+    ConstraintDescription: Must specify a string for zone name, eg. example.local
+
+  DefaultVPC:
+    Description: Set true if you want to use default VPC or VPC without private networks.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  PublishControllerLB:
+    Description: Set true if you want to make Controller available trough LoadBalancer. CreateLB parameter should be set to true.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  UseLB:
+    Description: Set true if you want to use LoadBalancer for chosen deployment.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  Environment:
+    Description: Deployment type. Set true if you want to use LoadBalancer for chosen deployment.
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+      - stage
+
+  TokenSecretArn:
+    Description: Secret's ARN for AWS Secrets Manager secret with rookout token.
+    Type: String
+    Default: rookout_token
+
+  VpcCIDR:
+    Description: Please enter the IP range (CIDR notation) for this VPC
+    Type: String
+    Default: 10.10.0.0/20
+
+  PublicSubnet1CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
+    Type: String
+    Default: 10.10.0.0/24
+
+  PublicSubnet2CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the second Availability Zone
+    Type: String
+    Default: 10.10.1.0/24
+
+  PrivateSubnet1CIDR:
+    Description: Please enter the IP range (CIDR notation) for the private subnet in the first Availability Zone
+    Type: String
+    Default: 10.10.2.0/24
+
+  PrivateSubnet2CIDR:
+    Description: Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone
+    Type: String
+    Default: 10.10.3.0/24
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: General Parameters
+        Parameters:
+          - Environment
+      - Label:
+          default: Rookout Parameters
+        Parameters:
+          - UseLB
+          - TokenSecretArn
+          - DefaultVPC
+          - PrivateDNSZoneName
+          - PublishControllerLB
+          - CertificateArn
+      - Label:
+          default: VPC Details
+        Parameters:
+          - VpcCIDR
+          - PrivateSubnet1CIDR
+          - PrivateSubnet2CIDR
+          - PublicSubnet1CIDR
+          - PublicSubnet2CIDR
+
+Resources:
+
+  VPC:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesS3Bucket}/${Environment}-rookout/vpc.yaml
+      Parameters:
+        EnvironmentName: !Sub '${AWS::StackName}-${Environment}'
+        VpcCIDR: !Ref VpcCIDR
+        PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
+        PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
+        PrivateSubnet1CIDR: !Ref PrivateSubnet1CIDR
+        PrivateSubnet2CIDR: !Ref PrivateSubnet2CIDR
+
+  RookoutECS:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesS3Bucket}/${Environment}-rookout/rookout-aws-ecs.yaml
+      Parameters:
+        Environment: !Ref Environment
+        UseLB: !Ref UseLB
+        VpcId: !GetAtt VPC.Outputs.VPC
+        DefaultVPC: !Ref DefaultVPC
+        PublicSubnets: !GetAtt VPC.Outputs.PublicSubnets
+        PrivateSubnets: !GetAtt VPC.Outputs.PrivateSubnets
+        TokenSecretArn: !Ref TokenSecretArn
+        PrivateDNSZoneName: !Ref PrivateDNSZoneName
+        PublishControllerLB: !Ref PublishControllerLB
+        CertificateArn: !Ref CertificateArn
+

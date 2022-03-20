@@ -1,0 +1,46 @@
+[
+    {
+        "ParameterKey": "TokenSecretArn",
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:xxxxxxxxxxxx:secret:rookout_token-xxxxxx"
+    },
+    {
+        "ParameterKey": "Environment",
+        "ParameterValue": "dev"
+    },
+    {
+        "ParameterKey": "UseLB",
+        "ParameterValue": "false"
+    },
+    {
+        "ParameterKey": "PublishControllerLB",
+        "ParameterValue": "false"
+    },
+    {
+        "ParameterKey": "VpcId",
+        "ParameterValue": "vpc-xxxx"
+    },
+    {
+        "ParameterKey": "PrivateSubnets",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "PublicSubnets",
+        "ParameterValue": "subnet-xxxx,subnet-xxxx,subnet-xxxx"
+    },
+    {
+        "ParameterKey": "DefaultVPC",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "CertificateArn",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "CertificateS3Bucket",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "CertificateS3BucketPrefix",
+        "ParameterValue": ""
+    }
+]

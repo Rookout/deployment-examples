@@ -1,0 +1,50 @@
+[
+    {
+        "ParameterKey": "TemplatesS3Bucket",
+        "ParameterValue": "cf-templates-xxx-us-east-1"
+    },
+    {
+        "ParameterKey": "TokenSecretArn",
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:xxxxxxxxxxxx:secret:rookout_token-xxxxxx"
+    },
+    {
+        "ParameterKey": "Environment",
+        "ParameterValue": "dev"
+    },
+    {
+        "ParameterKey": "UseLB",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "PublishControllerLB",
+        "ParameterValue": "false"
+    },
+    {
+        "ParameterKey": "DefaultVPC",
+        "ParameterValue": "false"
+    },
+    {
+        "ParameterKey": "VpcCIDR",
+        "ParameterValue": "10.10.0.0/20"
+    },
+    {
+        "ParameterKey": "PublicSubnet1CIDR",
+        "ParameterValue": "10.10.0.0/24"
+    },
+    {
+        "ParameterKey": "PublicSubnet2CIDR",
+        "ParameterValue": "10.10.1.0/24"
+    },
+    {
+        "ParameterKey": "PrivateSubnet1CIDR",
+        "ParameterValue": "10.10.2.0/24"
+    },
+    {
+        "ParameterKey": "PrivateSubnet2CIDR",
+        "ParameterValue": "10.10.3.0/24"
+    },
+    {
+        "ParameterKey": "CertificateArn",
+        "ParameterValue": "arn:aws:acm:us-east-1:xxxxxxxxxxxx:certificate/xxxxxx-xxxxxx-xxxxx"
+    }
+]
