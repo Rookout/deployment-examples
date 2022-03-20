@@ -1,15 +1,11 @@
 vpc_id                    = "vpc-0ddd4385198044b6f"
 public_subnets            = ["subnet-0b24284913b02c8d8", "subnet-02b76d71542167f00"]
-private_subnets           = null
 default_vpc               = true
 create_lb                 = false
 publish_controller_lb     = false
 region                    = "us-east-1"
 rookout_token_arn         = "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
-cluster_name              = null
 environment               = "dev"
-service                   = "rookout"
-certificate_arn           = null
 certificate_bucket_name   = "cf-templates-11x1qjid1uaq7-us-east-1"
 certificate_bucket_prefix = "certs"
 prviate_namespace_name    = "cluster.local"
