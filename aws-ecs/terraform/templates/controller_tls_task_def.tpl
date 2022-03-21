@@ -5,10 +5,10 @@
     "cpu": 128,
     "memory": 128,
     "essential": false,
-    "command": ["s3","sync", "s3://${certificate_bucket_name}/${certificate_bucket_prefix}", "/var/rookout"],
+    "command": ["s3","sync", "s3://${certificate_bucket_name}/${certificate_bucket_prefix}", "/var/controller-tls-secrets"],
     "mountPoints": [
       {
-        "containerPath": "/var/rookout",
+        "containerPath": "/var/controller-tls-secrets",
         "sourceVolume": "certs"
       }
     ],
@@ -23,7 +23,7 @@
   },
   {
     "name": "${name}",
-    "image": "rookout/data-on-prem:latest",
+    "image": "rookout/controller:latest",
     "cpu": ${cpu},
     "memory": ${memory},
     "memoryReservation": ${memory},
@@ -36,36 +36,36 @@
     ],
     "portMappings": [
       {
-        "containerPort": 4343
+        "containerPort": 7488
       }
     ],
     "environment": [
       {
-        "name": "ROOKOUT_DOP_SERVER_MODE",
-        "value": "${datastore_server_mode}"
+        "name": "ROOKOUT_DOP_NO_SSL_VERIFY",
+        "value": "${dop_no_ssl_verify}"
       },
       {
-        "name": "ROOKOUT_DOP_CORS_ALL",
-        "value": "${datastore_cors_all}"
+        "name": "ONPREM_ENABLED",
+        "value": "${onprem_enabled}"
       },
       {
-        "name": "ROOKOUT_DOP_IN_MEMORY_DB",
-        "value": "${datastore_in_memory_db}"
+        "name": "ROOKOUT_CONTROLLER_SERVER_MODE",
+        "value": "${controller_server_mode}"
       }
     ],
     "secrets": [
       {
-        "name": "ROOKOUT_DOP_LOGGING_TOKEN",
+        "name": "ROOKOUT_TOKEN",
         "valueFrom": "${rookout_token_arn}"
       }
     ],
     "mountPoints": [
       {
-        "containerPath": "/var/rookout",
+        "containerPath": "/var/controller-tls-secrets",
         "sourceVolume": "certs"
       }
     ],
-     "logConfiguration": {
+    "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
             "awslogs-group": "${log_group}",

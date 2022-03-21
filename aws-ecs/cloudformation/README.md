@@ -55,7 +55,7 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 | DefaultVPC  | Set true if you want to use default VPC or VPC without private networks.  | false |
 | PublicSubnets | List of public subnets for LoadBalancer and for ECS tasks in case of default vpc deployment.| none |
 | PrivateSubnets |  Select list of private subnets for ECS tasks. They should be in same VPC and has routes between PublicSubnets if you're using LB. Ignored when you set DefaultVPC to true | "" |
-| VpcId | a VPC where subnets located. | none |
+| VpcId | VPC ID where resources will be deployed. | none |
 | PublishControllerLB | Set true if you want to publish trough LoadBalancer. UseLB parameter should be set to true. | false |
 | DOPInMemoryDB | Set true if you want to use InMemory db mode for datastore. ROOKOUT_DOP_IN_MEMORY_DB env variable will be set for datastore service. | true |
 | DOPCorsAll | ROOKOUT_DOP_CORS_ALL env variable will be set for datastore service. | true |

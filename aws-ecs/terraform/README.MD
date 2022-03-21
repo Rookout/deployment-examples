@@ -1,5 +1,5 @@
 ## Deploy Rookout Hybrid Deployment on AWS ECS Cluster using Terraform
-Compatible with Terraform version: `~> v1.0`
+Compatible with Terraform version: `>= v0.13`
 
 This terraform module is to be used to deploy the Rookout Controller and Rookout Datastore on AWS ECS Fargate cluster.
 
@@ -39,9 +39,17 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | private_subnets |  Select list of private subnets for ECS tasks. They should be in same VPC and has routes between public_subnets if you're using LB. Ignored when you set DefaultVPC to true | none |
 | vpc_id | VPC ID where resources will be deployed. | none |
 | cluster_name | Set true if you want to use previously deployed cluster, if not set module will create new AWS ECS cluster as part of deployment. | null |
-| publish_controller_lb | Set true if you want to publish controller trough LoadBalancer. create_lb parameter should be set to true. | false |
 | create_lb | Set true if you want to use LoadBalancer for chosen deployment. | false |
-| certificate_arn | ACM Certificate Arn for TLS deployment with LoadBalancer. (See prerequestes on how to Issue or Import Certificate)| "" |
-| certificate_bucket_name | AWS S3 bucket name where certificates will be located. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS | null |
-| certificate_bucket_prefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume. Can be optionally set along with certificate_bucket_name | null |
 | environment | Deployment environment (dev|prod|stage)| "dev" |
+| controller_settings | Map of Settings for controller service (See description below)| enabled = true <br> service_name = "rookout-controller" <br>  server_mode = "PLAIN" <br> onprem_enabled = true <br> dop_no_ssl_verify = true <br> certificate_bucket_prefix = null <br> certificate_bucket_name = null <br> certificate_arn = null <br> publish_lb = false <br> task_cpu = 512 <br> task_memory = 1024 |
+| datastore_settings | Map of Settings for datastore service (See description below)| enabled = true <br> service_name = "rookout-datastore" <br>  server_mode = "PLAIN" <br> cors_all = true <br> in_memory_db = true <br> certificate_bucket_prefix = null <br> certificate_bucket_name = null <br> certificate_arn = null <br> publish_lb = false <br> task_cpu = 512 <br> task_memory = 1024 |
+
+#### Controller & Datastore settings
+| ParameterName  | Description |
+| ------------- | ------------- |
+| enabled | Enable or disable service for deploy |
+| server_mode | if set to TLS certificate_bucket_name\prefix indicate s3 bucket where to look for certificates to download in the task |
+| certificate_bucket_name | s3 bucket where certificates should be uploaded |
+| certificate_bucket_prefix | s3 bucket prefix where certificates should be uploaded |
+| certificate_arn | if create_lb variable is set to true this certificate arn will be used for service alb listeners |
+| task_cpu / task_memory| CPU and RAM for tasks |

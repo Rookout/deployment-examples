@@ -24,32 +24,63 @@ variable "create_lb" {
   default     = false
 }
 
-variable "publish_controller_lb" {
-  description = "Set true if you want to publish controller trough LoadBalancer. create_lb parameter should be set to true."
-  type   = bool
-  default = false
-}
-
 variable "region" {
   description = "AWS Region"
   type        = string
 }
 
 variable "rookout_token_arn" {
-  description = "Token of your Rookout organization"
+  description = "Secret's ARN for AWS Secrets Manager secret with rookout token."
   type        = string
+}
+
+variable "cluster_name" {
+  description = "Set true if you want to use previously deployed cluster, if not set module will create new AWS ECS cluster as part of deployment."
+  type        = string
+  default     = null
 }
 
 variable "environment" {
   description = "Environment name prefix to use in all created resources"
   type        = string
-}
-
-variable "certificate_arn" {
-  description = "AWS ACM Certificate ARN to attach to load balancer"
-  type        = string
+  default     = "dev"
 }
 
 variable "prviate_namespace_name" {
-  type    = string
+  description = "Name for AWS CloudMap namespace used for service discovery"
+  type        = string
+  default     = "cluster.local"
+}
+
+variable "controller_settings" {
+  type = map(string)
+  default = {
+    enabled                   = true
+    service_name              = "rookout-controller"
+    server_mode               = "PLAIN"
+    dop_no_ssl_verify         = true
+    onprem_enabled            = true
+    certificate_bucket_prefix = null
+    certificate_bucket_name   = null
+    certificate_arn           = null
+    publish_lb                = false
+    task_cpu                  = 256
+    task_memory               = 512
+  }
+}
+
+variable "datastore_settings" {
+  type = map(string)
+  default = {
+    enabled                   = true
+    service_name              = "rookout-datastore"
+    server_mode               = "PLAIN"
+    cors_all                  = true
+    in_memory_db              = true
+    certificate_bucket_prefix = null
+    certificate_bucket_name   = null
+    certificate_arn           = null
+    task_cpu                  = 512
+    task_memory               = 1024
+  }
 }

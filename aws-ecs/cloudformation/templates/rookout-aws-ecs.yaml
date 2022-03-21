@@ -4,6 +4,7 @@ Description: >
 Parameters:
 
   PrivateDNSZoneName:
+    Description: Name for AWS CloudMap namespace used for service discovery
     Type: String
     Default: cluster.local
     AllowedPattern: '^[!-~]{1,1024}$'
@@ -19,17 +20,18 @@ Parameters:
     ConstraintDescription: must specify true or false.
 
   PublicSubnets:
-    Type: 'List<AWS::EC2::Subnet::Id>'
     Description: Select list of public subnets for LoadBalancer and for ECS tasks in case of default vpc deployment.
+    Type: 'List<AWS::EC2::Subnet::Id>'
+    Default: []
 
   PrivateSubnets:
-    Type: 'List<AWS::EC2::Subnet::Id>'
-    Default: ""
     Description: Select list of private subnets for ECS tasks. They should be in same VPC and has routes between PublicSubnets.
+    Type: 'List<AWS::EC2::Subnet::Id>'
+    Default: []
 
   VpcId:
     Type: 'AWS::EC2::VPC::Id'
-    Description: Select a VPC where subnets located.
+    Description: VPC ID where resources will be deployed.
 
   PublishControllerLB:
     Description: Set true if you want to publish trough LoadBalancer. UseLB parameter should be set to true.

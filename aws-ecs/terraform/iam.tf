@@ -43,10 +43,10 @@ resource "aws_iam_role_policy" "task_exec_role_policy_secrets" {
 }
 
 
-resource "aws_iam_role_policy" "task_exec_role_policy_s3" {
-  count = local.datastore_server_mode == "TLS" ? 1 : 0
+resource "aws_iam_role_policy" "task_exec_role_policy_s3_controller" {
+  count = local.controller_server_mode == "TLS" ? 1 : 0
 
-  name = "${local.name_prefix}-rookout_role_s3_policy"
+  name = "${local.name_prefix}-rookout-controller_role_s3_policy"
   role = aws_iam_role.task_exec_role.id
 
   policy = <<-EOF
@@ -59,8 +59,33 @@ resource "aws_iam_role_policy" "task_exec_role_policy_s3" {
         ],
         "Effect": "Allow",
         "Resource": [
-          "arn:aws:s3:::${var.certificate_bucket_name}",
-          "arn:aws:s3:::${var.certificate_bucket_name}/*"
+          "arn:aws:s3:::${local.controller_settings.certificate_bucket_name}",
+          "arn:aws:s3:::${local.controller_settings.certificate_bucket_name}/*"
+        ]
+      }
+    ]
+  }
+  EOF
+}
+
+resource "aws_iam_role_policy" "task_exec_role_policy_s3_datastore" {
+  count = local.datastore_server_mode == "TLS" ? 1 : 0
+
+  name = "${local.name_prefix}-rookout-datastore_role_s3_policy"
+  role = aws_iam_role.task_exec_role.id
+
+  policy = <<-EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": [
+          "s3:*"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:s3:::${local.datastore_settings.certificate_bucket_name}",
+          "arn:aws:s3:::${local.datastore_settings.certificate_bucket_name}/*"
         ]
       }
     ]

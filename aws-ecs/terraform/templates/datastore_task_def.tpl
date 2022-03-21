@@ -18,11 +18,11 @@
       },
       {
         "name": "ROOKOUT_DOP_CORS_ALL",
-        "value": "true"
+        "value": "${datastore_cors_all}"
       },
       {
         "name": "ROOKOUT_DOP_IN_MEMORY_DB",
-        "value": "true"
+        "value": "${datastore_in_memory_db}"
       }
     ],
     "secrets": [

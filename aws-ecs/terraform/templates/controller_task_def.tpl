@@ -14,11 +14,15 @@
     "environment": [
       {
         "name": "ROOKOUT_DOP_NO_SSL_VERIFY",
-        "value": "true"
+        "value": "${dop_no_ssl_verify}"
       },
       {
         "name": "ONPREM_ENABLED",
-        "value": "true"
+        "value": "${onprem_enabled}"
+      },
+      {
+        "name": "ROOKOUT_CONTROLLER_SERVER_MODE",
+        "value": "${controller_server_mode}"
       }
     ],
     "secrets": [

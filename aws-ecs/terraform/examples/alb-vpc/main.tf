@@ -28,18 +28,18 @@ module "vpc" {
 }
 
 module "rookout" {
-  source = "../"
+  source = "../../"
 
   vpc_id                 = module.vpc.vpc_id
   public_subnets         = module.vpc.public_subnets
   private_subnets        = module.vpc.private_subnets
   create_lb              = var.create_lb
-  publish_controller_lb  = var.publish_controller_lb
   region                 = var.region
   rookout_token_arn      = var.rookout_token_arn
   environment            = var.environment
-  certificate_arn        = var.certificate_arn
   prviate_namespace_name = var.prviate_namespace_name
+  controller_settings    = var.controller_settings
+  datastore_settings     = var.datastore_settings
 
   tags = local.tags
 }

@@ -6,17 +6,19 @@ variable "vpc_id" {
 variable "public_subnets" {
   description = "List of public subnets for deployment"
   type        = list(string)
+  default     = []
 }
 
 variable "private_subnets" {
   description = "List of private subnets for deployment"
   type        = list(string)
+  default     = []
 }
 
 variable "default_vpc" {
   description = "Set true if you want to use default VPC or VPC without private networks."
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "create_lb" {
@@ -25,10 +27,44 @@ variable "create_lb" {
   default     = false
 }
 
+variable "controller_settings" {
+  type = map(string)
+  default = {
+    enabled                   = true
+    service_name              = "rookout-controller"
+    server_mode                = "PLAIN"
+    dop_no_ssl_verify         = true
+    onprem_enabled            = true
+    certificate_bucket_prefix = null
+    certificate_bucket_name   = null
+    certificate_arn           = null
+    publish_lb                = false
+    task_cpu                  = 512
+    task_memory               = 1024
+  }
+}
+
+variable "datastore_settings" {
+  type = map(string)
+  default = {
+    enabled                   = true
+    service_name              = "rookout-datastore"
+    server_mode                = "PLAIN"
+    cors_all                  = true
+    in_memory_db              = true
+    certificate_bucket_prefix = null
+    certificate_bucket_name   = null
+    certificate_arn           = null
+    publish_lb                = true
+    task_cpu                  = 512
+    task_memory               = 1024
+  }
+}
+
 variable "publish_controller_lb" {
   description = "Set true if you want to publish controller trough LoadBalancer. create_lb parameter should be set to true."
-  type   = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "region" {
@@ -59,32 +95,14 @@ variable "service" {
   default     = "rookout"
 }
 
-variable "certificate_arn" {
-  description = "AWS ACM Certificate ARN to attach to load balancer"
-  type        = string
-  default     = null
-}
-
-variable "certificate_bucket_name" {
-  description = "AWS S3 bucket name where certificates will be located. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS"
-  type        = string
-  default     = null
-}
-
-variable "certificate_bucket_prefix" {
-  description = "AWS S3 bucket prefix where certificates will be located if datastore in TLS mode"
-  type        = string
-  default     = null
-}
-
 variable "prviate_namespace_name" {
   description = "Name for AWS CloudMap namespace used for service discovery"
-  type    = string
-  default = "cluster.local"
+  type        = string
+  default     = "cluster.local"
 }
 
 variable "tags" {
   description = "Additional tags for deployment"
-  type    = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }

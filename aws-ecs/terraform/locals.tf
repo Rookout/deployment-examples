@@ -1,22 +1,57 @@
 locals {
-  name_prefix           = format("%s-%s", var.environment, var.service)
-  cluster_name          = format("%s-cluster", local.name_prefix)
-  create_cluster        = var.cluster_name != null ? false : true
-  task_subnets          = var.default_vpc ? var.public_subnets : var.private_subnets
-  datastore_server_mode = var.certificate_bucket_name != null ? "TLS" : "PLAIN"
-  datastore_volumes     = local.datastore_server_mode == "TLS" ? [{name = "certs"}] : []
-  datastore_port        = local.datastore_server_mode == "TLS" ? 4343 : 8080
-  datastore_lb_protocol = var.certificate_arn != null ? "HTTPS" : "HTTP"
+  default_controller_settings = {
+    enabled                   = true
+    service_name              = "rookout-controller"
+    serer_mode                = "PLAIN"
+    dop_no_ssl_verify         = true
+    onprem_enabled            = true
+    certificate_bucket_prefix = null
+    certificate_bucket_name   = null
+    certificate_arn           = null
+    publish_lb                = false
+    task_cpu                  = 256
+    task_memory               = 512
+  }
+  default_datastore_settings = {
+    enabled                   = true
+    service_name              = "rookout-datastore"
+    serer_mode                = "PLAIN"
+    cors_all                  = true
+    in_memory_db              = true
+    certificate_bucket_prefix = null
+    certificate_bucket_name   = null
+    certificate_arn           = null
+    task_cpu                  = 512
+    task_memory               = 1024
+  }
+  controller_settings = merge(local.default_controller_settings, var.controller_settings)
+  datastore_settings  = merge(local.default_datastore_settings, var.datastore_settings)
 
-  load_balancer_controller = var.create_lb && var.publish_controller_lb ? [{
+  name_prefix            = format("%s-%s", var.environment, var.service)
+  cluster_name           = var.cluster_name != null ? var.cluster_name : format("%s-cluster", local.name_prefix)
+  create_cluster         = var.cluster_name != null ? false : true
+  task_subnets           = var.default_vpc ? var.public_subnets : var.private_subnets
+  datastore_server_mode  = local.datastore_settings.server_mode
+  datastore_volumes      = local.datastore_server_mode == "TLS" ? [{ name = "certs" }] : []
+  datastore_port         = local.datastore_server_mode == "TLS" ? 4343 : 8080
+  datastore_lb_protocol  = local.datastore_settings.certificate_arn != null ? "HTTPS" : "HTTP"
+  datastore_tg_protocol  = local.datastore_settings.server_mode == "TLS" ? "HTTPS" : "HTTP"
+  datastore_publish_lb   = var.create_lb && local.datastore_settings.publish_lb && local.datastore_settings.enabled ? true : false
+  controller_server_mode = local.controller_settings.server_mode
+  controller_volumes     = local.controller_server_mode == "TLS" ? [{ name = "certs" }] : []
+  controller_lb_protocol = local.controller_settings.certificate_arn != null ? "HTTPS" : "HTTP"
+  controller_tg_protocol = local.controller_server_mode == "TLS" ? "HTTPS" : "HTTP"
+  controller_publish_lb  = var.create_lb && local.controller_settings.publish_lb && local.controller_settings.enabled ? true : false
+
+  load_balancer_controller = local.controller_publish_lb ? [{
     target_group_arn = try(aws_lb_target_group.controller[0].arn, null)
-    container_name   = "rookout-controller"
+    container_name   = local.controller_settings.service_name
     container_port   = 7488
   }] : []
-  load_balancer_datastore = var.create_lb ? [{
+  load_balancer_datastore = local.datastore_publish_lb ? [{
     target_group_arn = try(aws_lb_target_group.datastore[0].arn, null)
-    container_name   = "rookout-datastore"
-    container_port   = 8080
+    container_name   = local.datastore_settings.service_name
+    container_port   = local.datastore_port
   }] : []
 
   tags = merge(var.tags, {
