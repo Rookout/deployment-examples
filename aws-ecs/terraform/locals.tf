@@ -32,16 +32,16 @@ locals {
   create_cluster         = var.cluster_name != null ? false : true
   task_subnets           = var.default_vpc ? var.public_subnets : var.private_subnets
   datastore_server_mode  = local.datastore_settings.server_mode
+  datastore_publish_lb   = var.create_lb && local.datastore_settings.publish_lb && local.datastore_settings.enabled ? true : false
   datastore_volumes      = local.datastore_server_mode == "TLS" ? [{ name = "certs" }] : []
   datastore_port         = local.datastore_server_mode == "TLS" ? 4343 : 8080
-  datastore_lb_protocol  = local.datastore_settings.certificate_arn != null ? "HTTPS" : "HTTP"
+  datastore_lb_protocol  = local.datastore_settings.certificate_arn != null && local.datastore_publish_lb ? "HTTPS" : "HTTP"
   datastore_tg_protocol  = local.datastore_settings.server_mode == "TLS" ? "HTTPS" : "HTTP"
-  datastore_publish_lb   = var.create_lb && local.datastore_settings.publish_lb && local.datastore_settings.enabled ? true : false
   controller_server_mode = local.controller_settings.server_mode
-  controller_volumes     = local.controller_server_mode == "TLS" ? [{ name = "certs" }] : []
-  controller_lb_protocol = local.controller_settings.certificate_arn != null ? "HTTPS" : "HTTP"
-  controller_tg_protocol = local.controller_server_mode == "TLS" ? "HTTPS" : "HTTP"
   controller_publish_lb  = var.create_lb && local.controller_settings.publish_lb && local.controller_settings.enabled ? true : false
+  controller_volumes     = local.controller_server_mode == "TLS" ? [{ name = "certs" }] : []
+  controller_lb_protocol = local.controller_settings.certificate_arn != null && local.controller_publish_lb ? "HTTPS" : "HTTP"
+  controller_tg_protocol = local.controller_server_mode == "TLS" ? "HTTPS" : "HTTP"
 
   load_balancer_controller = local.controller_publish_lb ? [{
     target_group_arn = try(aws_lb_target_group.controller[0].arn, null)

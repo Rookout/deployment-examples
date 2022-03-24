@@ -12,7 +12,7 @@ data "aws_ecs_cluster" "provided" {
 }
 
 resource "aws_cloudwatch_log_group" "rookout" {
-  name_prefix = "${var.service}/"
+  name_prefix = "${local.name_prefix}/"
 }
 
 resource "aws_ecs_cluster" "rookout" {
