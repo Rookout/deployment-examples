@@ -1,7 +1,7 @@
 [
     {
         "ParameterKey": "TokenSecretArn",
-        "ParameterValue": "arn:aws:secretsmanager:us-east-1:xxxxxxxxxxxx:secret:rookout_token-xxxxxx"
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
     },
     {
         "ParameterKey": "Environment",
@@ -12,35 +12,63 @@
         "ParameterValue": "false"
     },
     {
-        "ParameterKey": "PublishControllerLB",
-        "ParameterValue": "false"
-    },
-    {
         "ParameterKey": "VpcId",
-        "ParameterValue": "vpc-xxxx"
+        "ParameterValue": "vpc-0ddd4385198044b6f"
     },
     {
         "ParameterKey": "PrivateSubnets",
-        "ParameterValue": ""
+        "ParameterValue": "subnet-02b76d71542167f00,subnet-0b24284913b02c8d8"
     },
     {
         "ParameterKey": "PublicSubnets",
-        "ParameterValue": "subnet-xxxx,subnet-xxxx,subnet-xxxx"
+        "ParameterValue": "subnet-02b76d71542167f00,subnet-0b24284913b02c8d8"
     },
     {
         "ParameterKey": "DefaultVPC",
         "ParameterValue": "true"
     },
     {
-        "ParameterKey": "CertificateArn",
-        "ParameterValue": ""
+        "ParameterKey": "DeployController",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "DeployDatastore",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "ControllerPublishLB",
+        "ParameterValue": "false"
+    },
+    {
+        "ParameterKey": "DatastorePublishLB",
+        "ParameterValue": "false"
+    },
+    {
+        "ParameterKey": "ControllerServerMode",
+        "ParameterValue": "TLS"
+    },
+    {
+        "ParameterKey": "DatastoreServerMode",
+        "ParameterValue": "TLS"
+    },
+    {
+        "ParameterKey": "ControllerCertArn",
+        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
+    },
+    {
+        "ParameterKey": "DatastoreCertArn",
+        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
     },
     {
         "ParameterKey": "CertificateS3Bucket",
-        "ParameterValue": ""
+        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
     },
     {
-        "ParameterKey": "CertificateS3BucketPrefix",
-        "ParameterValue": ""
+        "ParameterKey": "ControllerCertS3BucketPrefix",
+        "ParameterValue": "certs-controller"
+    },
+    {
+        "ParameterKey": "DatastoreCertS3BucketPrefix",
+        "ParameterValue": "certs"
     }
 ]

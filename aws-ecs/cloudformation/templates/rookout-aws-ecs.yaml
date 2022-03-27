@@ -3,6 +3,11 @@ Description: >
 
 Parameters:
 
+  ClusterName:
+    Description: Set this value with name of existing cluster in your aws region. Othewise stack will create a new ecs cluster.
+    Type: String
+    Default: ""
+
   PrivateDNSZoneName:
     Description: Name for AWS CloudMap namespace used for service discovery
     Type: String
@@ -22,19 +27,46 @@ Parameters:
   PublicSubnets:
     Description: Select list of public subnets for LoadBalancer and for ECS tasks in case of default vpc deployment.
     Type: 'List<AWS::EC2::Subnet::Id>'
-    Default: []
+    Default: ""
 
   PrivateSubnets:
     Description: Select list of private subnets for ECS tasks. They should be in same VPC and has routes between PublicSubnets.
     Type: 'List<AWS::EC2::Subnet::Id>'
-    Default: []
+    Default: ""
 
   VpcId:
     Type: 'AWS::EC2::VPC::Id'
     Description: VPC ID where resources will be deployed.
 
-  PublishControllerLB:
-    Description: Set true if you want to publish trough LoadBalancer. UseLB parameter should be set to true.
+  DeployController:
+    Description: Set true if you want to deploy Controller service.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+  
+  DeployDatastore:
+    Description: Set true if you want to deploy Datastore service.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  ControllerPublishLB:
+    Description: Set true if you want to publish Controller service trough LoadBalancer. UseLB parameter should be set to true.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+  
+  DatastorePublishLB:
+    Description: Set true if you want to publish Datastore service trough LoadBalancer. UseLB parameter should be set to true.
     Type: String
     Default: false
     AllowedValues:
@@ -69,17 +101,43 @@ Parameters:
       - false
     ConstraintDescription: must specify true or false.
 
-  CertificateArn:
+  ControllerServerMode:
+    Description: Server mode for Controller service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode.
+    Type: String
+    Default: "PLAIN"
+    AllowedValues:
+      - "PLAIN"
+      - "TLS"
+  
+  DatastoreServerMode:
+    Description: Server mode for Datastore service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode.
+    Type: String
+    Default: "PLAIN"
+    AllowedValues:
+      - "PLAIN"
+      - "TLS"
+
+  ControllerCertArn:
     Type: String
     Default: ""
-    Description: ACM Certificate Arn for TLS deployment with LoadBalancer.
+    Description: ACM Certificate Arn for TLS deployment of Controller service with LoadBalancer.
+  
+  DatastoreCertArn:
+    Type: String
+    Default: ""
+    Description: ACM Certificate Arn for TLS deployment of datastore service with LoadBalancer.
 
   CertificateS3Bucket: 
     Type: String
     Default: ""
     Description: S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS
   
-  CertificateS3BucketPrefix:
+  ControllerCertS3BucketPrefix:
+    Type: String
+    Default: ""
+    Description: S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume. Can be optionally set along with CertificateS3Bucket.
+  
+  DatastoreCertS3BucketPrefix:
     Type: String
     Default: ""
     Description: S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume. Can be optionally set along with CertificateS3Bucket.
@@ -99,15 +157,34 @@ Parameters:
     
 
 Conditions:
+  CreateCluster: !Equals ["", !Ref ClusterName]
   PrivateTask: !Equals [false, !Ref DefaultVPC]
-  LBEnableTLS: !Not [ !Equals ["", !Ref CertificateArn] ]
-  DatastoreEnableTLS: !Not [ !Equals ["", !Ref CertificateS3Bucket] ]
+  DatastoreDeploy: !Equals [true, !Ref DeployDatastore]
+  ControllerDeploy: !Equals [true, !Ref DeployController]
+  DatastoreLBEnableTLS: !And 
+    - !Not [ !Equals ["", !Ref DatastoreCertArn] ]
+    - !Equals [true, !Ref UseLB]
+  ControllerLBEnableTLS: !And 
+    - !Not [ !Equals ["", !Ref DatastoreCertArn] ]
+    - !Equals [true, !Ref UseLB]
+  DatastoreEnableTLS: !Equals ["TLS", !Ref DatastoreServerMode]
+  ControllerEnableTLS: !Equals ["TLS", !Ref DatastoreServerMode]
   CreateLB: !Equals [true, !Ref UseLB]
   NoLB: !Equals [false, !Ref UseLB]  
-  PrivateController: !Equals [false, !Ref PublishControllerLB]
+  PrivateController: !And 
+    - !Equals [false, !Ref ControllerPublishLB]
+    - !Equals [true, !Ref DeployController]
+  PrivateDatastore: !And 
+    - !Equals [false, !Ref DatastorePublishLB]
+    - !Equals [true, !Ref DeployDatastore]
   PublicController: !And
     - !Equals [true, !Ref UseLB]
-    - !Equals [true, !Ref PublishControllerLB]
+    - !Equals [true, !Ref ControllerPublishLB]
+    - !Equals [true, !Ref DeployController]
+  PublicDatastore: !And
+    - !Equals [true, !Ref UseLB]
+    - !Equals [true, !Ref DatastorePublishLB]
+    - !Equals [true, !Ref DeployDatastore]
 
 Resources:
 
@@ -119,6 +196,7 @@ Resources:
       Vpc: !Ref VpcId
 
   ControllerServiceDiscovery:
+    Condition: ControllerDeploy
     Type: AWS::ServiceDiscovery::Service
     Properties: 
       Description: Controller service discovery
@@ -133,6 +211,7 @@ Resources:
         FailureThreshold: 1
   
   DatastoreServiceDiscovery:
+    Condition: DatastoreDeploy
     Type: AWS::ServiceDiscovery::Service
     Properties: 
       Description: Datastore service discovery
@@ -145,27 +224,59 @@ Resources:
             Type: A
 
   EcsCluster:
+    Condition: CreateCluster
     Type: AWS::ECS::Cluster
     Properties:
       ClusterName: !Ref 'AWS::StackName'
 
   ControllerTask:
+    Condition: ControllerDeploy
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: !Sub 'rookout-controller-${Environment}'
-      Cpu: 256
-      Memory: 512
+      Cpu: 512
+      Memory: 1024
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
       ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
       TaskRoleArn: !Ref TaskExecutionRole
       ContainerDefinitions:
+        - !If
+          - ControllerEnableTLS
+          - Name: s3-downloader
+            Image: amazon/aws-cli:latest
+            Cpu: 128
+            Memory: 128
+            Essential: false
+            Command: ["s3","sync", !Sub "s3://${CertificateS3Bucket}/${ControllerCertS3BucketPrefix}", "/var/controller-tls-secrets"]
+            MountPoints:
+              - ContainerPath: /var/controller-tls-secrets
+                SourceVolume: certs
+            LogConfiguration:
+              LogDriver: awslogs
+              Options:
+                awslogs-group: !Ref RookoutLogGroup
+                awslogs-region: !Ref AWS::Region
+                awslogs-stream-prefix: !Ref DatastoreLogStream
+          - !Ref 'AWS::NoValue'
         - Name: rookout-controller
           Image: rookout/controller:latest
+          DependsOn:
+          - !If
+            - ControllerEnableTLS
+            - Condition: SUCCESS
+              ContainerName: s3-downloader
+            - !Ref 'AWS::NoValue'
           Cpu: 256
           Memory: 512
           Essential: true
+          MountPoints:
+          - !If
+            - ControllerEnableTLS
+            - ContainerPath: /var/controller-tls-secrets
+              SourceVolume: certs
+            - !Ref 'AWS::NoValue'
           PortMappings:
             - ContainerPort: 7488
           Environment:
@@ -173,6 +284,8 @@ Resources:
               Value: true
             - Name: ONPREM_ENABLED
               Value: true
+            - Name: ROOKOUT_CONTROLLER_SERVER_MODE
+              Value: !Ref DatastoreServerMode
           Secrets:
             - Name: ROOKOUT_TOKEN
               ValueFrom: !Ref TokenSecretArn
@@ -182,8 +295,14 @@ Resources:
               awslogs-group: !Ref RookoutLogGroup
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: !Ref ControllerLogStream
-    
+      Volumes:
+      - !If
+        - ControllerEnableTLS
+        - Name: certs
+        - !Ref 'AWS::NoValue'
+  
   DatastoreTask:
+    Condition: DatastoreDeploy
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: !Sub 'rookout-datastore-${Environment}'
@@ -202,7 +321,7 @@ Resources:
             Cpu: 128
             Memory: 128
             Essential: false
-            Command: ["s3","sync", !Sub "s3://${CertificateS3Bucket}/${CertificateS3BucketPrefix}", "/var/rookout"]
+            Command: ["s3","sync", !Sub "s3://${CertificateS3Bucket}/${DatastoreCertS3BucketPrefix}", "/var/rookout"]
             MountPoints:
               - ContainerPath: /var/rookout
                 SourceVolume: certs
@@ -234,7 +353,7 @@ Resources:
             - ContainerPort: !If [DatastoreEnableTLS, 4343, 8080]
           Environment:
             - Name: ROOKOUT_DOP_SERVER_MODE
-              Value: !If [DatastoreEnableTLS, TLS, PLAIN]
+              Value: !Ref DatastoreServerMode
             - Name: ROOKOUT_DOP_CORS_ALL
               Value: !Ref DOPCorsAll
             - Name: ROOKOUT_DOP_IN_MEMORY_DB
@@ -249,7 +368,10 @@ Resources:
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: !Ref DatastoreLogStream
       Volumes:
+      - !If
+        - ControllerEnableTLS
         - Name: certs
+        - !Ref 'AWS::NoValue'
   
   ControllerServiceLB:
     Type: AWS::ECS::Service
@@ -257,7 +379,11 @@ Resources:
     DependsOn: ControllerALBListener
     Properties:
       ServiceName: !Sub 'rookout-controller-${Environment}'
-      Cluster: !Ref EcsCluster
+      Cluster: 
+      - !If 
+        - CreateCluster
+        - !Ref EcsCluster
+        - !Ref ClusterName
       LaunchType: FARGATE
       PlatformVersion: LATEST
       TaskDefinition: !Ref ControllerTask
@@ -284,7 +410,10 @@ Resources:
     Condition: PrivateController
     Properties:
       ServiceName: !Sub 'rookout-controller-${Environment}'
-      Cluster: !Ref EcsCluster
+      Cluster: !If 
+        - CreateCluster
+        - !Ref EcsCluster
+        - !Ref ClusterName
       LaunchType: FARGATE
       PlatformVersion: LATEST
       TaskDefinition: !Ref ControllerTask
@@ -304,7 +433,7 @@ Resources:
     
   DatastoreServiceLB:
     Type: AWS::ECS::Service
-    Condition: CreateLB
+    Condition: PublicDatastore
     DependsOn: DatastoreALBListener
     Properties:
       ServiceName: !Sub 'rookout-datastore-${Environment}'
@@ -315,7 +444,7 @@ Resources:
       EnableECSManagedTags: true
       LoadBalancers:
         - ContainerName: rookout-datastore
-          ContainerPort: 8080
+          ContainerPort: !If [DatastoreEnableTLS, 4343, 8080]
           TargetGroupArn: !Ref DatastoreTargetGroup
       DeploymentConfiguration:
         MaximumPercent: 200
@@ -332,10 +461,13 @@ Resources:
     
   DatastoreServiceNoLB:
     Type: AWS::ECS::Service
-    Condition: NoLB
+    Condition: PrivateDatastore
     Properties:
       ServiceName: !Sub 'rookout-datastore-${Environment}'
-      Cluster: !Ref EcsCluster
+      Cluster: !If 
+        - CreateCluster
+        - !Ref EcsCluster
+        - !Ref ClusterName
       LaunchType: FARGATE
       PlatformVersion: LATEST
       TaskDefinition: !Ref DatastoreTask
@@ -354,6 +486,7 @@ Resources:
         - RegistryArn: !GetAtt DatastoreServiceDiscovery.Arn
   
   ControllerSecurityGroup:
+    Condition: ControllerDeploy
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupName: !Sub 'controller-ecs-${Environment}'
@@ -373,6 +506,7 @@ Resources:
           Description: Outbound all
 
   DatastoreSecurityGroup:
+    Condition: DatastoreDeploy
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupName: !Sub 'datastore-ecs-${Environment}'
@@ -434,19 +568,19 @@ Resources:
     Properties:
       Name: !Sub 'rookout-controller-${Environment}'
       Port: 7488
-      Protocol: HTTP
+      Protocol: !If [ControllerEnableTLS, "HTTPS", "HTTP"]
       VpcId: !Ref VpcId
       IpAddressType: ipv4
       TargetType: ip
   
   DatastoreTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    Condition: CreateLB
+    Condition: PublicDatastore
     DependsOn: ALB
     Properties:
       Name: !Sub 'rookout-datastore-${Environment}'
-      Port: 8080
-      Protocol: HTTP 
+      Port: !If [DatastoreEnableTLS, 4343, 8080]
+      Protocol: !If [DatastoreEnableTLS, "HTTPS", "HTTP"]
       VpcId: !Ref VpcId
       IpAddressType: ipv4
       HealthCheckPath: /healthz
@@ -458,28 +592,28 @@ Resources:
     Properties:
       Certificates: 
       - !If
-        - LBEnableTLS
-        - CertificateArn: !Ref CertificateArn
+        - ControllerLBEnableTLS
+        - CertificateArn: !Ref ControllerCertArn
         - !Ref "AWS::NoValue"
       LoadBalancerArn: !Ref ALB
       Port: 7488
-      Protocol: !If [LBEnableTLS, HTTPS, HTTP]
+      Protocol: !If [ControllerLBEnableTLS, HTTPS, HTTP]
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref ControllerTargetGroup
   
   DatastoreALBListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
-    Condition: CreateLB
+    Condition: PublicDatastore
     Properties: 
       LoadBalancerArn: !Ref ALB
       Certificates: 
       - !If
-        - LBEnableTLS
-        - CertificateArn: !Ref CertificateArn
+        - DatastoreLBEnableTLS
+        - CertificateArn: !Ref DatastoreCertArn
         - !Ref "AWS::NoValue"
       Port: 8080
-      Protocol: !If [LBEnableTLS, HTTPS, HTTP]
+      Protocol: !If [DatastoreLBEnableTLS, HTTPS, HTTP]
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref DatastoreTargetGroup

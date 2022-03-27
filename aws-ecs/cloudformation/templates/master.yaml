@@ -7,11 +7,83 @@ Parameters:
     Type: String
     Description: Bucket name where all templates are stored
 
-  CertificateArn:
+  DeployController:
+    Description: Set true if you want to deploy Controller service.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+  
+  DeployDatastore:
+    Description: Set true if you want to deploy Datastore service.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+
+  ControllerPublishLB:
+    Description: Set true if you want to publish Controller service trough LoadBalancer. UseLB parameter should be set to true.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+  
+  DatastorePublishLB:
+    Description: Set true if you want to publish Datastore service trough LoadBalancer. UseLB parameter should be set to true.
+    Type: String
+    Default: false
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must specify true or false.
+  
+  ControllerServerMode:
+    Description: Server mode for Controller service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode.
+    Type: String
+    Default: "PLAIN"
+    AllowedValues:
+      - "PLAIN"
+      - "TLS"
+  
+  DatastoreServerMode:
+    Description: Server mode for Datastore service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode.
+    Type: String
+    Default: "PLAIN"
+    AllowedValues:
+      - "PLAIN"
+      - "TLS"
+
+  ControllerCertArn:
     Type: String
     Default: ""
-    Description: ACM Certificate Arn for TLS deployment with LoadBalancer.
+    Description: ACM Certificate Arn for TLS deployment of Controller service with LoadBalancer.
+  
+  DatastoreCertArn:
+    Type: String
+    Default: ""
+    Description: ACM Certificate Arn for TLS deployment of datastore service with LoadBalancer.
 
+  CertificateS3Bucket: 
+    Type: String
+    Default: ""
+    Description: S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS
+  
+  ControllerCertS3BucketPrefix:
+    Type: String
+    Default: ""
+    Description: S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume. Can be optionally set along with CertificateS3Bucket.
+  
+  DatastoreCertS3BucketPrefix:
+    Type: String
+    Default: ""
+    Description: S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to datastore contaner volume. Can be optionally set along with CertificateS3Bucket.
+    
   PrivateDNSZoneName:
     Description: Name for private AWS Cloud Map Namespaces.
     Type: String
@@ -99,8 +171,16 @@ Metadata:
           - TokenSecretArn
           - DefaultVPC
           - PrivateDNSZoneName
-          - PublishControllerLB
-          - CertificateArn
+          - ControllerPublishLB
+          - DatastorePublishLB
+          - DeployController
+          - DeployDatastore
+          - DatastoreCertArn
+          - ControllerCertArn
+          - CertificateS3Bucket
+          - ControllerCertS3BucketPrefix
+          - DatastoreCertS3BucketPrefix
+
       - Label:
           default: VPC Details
         Parameters:
@@ -137,6 +217,14 @@ Resources:
         PrivateSubnets: !GetAtt VPC.Outputs.PrivateSubnets
         TokenSecretArn: !Ref TokenSecretArn
         PrivateDNSZoneName: !Ref PrivateDNSZoneName
-        PublishControllerLB: !Ref PublishControllerLB
-        CertificateArn: !Ref CertificateArn
+        ControllerPublishLB: !Ref ControllerPublishLB
+        DatastorePublishLB: !Ref DatastorePublishLB
+        DeployController: !Ref DeployController
+        DeployDatastore: !Ref DeployDatastore
+        ControllerCertArn: !Ref ControllerCertArn
+        DatastoreCertArn: !Ref DatastoreCertArn
+        CertificateS3Bucket: !Ref CertificateS3Bucket
+        ControllerCertS3BucketPrefix: !Ref ControllerCertS3BucketPrefix
+        DatastoreCertS3BucketPrefix: !Ref DatastoreCertS3BucketPrefix
+
 

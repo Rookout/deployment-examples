@@ -16,10 +16,6 @@
         "ParameterValue": "true"
     },
     {
-        "ParameterKey": "PublishControllerLB",
-        "ParameterValue": "true"
-    },
-    {
         "ParameterKey": "DefaultVPC",
         "ParameterValue": "false"
     },
@@ -44,7 +40,47 @@
         "ParameterValue": "10.10.3.0/24"
     },
     {
-        "ParameterKey": "CertificateArn",
+        "ParameterKey": "DeployController",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "DeployDatastore",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "ControllerPublishLB",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "DatastorePublishLB",
+        "ParameterValue": "true"
+    },
+    {
+        "ParameterKey": "ControllerServerMode",
+        "ParameterValue": "TLS"
+    },
+    {
+        "ParameterKey": "DatastoreServerMode",
+        "ParameterValue": "TLS"
+    },
+    {
+        "ParameterKey": "ControllerCertArn",
         "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
+    },
+    {
+        "ParameterKey": "DatastoreCertArn",
+        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
+    },
+    {
+        "ParameterKey": "CertificateS3Bucket",
+        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
+    },
+    {
+        "ParameterKey": "ControllerCertS3BucketPrefix",
+        "ParameterValue": "certs-controller"
+    },
+    {
+        "ParameterKey": "DatastoreCertS3BucketPrefix",
+        "ParameterValue": "certs"
     }
 ]
