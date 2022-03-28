@@ -75,3 +75,9 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | ------------- | ------------- | ------------- |
 | cors_all | set DOP_CORS_ALL env variable | true |
 | in_memory_db | set DOP_IN_MEMORY_DB env variable | true |
+
+### Outputs
+
+| OutputName  | Description |
+| ------------- | ------------- |
+| alb_dns_name | FQDN of load_balancer in case UseLB variable set to true. Can be used as CNAME target in case of using external DNS. ![Route53 RefDoc](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) |

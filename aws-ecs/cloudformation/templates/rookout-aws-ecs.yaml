@@ -707,6 +707,10 @@ Outputs:
   RookoutLogGroup:
     Value: !Ref RookoutLogGroup
 
+  AlbDNSName:
+    Condition: CreateLB
+    Value: !GetAtt ALB.DNSName
+
   CrontrollerLBEndpoint:
     Condition: CreateLB
     Value: !Join

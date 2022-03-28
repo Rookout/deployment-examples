@@ -226,5 +226,11 @@ Resources:
         CertificateS3Bucket: !Ref CertificateS3Bucket
         ControllerCertS3BucketPrefix: !Ref ControllerCertS3BucketPrefix
         DatastoreCertS3BucketPrefix: !Ref DatastoreCertS3BucketPrefix
+        ControllerServerMode: !Ref ControllerServerMode
+        DatastoreServerMode: !Ref DatastoreServerMode
 
+Outputs:
 
+  AlbDNSName:
+    Condition: CreateLB
+    Value: !GetAtt RookoutECS.AlbDNSName
