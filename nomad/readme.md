@@ -16,10 +16,32 @@ This is example of job deployment for the Rookout Controller and Rookout Datasto
 
 ### Variables
 
-| Variables  | Description | Default |
+| Variable Name  | Description | Default |
 | ------------- | ------------- | ------------- |
 | rookout_token | Rookout token | "" |
 | datacenter | nomad datacenter where to deploy | ["dc1"] |
 | driver | nomad driver to use | "docker" |
-| controller_settings | Controller Task specific settings | "docker" |
-| datastore_settings | Datastore Task specific settings | "docker" |
+| controller_settings | Controller Task specific settings | map(sting) see settings below |
+| datastore_settings | Datastore Task specific settings | map(sting) see settings below |
+
+#### Controller
+| Setting name  | Description | Default |
+| ------------- | ------------- | ------------- |
+| count | How many containers to run | 1 |
+| dop_no_ssl_verify |	set DOP_NO_SSL_VERIFY env variable | true |
+| server_mode |	Controller server mode. `PLAIN` and `TLS` available  | PLAIN |
+| cpu |	CPU for controller task  | 256 |
+| mem |	Memory for controller task  | 256 |
+| cert_path | local path to crt file if server_mode set to TLS | null |
+| key_path | local path to key file if server_mode set to TLS | null |
+
+#### Datastore
+| Setting name  | Description | Default |
+| ------------- | ------------- | ------------- |
+| count | How many containers to run | 1 |
+| in_memory_db |	set DOP_IN_MEMORY_DB env variable | true |
+| server_mode |	datastore server mode. `PLAIN` and `TLS` available  | PLAIN |
+| cpu |	CPU for datastore task  | 256 |
+| mem |	Memory for datastore task  | 256 |
+| cert_path | local path to crt file if server_mode set to TLS | null |
+| key_path | local path to key file if server_mode set to TLS | null |
