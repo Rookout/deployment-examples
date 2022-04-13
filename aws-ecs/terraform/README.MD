@@ -61,7 +61,8 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | certificate_bucket_name | s3 bucket where certificates should be uploaded. Used when server_mode set to TLS. (See prerequisites) | null |
 | certificate_bucket_prefix | s3 bucket prefix where certificates should be uploaded. Used when server_mode set to TLS and certificate_bucket_name is not null. (See prerequisites) | null |
 | certificate_arn | if create_lb variable is set to true this certificate arn will be used for service alb listeners (See prerequisites) | null |
-| task_cpu / task_memory| CPU and RAM for tasks | 512/1024 |
+| task_cpu / task_memory| CPU and RAM for container | 512/1024 |
+| container_cpu / container_memory| CPU and RAM for container | 256/512 |
 
 ### Controller Settings
 | ParameterName  | Description | Default |
@@ -75,6 +76,7 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | ------------- | ------------- | ------------- |
 | cors_all | set DOP_CORS_ALL env variable | true |
 | in_memory_db | set DOP_IN_MEMORY_DB env variable | true |
+| storage_size | Ephemeral storage size for Fargate task, must be set in range of 20-200. Use in case of storing big amounth of data in case of useing `DOP_IN_MEMORY_DB = false` | 20 |
 
 ### Outputs
 

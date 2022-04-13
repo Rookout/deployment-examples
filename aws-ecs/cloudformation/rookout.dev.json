@@ -70,5 +70,25 @@
     {
         "ParameterKey": "DatastoreCertS3BucketPrefix",
         "ParameterValue": "certs"
+    },
+    {
+        "ParameterKey": "ControllerContainerCPU",
+        "ParameterValue": "256"
+    },
+    {
+        "ParameterKey": "ControllerContainerMemory",
+        "ParameterValue": "512"
+    },
+    {
+        "ParameterKey": "DatastoreContainerCPU",
+        "ParameterValue": "256"
+    },
+    {
+        "ParameterKey": "DatastoreContainerMemory",
+        "ParameterValue": "512"
+    },
+    {
+        "ParameterKey": "DatastoreStorageSize",
+        "ParameterValue": "20"
     }
 ]

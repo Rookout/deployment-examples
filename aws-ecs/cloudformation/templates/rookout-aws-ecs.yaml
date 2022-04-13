@@ -154,9 +154,55 @@ Parameters:
   TokenSecretArn:
     Description: Secret's ARN for AWS Secrets Manager secret with rookout token.
     Type: String
+
+  ControllerContainerCPU:
+    Description: Controller container CPU requested.
+    Type: String
+    Default: 256
+
+  ControllerContainerMemory:
+    Description: Controller container Memory requested.
+    Type: String
+    Default: 512
+  
+  ControllerTaskCPU:
+    Description: Controller container CPU requested.
+    Type: String
+    Default: 256
+
+  ControllerTaskMemory:
+    Description: Controller container Memory requested.
+    Type: String
+    Default: 512
+
+  DatastoreContainerCPU:
+    Description: Datastore container CPU requested.
+    Type: String
+    Default: 256
+
+  DatastoreContainerMemory:
+    Description: Datastore container Memory requested.
+    Type: String
+    Default: 512
+  
+  DatastoreTaskCPU:
+    Description: Controller container CPU requested.
+    Type: String
+    Default: 512
+
+  DatastoreTaskMemory:
+    Description: Controller container Memory requested.
+    Type: String
+    Default: 1024
+
+  DatastoreStorageSize:
+    Description: Datastore container ephermal storage size.
+    Type: String
+    Default: 20
     
 
 Conditions:
+  DatastoreStorageIncrease: !Not [!Equals [20, !Ref DatastoreStorageSize]]
   CreateCluster: !Equals ["", !Ref ClusterName]
   PrivateTask: !Equals [false, !Ref DefaultVPC]
   DatastoreDeploy: !Equals [true, !Ref DeployDatastore]
@@ -234,8 +280,8 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: !Sub 'rookout-controller-${Environment}'
-      Cpu: 512
-      Memory: 1024
+      Cpu: !Ref ControllerTaskCPU
+      Memory: !Ref ControllerTaskMemory
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
@@ -268,8 +314,8 @@ Resources:
             - Condition: SUCCESS
               ContainerName: s3-downloader
             - !Ref 'AWS::NoValue'
-          Cpu: 256
-          Memory: 512
+          Cpu: !Ref ControllerContainerCPU
+          Memory: !Ref ControllerContainerMemory
           Essential: true
           MountPoints:
           - !If
@@ -306,13 +352,18 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: !Sub 'rookout-datastore-${Environment}'
-      Cpu: 512
-      Memory: 1024
+      Cpu: !Ref DatastoreTaskCPU
+      Memory: !Ref DatastoreTaskMemory
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
       ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
       TaskRoleArn: !Ref TaskExecutionRole
+      EphemeralStorage:
+      - !If 
+        - DatastoreStorageIncrease
+        - SizeInGiB: !Ref DatastoreStorageSize
+        - !Ref 'AWS::NoValue'
       ContainerDefinitions:
         - !If
           - DatastoreEnableTLS
@@ -340,8 +391,8 @@ Resources:
             - Condition: SUCCESS
               ContainerName: s3-downloader
             - !Ref 'AWS::NoValue'
-          Cpu: 256
-          Memory: 512
+          Cpu: !Ref DatastoreContainerCPU
+          Memory: !Ref DatastoreContainerMemory
           Essential: true
           MountPoints:
           - !If

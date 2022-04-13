@@ -79,6 +79,15 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 | CertificateS3Bucket | S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS | null |
 | ControllerCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
 | DatastoreCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
+| ControllerContainerCPU | Controller container CPU requested.| 256 |
+| ControllerContainerMemory | Controller container Memory requested. | 512 |
+| ControllerTaskCPU | Controller Task CPU requested.| 512 |
+| ControllerTaskMemory | Controller Task Memory requested. | 1024 |
+| DatastoreContainerCPU | Datastore container CPU requested. | 256 |
+| DatastoreContainerMemory | Datastore container Memory requested. | 512|
+| DatastoreTaskCPU | Controller Task CPU requested.| 512 |
+| DatastoreTaskMemory | Controller Task Memory requested. | 1024 |
+| DatastoreStorageSize | Datastore container ephermal storage size. | 20 |
 
 | OutputName  | Description |
 | ------------- | ------------- |
@@ -120,7 +129,6 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 | CertificateS3Bucket | S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS | null |
 | ControllerCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
 | DatastoreCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
-
 
 **set_env.sh**
 | ParameterName  | Description | Default |

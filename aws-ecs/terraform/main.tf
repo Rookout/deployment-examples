@@ -33,8 +33,8 @@ resource "aws_ecs_task_definition" "controller" {
   task_role_arn            = aws_iam_role.task_exec_role.arn
   container_definitions = templatefile((local.controller_server_mode == "TLS" ? "${path.module}/templates/controller_tls_task_def.tpl" : "${path.module}/templates/controller_task_def.tpl"), {
     name                      = local.controller_settings.service_name
-    cpu                       = 256
-    memory                    = 512
+    cpu                       = local.controller_settings.container_cpu
+    memory                    = local.controller_settings.container_memory
     log_group                 = aws_cloudwatch_log_group.rookout.name
     log_stream                = aws_cloudwatch_log_stream.controller_log_stream[0].name
     aws_region                = var.region
@@ -101,8 +101,8 @@ resource "aws_ecs_task_definition" "datastore" {
   task_role_arn            = aws_iam_role.task_exec_role.arn
   container_definitions = templatefile((local.datastore_server_mode == "TLS" ? "${path.module}/templates/datastore_tls_task_def.tpl" : "${path.module}/templates/datastore_task_def.tpl"), {
     name                      = local.datastore_settings.service_name
-    cpu                       = 256
-    memory                    = 512
+    cpu                       = local.datastore_settings.container_cpu
+    memory                    = local.datastore_settings.container_memory
     log_group                 = aws_cloudwatch_log_group.rookout.name
     log_stream                = aws_cloudwatch_log_stream.datastore_log_stream[0].name
     aws_region                = var.region
@@ -113,6 +113,12 @@ resource "aws_ecs_task_definition" "datastore" {
     certificate_bucket_name   = local.datastore_settings.certificate_bucket_name == null ? "none" : local.datastore_settings.certificate_bucket_name
     certificate_bucket_prefix = local.datastore_settings.certificate_bucket_prefix == null ? "none" : local.datastore_settings.certificate_bucket_prefix
   })
+  dynamic "ephemeral_storage" {
+    for_each = local.datastore_storage
+    content {
+      size_in_gib = ephemeral_storage.value
+    }
+  }
   dynamic "volume" {
     for_each = local.datastore_volumes
     content {

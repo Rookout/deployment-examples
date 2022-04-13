@@ -41,6 +41,8 @@ variable "controller_settings" {
     publish_lb                = false
     task_cpu                  = 512
     task_memory               = 1024
+    container_cpu             = 256
+    container_memory          = 512
   }
 }
 
@@ -58,6 +60,9 @@ variable "datastore_settings" {
     publish_lb                = true
     task_cpu                  = 512
     task_memory               = 1024
+    container_cpu             = 256
+    container_memory          = 512
+    storage_size              = 20
   }
 }
 

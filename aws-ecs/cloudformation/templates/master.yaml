@@ -156,6 +156,31 @@ Parameters:
     Description: Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone
     Type: String
     Default: 10.10.3.0/24
+  
+  ControllerContainerCPU:
+    Description: Controller container CPU requested.
+    Type: String
+    Default: 256
+
+  ControllerContainerMemory:
+    Description: Controller container Memory requested.
+    Type: String
+    Default: 512
+
+  DatastoreContainerCPU:
+    Description: Datastore container CPU requested.
+    Type: String
+    Default: 256
+
+  DatastoreContainerMemory:
+    Description: Datastore container Memory requested.
+    Type: String
+    Default: 512
+
+  DatastoreStorageSize:
+    Description: Datastore container ephermal storage size.
+    Type: String
+    Default: 20
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -189,6 +214,9 @@ Metadata:
           - PrivateSubnet2CIDR
           - PublicSubnet1CIDR
           - PublicSubnet2CIDR
+
+Conditions:
+  CreateLB: !Equals [true, !Ref UseLB]
 
 Resources:
 
@@ -233,4 +261,4 @@ Outputs:
 
   AlbDNSName:
     Condition: CreateLB
-    Value: !GetAtt RookoutECS.AlbDNSName
+    Value: !GetAtt RookoutECS.Outputs.AlbDNSName

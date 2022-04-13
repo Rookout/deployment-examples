@@ -11,6 +11,8 @@ locals {
     publish_lb                = false
     task_cpu                  = 256
     task_memory               = 512
+    container_cpu             = 256
+    container_memory          = 512
   }
   default_datastore_settings = {
     enabled                   = true
@@ -23,6 +25,9 @@ locals {
     certificate_arn           = null
     task_cpu                  = 512
     task_memory               = 1024
+    container_cpu             = 256
+    container_memory          = 512
+    storage_size              = 20
   }
   controller_settings = merge(local.default_controller_settings, var.controller_settings)
   datastore_settings  = merge(local.default_datastore_settings, var.datastore_settings)
@@ -37,6 +42,7 @@ locals {
   datastore_port         = local.datastore_server_mode == "TLS" ? 4343 : 8080
   datastore_lb_protocol  = local.datastore_settings.certificate_arn != null && local.datastore_publish_lb ? "HTTPS" : "HTTP"
   datastore_tg_protocol  = local.datastore_settings.server_mode == "TLS" ? "HTTPS" : "HTTP"
+  datastore_storage      = local.datastore_settings.storage_size > 20 ? [local.datastore_settings.storage_size] : []
   controller_server_mode = local.controller_settings.server_mode
   controller_publish_lb  = var.create_lb && local.controller_settings.publish_lb && local.controller_settings.enabled ? true : false
   controller_volumes     = local.controller_server_mode == "TLS" ? [{ name = "certs" }] : []
