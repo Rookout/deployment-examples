@@ -115,7 +115,7 @@ EOH
       }
 
       template {
-        data = local.controller_key
+        data          = local.controller_key
         destination   = "${NOMAD_SECRETS_DIR}/tls.key"
         change_mode   = "restart"
       }
