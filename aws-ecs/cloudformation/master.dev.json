@@ -1,18 +1,18 @@
 [
     {
         "ParameterKey": "TemplatesS3Bucket",
-        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
+        "ParameterValue": "templates-bucket"
     },
     {
         "ParameterKey": "TokenSecretArn",
-        "ParameterValue": "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
+        "ParameterValue": "arn:aws:secretsmanager:xx-xxxx-xx:xxxxxxx:secret:rookout_token-xxxxxxx"
     },
     {
         "ParameterKey": "Environment",
         "ParameterValue": "dev"
     },
     {
-        "ParameterKey": "UseLB",
+        "ParameterKey": "CreateLB",
         "ParameterValue": "true"
     },
     {
@@ -57,23 +57,23 @@
     },
     {
         "ParameterKey": "ControllerServerMode",
-        "ParameterValue": "TLS"
+        "ParameterValue": "PLAIN"
     },
     {
         "ParameterKey": "DatastoreServerMode",
-        "ParameterValue": "TLS"
+        "ParameterValue": "PLAIN"
     },
     {
         "ParameterKey": "ControllerCertArn",
-        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
+        "ParameterValue": "arn:aws:acm:xx-xxxx-x:xxxxxxxx:certificate/xxxxxx-xxxxxx-xxxxxx-xxxxxx"
     },
     {
         "ParameterKey": "DatastoreCertArn",
-        "ParameterValue": "arn:aws:acm:us-east-1:782824484157:certificate/0bece30b-114d-4a4e-9825-6f50b15dbfef"
+        "ParameterValue": "arn:aws:acm:xx-xxx-x:xxxxxx:certificate/xxxxxx-xxxxxx-xxxxxx-xxxxxx"
     },
     {
         "ParameterKey": "CertificateS3Bucket",
-        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
+        "ParameterValue": "certificate-bucket"
     },
     {
         "ParameterKey": "ControllerCertS3BucketPrefix",
@@ -81,6 +81,6 @@
     },
     {
         "ParameterKey": "DatastoreCertS3BucketPrefix",
-        "ParameterValue": "certs"
+        "ParameterValue": "certs-datastore"
     }
 ]

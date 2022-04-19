@@ -27,6 +27,12 @@ variable "create_lb" {
   default     = false
 }
 
+variable "existing_lb_arn" {
+  description = "Set ALB ARN if you want to use existing Application Load Balancer"
+  type        = string
+  default     = null
+}
+
 variable "controller_settings" {
   type = map(string)
   default = {

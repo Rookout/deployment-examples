@@ -231,7 +231,7 @@ resource "aws_lb_target_group" "controller" {
 resource "aws_lb_listener" "controller" {
   count = local.controller_publish_lb ? 1 : 0
 
-  load_balancer_arn = aws_lb.alb[0].arn
+  load_balancer_arn = local.load_balancer_arn
   port              = 7488
   protocol          = local.controller_lb_protocol
   certificate_arn   = local.datastore_settings.certificate_arn != null ? local.datastore_settings.certificate_arn : null
@@ -252,14 +252,14 @@ resource "aws_lb_target_group" "datastore" {
   target_type = "ip"
   health_check {
     protocol = local.datastore_tg_protocol
-    path = "/healthz"
+    path     = "/healthz"
   }
 }
 
 resource "aws_lb_listener" "datastore" {
   count = local.datastore_publish_lb ? 1 : 0
 
-  load_balancer_arn = aws_lb.alb[0].arn
+  load_balancer_arn = local.load_balancer_arn
   port              = 8080
   protocol          = local.datastore_lb_protocol
   certificate_arn   = local.datastore_settings.certificate_arn != null ? local.datastore_settings.certificate_arn : null

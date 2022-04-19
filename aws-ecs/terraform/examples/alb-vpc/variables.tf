@@ -24,6 +24,12 @@ variable "create_lb" {
   default     = false
 }
 
+variable "existing_lb_arn" {
+  description = "Set ALB ARN if you want to use existing Application Load Balancer for chosen deployment."
+  type        = string
+  default     = null
+}
+
 variable "region" {
   description = "AWS Region"
   type        = string

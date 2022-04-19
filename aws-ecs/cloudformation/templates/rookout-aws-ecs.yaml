@@ -57,7 +57,7 @@ Parameters:
     ConstraintDescription: must specify true or false.
 
   ControllerPublishLB:
-    Description: Set true if you want to publish Controller service trough LoadBalancer. UseLB parameter should be set to true.
+    Description: Set true if you want to publish Controller service trough LoadBalancer. CreateLB parameter should be set to true or ExistingLBArn should be set.
     Type: String
     Default: false
     AllowedValues:
@@ -66,7 +66,7 @@ Parameters:
     ConstraintDescription: must specify true or false.
   
   DatastorePublishLB:
-    Description: Set true if you want to publish Datastore service trough LoadBalancer. UseLB parameter should be set to true.
+    Description: Set true if you want to publish Datastore service trough LoadBalancer. CreateLB parameter should be set to true or ExistingLBArn should be set.
     Type: String
     Default: false
     AllowedValues:
@@ -92,7 +92,12 @@ Parameters:
       - false
     ConstraintDescription: must specify true or false.
 
-  UseLB:
+  ExistingLBArn:
+    Description: Set ALB ARN if you want to use existing Application Load Balancer for chosen deployment.
+    Type: String
+    Default: ""
+  
+  CreateLB:
     Description: Set true if you want to use LoadBalancer for chosen deployment.
     Type: String
     Default: false
@@ -209,14 +214,20 @@ Conditions:
   ControllerDeploy: !Equals [true, !Ref DeployController]
   DatastoreLBEnableTLS: !And 
     - !Not [ !Equals ["", !Ref DatastoreCertArn] ]
-    - !Equals [true, !Ref UseLB]
+    - !Or
+      - !Equals [true, !Ref CreateLB]
+      - !Not [!Equals ["", !Ref ExistingLBArn]]
   ControllerLBEnableTLS: !And 
     - !Not [ !Equals ["", !Ref DatastoreCertArn] ]
-    - !Equals [true, !Ref UseLB]
+    - !Or
+      - !Equals [true, !Ref CreateLB]
+      - !Not [!Equals ["", !Ref ExistingLBArn]]
   DatastoreEnableTLS: !Equals ["TLS", !Ref DatastoreServerMode]
   ControllerEnableTLS: !Equals ["TLS", !Ref DatastoreServerMode]
-  CreateLB: !Equals [true, !Ref UseLB]
-  NoLB: !Equals [false, !Ref UseLB]  
+  CreateLB: !Equals [true, !Ref CreateLB]
+  NoLB: !And 
+    - !Equals [false, !Ref CreateLB]
+    - !Equals ["", !Ref ExistingLBArn]
   PrivateController: !And 
     - !Equals [false, !Ref ControllerPublishLB]
     - !Equals [true, !Ref DeployController]
@@ -224,11 +235,15 @@ Conditions:
     - !Equals [false, !Ref DatastorePublishLB]
     - !Equals [true, !Ref DeployDatastore]
   PublicController: !And
-    - !Equals [true, !Ref UseLB]
+    - !Or
+      - !Equals [true, !Ref CreateLB]
+      - !Not [!Equals ["", !Ref ExistingLBArn]]
     - !Equals [true, !Ref ControllerPublishLB]
     - !Equals [true, !Ref DeployController]
   PublicDatastore: !And
-    - !Equals [true, !Ref UseLB]
+    - !Or
+      - !Equals [true, !Ref CreateLB]
+      - !Not [!Equals ["", !Ref ExistingLBArn]]
     - !Equals [true, !Ref DatastorePublishLB]
     - !Equals [true, !Ref DeployDatastore]
 
@@ -359,8 +374,7 @@ Resources:
         - FARGATE
       ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
       TaskRoleArn: !Ref TaskExecutionRole
-      EphemeralStorage:
-      - !If 
+      EphemeralStorage: !If 
         - DatastoreStorageIncrease
         - SizeInGiB: !Ref DatastoreStorageSize
         - !Ref 'AWS::NoValue'
@@ -430,11 +444,10 @@ Resources:
     DependsOn: ControllerALBListener
     Properties:
       ServiceName: !Sub 'rookout-controller-${Environment}'
-      Cluster: 
-      - !If 
-        - CreateCluster
-        - !Ref EcsCluster
-        - !Ref ClusterName
+      Cluster: !If 
+      - CreateCluster
+      - !Ref EcsCluster
+      - !Ref ClusterName
       LaunchType: FARGATE
       PlatformVersion: LATEST
       TaskDefinition: !Ref ControllerTask
@@ -462,9 +475,9 @@ Resources:
     Properties:
       ServiceName: !Sub 'rookout-controller-${Environment}'
       Cluster: !If 
-        - CreateCluster
-        - !Ref EcsCluster
-        - !Ref ClusterName
+      - CreateCluster
+      - !Ref EcsCluster
+      - !Ref ClusterName
       LaunchType: FARGATE
       PlatformVersion: LATEST
       TaskDefinition: !Ref ControllerTask
@@ -488,7 +501,10 @@ Resources:
     DependsOn: DatastoreALBListener
     Properties:
       ServiceName: !Sub 'rookout-datastore-${Environment}'
-      Cluster: !Ref EcsCluster
+      Cluster: !If 
+      - CreateCluster
+      - !Ref EcsCluster
+      - !Ref ClusterName
       LaunchType: FARGATE
       PlatformVersion: LATEST
       TaskDefinition: !Ref DatastoreTask
@@ -516,9 +532,9 @@ Resources:
     Properties:
       ServiceName: !Sub 'rookout-datastore-${Environment}'
       Cluster: !If 
-        - CreateCluster
-        - !Ref EcsCluster
-        - !Ref ClusterName
+      - CreateCluster
+      - !Ref EcsCluster
+      - !Ref ClusterName
       LaunchType: FARGATE
       PlatformVersion: LATEST
       TaskDefinition: !Ref DatastoreTask
@@ -615,7 +631,6 @@ Resources:
   ControllerTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Condition: PublicController
-    DependsOn: ALB
     Properties:
       Name: !Sub 'rookout-controller-${Environment}'
       Port: 7488
@@ -627,7 +642,6 @@ Resources:
   DatastoreTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Condition: PublicDatastore
-    DependsOn: ALB
     Properties:
       Name: !Sub 'rookout-datastore-${Environment}'
       Port: !If [DatastoreEnableTLS, 4343, 8080]
@@ -646,7 +660,10 @@ Resources:
         - ControllerLBEnableTLS
         - CertificateArn: !Ref ControllerCertArn
         - !Ref "AWS::NoValue"
-      LoadBalancerArn: !Ref ALB
+      LoadBalancerArn: !If 
+      - CreateLB
+      - !Ref ALB
+      - !Ref ExistingLBArn
       Port: 7488
       Protocol: !If [ControllerLBEnableTLS, HTTPS, HTTP]
       DefaultActions:
@@ -657,7 +674,10 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Condition: PublicDatastore
     Properties: 
-      LoadBalancerArn: !Ref ALB
+      LoadBalancerArn: !If 
+      - CreateLB
+      - !Ref ALB
+      - !Ref ExistingLBArn
       Certificates: 
       - !If
         - DatastoreLBEnableTLS

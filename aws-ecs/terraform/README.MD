@@ -47,7 +47,8 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | private_subnets |  Select list of private subnets for ECS tasks. They should be in same VPC and has routes between public_subnets if you're using LB. Ignored when you set DefaultVPC to true | none |
 | vpc_id | VPC ID where resources will be deployed. | none |
 | cluster_name | Set true if you want to use previously deployed cluster, if not set module will create new AWS ECS cluster as part of deployment. | null |
-| create_lb | Set true if you want to use LoadBalancer for chosen deployment. | false |
+| create_lb | Set true if you want to create LoadBalancer for chosen deployment. | false |
+| existing_lb_arn | Set ALB ARN if you want to use existing Application Load Balancer for chosen deployment. Should be in same VPC as the deployment. | null |
 | environment | Deployment environment (dev|prod|stage). Will be set as tag to every resource and will be used in name_prefix variable to prefix resource namings | "dev" |
 | service | Will be set as tag `Service:value` to every resource and will be used in name_prefix variable to prefix resource namings | "rookout" |
 | controller_settings | Map of Settings for controller service (See description below)| enabled = true <br> service_name = "rookout-controller" <br>  server_mode = "PLAIN" <br> onprem_enabled = true <br> dop_no_ssl_verify = true <br> certificate_bucket_prefix = null <br> certificate_bucket_name = null <br> certificate_arn = null <br> publish_lb = false <br> task_cpu = 512 <br> task_memory = 1024 |

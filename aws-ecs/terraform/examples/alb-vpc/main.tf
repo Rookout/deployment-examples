@@ -40,6 +40,7 @@ module "rookout" {
   prviate_namespace_name = var.prviate_namespace_name
   controller_settings    = var.controller_settings
   datastore_settings     = var.datastore_settings
+  existing_lb_arn        = var.existing_lb_arn
 
   tags = local.tags
 }

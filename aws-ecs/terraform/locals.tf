@@ -33,18 +33,19 @@ locals {
   datastore_settings  = merge(local.default_datastore_settings, var.datastore_settings)
 
   name_prefix            = format("%s-%s", var.environment, var.service)
+  lb_enable              = var.create_lb || var.existing_lb_arn != null ? true : false
   cluster_name           = var.cluster_name != null ? var.cluster_name : format("%s-cluster", local.name_prefix)
   create_cluster         = var.cluster_name != null ? false : true
   task_subnets           = var.default_vpc ? var.public_subnets : var.private_subnets
   datastore_server_mode  = local.datastore_settings.server_mode
-  datastore_publish_lb   = var.create_lb && local.datastore_settings.publish_lb && local.datastore_settings.enabled ? true : false
+  datastore_publish_lb   = local.lb_enable && local.datastore_settings.publish_lb && local.datastore_settings.enabled ? true : false
   datastore_volumes      = local.datastore_server_mode == "TLS" ? [{ name = "certs" }] : []
   datastore_port         = local.datastore_server_mode == "TLS" ? 4343 : 8080
   datastore_lb_protocol  = local.datastore_settings.certificate_arn != null && local.datastore_publish_lb ? "HTTPS" : "HTTP"
   datastore_tg_protocol  = local.datastore_settings.server_mode == "TLS" ? "HTTPS" : "HTTP"
   datastore_storage      = local.datastore_settings.storage_size > 20 ? [local.datastore_settings.storage_size] : []
   controller_server_mode = local.controller_settings.server_mode
-  controller_publish_lb  = var.create_lb && local.controller_settings.publish_lb && local.controller_settings.enabled ? true : false
+  controller_publish_lb  = local.lb_enable && local.controller_settings.publish_lb && local.controller_settings.enabled ? true : false
   controller_volumes     = local.controller_server_mode == "TLS" ? [{ name = "certs" }] : []
   controller_lb_protocol = local.controller_settings.certificate_arn != null && local.controller_publish_lb ? "HTTPS" : "HTTP"
   controller_tg_protocol = local.controller_server_mode == "TLS" ? "HTTPS" : "HTTP"
@@ -59,7 +60,7 @@ locals {
     container_name   = local.datastore_settings.service_name
     container_port   = local.datastore_port
   }] : []
-
+  load_balancer_arn = var.existing_lb_arn != null && var.create_lb != true ? var.existing_lb_arn : aws_lb.alb[0].arn
   tags = merge(var.tags, {
     Environment = var.environment
     Service     = var.service

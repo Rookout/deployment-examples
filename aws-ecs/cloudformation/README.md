@@ -66,19 +66,20 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 | VpcId | VPC ID where resources will be deployed. | none |
 | DOPInMemoryDB | Set true if you want to use InMemory db mode for datastore. ROOKOUT_DOP_IN_MEMORY_DB env variable will be set for datastore service. | true |
 | DOPCorsAll | ROOKOUT_DOP_CORS_ALL env variable will be set for datastore service. | true |
-| UseLB | Set true if you want to use LoadBalancer for chosen deployment. | false |
+| CreateLB | Set true if you want to use LoadBalancer for chosen deployment. | false |
+| ExistingLBArn | Set ALB ARN if you want to use existing Application Load Balancer for chosen deployment. Should be in same VPC as the deployment. | "" |
 | Environment | Deployment environment (dev|prod|stage)| "dev" |
 | ControllerServerMode |  Server mode for Controller service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode. | PLAIN |
 | DatastoreServerMode|  Server mode for Datastore service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode. | PLAIN |
-| ControllerPublishLB | Set true if you want to publish Controller service trough LoadBalancer. UseLB parameter should be set to true. | false |
-| DatastorePublishLB | Set true if you want to publish Datastore service trough LoadBalancer. UseLB parameter should be set to true. | false |
+| ControllerPublishLB | Set true if you want to publish Controller service trough LoadBalancer. CreateLB parameter should be set to true. | false |
+| DatastorePublishLB | Set true if you want to publish Datastore service trough LoadBalancer. CreateLB parameter should be set to true. | false |
 | DeployController | Set true if you want to deploy Controller service. | true |
 | DeployDatastore | Set true if you want to deploy Controller service. | true |
 | ControllerCertArn | ACM Certificate Arn for TLS deployment of Controller service with LoadBalancer. | "" |
 | DatastoreCertArn | ACM Certificate Arn for TLS deployment of Datastore service with LoadBalancer. | |
-| CertificateS3Bucket | S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS | null |
-| ControllerCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
-| DatastoreCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
+| CertificateS3Bucket | S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS | "" |
+| ControllerCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | "" |
+| DatastoreCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | "" |
 | ControllerContainerCPU | Controller container CPU requested.| 256 |
 | ControllerContainerMemory | Controller container Memory requested. | 512 |
 | ControllerTaskCPU | Controller Task CPU requested.| 512 |
@@ -91,7 +92,7 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 
 | OutputName  | Description |
 | ------------- | ------------- |
-| AlbDNSName | FQDN of load_balancer in case UseLB variable set to true. Can be used as CNAME target in case of using external DNS. ![Route53 RefDoc](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) |
+| AlbDNSName | FQDN of load_balancer in case CreateLB variable set to true. Can be used as CNAME target in case of using external DNS. ![Route53 RefDoc](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) |
 
 **vpc.yaml**
 | ParameterName  | Description | Default |
@@ -120,15 +121,15 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 | PrivateSubnet2CIDR | Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone | 10.10.4.0/24 |
 | ControllerServerMode |  Server mode for Controller service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode. | PLAIN |
 | DatastoreServerMode|  Server mode for Datastore service. CertificateS3Bucket and CertificateS3BucketPrefix will be used to download certificates in case of TLS mode. | PLAIN |
-| ControllerPublishLB | Set true if you want to publish Controller service trough LoadBalancer. UseLB parameter should be set to true. | false |
-| DatastorePublishLB | Set true if you want to publish Datastore service trough LoadBalancer. UseLB parameter should be set to true. | false |
+| ControllerPublishLB | Set true if you want to publish Controller service trough LoadBalancer. CreateLB parameter should be set to true. | false |
+| DatastorePublishLB | Set true if you want to publish Datastore service trough LoadBalancer. CreateLB parameter should be set to true. | false |
 | DeployController | Set true if you want to deploy Controller service. | true |
 | DeployDatastore | Set true if you want to deploy Controller service. | true |
 | ControllerCertArn | ACM Certificate Arn for TLS deployment of Controller service with LoadBalancer. | "" |
 | DatastoreCertArn | ACM Certificate Arn for TLS deployment of Datastore service with LoadBalancer. | |
-| CertificateS3Bucket | S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS | null |
-| ControllerCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
-| DatastoreCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | null |
+| CertificateS3Bucket | S3 bucket name where certificate files will be stored and downloaded by container task to datastore contaner volume. Automatically set datastore ROOKOUT_DOP_SERVER_MODE variable to TLS | "" |
+| ControllerCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | "" |
+| DatastoreCertS3BucketPrefix | S3 bucket prefix (path in the bucket) where certificate files will be stored and downloaded by container task to controller contaner volume. Can be optionally set along with CertificateS3Bucket. | "" |
 
 **set_env.sh**
 | ParameterName  | Description | Default |
