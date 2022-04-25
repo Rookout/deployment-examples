@@ -7,20 +7,21 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 
 ### Prerequisites
 
-1. AWS Account and Installed aws cli and default profile set with access key and secret. [RefDoc](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-2. Created Secret in Secrets Manager with Rookout token. 
+1. Install terrraform. [RefDoc](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+2. AWS Account and Installed aws cli and default profile set with access key and secret. [Install AWS Cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html),[SetupCredentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+3. Created Secret in Secrets Manager with Rookout token. 
    * To complete secret's manager creation folow either of those options:
       * aws cli - Change <rookout_token> placeholder with your token and run `aws secretsmanager create-secret --name rookout_token --description "Rookout token" --secret-string "<rookout_token>"`
       * aws console - follow this [tutorial](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) 
    * Use secret's ARN of token for `rookout_token_arn` variable in `terraform.tfvars`. (See Module Inputs)
-3. (Optional) Create S3 bucket for cretificates and upload key and crt files if you want to use native TLS mode for datastore.
+4. (Optional) Create S3 bucket for cretificates and upload key and crt files if you want to use native TLS mode for datastore.
    1. create bucket - [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
    2. Use bucket name for `(controller||datastore)_settings.certificate_bucket_name` variable in `terraform.tfvars` if you want to enable native TLS for services. (See Module Inputs)
    3. Upload files to s3 [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html)
       * For datastore files should be named as key.pem and cert.pem
       * For controller files should be named as tls.key and tls.crt
       * For each service create a folder inside of this bucket, like `datastore-certs controller-certs` and put these values to respective variable `(controller||datastore)_settings.certificate_bucket_prefix` in `terraform.tfvars` 
-4. (Optional) Issue or upload certificate in to AWS ACM if you want to use secured ALB.
+5. (Optional) Issue or upload certificate in to AWS ACM if you want to use secured ALB.
    *  Example how to create selfigned cert and upload to ACM:
       1. `openssl genrsa 2048 > mycert.key`
       2. `openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key mycert.key > mycert.crt`

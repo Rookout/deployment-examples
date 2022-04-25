@@ -28,7 +28,7 @@ variable "create_lb" {
 }
 
 variable "existing_lb_arn" {
-  description = "Set ALB ARN if you want to use existing Application Load Balancer"
+  description = "Set ALB ARN if you want to use existing Application Load Balancer for chosen deployment."
   type        = string
   default     = null
 }

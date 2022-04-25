@@ -5,13 +5,13 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 
 ### Prerequisites
 
-1. AWS Account and Installed aws cli and default profile set with access key and secret. [RefDoc](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+1. AWS Account and Installed aws cli and default profile set with access key and secret. [Install AWS Cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html),[SetupCredentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 2. Created Secret in Secrets Manager with Rookout token. 
    * To complete secret's manager creation folow either of those options:
       * aws cli - Change <rookout_token> placeholder with your token and run `aws secretsmanager create-secret --name rookout_token --description "Rookout token" --secret-string "<rookout_token>"`
       * aws console - follow this [tutorial](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) 
-   * Use secret's ARN of token for `rookout_token_arn` variable in `terraform.tfvars`. (See Module Inputs)
-3. Create s3 bucket for Cloudformation templates.
+   * Use secret's ARN of token for `TokenSecretArn` variable in `(master||rookout).dev.json`. (See Parameters)
+3. Create s3 bucket for Cloudformation templates. [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
 4. (Optional) Create S3 bucket for cretificates and upload key and crt files if you want to use native TLS mode for datastore.
    1. create bucket - [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
    2. Use bucket name for `CertificateS3Bucket` variable in `(master||rookout).dev.json` if you want to enable native TLS for services. (See Module Inputs)
