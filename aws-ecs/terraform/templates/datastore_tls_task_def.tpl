@@ -72,6 +72,16 @@
             "awslogs-region": "${aws_region}",
             "awslogs-stream-prefix": "${log_stream}"
         }
+    },
+    "healthCheck": {
+        "retries": 3,
+        "command": [
+            "CMD-SHELL",
+            "wget localhost:4343/healthz || exit 1"
+        ],
+        "timeout": 5,
+        "interval": 30,
+        "startPeriod": null
     }
   }
 ]

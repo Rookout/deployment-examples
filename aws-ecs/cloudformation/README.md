@@ -14,7 +14,7 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 3. Create s3 bucket for Cloudformation templates. [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
 4. (Optional) Create S3 bucket for cretificates and upload key and crt files if you want to use native TLS mode for datastore.
    1. create bucket - [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
-   2. Use bucket name for `CertificateS3Bucket` variable in `(master||rookout).dev.json` if you want to enable native TLS for services. (See Module Inputs)
+   2. Use bucket name for `CertificateS3Bucket` variable in `(master||rookout).dev.json` if you want to enable native TLS for services. (See Parameters)
    3. Upload files to s3 [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html)
       * For datastore files should be named as key.pem and cert.pem
       * For controller files should be named as tls.key and tls.crt
@@ -27,7 +27,7 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
       4. `aws acm import-certificate --certificate file://mycert.crt --private-key file://mycert.key`
    * RefDoc AWS ACM Import https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html
    * RefDoc AWS ACM issue new cert https://docs.aws.amazon.com/acm/latest/userguide/gs.html
-   * Use Certificate's ARN for `(Controller||Datastore)CertArn` variables in `(master||rookout).dev.json` if you want to use this certificate for alb. (See Module Inputs)
+   * Use Certificate's ARN for `(Controller||Datastore)CertArn` variables in `(master||rookout).dev.json` if you want to use this certificate for alb. (See Parameters)
 
 ### Files
 

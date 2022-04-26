@@ -60,7 +60,7 @@ locals {
     container_name   = local.datastore_settings.service_name
     container_port   = local.datastore_port
   }] : []
-  load_balancer_arn = var.existing_lb_arn != null && var.create_lb != true ? var.existing_lb_arn : aws_lb.alb[0].arn
+  load_balancer_arn = var.existing_lb_arn != null && var.create_lb != true ? var.existing_lb_arn : try(aws_lb.alb[0].arn, null)
   tags = merge(var.tags, {
     Environment = var.environment
     Service     = var.service
