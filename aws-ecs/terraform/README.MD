@@ -22,11 +22,6 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
       * For controller files should be named as tls.key and tls.crt
       * For each service create a folder inside of this bucket, like `datastore-certs controller-certs` and put these values to respective variable `(controller||datastore)_settings.certificate_bucket_prefix` in `terraform.tfvars` 
 5. (Optional) Issue or upload certificate in to AWS ACM if you want to use secured ALB.
-   *  Example how to create selfigned cert and upload to ACM:
-      1. `openssl genrsa 2048 > mycert.key`
-      2. `openssl req -new -x509 -nodes -sha1 -days 3650 -extensions v3_ca -key mycert.key > mycert.crt`
-      3. `openssl pkcs12 -inkey mycert.key -in mycert.crt -export -out mycert.p12`
-      4. `aws acm import-certificate --certificate file://mycert.crt --private-key file://mycert.key`
    * RefDoc AWS ACM Import https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html
    * RefDoc AWS ACM issue new cert https://docs.aws.amazon.com/acm/latest/userguide/gs.html
    * Use Certificate's ARN for `(controller||datastore)_settings.certificate_arn` variable in `terraform.tfvars` if you want to use this certificate for alb. (See Module Inputs)
@@ -36,6 +31,8 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 2. Configure required variables to be used in the Terraform in `terraform.tfvars`
 3. run `terraform init`
 4. run `terraform apply`
+
+**Note:** In main.tf for alb-vpc example there's an example how to reference rookout module directly from git.
 
 ### Module Inputs
 

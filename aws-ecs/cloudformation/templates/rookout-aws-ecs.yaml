@@ -173,12 +173,12 @@ Parameters:
   ControllerTaskCPU:
     Description: Controller container CPU requested.
     Type: String
-    Default: 256
+    Default: 512
 
   ControllerTaskMemory:
     Description: Controller container Memory requested.
     Type: String
-    Default: 512
+    Default: 1024
 
   DatastoreContainerCPU:
     Description: Datastore container CPU requested.
@@ -340,6 +340,13 @@ Resources:
             - !Ref 'AWS::NoValue'
           PortMappings:
             - ContainerPort: 7488
+          HealthCheck:
+            Command: 
+            - "CMD-SHELL"
+            - "wget http://localhost:4009/healthz -O /dev/null || exit 1"
+            Interval: 30
+            Retries: 3
+            Timeout: 5
           Environment:
             - Name: ROOKOUT_DOP_NO_SSL_VERIFY
               Value: true
@@ -416,6 +423,13 @@ Resources:
             - !Ref 'AWS::NoValue'
           PortMappings:
             - ContainerPort: !If [DatastoreEnableTLS, 4343, 8080]
+          HealthCheck:
+            Command: 
+            - "CMD-SHELL"
+            - "wget http://localhost:4009/healthz -O /dev/null || exit 1"
+            Interval: 30
+            Retries: 3
+            Timeout: 5
           Environment:
             - Name: ROOKOUT_DOP_SERVER_MODE
               Value: !Ref DatastoreServerMode

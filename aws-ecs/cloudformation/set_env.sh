@@ -1,8 +1,7 @@
 #!/bin/bash
 
 export ENV_NAME=dev
-export STACK_NAME=${ENV_NAME}-rookout-test
-
+export STACK_NAME=${ENV_NAME}-rookout-example
 export ACCOUNT_ID=782824484157
 export REGION=us-east-1
 export AWS_DEFAULT_REGION=${REGION}

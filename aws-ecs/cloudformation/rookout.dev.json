@@ -1,7 +1,7 @@
 [
     {
         "ParameterKey": "TokenSecretArn",
-        "ParameterValue": "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
+        "ParameterValue": "arn:aws:secretsmanager:xx-xxxx-x:xxxxxxxxxxxx:secret:rookout_token-xxxxxx"
     },
     {
         "ParameterKey": "Environment",

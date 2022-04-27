@@ -28,7 +28,7 @@ module "vpc" {
 }
 
 module "rookout" {
-  source = "../../"
+  source = "git::https://github.com/gchuev-opsfleet/deployment-examples.git//aws-ecs/terraform/?ref=OP-3-create-ecs-deployment-method-datastore-controller"
 
   vpc_id                 = module.vpc.vpc_id
   public_subnets         = module.vpc.public_subnets

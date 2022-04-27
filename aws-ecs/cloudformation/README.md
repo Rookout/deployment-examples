@@ -6,6 +6,7 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 ### Prerequisites
 
 1. AWS Account and Installed aws cli and default profile set with access key and secret. [Install AWS Cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html),[SetupCredentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+   * set default region either during `aws configure` or set env variable `AWS_REGION`
 2. Created Secret in Secrets Manager with Rookout token. 
    * To complete secret's manager creation folow either of those options:
       * aws cli - Change <rookout_token> placeholder with your token and run `aws secretsmanager create-secret --name rookout_token --description "Rookout token" --secret-string "<rookout_token>"`
