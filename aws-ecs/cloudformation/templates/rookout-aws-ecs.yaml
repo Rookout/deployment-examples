@@ -353,7 +353,7 @@ Resources:
             - Name: ONPREM_ENABLED
               Value: true
             - Name: ROOKOUT_CONTROLLER_SERVER_MODE
-              Value: !Ref DatastoreServerMode
+              Value: !Ref ControllerServerMode
           Secrets:
             - Name: ROOKOUT_TOKEN
               ValueFrom: !Ref TokenSecretArn
