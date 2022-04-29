@@ -223,7 +223,7 @@ Conditions:
       - !Equals [true, !Ref CreateLB]
       - !Not [!Equals ["", !Ref ExistingLBArn]]
   DatastoreEnableTLS: !Equals ["TLS", !Ref DatastoreServerMode]
-  ControllerEnableTLS: !Equals ["TLS", !Ref DatastoreServerMode]
+  ControllerEnableTLS: !Equals ["TLS", !Ref ControllerServerMode]
   CreateLB: !Equals [true, !Ref CreateLB]
   NoLB: !And 
     - !Equals [false, !Ref CreateLB]
@@ -448,7 +448,7 @@ Resources:
               awslogs-stream-prefix: !Ref DatastoreLogStream
       Volumes:
       - !If
-        - ControllerEnableTLS
+        - DatastoreEnableTLS
         - Name: certs
         - !Ref 'AWS::NoValue'
   
@@ -795,6 +795,30 @@ Outputs:
   AlbDNSName:
     Condition: CreateLB
     Value: !GetAtt ALB.DNSName
+
+  CrontrollerInternalDNS:
+    Value: !If 
+    - PublicController
+    - !Sub 
+      - '${Service}.${Domain}'
+      - Service: !GetAtt ControllerServiceLB.Name
+        Domain: !Ref PrivateDNSZoneName
+    - !Sub 
+      - '${Service}.${Domain}'
+      - Service: !GetAtt ControllerServiceNoLB.Name
+        Domain: !Ref PrivateDNSZoneName
+  
+  DatastoreInternalDNS:
+    Value: !If 
+    - PublicDatastore
+    - !Sub 
+      - '${Service}.${Domain}'
+      - Service: !GetAtt DatastoreServiceLB.Name
+        Domain: !Ref PrivateDNSZoneName
+    - !Sub 
+      - '${Service}.${Domain}'
+      - Service: !GetAtt DatastoreServiceNoLB.Name
+        Domain: !Ref PrivateDNSZoneName
 
   CrontrollerLBEndpoint:
     Condition: CreateLB
