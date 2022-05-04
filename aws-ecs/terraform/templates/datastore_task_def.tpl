@@ -23,6 +23,10 @@
       {
         "name": "ROOKOUT_DOP_IN_MEMORY_DB",
         "value": "${datastore_in_memory_db}"
+      },
+      {
+        "name": "ROOKOUT_DOP_PORT",
+        "value": "8080"
       }
     ],
     "secrets": [
@@ -32,12 +36,12 @@
       }
     ],
     "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-          "awslogs-group": "${log_group}",
-          "awslogs-region": "${aws_region}",
-          "awslogs-stream-prefix": "${log_stream}"
-      }
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "${log_group}",
+            "awslogs-region": "${aws_region}",
+            "awslogs-stream-prefix": "${log_stream}"
+        }
     },
     "healthCheck": {
         "retries": 3,

@@ -40,20 +40,52 @@ locals {
   datastore_server_mode  = local.datastore_settings.server_mode
   datastore_publish_lb   = local.lb_enable && local.datastore_settings.publish_lb && local.datastore_settings.enabled ? true : false
   datastore_volumes      = local.datastore_server_mode == "TLS" ? [{ name = "certs" }] : []
-  datastore_port         = local.datastore_server_mode == "TLS" ? 4343 : 8080
+  datastore_port         = 8080
+  datastore_lb_port      = local.datastore_settings.certificate_arn != null && local.datastore_publish_lb ? 443 : 80
   datastore_lb_protocol  = local.datastore_settings.certificate_arn != null && local.datastore_publish_lb ? "HTTPS" : "HTTP"
   datastore_tg_protocol  = local.datastore_settings.server_mode == "TLS" ? "HTTPS" : "HTTP"
   datastore_storage      = local.datastore_settings.storage_size > 20 ? [local.datastore_settings.storage_size] : []
+  datastore_definition   = templatefile((local.datastore_server_mode == "TLS" ? "${path.module}/templates/datastore_tls_task_def.tpl" : "${path.module}/templates/datastore_task_def.tpl"), {
+    name                      = local.datastore_settings.service_name
+    cpu                       = local.datastore_settings.container_cpu
+    memory                    = local.datastore_settings.container_memory
+    log_group                 = aws_cloudwatch_log_group.rookout.name
+    log_stream                = aws_cloudwatch_log_stream.datastore_log_stream[0].name
+    aws_region                = var.region
+    rookout_token_arn         = var.rookout_token_arn
+    datastore_server_mode     = local.datastore_settings.server_mode
+    datastore_cors_all        = local.datastore_settings.cors_all
+    datastore_in_memory_db    = local.datastore_settings.in_memory_db
+    certificate_bucket_name   = try(local.datastore_settings.certificate_bucket_name, "none")
+    certificate_bucket_prefix = try(local.datastore_settings.certificate_bucket_prefix, "none")
+  })
+
   controller_server_mode = local.controller_settings.server_mode
   controller_publish_lb  = local.lb_enable && local.controller_settings.publish_lb && local.controller_settings.enabled ? true : false
   controller_volumes     = local.controller_server_mode == "TLS" ? [{ name = "certs" }] : []
+  controller_port        = 7488
   controller_lb_protocol = local.controller_settings.certificate_arn != null && local.controller_publish_lb ? "HTTPS" : "HTTP"
   controller_tg_protocol = local.controller_server_mode == "TLS" ? "HTTPS" : "HTTP"
+  controller_definition = templatefile((local.controller_server_mode == "TLS" ? "${path.module}/templates/controller_tls_task_def.tpl" : "${path.module}/templates/controller_task_def.tpl"), {
+    name                      = local.controller_settings.service_name
+    cpu                       = local.controller_settings.container_cpu
+    memory                    = local.controller_settings.container_memory
+    log_group                 = aws_cloudwatch_log_group.rookout.name
+    log_stream                = aws_cloudwatch_log_stream.controller_log_stream[0].name
+    aws_region                = var.region
+    rookout_token_arn         = var.rookout_token_arn
+    controller_server_mode    = local.controller_settings.server_mode
+    onprem_enabled            = local.controller_settings.onprem_enabled
+    dop_no_ssl_verify         = local.controller_settings.dop_no_ssl_verify
+    certificate_bucket_name   = try(local.controller_settings.certificate_bucket_name, "none")
+    certificate_bucket_prefix = try(local.controller_settings.certificate_bucket_prefix, "none")
+  })
+
 
   load_balancer_controller = local.controller_publish_lb ? [{
     target_group_arn = try(aws_lb_target_group.controller[0].arn, null)
     container_name   = local.controller_settings.service_name
-    container_port   = 7488
+    container_port   = local.controller_port
   }] : []
   load_balancer_datastore = local.datastore_publish_lb ? [{
     target_group_arn = try(aws_lb_target_group.datastore[0].arn, null)

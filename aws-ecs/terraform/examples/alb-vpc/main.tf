@@ -44,3 +44,7 @@ module "rookout" {
 
   tags = local.tags
 }
+
+output "rookout" {
+  value = module.rookout
+}

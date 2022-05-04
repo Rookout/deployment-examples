@@ -95,6 +95,8 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 | ------------- | ------------- |
 | AlbDNSName | FQDN of load_balancer in case CreateLB variable set to true. Can be used as CNAME target in case of using external DNS. ![Route53 RefDoc](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) |
 
+**Note:** You can use alb dns name directrly to access datastore/controller. By default if loadbalancer is used and certificate arn is provided, datastore will be securely published on 443 port of load balancer, controller will be securely published with default port 7488. In case if certificate arn is not provided datastore will be published via HTTP on port 80. Task can be accessed publicly directly via public ip in case of default vpc, datastore default port is 8080, controller's - 7488.
+
 **vpc.yaml**
 | ParameterName  | Description | Default |
 | ------------- | ------------- | ------------- |

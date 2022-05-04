@@ -422,7 +422,7 @@ Resources:
               SourceVolume: certs
             - !Ref 'AWS::NoValue'
           PortMappings:
-            - ContainerPort: !If [DatastoreEnableTLS, 4343, 8080]
+            - ContainerPort: 8080
           HealthCheck:
             Command: 
             - "CMD-SHELL"
@@ -437,6 +437,8 @@ Resources:
               Value: !Ref DOPCorsAll
             - Name: ROOKOUT_DOP_IN_MEMORY_DB
               Value: !Ref DOPInMemoryDB
+            - Name: ROOKOUT_DOP_PORT
+              Value: "8080"
           Secrets:
             - Name: ROOKOUT_DOP_LOGGING_TOKEN
               ValueFrom: !Ref TokenSecretArn
@@ -525,7 +527,7 @@ Resources:
       EnableECSManagedTags: true
       LoadBalancers:
         - ContainerName: rookout-datastore
-          ContainerPort: !If [DatastoreEnableTLS, 4343, 8080]
+          ContainerPort: 8080
           TargetGroupArn: !Ref DatastoreTargetGroup
       DeploymentConfiguration:
         MaximumPercent: 200
@@ -595,8 +597,8 @@ Resources:
       VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: !If [DatastoreEnableTLS, 4343, 8080]
-          ToPort: !If [DatastoreEnableTLS, 4343, 8080]
+          FromPort: 8080
+          ToPort: 8080
           CidrIp: 0.0.0.0/0
           Description: Inbound from IGW to datastore
       SecurityGroupEgress:
@@ -615,8 +617,13 @@ Resources:
       VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 8080
-          ToPort: 8080
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+          Description: Inbound from IGW to datastore
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
           CidrIp: 0.0.0.0/0
           Description: Inbound from IGW to datastore
         - IpProtocol: tcp
@@ -697,7 +704,7 @@ Resources:
         - DatastoreLBEnableTLS
         - CertificateArn: !Ref DatastoreCertArn
         - !Ref "AWS::NoValue"
-      Port: 8080
+      Port: !If [DatastoreLBEnableTLS, 443, 80]
       Protocol: !If [DatastoreLBEnableTLS, HTTPS, HTTP]
       DefaultActions:
         - Type: forward
@@ -820,16 +827,6 @@ Outputs:
       - Service: !GetAtt DatastoreServiceNoLB.Name
         Domain: !Ref PrivateDNSZoneName
 
-  CrontrollerLBEndpoint:
+  LoadBalancerDNSName:
     Condition: CreateLB
-    Value: !Join
-              - ':'
-              - - !GetAtt ALB.DNSName
-                - '7488'
-  
-  DatastoreLBEndpoint:
-    Condition: CreateLB
-    Value: !Join
-              - ':'
-              - - !GetAtt ALB.DNSName
-                - '8080'
+    Value: !GetAtt ALB.DNSName

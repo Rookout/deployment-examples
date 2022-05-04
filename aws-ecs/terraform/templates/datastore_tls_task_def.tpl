@@ -51,6 +51,10 @@
       {
         "name": "ROOKOUT_DOP_IN_MEMORY_DB",
         "value": "${datastore_in_memory_db}"
+      },
+      {
+        "name": "ROOKOUT_DOP_PORT",
+        "value": "8080"
       }
     ],
     "secrets": [
@@ -77,7 +81,7 @@
         "retries": 3,
         "command": [
             "CMD-SHELL",
-            "wget localhost:4343/healthz || exit 1"
+            "wget http://localhost:4009/healthz -O /dev/null || exit 1"
         ],
         "timeout": 5,
         "interval": 30,
