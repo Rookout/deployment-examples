@@ -665,7 +665,7 @@ Resources:
     Condition: PublicDatastore
     Properties:
       Name: !Sub 'rookout-datastore-${Environment}'
-      Port: !If [DatastoreEnableTLS, 4343, 8080]
+      Port: 8080
       Protocol: !If [DatastoreEnableTLS, "HTTPS", "HTTP"]
       VpcId: !Ref VpcId
       IpAddressType: ipv4
