@@ -8,7 +8,7 @@
     "essential": true,
     "portMappings": [
       {
-        "containerPort": 8080
+        "containerPort": ${port}
       }
     ],
     "environment": [
@@ -26,7 +26,7 @@
       },
       {
         "name": "ROOKOUT_DOP_PORT",
-        "value": "8080"
+        "value": "${port}"
       }
     ],
     "secrets": [

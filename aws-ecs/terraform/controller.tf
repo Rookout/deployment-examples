@@ -1,7 +1,7 @@
 resource "aws_ecs_task_definition" "controller" {
-  count = local.controller_settings.enabled ? 1 : 0
+  count = local.controller_settings.deploy ? 1 : 0
 
-  family                   = local.controller_settings.service_name
+  family                   = format("%s-%s", local.controller_settings.container_name, local.name_prefix)
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = local.controller_settings.task_cpu
@@ -20,9 +20,9 @@ resource "aws_ecs_task_definition" "controller" {
 }
 
 resource "aws_ecs_service" "controller" {
-  count = local.controller_settings.enabled ? 1 : 0
+  count = local.controller_settings.deploy ? 1 : 0
 
-  name            = "${local.name_prefix}-controller"
+  name            = local.controller_name
   cluster         = local.create_cluster ? aws_ecs_cluster.rookout[0].id : data.aws_ecs_cluster.provided[0].id
   task_definition = aws_ecs_task_definition.controller[0].arn
   desired_count   = 1
@@ -47,14 +47,14 @@ resource "aws_ecs_service" "controller" {
 }
 
 resource "aws_cloudwatch_log_stream" "controller_log_stream" {
-  count = local.controller_settings.enabled ? 1 : 0
+  count = local.controller_settings.deploy ? 1 : 0
 
-  name           = "${local.name_prefix}-controller"
+  name           = local.controller_name
   log_group_name = aws_cloudwatch_log_group.rookout.name
 }
 
 resource "aws_service_discovery_service" "controller" {
-  count = local.datastore_settings.enabled ? 1 : 0
+  count = local.datastore_settings.deploy ? 1 : 0
 
   name = "${local.name_prefix}-controller"
   dns_config {
@@ -75,7 +75,7 @@ resource "aws_service_discovery_service" "controller" {
 resource "aws_lb_target_group" "controller" {
   count = local.controller_publish_lb ? 1 : 0
 
-  name        = "${local.name_prefix}-controller"
+  name        = local.controller_name
   port        = local.controller_port
   protocol    = local.controller_tg_protocol
   target_type = "ip"
@@ -89,7 +89,7 @@ resource "aws_lb_listener" "controller" {
   count = local.controller_publish_lb ? 1 : 0
 
   load_balancer_arn = local.load_balancer_arn
-  port              = 7488
+  port              = local.controller_lb_port
   protocol          = local.controller_lb_protocol
   certificate_arn   = local.controller_settings.certificate_arn != null ? local.controller_settings.certificate_arn : null
 
@@ -100,9 +100,9 @@ resource "aws_lb_listener" "controller" {
 }
 
 resource "aws_security_group" "allow_controller" {
-  count = local.datastore_settings.enabled ? 1 : 0
+  count = local.datastore_settings.deploy ? 1 : 0
 
-  name        = "${local.name_prefix}-controller"
+  name        = local.controller_name
   description = "Allow inbound/outbound traffic for Rookout controller"
   vpc_id      = var.vpc_id
   ingress {

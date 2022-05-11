@@ -160,6 +160,26 @@ Parameters:
     Description: Secret's ARN for AWS Secrets Manager secret with rookout token.
     Type: String
 
+  ControllerContainerPort:
+    Description: Controller container port to listen
+    Type: String
+    Default: 7488
+  
+  ControllerLBPort:
+    Description: Controller port for Load Balancer listener
+    Type: String
+    Default: 7488
+  
+  DatastoreContainerPort:
+    Description: Datastore container port to listen
+    Type: String
+    Default: 8080
+  
+  DatastoreLBPort:
+    Description: Datastore port for Load Balancer listener
+    Type: String
+    Default: 443
+
   ControllerContainerCPU:
     Description: Controller container CPU requested.
     Type: String
@@ -171,12 +191,12 @@ Parameters:
     Default: 512
   
   ControllerTaskCPU:
-    Description: Controller container CPU requested.
+    Description: Controller task CPU requested.
     Type: String
     Default: 512
 
   ControllerTaskMemory:
-    Description: Controller container Memory requested.
+    Description: Controller task Memory requested.
     Type: String
     Default: 1024
 
@@ -191,12 +211,12 @@ Parameters:
     Default: 512
   
   DatastoreTaskCPU:
-    Description: Controller container CPU requested.
+    Description: Controller task CPU requested.
     Type: String
     Default: 512
 
   DatastoreTaskMemory:
-    Description: Controller container Memory requested.
+    Description: Controller task Memory requested.
     Type: String
     Default: 1024
 
@@ -252,7 +272,7 @@ Resources:
   PrivateNamespace:
     Type: AWS::ServiceDiscovery::PrivateDnsNamespace
     Properties: 
-      Description: Local cloud map namespaces for ECS cluster.
+      Description: !Sub "Local cloud map namespaces for ECS cluster from CF stack ${AWS::StackName}."
       Name: !Ref PrivateDNSZoneName
       Vpc: !Ref VpcId
 
@@ -287,14 +307,12 @@ Resources:
   EcsCluster:
     Condition: CreateCluster
     Type: AWS::ECS::Cluster
-    Properties:
-      ClusterName: !Ref 'AWS::StackName'
 
   ControllerTask:
     Condition: ControllerDeploy
     Type: AWS::ECS::TaskDefinition
     Properties:
-      Family: !Sub 'rookout-controller-${Environment}'
+      Family: !Sub 'rookout-controller-${Environment}-${AWS::StackName}'
       Cpu: !Ref ControllerTaskCPU
       Memory: !Ref ControllerTaskMemory
       NetworkMode: awsvpc
@@ -339,7 +357,7 @@ Resources:
               SourceVolume: certs
             - !Ref 'AWS::NoValue'
           PortMappings:
-            - ContainerPort: 7488
+            - ContainerPort: !Ref ControllerContainerPort
           HealthCheck:
             Command: 
             - "CMD-SHELL"
@@ -373,7 +391,7 @@ Resources:
     Condition: DatastoreDeploy
     Type: AWS::ECS::TaskDefinition
     Properties:
-      Family: !Sub 'rookout-datastore-${Environment}'
+      Family: !Sub 'rookout-datastore-${Environment}-${AWS::StackName}'
       Cpu: !Ref DatastoreTaskCPU
       Memory: !Ref DatastoreTaskMemory
       NetworkMode: awsvpc
@@ -422,7 +440,7 @@ Resources:
               SourceVolume: certs
             - !Ref 'AWS::NoValue'
           PortMappings:
-            - ContainerPort: 8080
+            - ContainerPort: !Ref DatastoreContainerPort
           HealthCheck:
             Command: 
             - "CMD-SHELL"
@@ -438,7 +456,7 @@ Resources:
             - Name: ROOKOUT_DOP_IN_MEMORY_DB
               Value: !Ref DOPInMemoryDB
             - Name: ROOKOUT_DOP_PORT
-              Value: "8080"
+              Value: !Ref DatastoreContainerPort
           Secrets:
             - Name: ROOKOUT_DOP_LOGGING_TOKEN
               ValueFrom: !Ref TokenSecretArn
@@ -459,7 +477,6 @@ Resources:
     Condition: PublicController
     DependsOn: ControllerALBListener
     Properties:
-      ServiceName: !Sub 'rookout-controller-${Environment}'
       Cluster: !If 
       - CreateCluster
       - !Ref EcsCluster
@@ -470,7 +487,7 @@ Resources:
       EnableECSManagedTags: true
       LoadBalancers:
         - ContainerName: rookout-controller
-          ContainerPort: 7488
+          ContainerPort: !Ref ControllerContainerPort
           TargetGroupArn: !Ref ControllerTargetGroup
       DeploymentConfiguration:
         MaximumPercent: 200
@@ -489,7 +506,6 @@ Resources:
     Type: AWS::ECS::Service
     Condition: PrivateController
     Properties:
-      ServiceName: !Sub 'rookout-controller-${Environment}'
       Cluster: !If 
       - CreateCluster
       - !Ref EcsCluster
@@ -516,7 +532,6 @@ Resources:
     Condition: PublicDatastore
     DependsOn: DatastoreALBListener
     Properties:
-      ServiceName: !Sub 'rookout-datastore-${Environment}'
       Cluster: !If 
       - CreateCluster
       - !Ref EcsCluster
@@ -527,7 +542,7 @@ Resources:
       EnableECSManagedTags: true
       LoadBalancers:
         - ContainerName: rookout-datastore
-          ContainerPort: 8080
+          ContainerPort: !Ref DatastoreContainerPort
           TargetGroupArn: !Ref DatastoreTargetGroup
       DeploymentConfiguration:
         MaximumPercent: 200
@@ -546,7 +561,6 @@ Resources:
     Type: AWS::ECS::Service
     Condition: PrivateDatastore
     Properties:
-      ServiceName: !Sub 'rookout-datastore-${Environment}'
       Cluster: !If 
       - CreateCluster
       - !Ref EcsCluster
@@ -572,13 +586,12 @@ Resources:
     Condition: ControllerDeploy
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: !Sub 'controller-ecs-${Environment}'
       GroupDescription: Allow inbound/outbound traffic for Rookout controller
       VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 7488
-          ToPort: 7488
+          FromPort: !Ref ControllerContainerPort
+          ToPort: !Ref ControllerContainerPort
           CidrIp: 0.0.0.0/0
           Description: Inbound from IGW to controller
       SecurityGroupEgress:
@@ -592,13 +605,12 @@ Resources:
     Condition: DatastoreDeploy
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: !Sub 'datastore-ecs-${Environment}'
       GroupDescription: Allow inbound/outbound traffic for Rookout datastore.
       VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 8080
-          ToPort: 8080
+          FromPort: !Ref DatastoreContainerPort
+          ToPort: !Ref DatastoreContainerPort
           CidrIp: 0.0.0.0/0
           Description: Inbound from IGW to datastore
       SecurityGroupEgress:
@@ -612,23 +624,17 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Condition: CreateLB
     Properties:
-      GroupName: !Sub 'rookout-lb-${Environment}'
       GroupDescription: Allow inbound/outbound traffic for Rookout datastore.
       VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
+          FromPort: !Ref DatastoreLBPort
+          ToPort: !Ref DatastoreLBPort
           CidrIp: 0.0.0.0/0
           Description: Inbound from IGW to datastore
         - IpProtocol: tcp
-          FromPort: 443
-          ToPort: 443
-          CidrIp: 0.0.0.0/0
-          Description: Inbound from IGW to datastore
-        - IpProtocol: tcp
-          FromPort: 7488
-          ToPort: 7488
+          FromPort: !Ref ControllerLBPort
+          ToPort: !Ref ControllerLBPort
           CidrIp: 0.0.0.0/0
           Description: Inbound from IGW to controller
       SecurityGroupEgress:
@@ -642,7 +648,6 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Condition: CreateLB
     Properties:         
-      Name: !Sub 'rookout-${Environment}'
       Scheme: internet-facing
       Subnets: !Ref PublicSubnets
       SecurityGroups: 
@@ -653,8 +658,7 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Condition: PublicController
     Properties:
-      Name: !Sub 'rookout-controller-${Environment}'
-      Port: 7488
+      Port: !Ref ControllerContainerPort
       Protocol: !If [ControllerEnableTLS, "HTTPS", "HTTP"]
       VpcId: !Ref VpcId
       IpAddressType: ipv4
@@ -664,12 +668,11 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Condition: PublicDatastore
     Properties:
-      Name: !Sub 'rookout-datastore-${Environment}'
-      Port: 8080
+      Port: !Ref DatastoreContainerPort
       Protocol: !If [DatastoreEnableTLS, "HTTPS", "HTTP"]
       VpcId: !Ref VpcId
       IpAddressType: ipv4
-      HealthCheckPath: /healthz
+      HealthCheckPath: /
       TargetType: ip
   
   ControllerALBListener:
@@ -685,7 +688,7 @@ Resources:
       - CreateLB
       - !Ref ALB
       - !Ref ExistingLBArn
-      Port: 7488
+      Port: !Ref ControllerLBPort
       Protocol: !If [ControllerLBEnableTLS, HTTPS, HTTP]
       DefaultActions:
         - Type: forward
@@ -704,16 +707,16 @@ Resources:
         - DatastoreLBEnableTLS
         - CertificateArn: !Ref DatastoreCertArn
         - !Ref "AWS::NoValue"
-      Port: !If [DatastoreLBEnableTLS, 443, 80]
+      Port: !Ref DatastoreLBPort
       Protocol: !If [DatastoreLBEnableTLS, HTTPS, HTTP]
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref DatastoreTargetGroup
   
-  TaskExecutionRolePolicyLogs:
+  LogsPolicy:
     Type: AWS::IAM::Policy
     Properties:
-      PolicyName: !Sub 'rookout-logs-${Environment}'
+      PolicyName: !Sub 'rookout-logs-${Environment}-${AWS::StackName}'
       PolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -727,10 +730,10 @@ Resources:
       Roles:
         - !Ref TaskExecutionRole
   
-  TaskExecutionRolePolicySecrets:
+  SecretsPolicy:
     Type: AWS::IAM::Policy
     Properties:
-      PolicyName: !Sub 'rookout-secrets-${Environment}'
+      PolicyName: !Sub 'rookout-secrets-${Environment}-${AWS::StackName}'
       PolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -743,11 +746,11 @@ Resources:
       Roles:
         - !Ref TaskExecutionRole
     
-  TaskExecutionRolePolicyS3:
+  S3Policy:
     Type: AWS::IAM::Policy
     Condition: DatastoreEnableTLS
     Properties:
-      PolicyName: !Sub 'rookout-s3-${Environment}'
+      PolicyName: !Sub 'rookout-s3-${Environment}-${AWS::StackName}'
       PolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -763,7 +766,6 @@ Resources:
   TaskExecutionRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub 'rookout-task-execution-role-${Environment}'
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -780,53 +782,30 @@ Resources:
     DeletionPolicy: Delete
     UpdateReplacePolicy: Delete
     Properties:
-      LogGroupName: !Join ['/', ['', aws, ecs, !Ref 'AWS::StackName']]
       RetentionInDays: 14
   
   ControllerLogStream:
     Type: AWS::Logs::LogStream
     Properties:
       LogGroupName: !Ref RookoutLogGroup
-      LogStreamName: !Sub 'rookout-controller-${Environment}'
+      LogStreamName: !Sub 'rookout-controller-${Environment}-${AWS::StackName}'
 
   DatastoreLogStream:
     Type: AWS::Logs::LogStream
     Properties:
       LogGroupName: !Ref RookoutLogGroup
-      LogStreamName: !Sub 'rookout-datastore-${Environment}'
+      LogStreamName: !Sub 'rookout-datastore-${Environment}-${AWS::StackName}'
 
 Outputs:
-  RookoutLogGroup:
-    Value: !Ref RookoutLogGroup
 
-  AlbDNSName:
-    Condition: CreateLB
-    Value: !GetAtt ALB.DNSName
+  ControllerPrivateDNS:
+    Condition: ControllerDeploy
+    Value: !Sub 'rookout-controller-${Environment}.${PrivateDNSZoneName}:${ControllerContainerPort}'
 
-  CrontrollerInternalDNS:
-    Value: !If 
-    - PublicController
-    - !Sub 
-      - '${Service}.${Domain}'
-      - Service: !GetAtt ControllerServiceLB.Name
-        Domain: !Ref PrivateDNSZoneName
-    - !Sub 
-      - '${Service}.${Domain}'
-      - Service: !GetAtt ControllerServiceNoLB.Name
-        Domain: !Ref PrivateDNSZoneName
-  
-  DatastoreInternalDNS:
-    Value: !If 
-    - PublicDatastore
-    - !Sub 
-      - '${Service}.${Domain}'
-      - Service: !GetAtt DatastoreServiceLB.Name
-        Domain: !Ref PrivateDNSZoneName
-    - !Sub 
-      - '${Service}.${Domain}'
-      - Service: !GetAtt DatastoreServiceNoLB.Name
-        Domain: !Ref PrivateDNSZoneName
-
+  DatastorePrivateDNS:
+    Condition: DatastoreDeploy 
+    Value: !Sub 'rookout-datastore-${Environment}.${PrivateDNSZoneName}:${DatastoreContainerPort}'
+    
   LoadBalancerDNSName:
     Condition: CreateLB
     Value: !GetAtt ALB.DNSName

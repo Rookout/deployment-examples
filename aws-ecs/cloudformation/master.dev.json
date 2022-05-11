@@ -40,14 +40,6 @@
         "ParameterValue": "10.10.3.0/24"
     },
     {
-        "ParameterKey": "DeployController",
-        "ParameterValue": "true"
-    },
-    {
-        "ParameterKey": "DeployDatastore",
-        "ParameterValue": "true"
-    },
-    {
         "ParameterKey": "ControllerPublishLB",
         "ParameterValue": "true"
     },

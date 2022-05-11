@@ -7,24 +7,6 @@ Parameters:
     Type: String
     Description: Bucket name where all templates are stored
 
-  DeployController:
-    Description: Set true if you want to deploy Controller service.
-    Type: String
-    Default: true
-    AllowedValues:
-      - true
-      - false
-    ConstraintDescription: must specify true or false.
-  
-  DeployDatastore:
-    Description: Set true if you want to deploy Datastore service.
-    Type: String
-    Default: true
-    AllowedValues:
-      - true
-      - false
-    ConstraintDescription: must specify true or false.
-
   ControllerPublishLB:
     Description: Set true if you want to publish Controller service trough LoadBalancer. CreateLB parameter should be set to true.
     Type: String
@@ -118,11 +100,6 @@ Parameters:
       - false
     ConstraintDescription: must specify true or false.
 
-  ExistingLBArn:
-    Description: Set ALB ARN if you want to use existing Application Load Balancer for chosen deployment.
-    Type: String
-    Default: ""
-
   Environment:
     Description: Deployment type. Set true if you want to use LoadBalancer for chosen deployment.
     Type: String
@@ -161,31 +138,6 @@ Parameters:
     Description: Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone
     Type: String
     Default: 10.10.3.0/24
-  
-  ControllerContainerCPU:
-    Description: Controller container CPU requested.
-    Type: String
-    Default: 256
-
-  ControllerContainerMemory:
-    Description: Controller container Memory requested.
-    Type: String
-    Default: 512
-
-  DatastoreContainerCPU:
-    Description: Datastore container CPU requested.
-    Type: String
-    Default: 256
-
-  DatastoreContainerMemory:
-    Description: Datastore container Memory requested.
-    Type: String
-    Default: 512
-
-  DatastoreStorageSize:
-    Description: Datastore container ephermal storage size.
-    Type: String
-    Default: 20
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -229,9 +181,9 @@ Resources:
   VPC:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesS3Bucket}/${Environment}-rookout/vpc.yaml
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesS3Bucket}/${AWS::StackName}/vpc.yaml
       Parameters:
-        EnvironmentName: !Sub '${AWS::StackName}-${Environment}'
+        EnvironmentName: !Ref AWS::StackName
         VpcCIDR: !Ref VpcCIDR
         PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
         PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
@@ -241,7 +193,7 @@ Resources:
   RookoutECS:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesS3Bucket}/${Environment}-rookout/rookout-aws-ecs.yaml
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplatesS3Bucket}/${AWS::StackName}/rookout-aws-ecs.yaml
       Parameters:
         Environment: !Ref Environment
         CreateLB: !Ref CreateLB
@@ -253,8 +205,6 @@ Resources:
         PrivateDNSZoneName: !Ref PrivateDNSZoneName
         ControllerPublishLB: !Ref ControllerPublishLB
         DatastorePublishLB: !Ref DatastorePublishLB
-        DeployController: !Ref DeployController
-        DeployDatastore: !Ref DeployDatastore
         ControllerCertArn: !Ref ControllerCertArn
         DatastoreCertArn: !Ref DatastoreCertArn
         CertificateS3Bucket: !Ref CertificateS3Bucket

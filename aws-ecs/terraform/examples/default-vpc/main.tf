@@ -22,7 +22,7 @@ module "rookout" {
   prviate_namespace_name = var.prviate_namespace_name
   controller_settings    = var.controller_settings
   datastore_settings     = var.datastore_settings
-  cluster_name           = var.cluster_name
+  create_lb              = var.create_lb
 
   tags = local.tags
 }

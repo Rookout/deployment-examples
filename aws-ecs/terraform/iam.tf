@@ -1,5 +1,5 @@
-resource "aws_iam_role_policy" "task_exec_role_policy_logs" {
-  name = "${local.name_prefix}-rookout_role_logs_policy"
+resource "aws_iam_role_policy" "logs_policy" {
+  name = "logs-${local.deployment_id}"
   role = aws_iam_role.task_exec_role.id
 
   policy = <<-EOF
@@ -21,8 +21,8 @@ resource "aws_iam_role_policy" "task_exec_role_policy_logs" {
   EOF
 }
 
-resource "aws_iam_role_policy" "task_exec_role_policy_secrets" {
-  name = "${local.name_prefix}-rookout_role_secrets_policy"
+resource "aws_iam_role_policy" "secrets_policy" {
+  name = "secrets-${local.deployment_id}"
   role = aws_iam_role.task_exec_role.id
 
   policy = <<-EOF
@@ -43,10 +43,10 @@ resource "aws_iam_role_policy" "task_exec_role_policy_secrets" {
 }
 
 
-resource "aws_iam_role_policy" "task_exec_role_policy_s3_controller" {
+resource "aws_iam_role_policy" "s3_controller" {
   count = local.controller_server_mode == "TLS" ? 1 : 0
 
-  name = "${local.name_prefix}-rookout-controller_role_s3_policy"
+  name = "s3-controller-${local.deployment_id}"
   role = aws_iam_role.task_exec_role.id
 
   policy = <<-EOF
@@ -68,10 +68,10 @@ resource "aws_iam_role_policy" "task_exec_role_policy_s3_controller" {
   EOF
 }
 
-resource "aws_iam_role_policy" "task_exec_role_policy_s3_datastore" {
+resource "aws_iam_role_policy" "s3_datastore" {
   count = local.datastore_server_mode == "TLS" ? 1 : 0
 
-  name = "${local.name_prefix}-rookout-datastore_role_s3_policy"
+  name = "s3-datastore-${local.deployment_id}"
   role = aws_iam_role.task_exec_role.id
 
   policy = <<-EOF
@@ -96,7 +96,7 @@ resource "aws_iam_role_policy" "task_exec_role_policy_s3_datastore" {
 
 
 resource "aws_iam_role" "task_exec_role" {
-  name = "${local.name_prefix}-exec-role"
+  name = local.deployment_id
 
   assume_role_policy = <<-EOF
   {

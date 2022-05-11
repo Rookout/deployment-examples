@@ -8,7 +8,7 @@
     "essential": true,
     "portMappings": [
       {
-        "containerPort": 7488
+        "containerPort": ${port}
       }
     ],
     "environment": [

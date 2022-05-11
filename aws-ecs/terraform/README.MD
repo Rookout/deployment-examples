@@ -8,29 +8,21 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 ### Prerequisites
 
 1. Install terrraform. [RefDoc](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-2. AWS Account and Installed aws cli and default profile set with access key and secret. [Install AWS Cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html),[SetupCredentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-3. Created Secret in Secrets Manager with Rookout token. 
-   * To complete secret's manager creation folow either of those options:
-      * aws cli - Change <rookout_token> placeholder with your token and run `aws secretsmanager create-secret --name rookout_token --description "Rookout token" --secret-string "<rookout_token>"`
-      * aws console - follow this [tutorial](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) 
-   * Use secret's ARN of token for `rookout_token_arn` variable in `terraform.tfvars`. (See Module Inputs)
-4. (Optional) Create S3 bucket for cretificates and upload key and crt files if you want to use native TLS mode for datastore.
-   1. create bucket - [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
-   2. Use bucket name for `(controller||datastore)_settings.certificate_bucket_name` variable in `terraform.tfvars` if you want to enable native TLS for services. (See Module Inputs)
-   3. Upload files to s3 [RefDoc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html)
-      * For datastore files should be named as key.pem and cert.pem
-      * For controller files should be named as tls.key and tls.crt
-      * For each service create a folder inside of this bucket, like `datastore-certs controller-certs` and put these values to respective variable `(controller||datastore)_settings.certificate_bucket_prefix` in `terraform.tfvars` 
-5. (Optional) Issue or upload certificate in to AWS ACM if you want to use secured ALB.
-   * RefDoc AWS ACM Import https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html
-   * RefDoc AWS ACM issue new cert https://docs.aws.amazon.com/acm/latest/userguide/gs.html
-   * Use Certificate's ARN for `(controller||datastore)_settings.certificate_arn` variable in `terraform.tfvars` if you want to use this certificate for alb. (See Module Inputs)
+2. AWS account
+3. AWS CLI installed 
+4. The AWS default profile should be set with an access key and secret ([reference](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)).
+5. Create a secret in the secrets manager with your Rookout token using one of the following options:
+   * AWS CLI - Change the <rookout_token> placeholder with your token and run:
+      * `aws secretsmanager create-secret --name rookout_token --description "Rookout token" --secret-string "<rookout_token>"`
+   * AWS Console - follow this [tutorial](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html)
+   * Use secret's ARN of token for `rookout_token_arn` variable in `terraform.tfvars`. (See [Module Inputs](#module-inputs))
 ### Example Usage
 #### Deploy ALB VPC Example
 1. `git clone https://github.com/Rookout/deployment-examples.git && cd deployment-examples/aws-ecs/terraform/examples/alb-vpc`
-2. Configure required variables to be used in the Terraform in `terraform.tfvars`
+2. Configure required variables to be used in the Terraform deployment in `terraform.tfvars`
 3. run `terraform init`
 4. run `terraform apply`
+5. The default values deploy the Controller and Datastore in “PLAIN” mode, which means that for connecting to the Datastore from the user’s browser, or for connecting agents to the Controller from a different VPC, you would need to add a TLS termination proxy (ALB). See the “[Module Inputs](#module-inputs)” section for other options, such as creating an ALB automatically, or using different modes. (server mode reference - [Datastore](https://docs.rookout.com/docs/dop-config/#server-mode), [Controller](https://docs.rookout.com/docs/etl-controller-config/#server-mode)
 
 **Note:** In main.tf for alb-vpc example there's an example how to reference rookout module directly from git.
 
@@ -62,6 +54,8 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | certificate_arn | if create_lb variable is set to true this certificate arn will be used for service alb listeners (See prerequisites) | null |
 | task_cpu / task_memory| CPU and RAM for container | 512/1024 |
 | container_cpu / container_memory| CPU and RAM for container | 256/512 |
+| container_port | Container port for Datastore/Controller | 8080/7488 |
+| load_balancer_port | Load Balancer port for Datastore/Controller | 443/7488 |
 
 ### Controller Settings
 | ParameterName  | Description | Default |
@@ -82,5 +76,7 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | OutputName  | Description |
 | ------------- | ------------- |
 | alb_dns_name | FQDN of load_balancer in case UseLB variable set to true. Can be used as CNAME target in case of using external DNS. ![Route53 RefDoc](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) |
+| datastore_private_endpoint | Prviate dns:port pair for accessing datastore task within vpc |
+| controller_private_endpoint | Prviate dns:port pair for accessing datastore task within vpc |
 
 **Note:** You can use alb dns name directrly to access datastore/controller. By default if loadbalancer is used and certificate arn is provided, datastore will be securely published on 443 port of load balancer, controller will be securely published with default port 7488. In case if certificate arn is not provided datastore will be published via HTTP on port 80. Task can be accessed publicly directly via public ip in case of default vpc, datastore default port is 8080, controller's - 7488.

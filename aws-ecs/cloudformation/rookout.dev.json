@@ -1,7 +1,7 @@
 [
     {
         "ParameterKey": "TokenSecretArn",
-        "ParameterValue": "arn:aws:secretsmanager:xx-xxxx-x:xxxxxxxxxxxx:secret:rookout_token-xxxxxx"
+        "ParameterValue": "arn:aws:secretsmanager:us-east-1:782824484157:secret:rookout_token-JeQYA2"
     },
     {
         "ParameterKey": "Environment",
@@ -9,7 +9,7 @@
     },
     {
         "ParameterKey": "CreateLB",
-        "ParameterValue": "false"
+        "ParameterValue": "true"
     },
     {
         "ParameterKey": "VpcId",
@@ -28,20 +28,12 @@
         "ParameterValue": "true"
     },
     {
-        "ParameterKey": "DeployController",
-        "ParameterValue": "true"
-    },
-    {
-        "ParameterKey": "DeployDatastore",
-        "ParameterValue": "true"
-    },
-    {
         "ParameterKey": "ControllerPublishLB",
-        "ParameterValue": "false"
+        "ParameterValue": "true"
     },
     {
         "ParameterKey": "DatastorePublishLB",
-        "ParameterValue": "false"
+        "ParameterValue": "true"
     },
     {
         "ParameterKey": "ControllerServerMode",
@@ -52,16 +44,8 @@
         "ParameterValue": "TLS"
     },
     {
-        "ParameterKey": "ControllerCertArn",
-        "ParameterValue": "arn:aws:acm:xx-xxxx-x:xxxxxxxx:certificate/xxxxxx-xxxxxx-xxxxxx-xxxxxx"
-    },
-    {
-        "ParameterKey": "DatastoreCertArn",
-        "ParameterValue": "arn:aws:acm:xx-xxx-x:xxxxxx:certificate/xxxxxx-xxxxxx-xxxxxx-xxxxxx"
-    },
-    {
         "ParameterKey": "CertificateS3Bucket",
-        "ParameterValue": "certificate-bucket"
+        "ParameterValue": "cf-templates-11x1qjid1uaq7-us-east-1"
     },
     {
         "ParameterKey": "ControllerCertS3BucketPrefix",
@@ -70,25 +54,5 @@
     {
         "ParameterKey": "DatastoreCertS3BucketPrefix",
         "ParameterValue": "certs"
-    },
-    {
-        "ParameterKey": "ControllerContainerCPU",
-        "ParameterValue": "256"
-    },
-    {
-        "ParameterKey": "ControllerContainerMemory",
-        "ParameterValue": "512"
-    },
-    {
-        "ParameterKey": "DatastoreContainerCPU",
-        "ParameterValue": "256"
-    },
-    {
-        "ParameterKey": "DatastoreContainerMemory",
-        "ParameterValue": "512"
-    },
-    {
-        "ParameterKey": "DatastoreStorageSize",
-        "ParameterValue": "20"
     }
 ]
