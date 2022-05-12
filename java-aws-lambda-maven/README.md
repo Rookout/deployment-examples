@@ -7,12 +7,12 @@ This example is written for Java 11, but Rookout also supports Java 8 on AWS Lam
 ## Structure
 
 * `target/` - output folder (generated at build)
-    * `classes/` - output .class files
-    * `java-aws-lambda-maven-1.0-SNAPSHOT.jar` - output .jar file
-    * `original-java-aws-lambda-maven-1.0-SNAPSHOT.jar` - temporary file
+    * `java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar` - output .jar file
+    * `java-aws-lambda-maven-1.0-SNAPSHOT.jar` - temporary file
 * `src/` - source files
     * `main/java/example/Handler.java` - function logic
 * `pom.xml` - maven settings
+* `jar-with-dependencies.xml` - "Assembly" plugin configuration
 
 ## Build, Upload, Configure
 
@@ -24,7 +24,7 @@ Steps using the AWS web UI:
 1. Make sure the Lambda's runtime is "Java 11"
 1. Click on "Upload from"
 1. Select ".zip or .jar file"
-1. Choose `target/java-aws-lambda-maven-1.0-SNAPSHOT.jar`
+1. Choose `target/java-aws-lambda-maven-1.0-SNAPSHOT-jar-with-dependencies.jar`
 1. Go to the "Configuration" tab
 1. Click on "Environment variables"
 1. Add the following variables:
