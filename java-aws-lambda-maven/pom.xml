@@ -25,7 +25,7 @@
     <dependency>
       <groupId>com.rookout</groupId>
       <artifactId>rook</artifactId>
-      <version>RELEASE</version>
+      <version>[0.1.219,)</version>
     </dependency>
     <dependency>
       <groupId>com.sun</groupId>
@@ -42,17 +42,23 @@
     </resources>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.2</version>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
         <configuration>
-          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <descriptors>
+            <descriptor>jar-with-dependencies.xml</descriptor>
+          </descriptors>
+          <archive>
+            <manifest>
+              <mainClass>Handler.Handler</mainClass>
+            </manifest>
+          </archive>
         </configuration>
         <executions>
           <execution>
             <phase>package</phase>
             <goals>
-              <goal>shade</goal>
+              <goal>single</goal>
             </goals>
           </execution>
         </executions>
