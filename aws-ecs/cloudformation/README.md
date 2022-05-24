@@ -7,23 +7,24 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 1. AWS account
 2. AWS CLI installed 
 3. The AWS default profile should be set with an access key and secret ([reference](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)).
+   * Set profile if used non default profile. Run: `export AWS_PROFILE="<profile_name>"`
 4. Create a secret in the secrets manager with your Rookout token using one of the following options:
    * AWS CLI - Change the <rookout_token> placeholder with your token and run:
       * `aws secretsmanager create-secret --name rookout_token --description "Rookout token" --secret-string "<rookout_token>"`
    * AWS Console - follow this [tutorial](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html)
-   * Use the token secret's ARN as value for the TokenSecretArn variable in `(master||rookout).dev.json` (see [Parameters](#parameters))
+   * Use the token secret's ARN as value for the TokenSecretArn variable in `(existing-vpc||inbcluding-vpc).dev.json` (see [Parameters](#parameters))
 6. Create an S3 bucket for the CloudFormation templates.
 
 
 ### Usage
 1. `git clone https://github.com/Rookout/deployment-examples.git && cd deployment-examples/aws-ecs/cloudformation`
 2. Configure required [parameters](#parameters) to be used in the CloudFormation stack deployment in one of the following files:
-   * rookout.dev.json - for deploying in an existing VPC
-   * master.dev.json - for deploying in a new VPC
+   * existing-vpc.dev.json - for deploying in an existing VPC
+   * inbcluding-vpc.dev.json - for deploying in a new VPC
 3. Configure the variables according to your environment in the set_env.sh file.
-4. run ./cf_validate.sh
-5. run ./cf_update_stack.sh create rookout to create only a Rookout stack
-6. run ./cf_update_stack.sh create master to create master stack which includes a private VPC and Rookout resources.
+4. run `./cf_validate.sh` to validate template files
+5. run `./cf_update_stack.sh create existing-vpc` to create only a Rookout stack
+6. run `./cf_update_stack.sh create including-vpc` to create master stack which includes a private VPC and Rookout resources.
 7. The default values deploy the Controller and Datastore in “PLAIN” mode, which means that for connecting to the Datastore from the user’s browser, or for connecting agents to the Controller from a different VPC, you would need to add a TLS termination proxy (ALB). See the “[parameters](#parameters)” section for other options, such as creating an ALB automatically, or using different modes. (server mode reference - [Datastore](https://docs.rookout.com/docs/dop-config/#server-mode), [Controller](https://docs.rookout.com/docs/etl-controller-config/#server-mode))
 
 ### Files
@@ -56,6 +57,7 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 | ParameterName  | Description | Default |
 | ------------- | ------------- | ------------- |
 | TokenSecretArn | Secret's ARN for AWS Secrets Manager secret with rookout token.(See prerequisites) | none |
+| LaunchType |  Launch type for ECS Services. Set to EC2 if you've provided ClusterName variable with existing EC2 cluster name. | FARGATE |
 | PrivateDNSZoneName  | Name for AWS CloudMap namespace used for service discovery  | cluster.local |
 | DefaultVPC  | Set true if you want to use default VPC or VPC without private networks.  | false |
 | PublicSubnets | List of public subnets for LoadBalancer and for ECS tasks in case of default vpc deployment.| none |

@@ -9,8 +9,9 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 
 1. Install terrraform. [RefDoc](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 2. AWS account
-3. AWS CLI installed 
+3. AWS CLI installed.
 4. The AWS default profile should be set with an access key and secret ([reference](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)).
+   * Set profile if used non default profile. Run: `export AWS_PROFILE="<profile_name>"`
 5. Create a secret in the secrets manager with your Rookout token using one of the following options:
    * AWS CLI - Change the <rookout_token> placeholder with your token and run:
       * `aws secretsmanager create-secret --name rookout_token --description "Rookout token" --secret-string "<rookout_token>"`
@@ -37,6 +38,7 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | private_subnets |  Select list of private subnets for ECS tasks. They should be in same VPC and has routes between public_subnets if you're using LB. Ignored when you set DefaultVPC to true | none |
 | vpc_id | VPC ID where resources will be deployed. | none |
 | cluster_name | Set true if you want to use previously deployed cluster, if not set module will create new AWS ECS cluster as part of deployment. | null |
+| launch_type |  Launch type for ECS Services. Set to EC2 if you've provided ClusterName variable with existing EC2 cluster name. | FARGATE |
 | create_lb | Set true if you want to create LoadBalancer for chosen deployment. | false |
 | existing_lb_arn | Set ALB ARN if you want to use existing Application Load Balancer for chosen deployment. Should be in same VPC as the deployment. | null |
 | environment | Deployment environment (dev|prod|stage). Will be set as tag to every resource and will be used in name_prefix variable to prefix resource namings | "dev" |
@@ -79,4 +81,4 @@ This terraform module is to be used to deploy the Rookout Controller and Rookout
 | datastore_private_endpoint | Prviate dns:port pair for accessing datastore task within vpc |
 | controller_private_endpoint | Prviate dns:port pair for accessing datastore task within vpc |
 
-**Note:** You can use alb dns name directrly to access datastore/controller. By default if loadbalancer is used and certificate arn is provided, datastore will be securely published on 443 port of load balancer, controller will be securely published with default port 7488. In case if certificate arn is not provided datastore will be published via HTTP on port 80. Task can be accessed publicly directly via public ip in case of default vpc, datastore default port is 8080, controller's - 7488.
+**Note:** You can use alb dns name directrly to access datastore/controller. By default if loadbalancer is used and certificate arn is provided, datastore will be securely published on 443 port of load balancer, controller will be securely published with default port 7488. In case if certificate arn is not provided datastore will be published via HTTP on port 443. Task can be accessed publicly directly via public ip in case of default vpc, datastore default port is 8080, controller's - 7488.

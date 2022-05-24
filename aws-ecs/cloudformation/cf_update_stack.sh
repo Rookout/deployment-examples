@@ -13,11 +13,11 @@ STACK_TYPE=${2:-"rookout"}
 
 case $STACK_TYPE in
 
-  master)
+  inbcluding-vpc)
     TEMPLATE_FILE="master.yaml"
     ;;
 
-  rookout)
+  existing-vpc)
     TEMPLATE_FILE="rookout-aws-ecs.yaml"
     ;;
 

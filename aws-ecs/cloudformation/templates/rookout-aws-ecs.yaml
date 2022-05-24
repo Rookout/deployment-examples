@@ -38,6 +38,14 @@ Parameters:
     Type: 'AWS::EC2::VPC::Id'
     Description: VPC ID where resources will be deployed.
 
+  LaunchType:
+    Type: String
+    Description: Launch type for ECS Services. Set to ECS if you've provided ClusterName variable with existing EC2 cluster name.
+    Default: FARGATE
+    AllowedValues:
+      - FARGATE
+      - EC2
+  
   DeployController:
     Description: Set true if you want to deploy Controller service.
     Type: String
@@ -481,7 +489,7 @@ Resources:
       - CreateCluster
       - !Ref EcsCluster
       - !Ref ClusterName
-      LaunchType: FARGATE
+      LaunchType: !Ref LaunchType
       PlatformVersion: LATEST
       TaskDefinition: !Ref ControllerTask
       EnableECSManagedTags: true
@@ -510,7 +518,7 @@ Resources:
       - CreateCluster
       - !Ref EcsCluster
       - !Ref ClusterName
-      LaunchType: FARGATE
+      LaunchType: !Ref LaunchType
       PlatformVersion: LATEST
       TaskDefinition: !Ref ControllerTask
       EnableECSManagedTags: true
@@ -565,7 +573,7 @@ Resources:
       - CreateCluster
       - !Ref EcsCluster
       - !Ref ClusterName
-      LaunchType: FARGATE
+      LaunchType: !Ref LaunchType
       PlatformVersion: LATEST
       TaskDefinition: !Ref DatastoreTask
       EnableECSManagedTags: true

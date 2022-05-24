@@ -33,6 +33,12 @@ variable "existing_lb_arn" {
   default     = null
 }
 
+variable "launch_type" {
+  description = "Launch type for ECS Services. Set to EC2 if you've provided cluster_name variable with existing EC2 cluster name."
+  type        = string
+  default     = "FARGATE"
+}
+
 variable "controller_settings" {
   type = map(string)
   default = {

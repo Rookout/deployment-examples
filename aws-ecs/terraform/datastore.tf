@@ -32,7 +32,7 @@ resource "aws_ecs_service" "datastore" {
   cluster         = local.create_cluster ? aws_ecs_cluster.rookout[0].id : data.aws_ecs_cluster.provided[0].id
   task_definition = aws_ecs_task_definition.datastore[0].arn
   desired_count   = 1
-  launch_type     = "FARGATE"
+  launch_type     = var.launch_type
   dynamic "load_balancer" {
     for_each = local.load_balancer_datastore
     content {
