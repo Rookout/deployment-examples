@@ -12,7 +12,7 @@ This is example of job deployment for the Rookout Controller and Rookout Datasto
 1. Run `sudo nomad agent -dev -bind 0.0.0.0 -log-level INFO` to run local cluster.
 2. `git clone https://github.com/Rookout/deployment-examples.git && cd deployment-examples/nomad`
 2. Configure required variables to be used for job run in `rookout.vars`
-3. run `nomad job run -var-file="testing.vars" rookout.nomad`
+3. run `nomad job run -var-file="rookout.vars" rookout.nomad`
 
 ### Variables
 
