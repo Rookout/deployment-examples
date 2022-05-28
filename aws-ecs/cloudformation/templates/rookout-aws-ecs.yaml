@@ -27,12 +27,10 @@ Parameters:
   PublicSubnets:
     Description: Select list of public subnets for LoadBalancer and for ECS tasks in case of default vpc deployment.
     Type: 'List<AWS::EC2::Subnet::Id>'
-    Default: ""
 
   PrivateSubnets:
     Description: Select list of private subnets for ECS tasks. They should be in same VPC and has routes between PublicSubnets.
     Type: 'List<AWS::EC2::Subnet::Id>'
-    Default: ""
 
   VpcId:
     Type: 'AWS::EC2::VPC::Id'
@@ -232,7 +230,59 @@ Parameters:
     Description: Datastore container ephermal storage size.
     Type: String
     Default: 20
-    
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: General Parameters
+        Parameters:
+          - Environment
+          - TokenSecretArn
+          - ClusterName
+          - LaunchType
+          - CertificateS3Bucket
+      - Label:
+          default: Networking
+        Parameters:
+          - VpcId
+          - PublicSubnets
+          - PrivateSubnets
+          - PrivateDNSZoneName
+          - CreateLB
+          - ExistingLBArn
+          - DefaultVPC
+      - Label:
+          default: Controller Parameters
+        Parameters:
+          - DeployController
+          - ControllerPublishLB
+          - ControllerServerMode
+          - ControllerCertArn
+          - ControllerCertS3BucketPrefix
+          - ControllerContainerCPU
+          - ControllerContainerMemory
+          - ControllerTaskCPU
+          - ControllerTaskMemory
+          - ControllerContainerPort
+          - ControllerLBPort
+      - Label:
+          default: Datastore Parameters
+        Parameters:
+          - DeployDatastore
+          - DatastorePublishLB
+          - DatastoreServerMode
+          - DatastoreCertArn
+          - DatastoreCertS3BucketPrefix
+          - DatastoreStorageSize
+          - DatastoreContainerCPU
+          - DatastoreContainerMemory
+          - DatastoreTaskCPU
+          - DatastoreTaskMemory
+          - DatastoreContainerPort
+          - DatastoreLBPort
+          - DOPInMemoryDB
+          - DOPCorsAll
 
 Conditions:
   DatastoreStorageIncrease: !Not [!Equals [20, !Ref DatastoreStorageSize]]
