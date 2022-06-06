@@ -23,9 +23,6 @@ FROM alpine:3.15 as release
 COPY --from=builder /app/main ./
 
 ENV ROOKOUT_TOKEN=${ROOKOUT_TOKEN}
-ENV ROOKOUT_CONTROLLER_PORT=443
-ENV ROOKOUT_CONTROLLER_HOST=wss://staging.control.rookout.com
-ENV ROOKOUT_DEBUG=1
 
 ENV PORT 1994
 EXPOSE 1994
