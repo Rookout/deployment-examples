@@ -72,7 +72,7 @@ The changes include:
 2. The `apk` command to install tools required to build with the GoRook.
 3. `go get` to Install the GoRook.
 4. Adding `-tags=alpine314,rookout_static -gcflags='all=-N -l'` to the `go build`, this is needed for the GoRook to work.
-5. All the `ENV` are just for convenience, you can add them manually to the Lambda function or pass them in the `RookOptions` in `main.go`
+5. ROOKOUT_TOKEN `ENV` is for convenience, you can add add manually to the Lambda function or pass them in the `RookOptions` in `main.go` instead.
 
 ### Uploading the Docker
 Now after adding those changes (and running `go mod init <name>` if you are creating a new go module) you need to upload the docker so you could use it as a lambda function.
