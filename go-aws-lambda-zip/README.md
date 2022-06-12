@@ -11,7 +11,7 @@ Let's first change your main go file, there are 2 changes:
 You can look in `main.go` to see these lines in code.
 
 ### Dockerfile
-Now we need to compile the code with the GoRook, for that we'll just use a docker.
+Now we need to compile the code with the GoSDK, for that we'll just use a docker.
 Use this Dockerfile to compile your code (don't forget to add files to the `go build` command if you need to).
 
 ### Creating the Function

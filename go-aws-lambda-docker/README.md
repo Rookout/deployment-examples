@@ -57,9 +57,6 @@ FROM alpine:3.15 as release
 COPY --from=builder /app/main ./
 
 ENV ROOKOUT_TOKEN=${ROOKOUT_TOKEN}
-ENV ROOKOUT_CONTROLLER_PORT=443
-ENV ROOKOUT_CONTROLLER_HOST=wss://staging.control.rookout.com
-ENV ROOKOUT_DEBUG=1
 
 ENV PORT 1994
 EXPOSE 1994
@@ -67,7 +64,7 @@ CMD ["./main"]
 ```
 
 The changes include:
-1. Two `go env` commands to replace the GoSDK with our GoRook.
+1. Two `go env` commands to properly use the Rookout artifactory.
     * NOTE: Please contact us in order to get the artifactory credentials.
 2. The `apk` command to install tools required to build with the GoRook.
 3. `go get` to Install the GoRook.
