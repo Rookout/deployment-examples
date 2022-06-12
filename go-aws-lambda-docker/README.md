@@ -1,12 +1,12 @@
 # Golang + AWS Lambda Docker Image Example
 
-A sample application for debugging Go + AWS Lambda using a docker image.
+A sample application for debugging Go + AWS Lambda using a Docker image.
 
 ## Rookout Integration Process
 
-Let's first change your main go file, there are 2 changes:
-1. Import the GoSDK like so: `rook "github.com/Rookout/GoSDK"`
-2. Add a call to our `rook.Start` at the start of your handler function: `rook.Start(rook.RookOptions{})` like so, and add a defer call to our `rook.Flush` like so: `defer rook.Flush()`
+First, add the following to your main.go file:
+1. Import the GoSDK like so: `rookout "github.com/Rookout/GoSDK"`
+2. Add a call to our `rook.Start` at the start of your handler function: `rookout.Start(rookout.RookOptions{})` like so, and add a defer call to our `rookout.Flush` like so: `defer rookout.Flush()`
 You can look in `main.go` to see these lines in code.
 
 The Dockerfile requires more changes, so let's look at a before and after:
@@ -66,25 +66,26 @@ CMD ["./main"]
 The changes include:
 1. Two `go env` commands to properly use the Rookout artifactory.
     * NOTE: Please contact us in order to get the artifactory credentials.
-2. The `apk` command to install tools required to build with the GoRook.
-3. `go get` to Install the GoRook.
-4. Adding `-tags=alpine314,rookout_static -gcflags='all=-N -l'` to the `go build`, this is needed for the GoRook to work.
-5. ROOKOUT_TOKEN `ENV` is for convenience, you can add add manually to the Lambda function or pass them in the `RookOptions` in `main.go` instead.
+2. The `apk` command to install tools required to build with the Rookout SDK.
+3. `go get` to Install the Rookout SDK.
+4. Adding `-tags=alpine314,rookout_static -gcflags='all=-N -l'` to the `go build`, this is needed for the Rookout SDK to work.
+5. ROOKOUT_TOKEN `ENV` is for convenience, you can add it manually to the Lambda function or pass it in the `RookOptions` variable in `main.go` instead.
 
 ### Uploading the Docker
-Now after adding those changes (and running `go mod init <name>` if you are creating a new go module) you need to upload the docker so you could use it as a lambda function.
+Now after adding those changes (and running `go mod init <name>` if you are creating a new go module) you need to upload the docker to AWS' Elastic Container Registry (ECR) so you could use it as a Lambda function.
 
 For this you need to run four commands:
 ```bash
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region <aws_region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com
 docker build . --tag <docker_tag> --build-arg ARTIFACTORY_CREDS=<artifactory_credentials>
-docker tag <docker_tag>:latest <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/<docker_tag>:latest
-docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/<docker_tag>
+docker tag <docker_tag>:latest <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/<docker_tag>:latest
+docker push <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/<docker_tag>
 ```
 
+aws_region - Your aws region.
 aws_account_id - Your account id on AWS.
-docker_tag - Just a tag to identify the docker you are building.
-artifactory_credentials - The credentials needed to get the GoRook from jfrog.
+docker_tag - Just a tag to identify the Docker image you are building.
+artifactory_credentials - The credentials needed to get the Rookout SDK from JFrog.
 * NOTE: Please contact us in order to get the artifactory credentials.
 
-After running all these commands you should be able to go and create a new AWS Lambda function from a docker image.
+After running all these commands you should be able to go and create a new AWS Lambda function from a Docker image.
