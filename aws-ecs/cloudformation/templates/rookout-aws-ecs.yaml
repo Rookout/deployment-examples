@@ -302,6 +302,8 @@ Conditions:
       - !Not [!Equals ["", !Ref ExistingLBArn]]
   DatastoreEnableTLS: !Equals ["TLS", !Ref DatastoreServerMode]
   ControllerEnableTLS: !Equals ["TLS", !Ref ControllerServerMode]
+  DatastorePLAIN: !Equals ["PLAIN", !Ref DatastoreServerMode]
+  ControllerPLAIN: !Equals ["PLAIN", !Ref ControllerServerMode]
   CreateLB: !Equals [true, !Ref CreateLB]
   NoLB: !And 
     - !Equals [false, !Ref CreateLB]
@@ -856,14 +858,24 @@ Resources:
 
 Outputs:
 
-  ControllerPrivateDNS:
-    Condition: ControllerDeploy
-    Value: !Sub 'rookout-controller-${Environment}.${PrivateDNSZoneName}:${ControllerContainerPort}'
+  ControllerPrivateEndpointTLS:
+    Condition: ControllerEnableTLS
+    Value: !Sub 'wss://rookout-controller-${Environment}.${PrivateDNSZoneName}:${ControllerContainerPort}'
 
-  DatastorePrivateDNS:
-    Condition: DatastoreDeploy 
-    Value: !Sub 'rookout-datastore-${Environment}.${PrivateDNSZoneName}:${DatastoreContainerPort}'
+  DatastorePrivateEndpointTLS:
+    Condition: DatastoreEnableTLS 
+    Value: !Sub 'https://rookout-datastore-${Environment}.${PrivateDNSZoneName}:${DatastoreContainerPort}'
+  
+  ControllerPrivateEndpointPLAIN:
+    Condition: ControllerPLAIN
+    Value: !Sub 'ws://rookout-controller-${Environment}.${PrivateDNSZoneName}:${ControllerContainerPort}'
+
+  DatastorePrivateEndpointPLAIN:
+    Condition: DatastorePLAIN 
+    Value: !Sub 'http://rookout-datastore-${Environment}.${PrivateDNSZoneName}:${DatastoreContainerPort}'
     
   LoadBalancerDNSName:
     Condition: CreateLB
-    Value: !GetAtt ALB.DNSName
+    Value: !Sub 
+      - 'https://${ALB}'
+      - ALB: !GetAtt ALB.DNSName

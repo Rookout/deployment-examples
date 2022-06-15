@@ -3,9 +3,9 @@ output "alb_dns_name" {
 }
 
 output "controller_private_endpoint" {
-  value = format("%s.%s:%s", aws_service_discovery_service.controller[0].name, var.prviate_namespace_name, local.controller_port)
+  value = local.controller_endpoint
 }
 
 output "datastore_private_endpoint" {
-  value = format("%s.%s:%s", aws_service_discovery_service.datastore[0].name, var.prviate_namespace_name, local.datastore_port)
+  value = local.datastore_endpoint
 }

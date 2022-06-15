@@ -30,7 +30,7 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 ### Files
 
 * *templates/*
-   * *rookout-aws-ecs.yaml* - CloudFormation template which creates following resources:
+   * *rookout-aws-ecs.yaml* - Main Rookout CloudFormation template which creates following resources:
       * ECS Cluster
       * ECS TaskDefinitions
       * ECS Services
@@ -96,10 +96,9 @@ This CloudFormation deployment is to be used to deploy the Rookout Controller an
 
 | OutputName  | Description |
 | ------------- | ------------- |
-| AlbDNSName | FQDN of load_balancer in case CreateLB variable set to true. Can be used as CNAME target in case of using external DNS. ![Route53 RefDoc](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) |
-| RookoutLogGroup | Name of the log group for rookout tasks |
-| ControllerPrivateDNS | Private endpoint for controller service for access within the vpc. Default port is 7488 |
-| DatastorePrivateDNS | Private endpoint for controller service for access within the vpc. Default port is 8080  |
+| LoadBalancerDNSName | FQDN of load_balancer in case CreateLB variable set to true. Can be used as CNAME target in case of using external DNS. ![Route53 RefDoc](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) |
+| ControllerPrivateEndpointTLS/PLAIN | Private endpoint for controller service for access within the vpc. |
+| ControllerPrivateEndpointTLS/PLAIN | Private endpoint for controller service for access within the vpc. |
 
 **Note:** You can use alb dns name directrly to access datastore/controller. By default if loadbalancer is used and certificate arn is provided, datastore will be securely published on 443 port of load balancer, controller will be securely published with default port 7488. In case if certificate arn is not provided datastore will be published via HTTP on port 80. Task can be accessed publicly directly via public ip in case of default vpc, datastore default port is 8080, controller's - 7488.
 

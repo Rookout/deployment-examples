@@ -72,6 +72,7 @@ locals {
     certificate_bucket_name   = try(local.datastore_settings.certificate_bucket_name, "none")
     certificate_bucket_prefix = try(local.datastore_settings.certificate_bucket_prefix, "none")
   })
+  datastore_endpoint = format("%s://%s.%s:%s", aws_service_discovery_service.datastore[0].name, var.prviate_namespace_name, local.datastore_port, lower(local.datastore_tg_protocol))
   load_balancer_datastore = local.datastore_publish_lb ? [{
     target_group_arn = try(aws_lb_target_group.datastore[0].arn, null)
     container_name   = local.datastore_settings.container_name
@@ -100,6 +101,7 @@ locals {
     certificate_bucket_name   = try(local.controller_settings.certificate_bucket_name, "none")
     certificate_bucket_prefix = try(local.controller_settings.certificate_bucket_prefix, "none")
   })
+  controller_endpoint = format("%s://%s.%s:%s", aws_service_discovery_service.controller[0].name, var.prviate_namespace_name, local.controller_port, lower(local.controller_tg_protocol))
   load_balancer_controller = local.controller_publish_lb ? [{
     target_group_arn = try(aws_lb_target_group.controller[0].arn, null)
     container_name   = local.controller_settings.container_name
