@@ -1,5 +1,5 @@
 output "alb_dns_name" {
-  value = try(aws_lb.alb[0].dns_name, null)
+  value = local.load_balancer_endpoint
 }
 
 output "controller_private_endpoint" {
