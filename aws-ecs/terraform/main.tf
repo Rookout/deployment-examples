@@ -7,7 +7,7 @@ locals {
   default_controller_settings = {
     deploy                    = true
     container_name            = "rookout-controller"
-    serer_mode                = "PLAIN"
+    server_mode               = "PLAIN"
     dop_no_ssl_verify         = true
     onprem_enabled            = true
     certificate_bucket_prefix = null
@@ -24,7 +24,7 @@ locals {
   default_datastore_settings = {
     deploy                    = true
     container_name            = "rookout-datastore"
-    serer_mode                = "PLAIN"
+    server_mode                = "PLAIN"
     cors_all                  = true
     in_memory_db              = true
     certificate_bucket_prefix = null

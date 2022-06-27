@@ -13,7 +13,7 @@ controller_settings = {
   dop_no_ssl_verify         = true
   onprem_enabled            = true
   certificate_bucket_prefix = "certs-controller"
-  certificate_bucket_name   = "some-s3-bucket"
+  certificate_bucket_name   = "bucket-xxxxxx-us-east-1"
   certificate_arn           = "arn:aws:acm:xx-xxxx-x:xxxxxxxxxxxxxx:certificate/xxxxxxxx-xxxxxx-xxxxx-xxxxxx-xxxxx"
   publish_lb                = false
 }
@@ -21,7 +21,7 @@ datastore_settings = {
   deploy                    = true
   server_mode               = "PLAIN"
   certificate_bucket_prefix = "certs-datastore"
-  certificate_bucket_name   = "some-s3-bucket"
+  certificate_bucket_name   = "bucket-xxxxxx-us-east-1"
   certificate_arn           = "arn:aws:acm:xx-xxxx-x:xxxxxxxxxxxxxx:certificate/xxxxxxxx-xxxxxx-xxxxx-xxxxxx-xxxxx"
   publish_lb                = true
 }

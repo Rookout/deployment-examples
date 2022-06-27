@@ -65,7 +65,7 @@
     },
     {
         "ParameterKey": "CertificateS3Bucket",
-        "ParameterValue": "certificate-bucket"
+        "ParameterValue": "bucket-xxxxxx-us-east-1"
     },
     {
         "ParameterKey": "ControllerCertS3BucketPrefix",
