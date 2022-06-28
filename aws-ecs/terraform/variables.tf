@@ -41,45 +41,12 @@ variable "launch_type" {
 
 variable "controller_settings" {
   type = map(string)
-  default = {
-    deploy                    = true
-    container_name            = "rookout-controller"
-    server_mode               = "PLAIN"
-    dop_no_ssl_verify         = true
-    onprem_enabled            = true
-    certificate_bucket_prefix = null
-    certificate_bucket_name   = null
-    certificate_arn           = null
-    publish_lb                = false
-    task_cpu                  = 512
-    task_memory               = 1024
-    container_cpu             = 256
-    container_memory          = 512
-    container_port            = 7488
-    load_balancer_port        = 7488
-  }
+  default = {}
 }
 
 variable "datastore_settings" {
   type = map(string)
-  default = {
-    deploy                    = true
-    container_name            = "rookout-datastore"
-    server_mode               = "PLAIN"
-    cors_all                  = true
-    in_memory_db              = true
-    certificate_bucket_prefix = null
-    certificate_bucket_name   = null
-    certificate_arn           = null
-    publish_lb                = true
-    task_cpu                  = 512
-    task_memory               = 1024
-    container_cpu             = 256
-    container_memory          = 512
-    storage_size              = 20
-    container_port            = 8080
-    load_balancer_port        = 443
-  }
+  default = {}
 }
 
 variable "publish_controller_lb" {
