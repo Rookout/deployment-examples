@@ -1,2 +1,2 @@
-rook>=0.1.58
+rook>=0.1.177
 nameko

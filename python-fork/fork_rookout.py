@@ -31,7 +31,7 @@ def child_routine():
 
 
 if __name__ == "__main__":
-    rook.start(throw_errors=True, fork=True)
+    rook.start(throw_errors=True)
     if 0 == os.fork():
         app.run(host="0.0.0.0", port=5000, threaded=True)
     else:

@@ -37,7 +37,7 @@ Before following this guide we recommend completing the basic [Python + Rookout 
 
 1. Add the import to the main file of the application `import rook`
 
-1. Start the SDK using `rook.start(fork=True)` as early as possible in your code - it will look for the `ROOKOUT_TOKEN` environment variable, or can be passed as a parameter `rook.start(token="ROOKOUT_TOKEN", fork=True)`
+1. Start the SDK using `rook.start()` as early as possible in your code - it will look for the `ROOKOUT_TOKEN` environment variable, or can be passed as a parameter `rook.start(token="ROOKOUT_TOKEN")`
 
 
 [Python + Rookout]: https://docs.rookout.com/docs/sdk-setup.html

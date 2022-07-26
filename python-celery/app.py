@@ -1,7 +1,7 @@
 from celery import Celery
 
 import rook
-rook.start(fork=True)
+rook.start()
 
 app = Celery('tasks', broker='amqp://host.docker.internal', backend='redis://host.docker.internal')
 

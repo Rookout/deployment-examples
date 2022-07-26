@@ -46,7 +46,7 @@ Go to https://app.rookout.com and start debugging :)
 2. Import the package in your app's entry-point file, just before it starts
 ```bash
    import rook
-   rook.start(fork=True)
+   rook.start()
 ```
 
 [Python + Rookout]: https://docs.rookout.com/docs/python-setup/
