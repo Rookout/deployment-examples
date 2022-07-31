@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "build": "^0.1.4",
-    "rookout": "^0.23.0"
+    "dd-trace": "^2.11.0",
+    "express": "^4.18.1",
+    "rookout": "file:../../NodeRook/rooks/node/rook/output/npm/rookout-0.80.0.tgz"
   },
   "devDependencies": {
     "@types/node": "^10.12.6"
