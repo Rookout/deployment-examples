@@ -18,7 +18,7 @@ namespace Rookout.Function
             Rook.RookOptions options = new Rook.RookOptions()
             {
                 token = "[Your Rookout Token]",
-                labels = new Dictionary<string, string> {{ "function_name", "[function name]]" }, { "env", "dev" } }
+                labels = new Dictionary<string, string> { { "env", "dev" } }
             };
             
             await using (Rook.API.StartLambda(options)) {

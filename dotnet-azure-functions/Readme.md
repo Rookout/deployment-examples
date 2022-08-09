@@ -23,12 +23,12 @@
         </ItemGroup>
         </Project>
 
-3. Set up Rookout Options at the begining of your function (make sure you replace the rookout token place holder with your token. This can be found under settings icon in the bottom left of the app.rookout.com appplication):
+3. Set up Rookout Options at the begining of your function (make sure you replace the rookout token place holder with your token. This can be found under settings icon in the bottom left of the https://app.rookout.com appplication):
 
         Rook.RookOptions options = new Rook.RookOptions() 
         {
             token = "[Your Rookout Token]",
-            labels = new Dictionary<string, string> {{ "function_name", "[function name]]" }, { "env", "dev" } }
+            labels = new Dictionary<string, string> { { "env", "dev" } }
         };
 
 4.  Wrap function in Rook Start Lamba (either with await or without):
