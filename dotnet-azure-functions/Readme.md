@@ -5,25 +5,25 @@
     csproj snippet:
 
         ```
-            <Project Sdk="Microsoft.NET.Sdk">
-                <PropertyGroup>
-                    <TargetFramework>net6.0</TargetFramework>
-                    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
-                </PropertyGroup>
-                <ItemGroup>
-                    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
-                    <PackageReference Include="Rookout" Version="0.1.117" />
-                </ItemGroup>
-                <ItemGroup>
-                    <None Update="host.json">
-                    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                    </None>
-                    <None Update="local.settings.json">
-                    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-                    </None>
-                </ItemGroup>
-            </Project>
+        <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+                <TargetFramework>net6.0</TargetFramework>
+                <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+            </PropertyGroup>
+            <ItemGroup>
+                <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
+                <PackageReference Include="Rookout" Version="0.1.117" />
+            </ItemGroup>
+            <ItemGroup>
+                <None Update="host.json">
+                <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                </None>
+                <None Update="local.settings.json">
+                <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+                </None>
+            </ItemGroup>
+        </Project>
         ```
 
 3. Set up Rookout Options at the begining of your function. This can also be set as environment variables (https://docs.rookout.com/docs/setup-guide/#configuration). Make sure you replace the rookout token place holder with your token. This can be found under settings icon in the bottom left of the https://app.rookout.com appplication):
@@ -42,10 +42,10 @@
     With options set in lamba
 
         ```
-        await using (Rook.API.StartLambda(options)) {
+            await using (Rook.API.StartLambda(options)) {
 
-                //Function Logic Here
-            }
+                    //Function Logic Here
+                }
         ```
 
     OR
@@ -53,10 +53,10 @@
     with options defined as environment variables (https://docs.rookout.com/docs/dotnet-setup/#sdk-api)
 
         ```
-        await using (Rook.API.StartLambda()) {
+            await using (Rook.API.StartLambda()) {
 
-            //Function Logic Here
-        }
+                //Function Logic Here
+            }
         ```
     
 
