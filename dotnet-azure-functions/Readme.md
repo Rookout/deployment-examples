@@ -1,4 +1,4 @@
-1. Set up the Azure Functions CLI (for VS Code https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process)
+**1.** Set up the Azure Functions CLI (for VS Code https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp?tabs=in-process)
 
 2. Install Rookout Nuget Package (https://www.nuget.org/packages/Rookout)
 
