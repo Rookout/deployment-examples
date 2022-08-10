@@ -43,25 +43,27 @@
         
     With options set in lamba
 
-        ```
-            await using (Rook.API.StartLambda(options)) {
+    ```
 
-                    //Function Logic Here
-                }
+        await using (Rook.API.StartLambda(options)) {
 
-        ```
+                //Function Logic Here
+            }
+
+    ```
 
     OR
     
     with options defined as environment variables (https://docs.rookout.com/docs/dotnet-setup/#sdk-api)
 
-        ```
-            await using (Rook.API.StartLambda()) {
+    ```
 
-                //Function Logic Here
-            }
-            
-        ```
+        await using (Rook.API.StartLambda()) {
+
+            //Function Logic Here
+        }
+
+    ```
     
 
 5. Deploy the code:
