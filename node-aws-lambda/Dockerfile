@@ -1,4 +1,4 @@
-FROM lambci/lambda:build-nodejs10.x
+FROM amazon/aws-sam-cli-build-image-nodejs14.x
 RUN mkdir -p /build
 RUN mkdir -p /dist
 WORKDIR /build
