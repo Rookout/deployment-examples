@@ -6,7 +6,7 @@ if aws lambda list-functions --region us-east-2 | grep "node_aws_lambda_regressi
 aws lambda update-function-code \
             --function-name node_aws_lambda_regression_test \
             --zip-file fileb:///dist/rookout_lambda_test_regression.zip \
-            --region us-east-2 ; \
+            --region us-east-2 > /dev/null; \
  
 else
 aws lambda create-function \
