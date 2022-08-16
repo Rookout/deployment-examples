@@ -1,7 +1,7 @@
 regressionTest {
     FILE_PATH =  "index.js"
     LINE_NUM =  "4"
-    SHA =  "6354f3b20051c5dc72270653e1de88349252e40b4d2de6b450bedf11277ceb90"
+    SHA =  "3400c8ecff0a7818049c751e57364f0663427c58ad632e2501cf108ecbe6b332"
     URL_FOR_TRIGGER = "node_aws_lambda_regression_test"
     LANG = "NodeJs"
     BACKGROUND_IMAGE_CMD = "bash /build/awsTest.sh &"
