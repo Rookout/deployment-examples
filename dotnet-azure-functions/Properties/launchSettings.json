@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "DotNet_AzureFunction": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7038",
+      "launchBrowser": false
+    }
+  }
+}
