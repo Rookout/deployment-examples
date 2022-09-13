@@ -1,25 +1,28 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rookout-demo-app-deployment
   labels:
-    name: rookout-demo-app-deployment
+    app: rookout-demo-app-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: rookout-demo-app-deployment
   template:
     metadata:
       labels:
-        name: rookout-demo-app-deployment
+        app: rookout-demo-app-deployment
     spec:
       containers:
-      - name: rookout-demo-app
-        image: rookout/tutorial-python
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 5000
-        env:
-          - name: ROOKOUT_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: rookout
-                key: token
+        - name: rookout-demo-app
+          image: rookout/tutorial-python
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ROOKOUT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: rookout
+                  key: token
