@@ -8,5 +8,5 @@ spec:
       targetPort: 5000
       protocol: TCP
   selector:
-    name: rookout-demo-app-deployment
+    app: rookout-demo-app-deployment
   type: LoadBalancer
