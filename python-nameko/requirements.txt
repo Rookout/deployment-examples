@@ -1,2 +1,3 @@
 rook>=0.1.58
 nameko
+importlib-metadata<5.0
