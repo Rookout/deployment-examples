@@ -13,5 +13,5 @@ aws elasticbeanstalk update-environment \
                             --version-label $version \
                             --option-settings \
                             Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_TOKEN,Value=$ROOKOUT_TOKEN \
-                            Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_ROOK_TAGS,Value="java-aws-elasticbeanstalk" \
+                            Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_LABELS,Value="regression_test:java-aws-elasticbeanstalk" \
                             Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_DEBUG,Value=1

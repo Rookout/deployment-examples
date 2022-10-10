@@ -5,4 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "http://java-tomcat-aws-elasticbeanstalk.us-east-2.elasticbeanstalk.com/"
     LANG = "Java"
     BACKGROUND_IMAGE_CMD = "bash /app/runTest.sh &"
+    STATIC_LABEL = "java-tomcat-aws-elasticbeanstalk"
 }
