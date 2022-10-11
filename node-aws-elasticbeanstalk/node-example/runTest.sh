@@ -11,4 +11,7 @@ aws elasticbeanstalk update-environment \
                             --application-name regression-tests \
                             --environment-name node-aws-ebs-reg-test \
                             --version-label $version \
-                            --option-settings Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_TOKEN,Value=$ROOKOUT_TOKEN OptionName=ROOKOUT_LABELS,Value="regression_test:node-aws-ebs-reg-test" OptionName=ROOKOUT_DEBUG,Value=1 OptionName=PORT,Value=8081
+                            --option-settings Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_TOKEN,Value=$ROOKOUT_TOKEN \
+                            Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_LABELS,Value="regression_test:node-aws-ebs-reg-test" \
+                            Namespace=aws:elasticbeanstalk:application:environment,OptionName=ROOKOUT_DEBUG,Value=1 \
+                            Namespace=aws:elasticbeanstalk:application:environment,OptionName=PORT,Value=8081
