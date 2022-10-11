@@ -5,4 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "http://node-aws-ebs-reg-test.us-east-2.elasticbeanstalk.com/"
     LANG = "Node"
     BACKGROUND_IMAGE_CMD = "bash /runTest.sh &"
+    STATIC_LABEL = "node-aws-ebs-reg-test"
 }

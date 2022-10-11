@@ -12,7 +12,7 @@ aws lambda create-function \
             --role arn:aws:iam::032275105219:role/rookout-lambda-role \
             --handler lambda_function.lambda_handler \
             --runtime python3.7 \
-            --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_ROOK_TAGS=python_lambda_regression_test,ROOKOUT_DEBUG=1,ROOKOUT_LOG_TO_STDERR=1}" \
+            --environment Variables="{ROOKOUT_TOKEN=$ROOKOUT_TOKEN,ROOKOUT_LABELS='regression_test:python_lambda_regression_test',ROOKOUT_DEBUG=1,ROOKOUT_LOG_TO_STDERR=1}" \
             --timeout 25 \
             --memory-size 400 \
             --tags "type=regression_test" ; \

@@ -1,7 +1,7 @@
 {
   "environment_variables": {
     "ROOKOUT_TOKEN": "ROOKOUT_TOKEN_GOES_HERE",
-    "ROOKOUT_ROOK_TAGS": "python_chalice_lambda_regression_test-dev",
+    "ROOKOUT_LABELS": "regression_test:python_chalice_lambda_regression_test-dev",
     "ROOKOUT_DEBUG": "1",
     "ROOKOUT_LOG_TO_STDERR": "1"
   },

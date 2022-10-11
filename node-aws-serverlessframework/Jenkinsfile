@@ -5,4 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "node-serverless-reg-test-dev-example"
     LANG = "NodeJs"
     BACKGROUND_IMAGE_CMD = "bash /app/runTest.sh &"
+    STATIC_LABEL = "node-serverless-reg-test-dev-example"
 }

@@ -5,4 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "python-aws-serverless-reg-test-dev-hello"
     LANG = "Python"
     BACKGROUND_IMAGE_CMD = "bash /app/testEnvs.sh &"
+    STATIC_LABEL = "python-aws-serverless-reg-test-dev-hello"
 }

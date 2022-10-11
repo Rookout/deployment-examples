@@ -5,4 +5,5 @@ regressionTest {
     URL_FOR_TRIGGER = "node_aws_lambda_regression_test"
     LANG = "NodeJs"
     BACKGROUND_IMAGE_CMD = "bash /build/awsTest.sh &"
+    STATIC_LABEL = "node_aws_lambda_regression_test"
 }
