@@ -1,9 +1,10 @@
-// const rookout = require('rookout/auto_start');
+const rookout = require('rookout');
+rookout.start();
+
 var port = process.env.PORT || 8081,
     http = require('http'),
     fs = require('fs'),
     html = fs.readFileSync('index.html');
-    rookout = require('rookout/auto_start');
 
 var log = function(entry) {
     fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
