@@ -1,0 +1,118 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  python-aws-lambda-parameterized
+
+  Sample SAM Template for an app that supports using rookout in aws lambda
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+  Api:
+    Cors:
+      AllowMethods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers'"
+      AllowOrigin: "'*'"
+
+
+Parameters:
+  TodosTableName:
+    Type: String
+    Default: todos-table-python
+
+Resources:
+  TodosTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      TableName: !Ref TodosTableName
+  PythonServerlessTutorial:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: tutorial/
+      Handler: app.handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref TodosTableName
+          REGION_NAME: !Ref AWS::Region
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodosTable
+            Statement:
+              Effect: Allow
+              Action:
+                - dynamodb:Scan
+                - dynamodb:GetItem
+                - dynamodb:Query
+                - dynamodb:UpdateItem
+                - dynamodb:DeleteItem
+                - dynamodb:PutItem
+      Architectures:
+        - x86_64
+      Events:
+        Options:
+          Type: Api
+          Properties:
+            Path: /todos
+            Method: options
+        Options2:
+          Type: Api
+          Properties:
+            Path: /todos/{id}
+            Method: options
+        GetTodos:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /todos
+            Method: get
+        CreateTodo:
+          Type: Api
+          Properties:
+            Path: /todos
+            Method: post
+        UpdateTodo:
+          Type: Api
+          Properties:
+            Path: /todos/{id}
+            Method: patch
+        GetTodo:
+          Type: Api
+          Properties:
+            Path: /todos/{id}
+            Method: get
+        DeleteAll:
+          Type: Api
+          Properties:
+            Path: /todos
+            Method: delete
+        DeleteTodo:
+          Type: Api
+          Properties:
+            Path: /todos/{id}
+            Method: delete
+
+
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  TutorialPythonServerlessApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com"
+  PythonServerlessTutorial:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt PythonServerlessTutorial.Arn
+  PythonServerlessTutorialIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt PythonServerlessTutorialRole.Arn

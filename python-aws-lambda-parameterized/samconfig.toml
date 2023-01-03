@@ -1,0 +1,13 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "python-aws-lambda-parameterized"
+s3_bucket = "ENTER YOUR BUCKET NAME HERE"
+s3_prefix = "python-aws-lambda-parameterized"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "TodosTableName=\"todos-table-python\""
+image_repositories = []
+disable_rollback = false

@@ -1,0 +1,6 @@
+requests
+flask-lambda
+flask-cors
+boto3
+Werkzeug==2.0.3
+rook
