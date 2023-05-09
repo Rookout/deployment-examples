@@ -14,8 +14,10 @@ JAVA_OPTS=-javaagent:<PATH-TO-ROOK.JAR>
 3. Set your Rookout Token as the `ROOKOUT_TOKEN` environment variable. (Your token is available in your [Rookout App](app.rookout.com).
 
 4. Add your sources to your jar by adding the following line to your main `build.sbt` file:
+
+    (where `./src/main/scala` is the base directory of your Scala source files)
 ```bash
-resourceDirectory in Compile := sourceDirectory.value
+Compile / unmanagedResourceDirectories += baseDirectory.value / "./src/main/scala"
 ```
 5. Pack your app, run it and start debugging!  
 
