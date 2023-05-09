@@ -18,27 +18,36 @@ podCreator.initMain(label: label) {
                 testsNames = testsNamesRaw.values().toList()
                 println(testsNames)
             }
-            stage('Creating tests and building docker files') {
-                def scriptToUse = libraryResource 'generate_tests.groovy'
-                for (int i = 0; i < testsNames.size(); i++) {
-                    def dirPath = "${testsNames[i]}".toString()
-                    def jobName = "${testsNames[i]}".toString().replace("/","-")
-                    def dockerTag = TestUtilities.getDockerTagNameForRegression(testFolder, jobName)
-                    withCredentials([
-                            string(credentialsId: 'ROOKOUT_REGGRESION_TOKEN', variable: 'ROOKOUT_TOKEN'),
-                            string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
-                            string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
-                    ]) {
-                        if(Utilities.checkIfFileExist(this, dirPath, "Dockerfile.test")){
-                            sh("cd ${dirPath} && docker build -f Dockerfile.test -t ${dockerTag} . && gcloud docker -- push ${dockerTag}")
-                        }
-                        else{
-                            sh("cd ${dirPath} && docker build . -t ${dockerTag} && gcloud docker -- push ${dockerTag}")
-                        }
+
+            def scriptToUse = libraryResource 'generate_tests.groovy'
+            for (int i = 0; i < testsNames.size(); i++) {
+                def dirPath = "${testsNames[i]}".toString()
+                def jobName = "${testsNames[i]}".toString().replace("/","-")
+                def dockerTag = TestUtilities.getDockerTagNameForRegression(testFolder, jobName)
+                withCredentials([
+                        string(credentialsId: 'ROOKOUT_REGGRESION_TOKEN', variable: 'ROOKOUT_TOKEN'),
+                        string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
+                        string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    if(Utilities.checkIfFileExist(this, dirPath, "Dockerfile.test")){
+                        dockerfile = "Dockerfile.test"
                     }
-                    TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
+                    else{
+                        dockerfile = "Dockerfile"
+                    }
+                    podCreator.initKaniko(branch: env.ORIGINAL_GIT_BRANCH,
+                                                        repo: env.REPO_NAME, 
+                                                        imageName: "${testFolder}-${jobName}",
+                                                        imageRepo: "us-central1-docker.pkg.dev/rookoutdevelopment/development-images",
+                                                        imageTag: "latest",
+                                                        dockerfile: dockerfile, 
+                                                        envVars: ["${ROOKOUT_TOKEN}","${AWS_ACCESS_KEY_ID}","${AWS_SECRET_ACCESS_KEY}"],
+                                                        argsMap: ["ROOKOUT_TOKEN":ROOKOUT_TOKEN,"AWS_ACCESS_KEY_ID":AWS_ACCESS_KEY_ID,"AWS_SECRET_ACCESS_KEY":AWS_SECRET_ACCESS_KEY]
+                                                        subPath: dirPath)
                 }
+                TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
             }
+
             if ("master".equals(env.GIT_BRANCH)) {
                 stage('Run python tests') {
                     triggerer.regressionEx(GIT_BRANCH: "master", GIT_REPO: "PythonRook", LANGUAGE_TO_RUN: "python") {
