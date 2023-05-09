@@ -38,10 +38,6 @@ WORKDIR /app
 ADD . .
 
 ARG ROOKOUT_TOKEN
-ARG ARTIFACTORY_CREDS
-
-RUN go env -w GONOSUMDB="github.com/Rookout/GoSDK"
-RUN go env -w GOPROXY="https://proxy.golang.org,https://${ARTIFACTORY_CREDS}@rookout.jfrog.io/artifactory/api/go/rookout-go,direct"
 
 RUN apk --update --no-cache add git gcc musl-dev protobuf-dev openssl-libs-static openssl-dev build-base zlib-static
 
@@ -77,7 +73,7 @@ Now after adding those changes (and running `go mod init <name>` if you are crea
 For this you need to run four commands:
 ```bash
 aws ecr get-login-password --region <aws_region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com
-docker build . --tag <docker_tag> --build-arg ARTIFACTORY_CREDS=<artifactory_credentials>
+docker build . --tag <docker_tag>
 docker tag <docker_tag>:latest <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/<docker_tag>:latest
 docker push <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/<docker_tag>
 ```
