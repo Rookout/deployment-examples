@@ -8,7 +8,7 @@ ADD . .
 RUN pip install --upgrade pip
 RUN pip install rook -t .
 
-FROM kramos/alpine-zip AS img2
+FROM alpine:latest AS img2
 
 RUN apk add --update zip
 
