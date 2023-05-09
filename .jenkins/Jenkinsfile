@@ -22,17 +22,19 @@ podCreator.initMain(label: label) {
             def scriptToUse = libraryResource 'generate_tests.groovy'
             for (int i = 0; i < testsNames.size(); i++) {
                 def dirPath = "${testsNames[i]}".toString()
+                echo "dirPath: ${dirPath}"
                 def jobName = "${testsNames[i]}".toString().replace("/","-")
-                def dockerTag = TestUtilities.getDockerTagNameForRegression(testFolder, jobName)
                 withCredentials([
                         string(credentialsId: 'ROOKOUT_REGGRESION_TOKEN', variable: 'ROOKOUT_TOKEN'),
                         string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
                         string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')
                 ]) {
-                    if(Utilities.checkIfFileExist(this, dirPath, "Dockerfile.test")){
+                    if(Utilities.checkIfFileExist(this, dirPath, "Dockerfile.test"))
+                    {
                         dockerfile = "Dockerfile.test"
                     }
-                    else{
+                    else
+                    {
                         dockerfile = "Dockerfile"
                     }
                     podCreator.initKaniko(branch: env.ORIGINAL_GIT_BRANCH,
@@ -42,8 +44,8 @@ podCreator.initMain(label: label) {
                                                         imageTag: "latest",
                                                         dockerfile: dockerfile, 
                                                         envVars: ["${ROOKOUT_TOKEN}","${AWS_ACCESS_KEY_ID}","${AWS_SECRET_ACCESS_KEY}"],
-                                                        argsMap: ["ROOKOUT_TOKEN":ROOKOUT_TOKEN,"AWS_ACCESS_KEY_ID":AWS_ACCESS_KEY_ID,"AWS_SECRET_ACCESS_KEY":AWS_SECRET_ACCESS_KEY]
-                                                        subPath: "/${dirPath}")
+                                                        argsMap: ["ROOKOUT_TOKEN":ROOKOUT_TOKEN,"AWS_ACCESS_KEY_ID":AWS_ACCESS_KEY_ID,"AWS_SECRET_ACCESS_KEY":AWS_SECRET_ACCESS_KEY],
+                                                        subPath: dirPath)
                 }
                 TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
             }
