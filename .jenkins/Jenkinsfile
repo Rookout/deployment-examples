@@ -9,6 +9,7 @@ podCreator.initMain(label: label) {
         print(pwd())
         container('rookout-helm') {
             def myRepo = checkout scm
+            env.REPO_NAME = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
             env.GIT_BRANCH = myRepo.GIT_BRANCH.replaceAll('/|_', '-')
             // Replacing characters we cannot support in deploy branch
             def testFolder = "master".equals(env.GIT_BRANCH) ? "regression-test" : "sandbox-regression-test"
@@ -39,6 +40,7 @@ podCreator.initMain(label: label) {
                     }
                     podCreator.initKaniko(branch: env.ORIGINAL_GIT_BRANCH,
                                                         repo: env.REPO_NAME, 
+                                                        branch: env.GIT_BRANCH,
                                                         imageName: "${testFolder}-${jobName}",
                                                         imageRepo: "us-central1-docker.pkg.dev/rookoutdevelopment/development-images",
                                                         imageTag: "latest",
