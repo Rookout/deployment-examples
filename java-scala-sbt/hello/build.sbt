@@ -5,7 +5,7 @@ ThisBuild / version          := "0.1.0-SNAPSHOT"
 ThisBuild / organization     := "com.example"
 ThisBuild / organizationName := "example"
 
-resourceDirectory in Compile := sourceDirectory.value
+Compile / unmanagedResourceDirectories += baseDirectory.value / "./src/main/scala"
 
 lazy val root = (project in file("."))
   .settings(
