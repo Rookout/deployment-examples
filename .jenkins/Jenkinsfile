@@ -24,7 +24,7 @@ podCreator.initMain(label: label) {
             for (int i = 0; i < testsNames.size(); i++) {
                 def dirPath = "${testsNames[i]}".toString()
                 echo "dirPath: ${dirPath}"
-                def jobName = "${testsNames[i]}".toString()
+                def jobName = "${testsNames[i]}".toString().replace("/","-")
                 withCredentials([
                         string(credentialsId: 'ROOKOUT_REGGRESION_TOKEN', variable: 'ROOKOUT_TOKEN'),
                         string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),
