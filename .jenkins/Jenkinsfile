@@ -10,7 +10,7 @@ podCreator.initMain(label: label) {
         container('rookout-helm') {
             def myRepo = checkout scm
             env.REPO_NAME = scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
-            env.GIT_BRANCH = myRepo.GIT_BRANCH.replaceAll('/|_', '-')
+            env.GIT_BRANCH = myRepo.GIT_BRANCH
             // Replacing characters we cannot support in deploy branch
             def testFolder = "master".equals(env.GIT_BRANCH) ? "regression-test" : "sandbox-regression-test"
             stage('Getting test') {
