@@ -6,7 +6,9 @@ COPY . .
 
 RUN npm install
 
-FROM kramos/alpine-zip as img2
+FROM alpine:latest as img2
+
+RUN apk add --update zip
 
 WORKDIR /apps
 
