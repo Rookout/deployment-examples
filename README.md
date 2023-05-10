@@ -8,4 +8,3 @@ This repository contains full deployment examples, developed by Rookout   and th
 [tutorial]: https://cloud.google.com/appengine/docs/flexible/nodejs/quickstart
 [readme]: ../README.md
 [contributing]: https://github.com/GoogleCloudPlatform/nodejs-docs-samples/blob/master/CONTRIBUTING.md
-

@@ -16,7 +16,7 @@ Use this Dockerfile to compile your code (don't forget to add files to the `go b
 
 ### Creating the Function
 After adding the Dockerfile we need to run it to get the binary:
-`docker build . --build-arg ARTIFACTORY_CREDS=<artifactory_credentials> --output .`
+`docker build .`
 
 artifactory_credentials - The credentials needed to get the GoRook from JFrog.
 * NOTE: Please contact us in order to get the artifactory credentials.
