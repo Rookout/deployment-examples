@@ -48,7 +48,7 @@ podCreator.initMain(label: label) {
                                           argsMap: ["ROOKOUT_TOKEN":ROOKOUT_TOKEN,"AWS_ACCESS_KEY_ID":AWS_ACCESS_KEY_ID,"AWS_SECRET_ACCESS_KEY":AWS_SECRET_ACCESS_KEY],
                                           subPath: "/${dirPath}")
                 }
-                if (testsNames[i].contains('Java')) {
+                if (testsNames[i].contains('java')) {
                     println "skiping creation of test (java) for: ${testsNames[i]}"
                 } else {
                     TestUtilities.createTest(this, scriptToUse, jobName, pwd() + "/${testsNames[i]}", "Jenkinsfile", testFolder)
