@@ -29,7 +29,7 @@ Before following this guide we recommend reading the basic [Java + Rookout] guid
      ```
 3. Downloading the Rookout Java Agent from available on [maven central]::
     ```bash
-    $ wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
+    $ wget "https://search.maven.org/remote_content?g=com.rookout&a=rook&v=LATEST"  -O rook.jar
     ```  
 4. Specifying the Rookout Java Agent when running:
     ```bash

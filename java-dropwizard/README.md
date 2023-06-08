@@ -25,8 +25,8 @@ To test the example application run the following commands:
 
 1.  Download:
 
-    ```
-    $ curl -L "https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST" -o rook.jar
+    ```     
+    $ curl -L "https://search.maven.org/remote_content?g=com.rookout&a=rook&v=LATEST" -o rook.jar
     ```
 
 1. Run:

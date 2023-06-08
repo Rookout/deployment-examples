@@ -11,4 +11,4 @@ COPY target/rookoutDemo-1.0.0.jar  /usr/src/app/target/rookoutDemo-1.0.0.jar
 RUN   apk update \
   &&   apk add ca-certificates wget \
   &&   update-ca-certificates
-RUN wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
+RUN wget "https://search.maven.org/remote_content?g=com.rookout&a=rook&v=LATEST"  -O rook.jar
