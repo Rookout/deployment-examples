@@ -16,7 +16,7 @@ RUN mvn package
 FROM tomcat:8
 COPY --from=MAVEN_TOOL_CHAIN /tmp/target/sample.war $CATALINA_HOME/webapps/
 
-ADD --chown=root:root http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST $CATALINA_HOME/rook.jar
+ADD --chown=root:root https://search.maven.org/remote_content?g=com.rookout&a=rook&v=LATEST $CATALINA_HOME/rook.jar
 
 EXPOSE 8080
 CMD ["/bin/bash", "-c", "CATALINA_OPTS=\"$CATALINA_OPTS -javaagent:$CATALINA_HOME/rook.jar\" catalina.sh run"]

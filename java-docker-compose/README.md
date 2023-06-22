@@ -52,7 +52,7 @@ We have added Rookout to the original project by:
     
 2. Downloading the Rookout Java Agent available on [maven central]:
     ```bash
-        wget "http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST"  -O rook.jar
+        wget "https://search.maven.org/remote_content?g=com.rookout&a=rook&v=LATEST"  -O rook.jar
     ```
     
 3. Configuring our `ROOKOUT_TOKEN` on `docker-compose.yaml`:
