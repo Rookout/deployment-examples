@@ -8,7 +8,7 @@ Before following this guide we recommend completing the basic [Rookout Java depl
 
 To integrate Rookout into your existing Java application, follow these steps:
 
-1. [Download the Rookout Java Agent](http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.rookout&a=rook&v=LATEST)
+1. [Download the Rookout Java Agent](https://search.maven.org/remote_content?g=com.rookout&a=rook&v=LATEST)
 2. Add Rookout as a javaagent to the `CATALINA_OPTS` environment variable: `export CATALINA_OPTS="$CATALINA_OPTS -javaagent:$CATALINA_HOME/rook.jar"`
 3. Set your Rookout Token as the `ROOKOUT_TOKEN` environment variable
 
