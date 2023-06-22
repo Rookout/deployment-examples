@@ -1,0 +1,9 @@
+regressionTest {
+    FILE_PATH = "driver.py"
+    LINE_NUM = "11"
+    SHA = "6a31c4bee2527f1ea2acdb2e7ac202fc41dfbe199669b6e8ab51d871419556ca"
+    URL_FOR_TRIGGER = "http://localhost:4000/driver"
+    LANG = "Python"
+    BACKGROUND_IMAGE_CMD = "/opt/spark/bin/spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon pyspark_demo.py"
+    TRIGGER_TIME = "30"
+}
