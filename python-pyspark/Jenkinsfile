@@ -4,7 +4,7 @@ regressionTest {
     SHA = "6a31c4bee2527f1ea2acdb2e7ac202fc41dfbe199669b6e8ab51d871419556ca"
     URL_FOR_TRIGGER = "http://localhost:4000/driver"
     LANG = "Python"
-    BACKGROUND_IMAGE_CMD = '/opt/spark/bin/spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon --conf spark.executorEnv.ROOKOUT_TOKEN=$ROOKOUT_TOKEN --conf spark.executorEnv.ROOKOUT_LABELS=$ROOKOUT_LABELS pyspark_demo.py'
+    BACKGROUND_IMAGE_CMD = '/opt/spark/bin/spark-submit --conf spark.python.daemon.module=rook.pyspark_daemon --conf spark.executorEnv.ROOKOUT_TOKEN=$ROOKOUT_TOKEN --conf spark.executorEnv.ROOKOUT_LABELS=$ROOKOUT_LABELS pyspark_demo.py &'
     TRIGGER_TIME = "30"
     CUSTOM_SLEEP_TIME = "30"
 }
